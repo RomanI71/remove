@@ -338,33 +338,19 @@ function simulateProgress() {
 }
 
 // ✅ FIXED: Connection Check - Correct API endpoint
+// ✅ Backend connection check
 async function checkBackendConnection() {
   try {
-    console.log('🔍 Checking backend connection to:', BACKEND_URL);
-    
-    // ✅ Use the correct API endpoint that exists
-    const res = await fetch(`${BACKEND_URL}/remove-bg`, {
-    method: 'POST',
-    body: formData
-  });
+    const response = await fetch(`${BACKEND_URL}/api-status`, {
+      method: 'GET',
+      headers: { 'Accept': 'application/json' }
+    });
 
-    console.log('📡 Response status:', response.status);
-    console.log('📋 Content-Type:', response.headers.get('content-type'));
-    
     if (response.ok) {
-      // ✅ Check if response is JSON
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        const data = await response.json();
-        console.log('✅ Backend connected:', data);
-        return { success: true, data: data };
-      } else {
-        const text = await response.text();
-        console.error('❌ Received HTML instead of JSON:', text.substring(0, 100));
-        return { success: false, error: 'Server returned HTML instead of JSON' };
-      }
+      const data = await response.json();
+      console.log('✅ Backend connected:', data);
+      return { success: true, data };
     } else {
-      console.error('❌ Backend response error:', response.status);
       return { success: false, error: `HTTP ${response.status}` };
     }
   } catch (error) {
@@ -372,6 +358,13 @@ async function checkBackendConnection() {
     return { success: false, error: error.message };
   }
 }
+
+// ✅ Remove background call
+const res = await fetch(`${BACKEND_URL}/remove-bg`, { // changed endpoint
+  method: 'POST',
+  body: formData
+});
+
 
 // FastAPI server check on page load
 window.addEventListener('load', async () => {
