@@ -810,7 +810,7 @@ if __name__ == "__main__":
     print("=" * 60)
     print(f"🤖 AI Model Available: {'✅ Yes' if REMBG_AVAILABLE else '❌ No'}")
     print("🧠 Memory Management: ✅ Active")
-    print(f"🌐 Server URL: https://free-production-0a3b.up.railway.app")
+    print(f"🌐 Server URL: https://remove-production.up.railway.app")
     print("=" * 60)
     
 # ----------------- Run ----------------- #
