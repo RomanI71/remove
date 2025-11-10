@@ -677,8 +677,8 @@ async def get_image(filename: str):
 @app.post("/remove-bg")
 async def remove_bg(
     image: UploadFile = File(...), 
-    background_color: str = Form(default="transparent"),
-    quality: str = Form(default="high", description="Processing quality: 'high' (Refine Edge + AI) or 'standard' (AI only).")
+    background_color: str = Form("transparent"),
+    quality: str = Form("high")
 ):
     """Remove background with working download + transparent PNG"""
     try:
