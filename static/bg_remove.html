@@ -343,12 +343,10 @@ async function checkBackendConnection() {
     console.log('🔍 Checking backend connection to:', BACKEND_URL);
     
     // ✅ Use the correct API endpoint that exists
-    const response = await fetch(`${BACKEND_URL}/api-status`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      }
-    });
+    const res = await fetch(`${BACKEND_URL}/remove-bg`, {
+    method: 'POST',
+    body: formData
+  });
 
     console.log('📡 Response status:', response.status);
     console.log('📋 Content-Type:', response.headers.get('content-type'));
