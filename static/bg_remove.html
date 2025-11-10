@@ -433,7 +433,7 @@ removeBgBtn.addEventListener('click', async () => {
 
   const bgColor = bgMode.value === 'custom' ? bgColorPicker.value : bgMode.value;
   const formData = new FormData();
-  formData.append('file', currentFile); // ✅ Changed from 'image' to 'file'
+  formData.append('image', currentFile); // ✅ Changed from 'image' to 'file'
   formData.append('background_color', bgColor);
   formData.append('quality', currentQuality);
 
