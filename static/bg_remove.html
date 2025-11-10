@@ -175,7 +175,9 @@
     </footer>
   </div>
 
-  <script>
+<script>
+const BACKEND_URL = "https://remove-production.up.railway.app; // 🔧 Replace with your actual backend URL
+
 const uploadBox = document.getElementById('uploadBox');
 const fileInput = document.getElementById('fileInput');
 const selectBtn = document.getElementById('selectBtn');
@@ -199,12 +201,7 @@ let currentFile = null;
 let currentQuality = 'high';
 let isProcessing = false;
 
-// ✅ FIXED: Railway Backend URL
-const BACKEND_URL = "https://remove-production.up.railway.app";
-
-console.log('🚀 Backend URL set to:', BACKEND_URL);
-
-// Quality selection
+// Quality select
 qualityCards.forEach(card => {
   card.addEventListener('click', () => {
     qualityCards.forEach(c => c.classList.remove('active'));
@@ -213,21 +210,11 @@ qualityCards.forEach(card => {
   });
 });
 
-// File selection
+// File select + drag drop
 selectBtn.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', e => handleFiles(e.target.files));
-
-// Drag and drop
-uploadBox.addEventListener('dragover', e => {
-  e.preventDefault();
-  uploadBox.classList.add('highlight');
-});
-
-uploadBox.addEventListener('dragleave', e => {
-  e.preventDefault();
-  uploadBox.classList.remove('highlight');
-});
-
+uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.classList.add('highlight'); });
+uploadBox.addEventListener('dragleave', e => { e.preventDefault(); uploadBox.classList.remove('highlight'); });
 uploadBox.addEventListener('drop', e => {
   e.preventDefault();
   uploadBox.classList.remove('highlight');
@@ -237,305 +224,109 @@ uploadBox.addEventListener('drop', e => {
 function handleFiles(files) {
   if (!files.length) return;
   const file = files[0];
-  
-  if (!file.type.startsWith('image/')) {
-    showError('Please select a valid image file');
-    return;
-  }
-  
-  if (file.size > 10 * 1024 * 1024) {
-    showError('File too large (max 10MB)');
-    return;
-  }
+  if (!file.type.startsWith('image/')) return showError('Please select a valid image');
+  if (file.size > 10 * 1024 * 1024) return showError('File too large (max 10MB)');
   
   currentFile = file;
   const reader = new FileReader();
-  
   reader.onload = e => {
     previewImg.src = e.target.result;
     previewImg.style.display = 'block';
     placeholder.style.display = 'none';
     updatePreviewBg();
-    
-    // Show quality badge
-    if (!previewImg.parentNode.querySelector('.quality-badge')) {
-      const badge = document.createElement('div');
-      badge.className = 'quality-badge';
-      badge.innerHTML = `<i class="fa fa-crown"></i> ${currentQuality === 'high' ? 'High Quality' : 'Fast'}`;
-      previewImg.parentNode.appendChild(badge);
-    }
   };
-  
   reader.readAsDataURL(file);
   updateStatus('ready', 'Ready to process');
   bar.style.width = '0%';
   downloadWrap.style.display = 'none';
-  processingInfo.style.display = 'none';
 }
 
 function updatePreviewBg() {
   const value = bgMode.value === 'custom' ? bgColorPicker.value : bgMode.value;
-  previewImg.style.background = value === 'transparent' ? 
-    'repeating-conic-gradient(#f3f4f6 0% 25%, white 0% 50%) 50% / 20px 20px' : value;
+  previewImg.style.background = value === 'transparent'
+    ? 'repeating-conic-gradient(#f3f4f6 0% 25%, white 0% 50%) 50% / 20px 20px'
+    : value;
 }
 
 bgMode.addEventListener('change', () => {
   bgColorPicker.style.display = bgMode.value === 'custom' ? 'inline-block' : 'none';
   updatePreviewBg();
 });
+bgColorPicker.addEventListener('input', updatePreviewBg);
 
-bgColorPicker.addEventListener('input', () => {
-  updatePreviewBg();
-});
-
-function updateStatus(type, message) {
-  status.textContent = message;
+function updateStatus(type, msg) {
+  status.textContent = msg;
   statusDot.className = 'status-dot';
-  
-  switch (type) {
-    case 'ready':
-      statusDot.classList.add('ready');
-      break;
-    case 'processing':
-      statusDot.classList.add('processing');
-      break;
-    case 'error':
-      statusDot.classList.add('error');
-      break;
-  }
+  if (type === 'ready') statusDot.classList.add('ready');
+  else if (type === 'processing') statusDot.classList.add('processing');
+  else if (type === 'error') statusDot.classList.add('error');
 }
 
-function showError(message) {
-  updateStatus('error', message);
-  
-  // Remove any existing error messages
-  const existingErrors = document.querySelectorAll('.error-message');
-  existingErrors.forEach(error => error.remove());
-  
-  const errorMsg = document.createElement('div');
-  errorMsg.className = 'error-message small';
-  errorMsg.style.cssText = 'margin-top:8px; padding:8px; background:#fef2f2; border:1px solid #fecaca; border-radius:6px; color:#dc2626;';
-  errorMsg.innerHTML = `<strong>❌ Error:</strong> ${message}`;
-  status.parentNode.appendChild(errorMsg);
-  
-  setTimeout(() => {
-    if (!isProcessing) updateStatus('ready', 'Ready to process');
-    errorMsg.remove();
-  }, 5000);
+function showError(msg) {
+  updateStatus('error', msg);
+  setTimeout(() => updateStatus('ready', 'Ready to process'), 4000);
 }
 
-function simulateProgress() {
-  let width = 30;
-  const interval = setInterval(() => {
-    if (width >= 90) {
-      clearInterval(interval);
-      return;
-    }
-    width += Math.random() * 10;
-    bar.style.width = Math.min(width, 90) + '%';
-  }, 500);
-  return interval;
-}
-
-// ✅ FIXED: Connection Check - Correct API endpoint
-// ✅ Backend connection check
 async function checkBackendConnection() {
   try {
-    const response = await fetch(`${BACKEND_URL}/api-status`, {
-      method: 'GET',
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log('✅ Backend connected:', data);
-      return { success: true, data };
-    } else {
-      return { success: false, error: `HTTP ${response.status}` };
-    }
-  } catch (error) {
-    console.error('❌ Backend connection failed:', error);
-    return { success: false, error: error.message };
+    const res = await fetch(`${BACKEND_URL}/health`);
+    return res.ok;
+  } catch {
+    return false;
   }
 }
 
-// ✅ Remove background call
-const res = await fetch(`${BACKEND_URL}/remove-bg`, { // changed endpoint
-  method: 'POST',
-  body: formData
-});
-
-
-// FastAPI server check on page load
 window.addEventListener('load', async () => {
-  console.log('🚀 Page loaded, checking backend connection...');
-  
   updateStatus('processing', 'Connecting to server...');
-  
-  const result = await checkBackendConnection();
-  
-  if (result.success) {
-    updateStatus('ready', 'Connected to AI server ✅');
-    
-    // Show success message
-    const successMsg = document.createElement('div');
-    successMsg.className = 'small';
-    successMsg.style.cssText = 'margin-top:8px; padding:8px; background:#d1fae5; border:1px solid #a7f3d0; border-radius:6px; color:#065f46;';
-    successMsg.innerHTML = '<strong>✅ Server Connected:</strong> AI Background Removal Ready';
-    status.parentNode.appendChild(successMsg);
-    
-    setTimeout(() => {
-      successMsg.remove();
-    }, 5000);
-    
-  } else {
-    updateStatus('error', 'Server connection failed ❌');
-    
-    // Show detailed error message
-    const helpMsg = document.createElement('div');
-    helpMsg.className = 'small';
-    helpMsg.style.cssText = 'margin-top:8px; padding:8px; background:#fef2f2; border:1px solid #fecaca; border-radius:6px; color:#dc2626;';
-    helpMsg.innerHTML = `
-      <strong>⚠️ Connection Failed:</strong><br>
-      • URL: ${BACKEND_URL}<br>
-      • Error: ${result.error}<br>
-      • Check Railway dashboard for server status
-    `;
-    status.parentNode.appendChild(helpMsg);
-  }
+  const ok = await checkBackendConnection();
+  if (ok) updateStatus('ready', 'Connected to AI server ✅');
+  else updateStatus('error', 'Server connection failed ❌');
 });
 
-// ✅ FIXED: Remove Background Function - Use correct endpoint
 removeBgBtn.addEventListener('click', async () => {
-  if (!currentFile) {
-    showError('No image selected');
-    return;
-  }
-
-  if (isProcessing) return;
-
+  if (!currentFile || isProcessing) return;
   isProcessing = true;
   updateStatus('processing', 'Processing image...');
   bar.style.width = '10%';
   removeBgBtn.disabled = true;
   removeBgBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing...';
+  aiStatus.textContent = 'Initializing...';
   processingInfo.style.display = 'block';
-  aiStatus.textContent = 'Initializing AI model...';
 
   const bgColor = bgMode.value === 'custom' ? bgColorPicker.value : bgMode.value;
-  const formData = new FormData();
-  formData.append('image', currentFile); 
-  formData.append('background_color', bgColor);
-  formData.append('quality', currentQuality);
-
-  const progressInterval = simulateProgress();
+  const fd = new FormData();
+  fd.append('image', currentFile);
+  fd.append('background_color', bgColor);
+  fd.append('quality', currentQuality);
 
   try {
-    // Update AI status
-    setTimeout(() => {
-      if (isProcessing) aiStatus.textContent = 'Analyzing image content...';
-    }, 1000);
-
-    setTimeout(() => {
-      if (isProcessing) aiStatus.textContent = 'Removing background...';
-    }, 2500);
-
-    // ✅ FIXED: Use correct endpoint that matches your backend
-    console.log('📤 Sending request to:', `${BACKEND_URL}/api/remove-background`);
-    console.log('📦 File details:', currentFile.name, currentFile.size, 'bytes');
-    
-    const res = await fetch(`${BACKEND_URL}/api/remove-background`, {
-      method: 'POST',
-      body: formData
-    });
-
-    console.log('📥 Response status:', res.status);
-    console.log('📋 Response headers:', res.headers.get('content-type'));
-    clearInterval(progressInterval);
-
-    if (!res.ok) {
-      let errorText = 'Unknown error';
-      try {
-        errorText = await res.text();
-      } catch (e) {
-        errorText = `Status: ${res.status}`;
-      }
-      console.error('❌ Server error response:', errorText);
-      throw new Error(`Server error: ${res.status} - ${errorText}`);
-    }
-
-    // ✅ Check if response is JSON
-    const contentType = res.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      const text = await res.text();
-      console.error('❌ Server returned non-JSON:', text.substring(0, 100));
-      throw new Error('Server returned invalid response format');
-    }
-
+    const res = await fetch(`${BACKEND_URL}/api/remove-background`, { method: 'POST', body: fd });
+    if (!res.ok) throw new Error(`Server error: ${res.status}`);
     const data = await res.json();
-    console.log('✅ Success response:', data);
 
     if (data.status === 'success' || data.success) {
       bar.style.width = '100%';
-      aiStatus.textContent = 'Complete!';
-      updateStatus('ready', 'Processing complete! ✅');
-      
-      // Handle download URL
-      if (data.download_url) {
-        let downloadUrl = data.download_url;
-        if (!downloadUrl.startsWith('http')) {
-          downloadUrl = `${BACKEND_URL}${downloadUrl.startsWith('/') ? '' : '/'}${downloadUrl}`;
-        }
-        downloadLink.href = downloadUrl;
-      } else if (data.image_url) {
-        let downloadUrl = data.image_url;
-        if (!downloadUrl.startsWith('http')) {
-          downloadUrl = `${BACKEND_URL}${downloadUrl.startsWith('/') ? '' : '/'}${downloadUrl}`;
-        }
-        downloadLink.href = downloadUrl;
-      }
-      
+      aiStatus.textContent = 'Done!';
+      updateStatus('ready', 'Processing complete ✅');
+      const dl = data.download_url || data.image_url;
+      downloadLink.href = dl.startsWith('http') ? dl : `${BACKEND_URL}${dl}`;
       outName.textContent = data.filename || 'output.png';
-      
-      const format = data.format || 'PNG';
-      const bgText = bgColor === 'transparent' ? 'Transparent' : `Color ${bgColor}`;
-      outInfo.textContent = `${format} • ${bgText} • ${currentQuality === 'high' ? 'High Quality' : 'Standard'}`;
-      
+      outInfo.textContent = `PNG • ${bgColor === 'transparent' ? 'Transparent' : 'Color'} • ${currentQuality}`;
       downloadWrap.style.display = 'block';
-      
-      // Update preview if available
-      if (data.preview_url) {
-        let previewUrl = data.preview_url;
-        if (!previewUrl.startsWith('http')) {
-          previewUrl = `${BACKEND_URL}${previewUrl.startsWith('/') ? '' : '/'}${previewUrl}`;
-        }
-        previewImg.src = previewUrl;
-      }
-      
+      if (data.preview_url) previewImg.src = data.preview_url;
     } else {
-      throw new Error(data.message || data.error || 'Failed to remove background');
+      throw new Error(data.message || 'Failed to process image');
     }
   } catch (err) {
-    console.error('❌ Processing error:', err);
-    clearInterval(progressInterval);
-    
-    if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
-      showError('Server not responding. Check backend connection and CORS settings.');
-    } else {
-      showError(err.message);
-    }
+    console.error(err);
+    showError(err.message);
   } finally {
     isProcessing = false;
     removeBgBtn.disabled = false;
     removeBgBtn.innerHTML = '<i class="fa fa-scissors"></i> Remove Background';
-    
-    setTimeout(() => {
-      if (!isProcessing) {
-        processingInfo.style.display = 'none';
-      }
-    }, 2000);
+    processingInfo.style.display = 'none';
   }
 });
-  </script>
+</script>
 </body>
 </html>
