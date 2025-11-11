@@ -153,7 +153,11 @@ const status = document.getElementById("status");
 const statusDot = document.getElementById("statusDot");
 
 let currentFile = null;
-const BACKEND_URL = window.location.origin; // ✅ Auto detect Railway or localhost
+const BACKEND_URL =
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://127.0.0.1:8000"
+    : window.location.origin;
+
 
 selectBtn.addEventListener("click", ()=> fileInput.click());
 fileInput.addEventListener("change", e=> handleFile(e.target.files[0]));
