@@ -178,40 +178,45 @@ function handleFile(file){
   reader.readAsDataURL(file);
 }
 
-removeBgBtn.addEventListener("click", async ()=>{
-  if(!currentFile) return alert("No image selected!");
-  removeBgBtn.disabled=true;
-  statusDot.className="status-dot processing";
-  status.textContent="Processing...";
-  bar.style.width="20%";
+removeBgBtn.addEventListener("click", async () => {
+  if (!currentFile) return alert("No image selected!");
 
-  const formData=new FormData();
+  removeBgBtn.disabled = true;
+  statusDot.className = "status-dot processing";
+  status.textContent = "Processing...";
+  bar.style.width = "20%";
+
+  const formData = new FormData();
   formData.append("image", currentFile);
-  formData.append("background_color","transparent");
-  formData.append("quality","high");
+  formData.append("background_color", "transparent");
+  formData.append("quality", "high");
 
-  try{
-    const res=await fetch(`${BACKEND_URL}/remove-bg`,{method:"POST",body:formData});
-    if(!res.ok) throw new Error("Server error!");
-    const data=await res.json();
+  try {
+    const res = await fetch(`${BACKEND_URL}/remove-bg`, { method: "POST", body: formData });
+    if (!res.ok) throw new Error("Server error!");
+    const data = await res.json();
 
-    if(data.download_url){
-      let url=data.download_url.startsWith("http")?data.download_url:`${BACKEND_URL}/${data.download_url}`;
-      downloadLink.href=url;
-      downloadWrap.style.display="block";
-      statusDot.className="status-dot ready";
-      status.textContent="Done ✅";
-      bar.style.width="100%";
-    }else{
+    // ✅ Corrected key name
+    if (data.downloadUrl) {
+      const url = data.downloadUrl.startsWith("http")
+        ? data.downloadUrl
+        : `${BACKEND_URL}${data.downloadUrl}`;
+
+      downloadLink.href = url;
+      downloadWrap.style.display = "block";
+      statusDot.className = "status-dot ready";
+      status.textContent = "Done ✅";
+      bar.style.width = "100%";
+    } else {
       throw new Error("No image returned!");
     }
-  }catch(err){
+  } catch (err) {
     console.error(err);
-    statusDot.className="status-dot error";
-    status.textContent="Failed ❌";
+    statusDot.className = "status-dot error";
+    status.textContent = "Failed ❌";
     alert("Background removal failed!");
-  }finally{
-    removeBgBtn.disabled=false;
+  } finally {
+    removeBgBtn.disabled = false;
   }
 });
 </script>
