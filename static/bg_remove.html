@@ -153,10 +153,7 @@ const status = document.getElementById("status");
 const statusDot = document.getElementById("statusDot");
 
 let currentFile = null;
-const BACKEND_URL =
-  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-    ? "http://127.0.0.1:8000"
-    : window.location.origin;
+const BACKEND_URL = "https://remove-production.up.railway.app/";
 
 
 selectBtn.addEventListener("click", ()=> fileInput.click());
