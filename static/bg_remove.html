@@ -27,6 +27,11 @@
     .btn:disabled{opacity:0.6;cursor:not-allowed;transform:none !important}
     .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
     .preview{position:relative}
+    #preview {
+        background: repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 20px 20px;
+        border-radius: 10px;
+        padding: 10px;
+      }
     .preview img{max-width:100%;max-height:360px;border-radius:8px;object-fit:contain;padding:8px;background:#f3f4f6;transition:all 0.3s ease}
     .preview .quality-badge{position:absolute;top:12px;right:12px;background:var(--success);color:white;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600}
     .small{font-size:13px;color:var(--muted)}
