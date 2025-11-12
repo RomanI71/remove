@@ -234,29 +234,72 @@ removeBgBtn.addEventListener("click", async () => {
   const progressSim = animateProgress();
 
   try {
-    const res = await fetch(`${BACKEND_URL}/remove-bg`, { method: "POST", body: formData });
-    clearInterval(progressSim);
-    if (!res.ok) throw new Error("Server error!");
-    const data = await res.json();
+  const res = await fetch(`${BACKEND_URL}/remove-bg`, { method: "POST", body: formData });
+  clearInterval(progressSim);
 
-    if (data.downloadUrl) {
-      const url = data.downloadUrl.startsWith("http") ? data.downloadUrl : `${BACKEND_URL}${data.downloadUrl}`;
-      downloadLink.href = url;
-      downloadWrap.style.display = "block";
-      statusDot.className = "status-dot ready";
-      status.textContent = "Done ✅ Ready to Download";
-      bar.style.width = "100%";
-      document.getElementById("outInfo").textContent =
-        `${selectedQuality.toUpperCase()} • ${backgroundColor === "transparent" ? "Transparent" : backgroundColor}`;
-    } else throw new Error("No image returned!");
-  } catch (err) {
-    console.error(err);
-    statusDot.className = "status-dot error";
-    status.textContent = "Failed ❌";
-    alert("Background removal failed!");
-  } finally {
-    removeBgBtn.disabled = false;
-  }
+  if (!res.ok) throw new Error("Server error!");
+  const data = await res.json();
+
+  if (data.downloadUrl) {
+    // Handle URL
+    const url = data.downloadUrl.startsWith("http") 
+      ? data.downloadUrl 
+      : `${BACKEND_URL}${data.downloadUrl}`;
+
+    // ✅ Download setup
+    downloadLink.href = url;
+    downloadWrap.style.display = "block";
+    statusDot.className = "status-dot ready";
+    status.textContent = "Done ✅ Ready to Download";
+    bar.style.width = "100%";
+    document.getElementById("outInfo").textContent =
+      `${selectedQuality.toUpperCase()} • ${backgroundColor === "transparent" ? "Transparent" : backgroundColor}`;
+
+    // ✅ LIVE PREVIEW (👇 new part)
+    let previewContainer = document.getElementById("previewContainer");
+    let previewImage = document.getElementById("previewImage");
+
+    // If not already added, create the preview elements
+    if (!previewContainer) {
+      previewContainer = document.createElement("div");
+      previewContainer.id = "previewContainer";
+      previewContainer.style.marginTop = "1.5rem";
+      previewContainer.style.textAlign = "center";
+
+      const title = document.createElement("h3");
+      title.textContent = "Live Preview";
+      title.style.color = "#111";
+      title.style.fontSize = "1.1rem";
+      title.style.marginBottom = "0.5rem";
+
+      previewImage = document.createElement("img");
+      previewImage.id = "previewImage";
+      previewImage.style.maxWidth = "100%";
+      previewImage.style.borderRadius = "10px";
+      previewImage.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+
+      previewContainer.appendChild(title);
+      previewContainer.appendChild(previewImage);
+
+      // Insert preview container below download button
+      downloadWrap.parentNode.insertBefore(previewContainer, downloadWrap.nextSibling);
+    }
+
+    // Update the preview image
+    previewImage.src = url;
+    previewContainer.style.display = "block";
+
+  } else throw new Error("No image returned!");
+
+} catch (err) {
+  console.error(err);
+  statusDot.className = "status-dot error";
+  status.textContent = "Failed ❌";
+  alert("Background removal failed!");
+} finally {
+  removeBgBtn.disabled = false;
+}
+
 });
 </script>
 </body>
