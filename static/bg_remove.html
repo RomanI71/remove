@@ -27,16 +27,11 @@
     .btn:disabled{opacity:0.6;cursor:not-allowed;transform:none !important}
     .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
     .preview{position:relative}
-    #preview {
-        background: repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 20px 20px;
-        border-radius: 10px;
-        padding: 10px;
-      }
+    #preview {background: repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 20px 20px;border-radius: 10px;padding: 10px;}
     .preview img{max-width:100%;max-height:360px;border-radius:8px;object-fit:contain;padding:8px;background:#f3f4f6;transition:all 0.3s ease}
-    .preview .quality-badge{position:absolute;top:12px;right:12px;background:var(--success);color:white;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600}
     .small{font-size:13px;color:var(--muted)}
     .progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden;margin:8px 0}
-    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f39c12);transition:width 0.3s ease}
+    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f39c12);transition:width 0.4s ease}
     .download-btn{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:#0f172a;color:#fff;margin-top:10px;animation:fadeIn 0.5s ease}
     .status-indicator{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500}
     .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
@@ -156,11 +151,16 @@ const downloadWrap = document.getElementById("downloadWrap");
 const downloadLink = document.getElementById("downloadLink");
 const status = document.getElementById("status");
 const statusDot = document.getElementById("statusDot");
+const bgMode = document.getElementById("bgMode");
+const bgColorPicker = document.getElementById("bgColorPicker");
+const optionCards = document.querySelectorAll(".option-card");
 
 let currentFile = null;
+let selectedQuality = "high";
+let backgroundColor = "transparent";
 const BACKEND_URL = "https://remove-production.up.railway.app";
 
-
+// File selection handlers
 selectBtn.addEventListener("click", ()=> fileInput.click());
 fileInput.addEventListener("change", e=> handleFile(e.target.files[0]));
 uploadBox.addEventListener("dragover", e=>{e.preventDefault();uploadBox.classList.add("highlight");});
@@ -179,42 +179,76 @@ function handleFile(file){
     previewImg.src = e.target.result;
     previewImg.style.display="block";
     placeholder.style.display="none";
+    downloadWrap.style.display="none";
   };
   reader.readAsDataURL(file);
 }
 
+// Quality selection
+optionCards.forEach(card=>{
+  card.addEventListener("click", ()=>{
+    optionCards.forEach(c=>c.classList.remove("active"));
+    card.classList.add("active");
+    selectedQuality = card.dataset.quality;
+  });
+});
+
+// Background color
+bgMode.addEventListener("change", ()=>{
+  if(bgMode.value === "custom") {
+    bgColorPicker.style.display = "inline-block";
+  } else {
+    bgColorPicker.style.display = "none";
+    backgroundColor = bgMode.value;
+  }
+});
+bgColorPicker.addEventListener("input", e=>{
+  backgroundColor = e.target.value;
+});
+
+// Animated progress simulation
+function animateProgress(){
+  let progress = 0;
+  const interval = setInterval(()=>{
+    if(progress >= 90) clearInterval(interval);
+    progress += Math.random()*15;
+    bar.style.width = Math.min(progress,90)+"%";
+  },300);
+  return interval;
+}
+
+// Main process
 removeBgBtn.addEventListener("click", async () => {
   if (!currentFile) return alert("No image selected!");
 
   removeBgBtn.disabled = true;
   statusDot.className = "status-dot processing";
-  status.textContent = "Processing...";
-  bar.style.width = "20%";
+  status.textContent = "Uploading...";
+  bar.style.width = "10%";
 
   const formData = new FormData();
   formData.append("image", currentFile);
-  formData.append("background_color", "transparent");
-  formData.append("quality", "high");
+  formData.append("background_color", backgroundColor);
+  formData.append("quality", selectedQuality);
+
+  const progressSim = animateProgress();
 
   try {
     const res = await fetch(`${BACKEND_URL}/remove-bg`, { method: "POST", body: formData });
+    clearInterval(progressSim);
     if (!res.ok) throw new Error("Server error!");
     const data = await res.json();
 
-    // ✅ Corrected key name
     if (data.downloadUrl) {
-      const url = data.downloadUrl.startsWith("http")
-        ? data.downloadUrl
-        : `${BACKEND_URL}${data.downloadUrl}`;
-
+      const url = data.downloadUrl.startsWith("http") ? data.downloadUrl : `${BACKEND_URL}${data.downloadUrl}`;
       downloadLink.href = url;
       downloadWrap.style.display = "block";
       statusDot.className = "status-dot ready";
-      status.textContent = "Done ✅";
+      status.textContent = "Done ✅ Ready to Download";
       bar.style.width = "100%";
-    } else {
-      throw new Error("No image returned!");
-    }
+      document.getElementById("outInfo").textContent =
+        `${selectedQuality.toUpperCase()} • ${backgroundColor === "transparent" ? "Transparent" : backgroundColor}`;
+    } else throw new Error("No image returned!");
   } catch (err) {
     console.error(err);
     statusDot.className = "status-dot error";
