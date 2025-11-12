@@ -544,7 +544,7 @@ async def mosaic_tool():
 @app.get("/photo-edit.html") 
 @app.get("/photo-edit")
 async def photo_edit():
-    return FileResponse("static/photo-edit.html")
+    return FileResponse("static/photoEdit.html")
 
 @app.get("/png-to-jpg.html")
 async def png_to_jpg():
