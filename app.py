@@ -458,6 +458,7 @@ static_dir = os.path.join(current_dir, "static")
 # 1. 🖼️ Static Files কনফিগারেশন
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 # Root route - index.html serve করুন
 
 @app.get("/health")
@@ -535,6 +536,26 @@ async def join_image_page():
 @app.get("/meme-generator.html")
 async def meme_generator():
     return FileResponse("static/meme-generator.html")
+
+@app.get("/image-to-gif")
+@app.get("/image-to-gif.html")
+async def gif_tool():
+    file_path = os.path.join(os.path.dirname(__file__), "static/image-to-gif.html")
+    return FileResponse(file_path, media_type="text/html")
+
+@app.get("/color-picker.html")
+def color_picker():
+    return FileResponse("static/color-picker.html")
+
+@app.get("/color-picker.html")
+def color_picker():
+    file_path = os.path.join(os.path.dirname(__file__), "static", "color-picker.html")
+    return FileResponse(file_path, media_type="text/html")
+
+@app.get("/blur-face.html")
+def blur_face():
+    file_path = os.path.join(os.path.dirname(__file__), "static", "blur-face.html")
+    return FileResponse(file_path, media_type="text/html")
 
 @app.get("/mosaic.html")
 async def mosaic_tool():
