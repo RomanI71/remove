@@ -353,7 +353,7 @@
       const gif = new GIF({
         workers: workers,
         quality: quality,
-        workerScript: './gif.worker.js', // IMPORTANT: file must be present at this path (same folder)
+        workerScript: '/static/gif.worker.js', // IMPORTANT: file must be present at this path (same folder)
         width: outW,
         repeat: repeat
       });
@@ -429,7 +429,7 @@
     });
 
     // warn if worker missing
-    fetch('./gif.worker.js', {method:'HEAD'}).then(res => {
+    fetch('/static/gif.worker.js', { method:'HEAD' }).then(res => {
       if(!res.ok) {
         console.warn('gif.worker.js not found at ./gif.worker.js — worker must be present and served from same origin.');
         // show small red note
