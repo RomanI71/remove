@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Face Blur — iLoveIMG Clone</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@0.0.7"></script>
+  <style>
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#0f172a}
+    .wrap{max-width:980px;margin:36px auto;padding:20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo img{height:36px}
+    h1{font-size:20px;margin:0}
+    p.lead{color:var(--muted);margin:6px 0 0}
+    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
+    .upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
+    .upload-actions{display:flex;gap:10px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-secondary{background:#111827;color:#fff}
+    .btn-success{background:#10b981;color:#fff}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .preview-wrap{position:relative;display:flex;justify-content:center;align-items:center;background:#f3f4f6;border-radius:8px;padding:10px;overflow:hidden;min-height:260px}
+    .preview-img{max-width:100%;max-height:600px;border-radius:6px;object-fit:contain;display:block}
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+    .slider-container {margin-top: 10px; width: 100%;}
+    .slider-container label {display: block; margin-bottom: 5px; font-size: 14px;}
+    .slider {width: 100%;}
+    .loading {display: none; text-align: center; padding: 20px;}
+    .loading-spinner {border: 5px solid #f3f3f3; border-top: 5px solid var(--accent); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 15px;}
+    @keyframes spin {0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}
+    .face-count {margin: 10px 0; font-weight: 500; color: var(--accent);}
+    .status {padding: 10px; border-radius: 6px; margin: 15px 0; text-align: center;}
+    .status.info {background-color: #e8f4ff; color: var(--accent);}
+    .status.success {background-color: #e8f8f0; color: #10b981;}
+    .status.error {background-color: #fde8e8; color: #e74c3c;}
+    .feature-list {list-style: none; padding: 0; margin-top: 15px;}
+    .feature-list li {margin-bottom: 8px; display: flex; align-items: center; gap: 8px;}
+    .feature-list li i {color: #10b981;}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="logo">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjM2IiBoZWlnaHQ9IjM2IiByeD0iOCIgZmlsbD0iIzM0OThkQiIvPgo8cGF0aCBkPSJNMTIgMTJIMjRWMjRIMTJWMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTggMTJIMjRWMThIMThWMTJaIiBmaWxsPSIjMTQ2Q0E5Ii8+CjxwYXRoIGQ9Ik0xMiAxOEgxOFYyNEgxMlYxOFoiIGZpbGw9IiMxNDZDQTkiLz4KPC9zdmc+" alt="logo">
+        <div>
+          <h1>Face Blur Tool</h1>
+          <p class="lead">Automatically detect and blur faces in images</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="upload-box" id="uploadBox">
+        <div style="text-align:center">
+          <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)"></i>
+          <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
+          <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
+        </div>
+        <div class="upload-actions">
+          <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
+          <input id="fileInput" type="file" accept="image/*" style="display:none">
+          <button id="sampleBtn" class="btn" title="Use sample image">Sample</button>
+        </div>
+      </div>
+
+      <div class="loading" id="loadingIndicator">
+        <div class="loading-spinner"></div>
+        <p>Processing image... Detecting faces</p>
+      </div>
+
+      <div id="processingArea" style="display:none;">
+        <div class="status info" id="statusMessage">
+          <i class="fa fa-info-circle"></i> <span id="statusText">Image loaded successfully. Click "Detect & Blur Faces" to process.</span>
+        </div>
+
+        <div class="grid" style="margin-top:18px">
+          <div class="card">
+            <div class="preview-wrap">
+              <canvas id="originalCanvas"></canvas>
+              <div id="placeholder" style="text-align:center;color:var(--muted);padding:26px">Preview will appear here</div>
+            </div>
+
+            <div class="face-count" id="faceCount">Faces detected: 0</div>
+
+            <div style="display:flex;gap:10px;margin-top:14px;justify-content:center;flex-wrap:wrap">
+              <button id="detectFacesBtn" class="btn btn-success"><i class="fa fa-user-shield"></i> Detect & Blur Faces</button>
+              <button id="resetBtn" class="btn">Reset</button>
+            </div>
+
+            <div class="slider-container" id="blurSliderContainer">
+              <label for="blurSlider">Blur Intensity: <span id="blurValue">15</span>px</label>
+              <input type="range" id="blurSlider" class="slider" min="5" max="30" value="15">
+            </div>
+
+            <div id="downloadWrap" style="display:none;margin-top:14px;text-align:center">
+              <a id="downloadLink" class="btn btn-secondary" download><i class="fa fa-download"></i> Download Blurred Image</a>
+              <div class="meta" id="outInfo"></div>
+            </div>
+          </div>
+
+          <aside class="card" style="height:fit-content">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div><strong>Status:</strong> <span id="status" class="muted">No file</span></div>
+              <div><strong>Original:</strong> <span id="origMeta" class="muted">—</span></div>
+            </div>
+            
+            <hr style="margin:15px 0;border:none;border-top:1px solid #eee">
+            
+            <h4 style="margin-bottom:10px">How it works:</h4>
+            <ul class="feature-list">
+              <li><i class="fa fa-check"></i> AI-powered face detection</li>
+              <li><i class="fa fa-check"></i> Automatic face blurring</li>
+              <li><i class="fa fa-check"></i> Adjustable blur intensity</li>
+              <li><i class="fa fa-check"></i> Privacy protection</li>
+              <li><i class="fa fa-check"></i> Fast processing</li>
+            </ul>
+            
+            <div class="status info" style="margin-top:15px; font-size:13px;">
+              <i class="fa fa-lightbulb"></i> Tip: For best results, use clear front-facing photos
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 iLoveIMG Clone — Face Blur Tool (Demo)</p>
+    </footer>
+  </div>
+
+  <script>
+    // DOM elements
+    const uploadBox = document.getElementById('uploadBox');
+    const fileInput = document.getElementById('fileInput');
+    const selectBtn = document.getElementById('selectBtn');
+    const sampleBtn = document.getElementById('sampleBtn');
+    const originalCanvas = document.getElementById('originalCanvas');
+    const placeholder = document.getElementById('placeholder');
+    const detectFacesBtn = document.getElementById('detectFacesBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const downloadWrap = document.getElementById('downloadWrap');
+    const downloadLink = document.getElementById('downloadLink');
+    const outInfo = document.getElementById('outInfo');
+    const status = document.getElementById('status');
+    const origMeta = document.getElementById('origMeta');
+    const blurSlider = document.getElementById('blurSlider');
+    const blurValue = document.getElementById('blurValue');
+    const processingArea = document.getElementById('processingArea');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const statusMessage = document.getElementById('statusMessage');
+    const statusText = document.getElementById('statusText');
+    const faceCount = document.getElementById('faceCount');
+
+    // Canvas context
+    const originalCtx = originalCanvas.getContext('2d');
+
+    // Variables
+    let currentFile = null;
+    let originalImage = null;
+    let model = null;
+    let faces = [];
+
+    // Event listeners
+    selectBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', e => handleFiles(e.target.files));
+    sampleBtn.addEventListener('click', () => {
+      status.textContent = 'Loading sample...';
+      fetch('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80')
+        .then(r => r.blob())
+        .then(blob => {
+          const f = new File([blob], 'sample.jpg', { type: blob.type });
+          handleFiles([f]);
+        })
+        .catch(() => {
+          alert('Failed to load sample');
+          status.textContent = 'No file';
+        });
+    });
+
+    detectFacesBtn.addEventListener('click', detectAndBlurFaces);
+    resetBtn.addEventListener('click', resetTool);
+    downloadLink.addEventListener('click', downloadImage);
+    blurSlider.addEventListener('input', updateBlurValue);
+
+    // Drag and drop events
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      uploadBox.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      uploadBox.addEventListener(eventName, () => uploadBox.classList.add('highlight'), false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      uploadBox.addEventListener(eventName, () => uploadBox.classList.remove('highlight'), false);
+    });
+
+    uploadBox.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      handleFiles(files);
+    }
+
+    function handleImageSelect(e) {
+      const files = e.target.files;
+      handleFiles(files);
+    }
+
+    function handleFiles(files) {
+      if (files.length === 0) return;
+      
+      const file = files[0];
+      if (!file.type.match('image.*')) {
+        showStatus('Please select a valid image file.', 'error');
+        return;
+      }
+
+      currentFile = file;
+      status.textContent = 'Loaded';
+      origMeta.textContent = `${humanSize(file.size)} • ${file.type}`;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        loadImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function loadImage(src) {
+      originalImage = new Image();
+      originalImage.onload = function() {
+        // Set canvas dimensions to match image
+        const maxWidth = 500;
+        const ratio = Math.min(maxWidth / originalImage.width, 1);
+        const displayWidth = originalImage.width * ratio;
+        const displayHeight = originalImage.height * ratio;
+        
+        originalCanvas.width = displayWidth;
+        originalCanvas.height = displayHeight;
+        
+        // Draw original image on canvas
+        originalCtx.drawImage(originalImage, 0, 0, displayWidth, displayHeight);
+        
+        // Show processing area
+        processingArea.style.display = 'block';
+        uploadBox.style.display = 'none';
+        placeholder.style.display = 'none';
+        
+        showStatus('Image loaded successfully. Click "Detect & Blur Faces" to process.', 'info');
+        downloadWrap.style.display = 'none';
+      };
+      originalImage.src = src;
+    }
+
+    function humanSize(bytes) {
+      if (bytes === 0) return '0 B';
+      const k = 1024;
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function updateBlurValue() {
+      blurValue.textContent = blurSlider.value;
+    }
+
+    async function detectAndBlurFaces() {
+      if (!originalImage) return;
+      
+      // Show loading indicator
+      loadingIndicator.style.display = 'block';
+      detectFacesBtn.disabled = true;
+      
+      try {
+        // Load the model if not already loaded
+        if (!model) {
+          showStatus('Loading face detection model...', 'info');
+          model = await blazeface.load();
+        }
+        
+        // Detect faces
+        showStatus('Detecting faces...', 'info');
+        const returnTensors = false;
+        const predictions = await model.estimateFaces(originalCanvas, returnTensors);
+        
+        faces = predictions;
+        faceCount.textContent = `Faces detected: ${faces.length}`;
+        
+        if (faces.length === 0) {
+          showStatus('No faces detected in the image.', 'error');
+          loadingIndicator.style.display = 'none';
+          detectFacesBtn.disabled = false;
+          return;
+        }
+        
+        showStatus(`Found ${faces.length} face(s). Applying blur...`, 'info');
+        
+        // Apply blur to each detected face
+        const blurAmount = parseInt(blurSlider.value);
+        
+        faces.forEach(face => {
+          const startPoint = face.topLeft;
+          const endPoint = face.bottomRight;
+          const width = endPoint[0] - startPoint[0];
+          const height = endPoint[1] - startPoint[1];
+          
+          // Extract the face region
+          const faceImageData = originalCtx.getImageData(startPoint[0], startPoint[1], width, height);
+          
+          // Create a temporary canvas for blurring
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = width;
+          tempCanvas.height = height;
+          const tempCtx = tempCanvas.getContext('2d');
+          tempCtx.putImageData(faceImageData, 0, 0);
+          
+          // Apply blur using CSS filter (simulated)
+          tempCtx.filter = `blur(${blurAmount}px)`;
+          tempCtx.drawImage(tempCanvas, 0, 0);
+          
+          // Put the blurred face back on the original canvas
+          originalCtx.putImageData(tempCtx.getImageData(0, 0, width, height), startPoint[0], startPoint[1]);
+        });
+        
+        showStatus(`Successfully blurred ${faces.length} face(s).`, 'success');
+        downloadWrap.style.display = 'block';
+        outInfo.textContent = `${originalImage.width}×${originalImage.height} • ${faces.length} face(s) blurred`;
+        
+      } catch (error) {
+        console.error('Error detecting faces:', error);
+        showStatus('Error detecting faces. Please try again.', 'error');
+      } finally {
+        loadingIndicator.style.display = 'none';
+        detectFacesBtn.disabled = false;
+      }
+    }
+
+    function resetTool() {
+      // Reset all state
+      fileInput.value = '';
+      processingArea.style.display = 'none';
+      uploadBox.style.display = 'block';
+      downloadWrap.style.display = 'none';
+      loadingIndicator.style.display = 'none';
+      faces = [];
+      faceCount.textContent = 'Faces detected: 0';
+      status.textContent = 'No file';
+      origMeta.textContent = '—';
+      showStatus('Upload an image to begin.', 'info');
+    }
+
+    function downloadImage() {
+      const link = document.createElement('a');
+      link.download = 'blurred-faces-image.png';
+      link.href = originalCanvas.toDataURL('image/png');
+      link.click();
+    }
+
+    function showStatus(message, type) {
+      statusText.textContent = message;
+      statusMessage.className = 'status ' + type;
+    }
+
+    // Initialize
+    updateBlurValue();
+    fileInput.addEventListener('change', handleImageSelect);
+  </script>
+</body>
+</html>

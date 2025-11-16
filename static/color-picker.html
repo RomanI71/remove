@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image Color Picker — iLoveIMG Clone Layout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#0f172a}
+    .wrap{max-width:980px;margin:36px auto;padding:20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo img{height:36px}
+    h1{font-size:20px;margin:0}
+    p.lead{color:var(--muted);margin:6px 0 0}
+    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:18px;display:flex;gap:12px;align-items:center;justify-content:space-between;cursor:pointer}
+    .upload-box .center{display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 12px}
+    .upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
+    .upload-actions{display:flex;gap:10px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-secondary{background:#111827;color:#fff}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .preview-wrap{position:relative;display:flex;justify-content:center;align-items:center;background:#f3f4f6;border-radius:8px;padding:10px;overflow:hidden;min-height:260px}
+    .preview-img{max-width:100%;max-height:600px;border-radius:6px;object-fit:contain;display:block;user-select:none;pointer-events:none}
+    .info-box{display:flex;flex-direction:column;gap:8px}
+    .row{display:flex;gap:8px;align-items:center}
+    .small{font-size:13px;color:var(--muted)}
+    /* right panel swatch/palette */
+    .swatch{height:96px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+    .codes{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .code{flex:1;padding:10px;border-radius:8px;background:rgba(15,23,42,0.03);display:flex;flex-direction:column;gap:6px}
+    .palette{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .p{width:44px;height:44px;border-radius:6px;border:1px solid rgba(0,0,0,0.06);cursor:pointer}
+    .history{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+    .history .h{height:48px;border-radius:6px;border:1px solid rgba(0,0,0,0.06);cursor:pointer}
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    /* magnifier (small) */
+    .magnifier{position:absolute;border-radius:8px;border:2px solid rgba(255,255,255,0.9);box-shadow:0 6px 18px rgba(0,0,0,0.12);overflow:hidden;pointer-events:none;display:none;z-index:9999;background:#fff}
+    .magnifier canvas{display:block}
+    .controls-right{display:flex;flex-direction:column;gap:8px}
+    .input{padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="logo">
+        <img src="iloveimg-logo.svg" alt="logo">
+        <div>
+          <h1>Image Color Picker</h1>
+          <p class="lead">Pick colors from images — same layout as Crop tool</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="upload-box" id="uploadBox" title="Drag & drop or click to upload">
+        <div class="center">
+          <i class="fa fa-cloud-upload" style="font-size:28px;color:var(--accent)"></i>
+          <div style="font-weight:700">Drag & drop or select an image</div>
+          <div class="small muted">JPG, PNG, WebP — max 25MB (demo)</div>
+        </div>
+        <div class="upload-actions">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select</button>
+            <input id="fileInput" type="file" accept="image/*" style="display:none">
+            <button id="sampleBtn" class="btn"><i class="fa fa-image"></i> Sample</button>
+          </div>
+          <div style="width:1px;background:rgba(15,23,42,0.06);margin:0 12px"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;min-width:260px">
+            <div class="row">
+              <label class="small" style="width:78px">Zoom</label>
+              <input id="zoom" type="range" min="0.5" max="3" step="0.1" value="1" style="width:160px">
+              <span id="zoomVal" class="small muted">1x</span>
+            </div>
+            <div class="row">
+              <label class="small" style="width:78px">Sample</label>
+              <select id="sampleSize" class="input" style="flex:1">
+                <option value="1">1×1 (single)</option>
+                <option value="3" selected>3×3 average</option>
+                <option value="5">5×5 average</option>
+                <option value="9">9×9 average</option>
+              </select>
+            </div>
+            <div class="row" style="justify-content:flex-end">
+              <button id="eyeBtn" class="btn"><i class="fa fa-eye-dropper"></i> EyeDropper</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:18px">
+        <div class="card">
+          <div class="preview-wrap" id="previewWrap" aria-label="Image preview">
+            <img id="previewImg" class="preview-img" alt="preview" src="">
+            <div id="placeholder" style="text-align:center;color:var(--muted);padding:26px">Preview will appear here</div>
+            <div id="magn" class="magnifier" style="width:180px;height:180px"><canvas id="magCanvas" width="180" height="180"></canvas></div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:14px;justify-content:center;flex-wrap:wrap">
+            <button id="clearBtn" class="btn"><i class="fa fa-eraser"></i> Clear</button>
+            <button id="exportPalBtn" class="btn btn-primary"><i class="fa fa-download"></i> Export Palette</button>
+            <button id="downloadPalImg" class="btn"><i class="fa fa-image"></i> Download Palette Image</button>
+          </div>
+
+          <div id="downloadWrap" style="display:none;margin-top:14px;text-align:center">
+            <a id="downloadLink" class="btn btn-secondary" download><i class="fa fa-download"></i> Download</a>
+            <div class="meta" id="outInfo"></div>
+          </div>
+
+        </div>
+
+        <aside class="card" style="height:fit-content">
+          <div class="info-box">
+            <div><strong>Status:</strong> <span id="status" class="muted">No file</span></div>
+            <div><strong>Original:</strong> <span id="origMeta" class="muted">—</span></div>
+            <div><strong>Picked:</strong> <span id="pickMeta" class="muted">—</span></div>
+
+            <div style="margin-top:8px">
+              <div class="swatch" id="swatch">#FFFFFF</div>
+              <div class="codes">
+                <div class="code">
+                  <div class="small muted">HEX</div>
+                  <div id="hex" style="font-weight:700">#FFFFFF</div>
+                  <div style="display:flex;gap:8px;margin-top:6px">
+                    <button class="btn" id="copyHex"><i class="fa fa-copy"></i> Copy</button>
+                    <button class="btn" id="addToPalette"><i class="fa fa-plus"></i> Add</button>
+                  </div>
+                </div>
+                <div class="code">
+                  <div class="small muted">RGB</div>
+                  <div id="rgb" style="font-weight:700">rgb(255,255,255)</div>
+                  <div style="display:flex;gap:8px;margin-top:6px">
+                    <button class="btn" id="copyRgb"><i class="fa fa-copy"></i> Copy</button>
+                    <button class="btn" id="copyCss"><i class="fa fa-code"></i> CSS</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:10px">
+              <div class="small muted">Palette (click to reuse; right-click to remove)</div>
+              <div class="palette" id="palette"></div>
+            </div>
+
+            <div style="margin-top:10px">
+              <div class="small muted">Recent picks</div>
+              <div class="history" id="history"></div>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button class="btn" id="clearHistory">Clear</button>
+                <button class="btn" id="loadExample">Load example</button>
+              </div>
+            </div>
+
+            <div style="margin-top:10px">
+              <div class="small muted">Export format</div>
+              <select id="exportFormat" class="input">
+                <option value="txt">TXT (HEX)</option>
+                <option value="json">JSON</option>
+              </select>
+            </div>
+
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 iLoveIMG Clone — Color Picker Tool (Demo)</p>
+    </footer>
+  </div>
+
+  <script>
+    // Elements
+    const uploadBox = document.getElementById('uploadBox');
+    const fileInput = document.getElementById('fileInput');
+    const selectBtn = document.getElementById('selectBtn');
+    const sampleBtn = document.getElementById('sampleBtn');
+    const previewWrap = document.getElementById('previewWrap');
+    const previewImg = document.getElementById('previewImg');
+    const placeholder = document.getElementById('placeholder');
+    const magn = document.getElementById('magn');
+    const magCanvas = document.getElementById('magCanvas');
+    const magCtx = magCanvas.getContext('2d');
+    const zoomRange = document.getElementById('zoom');
+    const zoomVal = document.getElementById('zoomVal');
+    const sampleSizeSel = document.getElementById('sampleSize');
+    const eyeBtn = document.getElementById('eyeBtn');
+    const status = document.getElementById('status');
+    const origMeta = document.getElementById('origMeta');
+    const pickMeta = document.getElementById('pickMeta');
+    const swatch = document.getElementById('swatch');
+    const hexEl = document.getElementById('hex');
+    const rgbEl = document.getElementById('rgb');
+    const copyHex = document.getElementById('copyHex');
+    const copyRgb = document.getElementById('copyRgb');
+    const copyCss = document.getElementById('copyCss');
+    const addToPalette = document.getElementById('addToPalette');
+    const paletteDiv = document.getElementById('palette');
+    const historyDiv = document.getElementById('history');
+    const clearHistory = document.getElementById('clearHistory');
+    const loadExample = document.getElementById('loadExample');
+    const clearBtn = document.getElementById('clearBtn');
+    const exportPalBtn = document.getElementById('exportPalBtn');
+    const downloadPalImg = document.getElementById('downloadPalImg');
+    const downloadWrap = document.getElementById('downloadWrap');
+    const downloadLink = document.getElementById('downloadLink');
+    const outInfo = document.getElementById('outInfo');
+    const exportFormat = document.getElementById('exportFormat');
+
+    // State
+    let currentFile = null;
+    let imgNatural = {w:0,h:0};
+    let currentScale = 1;
+    let picks = []; // recent hex codes (newest first)
+    let palette = []; // saved palette
+    let showMagnifierWhileMoving = false;
+
+    // Helpers
+    function humanSize(bytes){
+      if(bytes === 0) return '0 B';
+      const k = 1024; const sizes = ['B','KB','MB','GB'];
+      const i = Math.floor(Math.log(bytes)/Math.log(k));
+      return parseFloat((bytes/Math.pow(k,i)).toFixed(2)) + ' ' + sizes[i];
+    }
+    function clamp(v,a,b){ return Math.min(b, Math.max(a,v)); }
+    function padHex(n){ return ('0'+n.toString(16)).slice(-2); }
+    function toHex(r,g,b){ return '#' + padHex(r) + padHex(g) + padHex(b); }
+    function rgbStr(r,g,b){ return `rgb(${r}, ${g}, ${b})`; }
+    function hexToRgb(hex){ const c = hex.replace('#',''); return { r: parseInt(c.slice(0,2),16), g: parseInt(c.slice(2,4),16), b: parseInt(c.slice(4,6),16) }; }
+
+    // Load handlers
+    selectBtn.addEventListener('click', ()=> fileInput.click());
+    fileInput.addEventListener('change', e => handleFiles(e.target.files));
+    sampleBtn.addEventListener('click', ()=> {
+      // sample image from picsum
+      fetch('https://picsum.photos/1400/900').then(r=>r.blob()).then(blob=>{
+        const f = new File([blob],'sample.jpg',{type:blob.type});
+        handleFiles([f]);
+      }).catch(()=> alert('Failed to load sample'));
+    });
+
+    ['dragenter','dragover'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.add('highlight'); }));
+    ['dragleave','drop'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.remove('highlight'); }));
+    uploadBox.addEventListener('drop', e => { e.preventDefault(); handleFiles(e.dataTransfer.files); });
+
+    async function handleFiles(files){
+      if(!files || files.length === 0) return;
+      const file = files[0];
+      if(!file.type.startsWith('image/')) { alert('Please select an image'); return; }
+      currentFile = file;
+      status.textContent = 'Loaded';
+      origMeta.textContent = `${humanSize(file.size)} • ${file.type}`;
+      downloadWrap.style.display = 'none';
+      // load to image element (dataURL - avoids CORS taint for local files)
+      const reader = new FileReader();
+      reader.onload = e => {
+        previewImg.src = e.target.result;
+        previewImg.style.display = 'block';
+        placeholder.style.display = 'none';
+        // read natural sizes
+        const tmp = new Image();
+        tmp.onload = () => {
+          imgNatural.w = tmp.width; imgNatural.h = tmp.height;
+          origMeta.textContent = `${humanSize(file.size)} • ${imgNatural.w}×${imgNatural.h} • ${file.type}`;
+        };
+        tmp.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+      // reset picks? keep history but not palette
+    }
+
+    // Compute displayed image rectangle inside previewWrap
+    function getDisplayedImageRect(){
+      const wrapRect = previewWrap.getBoundingClientRect();
+      if(!previewImg.naturalWidth) return null;
+      const imgRect = previewImg.getBoundingClientRect();
+      const left = imgRect.left - wrapRect.left;
+      const top = imgRect.top - wrapRect.top;
+      return { left, top, width: imgRect.width, height: imgRect.height, wrapRect };
+    }
+
+    // Map client coordinates to image pixel coordinates (original image space)
+    function pointToImageCoords(clientX, clientY){
+      const d = getDisplayedImageRect();
+      if(!d) return null;
+      const x = clientX - (d.wrapRect.left + d.left);
+      const y = clientY - (d.wrapRect.top + d.top);
+      const cx = clamp(x, 0, d.width);
+      const cy = clamp(y, 0, d.height);
+      // map to natural pixels
+      const px = Math.round(cx * (previewImg.naturalWidth / d.width));
+      const py = Math.round(cy * (previewImg.naturalHeight / d.height));
+      return { x: cx, y: cy, px, py, d };
+    }
+
+    // Picking logic
+    previewWrap.addEventListener('click', async (e) => {
+      if(!previewImg.src) return;
+      const p = pointToImageCoords(e.clientX, e.clientY);
+      if(!p) return;
+      await sampleAt(p.px, p.py);
+    });
+
+    // Magnifier on shift+move
+    previewWrap.addEventListener('mousemove', (e) => {
+      if(!previewImg.src) return;
+      const isShift = e.shiftKey;
+      if(isShift){
+        showMagnifier(e.clientX, e.clientY);
+      } else {
+        hideMagnifier();
+      }
+    });
+    previewWrap.addEventListener('mouseleave', hideMagnifier);
+
+    function showMagnifier(clientX, clientY){
+      const d = getDisplayedImageRect();
+      if(!d) return;
+      const p = pointToImageCoords(clientX, clientY);
+      if(!p) return;
+      // draw zoomed area onto magCanvas
+      const magW = magCanvas.width, magH = magCanvas.height;
+      const zoomFactor = 8; // how many source pixels -> mag pixels
+      const srcHalf = Math.round((magW / zoomFactor) / 2);
+      let sx = clamp(p.px - srcHalf, 0, previewImg.naturalWidth - srcHalf*2 - 1);
+      let sy = clamp(p.py - srcHalf, 0, previewImg.naturalHeight - srcHalf*2 - 1);
+      // draw from original image pixels (use a temp image to avoid taint problems)
+      const tmp = new Image(); tmp.crossOrigin = 'anonymous';
+      tmp.onload = () => {
+        magCtx.imageSmoothingEnabled = false;
+        magCtx.clearRect(0,0,magW,magH);
+        magCtx.drawImage(tmp, sx, sy, srcHalf*2+1, srcHalf*2+1, 0, 0, magW, magH);
+        // crosshair
+        magCtx.strokeStyle = 'rgba(255,255,255,0.9)';
+        magCtx.lineWidth = 2;
+        magCtx.beginPath();
+        magCtx.moveTo(magW/2, 0); magCtx.lineTo(magW/2, magH);
+        magCtx.moveTo(0, magH/2); magCtx.lineTo(magW, magH/2);
+        magCtx.stroke();
+      };
+      tmp.src = previewImg.src;
+      // position magnifier near cursor but inside viewport
+      magn.style.display = 'block';
+      const wrapRect = previewWrap.getBoundingClientRect();
+      let left = clientX - wrapRect.left + 12;
+      let top = clientY - wrapRect.top + 12;
+      if(left + magW > wrapRect.width) left = clientX - wrapRect.left - magW - 12;
+      if(top + magH > wrapRect.height) top = clientY - wrapRect.top - magH - 12;
+      magn.style.left = (left) + 'px';
+      magn.style.top = (top) + 'px';
+    }
+    function hideMagnifier(){ magn.style.display = 'none'; }
+
+    async function sampleAt(px, py){
+      // px/py are coordinates in natural image pixels
+      const size = parseInt(sampleSizeSel.value, 10) || 1;
+      const half = Math.floor(size/2);
+      // draw original image to temp canvas at native size
+      const t = document.createElement('canvas'); t.width = previewImg.naturalWidth; t.height = previewImg.naturalHeight;
+      const tctx = t.getContext('2d');
+      // Using Image object to avoid occasional issues
+      const tmp = await loadImage(previewImg.src);
+      tctx.drawImage(tmp, 0, 0);
+      let r=0,g=0,b=0,count=0;
+      for(let dx=-half; dx<=half; dx++){
+        for(let dy=-half; dy<=half; dy++){
+          const x = clamp(px + dx, 0, t.width -1);
+          const y = clamp(py + dy, 0, t.height -1);
+          const d = tctx.getImageData(x,y,1,1).data;
+          r += d[0]; g += d[1]; b += d[2]; count++;
+        }
+      }
+      r = Math.round(r/count); g = Math.round(g/count); b = Math.round(b/count);
+      applyPick(r,g,b);
+    }
+
+    function applyPick(r,g,b){
+      const hex = toHex(r,g,b);
+      swatch.style.background = hex;
+      swatch.textContent = hex;
+      hexEl.textContent = hex;
+      rgbEl.textContent = rgbStr(r,g,b);
+      pickMeta.textContent = `${hex} • ${rgbStr(r,g,b)}`;
+      addToHistory(hex);
+    }
+
+    // load image util returning Image
+    function loadImage(src){
+      return new Promise((res,rej) => {
+        const i = new Image();
+        i.crossOrigin = 'anonymous';
+        i.onload = () => res(i);
+        i.onerror = rej;
+        i.src = src;
+      });
+    }
+
+    // Zoom control
+    zoomRange.addEventListener('input', () => {
+      const v = Number(zoomRange.value);
+      zoomVal.textContent = v.toFixed(1) + 'x';
+      // apply CSS transform to previewImg by scaling and keeping centered using object-fit and transform
+      // We will scale the displayed image by setting width/height accordingly (simple approach)
+      currentScale = v;
+      // To scale while preserving object-fit: set transform scale using CSS transform-origin center
+      previewImg.style.transformOrigin = 'center center';
+      previewImg.style.transform = `scale(${currentScale})`;
+      // ensure magnifier and hit tests still compute correct displayed image rect (we'll rely on getBoundingClientRect)
+    });
+
+    // EyeDropper
+    eyeBtn.addEventListener('click', async () => {
+      if (window.EyeDropper) {
+        try {
+          const eye = new EyeDropper();
+          const res = await eye.open();
+          const hex = res.sRGBHex;
+          const {r,g,b} = hexToRgb(hex);
+          applyPick(r,g,b);
+        } catch (e) {
+          alert('EyeDropper cancelled or not supported for this origin.');
+        }
+      } else {
+        alert('EyeDropper API not available in this browser. Use Shift+move for magnifier and click to pick.');
+      }
+    });
+
+    // History & palette
+    function addToHistory(hex){
+      picks = [hex, ...picks.filter(h => h !== hex)].slice(0, 24);
+      renderHistory();
+    }
+    function renderHistory(){
+      historyDiv.innerHTML = '';
+      picks.forEach(h => {
+        const d = document.createElement('div'); d.className='h'; d.style.background = h; d.title = h;
+        d.onclick = () => { const {r,g,b} = hexToRgb(h); applyPick(r,g,b); };
+        historyDiv.appendChild(d);
+      });
+    }
+    clearHistory.addEventListener('click', ()=> { picks=[]; renderHistory(); });
+
+    addToPalette.addEventListener('click', ()=> {
+      const hex = hexEl.textContent;
+      if(!hex) return;
+      palette = [hex, ...palette.filter(h => h !== hex)].slice(0, 32);
+      renderPalette();
+    });
+    function renderPalette(){
+      paletteDiv.innerHTML = '';
+      palette.forEach(h => {
+        const d = document.createElement('div'); d.className='p'; d.style.background = h; d.title = h;
+        d.onclick = () => { const {r,g,b} = hexToRgb(h); applyPick(r,g,b); };
+        d.oncontextmenu = (e) => { e.preventDefault(); palette = palette.filter(x => x !== h); renderPalette(); };
+        paletteDiv.appendChild(d);
+      });
+    }
+    // Copy buttons
+    copyHex.addEventListener('click', async ()=> {
+      try { await navigator.clipboard.writeText(hexEl.textContent); copyHex.textContent = 'Copied!'; setTimeout(()=>copyHex.innerHTML='<i class="fa fa-copy"></i> Copy',900); } catch(e){ alert('Copy failed'); }
+    });
+    copyRgb.addEventListener('click', async ()=> {
+      try { await navigator.clipboard.writeText(rgbEl.textContent); copyRgb.textContent = 'Copied!'; setTimeout(()=>copyRgb.innerHTML='<i class="fa fa-copy"></i> Copy',900); } catch(e){ alert('Copy failed'); }
+    });
+    copyCss.addEventListener('click', async ()=> {
+      try { await navigator.clipboard.writeText(`background:${hexEl.textContent};`); copyCss.textContent = 'Copied!'; setTimeout(()=>copyCss.innerHTML='<i class="fa fa-code"></i> CSS',900); } catch(e){ alert('Copy failed'); }
+    });
+
+    // Clear UI
+    clearBtn.addEventListener('click', resetUI);
+    function resetUI(){
+      currentFile = null;
+      previewImg.src = '';
+      previewImg.style.display = 'none';
+      previewImg.style.transform = 'none';
+      placeholder.style.display = 'block';
+      magn.style.display = 'none';
+      status.textContent = 'No file';
+      origMeta.textContent = '—';
+      pickMeta.textContent = '—';
+      picks = [];
+      palette = [];
+      renderHistory();
+      renderPalette();
+      hexEl.textContent = '#FFFFFF';
+      rgbEl.textContent = 'rgb(255,255,255)';
+      swatch.style.background = '#FFFFFF';
+      downloadWrap.style.display = 'none';
+    }
+
+    // Export palette
+    exportPalBtn.addEventListener('click', () => {
+      if(palette.length === 0) return alert('No colors in palette');
+      const format = exportFormat.value || 'txt';
+      if(format === 'txt'){
+        const blob = new Blob([palette.join('\n')], {type:'text/plain'});
+        downloadBlob(blob, 'palette.txt');
+      } else if(format === 'json'){
+        const blob = new Blob([JSON.stringify(palette, null, 2)], {type:'application/json'});
+        downloadBlob(blob, 'palette.json');
+      }
+    });
+
+    // Download palette image
+    downloadPalImg.addEventListener('click', async () => {
+      if(palette.length === 0) return alert('No colors in palette');
+      const blob = await paletteImageBlob(palette);
+      downloadBlob(blob, 'palette.png');
+    });
+
+    function downloadBlob(blob, filename){
+      const a = document.createElement('a'); const url = URL.createObjectURL(blob);
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=> URL.revokeObjectURL(url), 2000);
+    }
+
+    function paletteImageBlob(colors){
+      const w = Math.max(200, colors.length * 80);
+      const h = 120;
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const g = c.getContext('2d');
+      const size = Math.floor(w / colors.length);
+      colors.forEach((col,i) => {
+        g.fillStyle = col;
+        g.fillRect(i*size, 0, size, h);
+      });
+      return new Promise(res => c.toBlob(blob => res(blob), 'image/png'));
+    }
+
+    // Utility load example
+    loadExample.addEventListener('click', ()=> {
+      const demo = 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f6c2d3b6aa0c1d8f1aa3c8b4e6f9b76';
+      fetch(demo).then(r=>r.blob()).then(blob => {
+        const f = new File([blob], 'demo.jpg', {type: blob.type});
+        handleFiles([f]);
+      }).catch(()=> alert('Failed to load example'));
+    });
+
+    // Quick helper to initialize a default swatch
+    (function init(){
+      resetUI();
+      // display small demo image automatically (optional)
+      // loadExample.click();
+    })();
+
+    // Helpful: allow click on empty upload box to open file picker
+    uploadBox.addEventListener('click', (e) => {
+      // ignore clicks on controls inside (like buttons)
+      if(e.target.closest('button') || e.target.tagName === 'BUTTON') return;
+      fileInput.click();
+    });
+
+    // When window resizes, hide magnifier and keep UI neat
+    window.addEventListener('resize', () => { hideMagnifier(); });
+
+    // Keyboard: space toggles magnifier demo
+    window.addEventListener('keydown', (e) => {
+      if(e.code === 'Space'){ e.preventDefault(); alert('Tip: hold Shift while moving mouse over image to show magnifier, then click to pick.'); }
+    });
+
+  </script>
+</body>
+</html>

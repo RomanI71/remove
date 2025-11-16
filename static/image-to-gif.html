@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>iLoveIMG-style Image → GIF (Client-side)</title>
+
+<!-- Simple modern styles inspired by iLoveIMG -->
+<style>
+  :root{
+    --bg:#f3f6f9; --card:#ffffff; --muted:#64748b; --accent:#2563eb; --success:#10b981;
+    --danger:#ef4444; --glass: rgba(15,23,42,0.04);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:var(--bg);color:#0f1724;padding:28px;display:flex;justify-content:center}
+  .wrap{width:1100px;max-width:100%;}
+
+  .top{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{
+    width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:16px;
+  }
+  h1{margin:0;font-size:20px}
+  .muted{color:var(--muted);font-size:14px}
+
+  .card{
+    background:var(--card);border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(2,6,23,0.06);
+  }
+
+  /* Drop area */
+  .drop {
+    border:2px dashed rgba(15,23,42,0.08);border-radius:12px;padding:26px;background:linear-gradient(180deg,#fff, #fbfdff);
+    display:flex;gap:18px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;transition:box-shadow .15s;
+  }
+  .drop.dragover{box-shadow:0 6px 24px rgba(37,99,235,0.12);border-color:var(--accent);}
+
+  .drop .hint{font-size:15px;color:var(--muted)}
+  .controls{display:flex;gap:14px;align-items:center;margin-top:12px;flex-wrap:wrap}
+  .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:#0f1724}
+  .small{font-size:13px;color:var(--muted)}
+
+  /* thumbnails */
+  .thumbs{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+  .thumb{
+    width:110px;height:80px;border-radius:8px;background:var(--glass);overflow:hidden;border:1px solid rgba(2,6,23,0.04);
+    display:flex;align-items:center;justify-content:center;position:relative;padding:6px;
+  }
+  .thumb img{max-width:100%;max-height:100%;display:block;object-fit:cover;border-radius:6px}
+  .thumb .order{position:absolute;left:6px;top:6px;background:rgba(0,0,0,0.55);color:white;font-size:12px;padding:3px 6px;border-radius:6px}
+  .thumb .remove{position:absolute;right:6px;top:6px;background:rgba(255,255,255,0.9);border-radius:6px;padding:4px;cursor:pointer}
+
+  /* Options grid */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+  .field{background:var(--glass);padding:10px;border-radius:10px;border:1px solid rgba(2,6,23,0.03)}
+  label{font-size:13px;display:block;color:var(--muted);margin-bottom:6px}
+  input[type=number], select, input[type=range]{
+    width:100%;padding:8px;border-radius:8px;border:1px solid rgba(2,6,23,0.06);background:white;
+  }
+  .below{display:flex;align-items:center;gap:10px;margin-top:12px}
+
+  /* progress/result */
+  .progress{height:12px;background:#e6eef6;border-radius:8px;overflow:hidden;margin-top:14px}
+  .bar{height:100%;width:0%;background:linear-gradient(90deg,var(--success),#60a5fa);transition:width .12s}
+  .status{margin-top:10px;font-size:14px;color:var(--muted)}
+  .result{display:flex;gap:12px;align-items:center;margin-top:14px;flex-wrap:wrap}
+
+  /* footer */
+  .foot{margin-top:16px;color:var(--muted);font-size:13px;text-align:center}
+
+  /* responsive */
+  @media (max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .thumb{width:80px;height:64px}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:1fr}
+    .top{flex-direction:column;align-items:flex-start;gap:8px}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo">GIF</div>
+        <div>
+          <h1>Image → GIF Creator</h1>
+          <div class="muted">Simple iLoveIMG-like UI — client-side, no upload</div>
+        </div>
+      </div>
+      <div class="muted">Make GIFs locally — keep privacy</div>
+    </div>
+
+    <div class="card" id="app">
+      <!-- Drop area -->
+      <div id="drop" class="drop" tabindex="0">
+        <div style="text-align:center">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 8px">
+            <path d="M12 3v10" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 7l4-4 4 4" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 15v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="hint"><strong>Drop images here</strong> or <button id="chooseBtn" class="btn ghost" style="display:inline-block">Browse</button></div>
+          <div class="small" style="margin-top:8px">Supports JPG, PNG. Reorder thumbnails by dragging. Max recommended width: 800px.</div>
+        </div>
+        <input id="fileInput" type="file" accept="image/*" multiple style="display:none">
+      </div>
+
+      <!-- Thumbs -->
+      <div id="thumbs" class="thumbs"></div>
+
+      <!-- Options -->
+      <div class="grid">
+        <div class="field">
+          <label for="delay">Delay per frame (ms)</label>
+          <input id="delay" type="number" min="10" value="300">
+        </div>
+
+        <div class="field">
+          <label for="width">Output width (px)</label>
+          <input id="width" type="number" min="50" value="480">
+        </div>
+
+        <div class="field">
+          <label for="quality">Quality (1-30)</label>
+          <input id="quality" type="number" min="1" max="30" value="10">
+        </div>
+
+        <div class="field">
+          <label for="repeat">Loop</label>
+          <select id="repeat">
+            <option value="0">Forever</option>
+            <option value="1">Once</option>
+            <option value="-1">No loop</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="speed">Speed (preview)</label>
+          <input id="speed" type="range" min="1" max="10" value="5">
+        </div>
+
+        <div class="field">
+          <label>Workers</label>
+          <select id="workers">
+            <option value="2">2 workers (default)</option>
+            <option value="1">1 worker</option>
+            <option value="3">3 workers</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="previewToggle">Preview after make</label>
+          <select id="previewToggle">
+            <option value="1">Show preview</option>
+            <option value="0">Don't show</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>&nbsp;</label>
+          <div class="below">
+            <button id="createBtn" class="btn">Create GIF</button>
+            <button id="clearBtn" class="btn ghost">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress" aria-hidden="true"><div id="bar" class="bar"></div></div>
+      <div id="status" class="status">Waiting for images…</div>
+
+      <div id="result" class="result"></div>
+
+      <div class="foot">Note: Run this page from <strong>http://localhost</strong> or a web server. Web Workers don't run from file://</div>
+    </div>
+  </div>
+
+  <!-- gif.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+
+  <script>
+  (function(){
+    // Elements
+    const drop = document.getElementById('drop');
+    const fileInput = document.getElementById('fileInput');
+    const chooseBtn = document.getElementById('chooseBtn');
+    const thumbs = document.getElementById('thumbs');
+    const status = document.getElementById('status');
+    const bar = document.getElementById('bar');
+    const result = document.getElementById('result');
+    const createBtn = document.getElementById('createBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    const delayInput = document.getElementById('delay');
+    const widthInput = document.getElementById('width');
+    const qualityInput = document.getElementById('quality');
+    const repeatInput = document.getElementById('repeat');
+    const speedInput = document.getElementById('speed');
+    const workersInput = document.getElementById('workers');
+    const previewToggle = document.getElementById('previewToggle');
+
+    let files = []; // {file, id, url}
+    let dragSrcIndex = null;
+
+    // Helpers
+    function uid() { return Math.random().toString(36).slice(2,9); }
+    function setStatus(text){ status.textContent = text; }
+    function setProgress(p){ bar.style.width = p + '%'; }
+
+    // File handling
+    chooseBtn.addEventListener('click', ()=> fileInput.click());
+    fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+    drop.addEventListener('click', ()=> fileInput.click());
+    drop.addEventListener('dragenter', e => { e.preventDefault(); drop.classList.add('dragover'); });
+    drop.addEventListener('dragover', e => { e.preventDefault(); });
+    drop.addEventListener('dragleave', e => { drop.classList.remove('dragover'); });
+    drop.addEventListener('drop', e => {
+      e.preventDefault(); drop.classList.remove('dragover');
+      const dt = e.dataTransfer; if(!dt) return;
+      handleFiles(dt.files);
+    });
+
+    function handleFiles(list){
+      const arr = Array.from(list).filter(f => f.type.startsWith('image/'));
+      if(!arr.length) return;
+      for(const f of arr){
+        const id = uid();
+        const url = URL.createObjectURL(f);
+        files.push({file:f, id, url});
+      }
+      renderThumbs();
+    }
+
+    // Thumbnail render + drag to reorder
+    function renderThumbs(){
+      thumbs.innerHTML='';
+      files.forEach((it, idx) => {
+        const t = document.createElement('div');
+        t.className = 'thumb';
+        t.draggable = true;
+        t.dataset.id = it.id;
+
+        const order = document.createElement('div');
+        order.className='order';
+        order.textContent = idx+1;
+        t.appendChild(order);
+
+        const img = document.createElement('img');
+        img.src = it.url;
+        t.appendChild(img);
+
+        const rm = document.createElement('div');
+        rm.className='remove';
+        rm.title = 'Remove';
+        rm.innerHTML = '✕';
+        rm.onclick = (ev)=>{ ev.stopPropagation(); removeById(it.id); };
+        t.appendChild(rm);
+
+        // Drag events for reorder
+        t.addEventListener('dragstart', e => {
+          dragSrcIndex = idx;
+          e.dataTransfer.effectAllowed = 'move';
+          t.style.opacity = '0.5';
+        });
+        t.addEventListener('dragend', e => {
+          t.style.opacity = '';
+        });
+        t.addEventListener('dragover', e => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+        });
+        t.addEventListener('drop', e => {
+          e.preventDefault();
+          const destIdx = Array.from(thumbs.children).indexOf(t);
+          reorder(dragSrcIndex, destIdx);
+        });
+
+        thumbs.appendChild(t);
+      });
+      setStatus(files.length + ' image(s) ready');
+    }
+
+    function removeById(id){
+      files = files.filter(f => f.id !== id);
+      renderThumbs();
+      if(files.length===0){ setStatus('No images selected'); result.innerHTML=''; setProgress(0); }
+    }
+    function reorder(from, to){
+      if(from === to) return;
+      const item = files.splice(from,1)[0];
+      files.splice(to,0,item);
+      renderThumbs();
+    }
+
+    // Canvas helpers
+    function loadImage(file){
+      return new Promise((res, rej) => {
+        const fr = new FileReader();
+        fr.onload = () => {
+          const img = new Image();
+          img.onload = () => res(img);
+          img.onerror = rej;
+          img.src = fr.result;
+        };
+        fr.onerror = rej;
+        fr.readAsDataURL(file);
+      });
+    }
+
+    function drawToCanvas(img, targetW){
+      const ratio = img.height / img.width;
+      const w = targetW;
+      const h = Math.round(w * ratio);
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0,0,w,h);
+      ctx.drawImage(img,0,0,w,h);
+      return c;
+    }
+
+    // Create GIF
+    createBtn.addEventListener('click', async ()=>{
+      if(!files.length){ alert('Please add images first'); return; }
+
+      // Must be served over HTTP (not file://)
+      if(location.protocol === 'file:'){
+        alert('Open this page over http://localhost or a web server. Web Workers do not run from file://');
+        return;
+      }
+
+      result.innerHTML='';
+      setProgress(0);
+
+      const delayMs = Math.max(10, parseInt(delayInput.value||'300'));
+      const outW = Math.max(50, parseInt(widthInput.value||'480'));
+      const quality = Math.min(30, Math.max(1, parseInt(qualityInput.value||'10')));
+      const repeat = parseInt(repeatInput.value||'0');
+      const speed = Math.max(1, parseInt(speedInput.value||'5'));
+      const workers = Math.max(1, parseInt(workersInput.value||'2'));
+      const showPreview = previewToggle.value === '1';
+
+      setStatus('Preparing frames...');
+      // instantiate GIF
+      const gif = new GIF({
+        workers: workers,
+        quality: quality,
+        workerScript: './gif.worker.js', // IMPORTANT: file must be present at this path (same folder)
+        width: outW,
+        repeat: repeat
+      });
+
+      // load & add frames
+      for(let i=0;i<files.length;i++){
+        try{
+          const f = files[i].file;
+          const img = await loadImage(f);
+          const canvas = drawToCanvas(img, outW);
+          // adjust delay by speed slider (higher speed → smaller delay)
+          const frameDelay = Math.round(delayMs / speed);
+          gif.addFrame(canvas, {delay: frameDelay});
+          setProgress(Math.round(((i+1)/files.length) * 20)); // up to 20% while preparing
+          setStatus(`Added ${i+1} / ${files.length} frames`);
+        }catch(err){
+          console.error('load image error', err);
+        }
+      }
+
+      // progress from gif.js
+      setStatus('Rendering GIF...');
+      gif.on('progress', p => {
+        setProgress(Math.round(20 + p*80));
+        setStatus('Rendering: ' + Math.round(p*100) + '%');
+      });
+
+      gif.on('finished', blob => {
+        setProgress(100);
+        setStatus('GIF ready');
+        const url = URL.createObjectURL(blob);
+        // preview image
+        if(showPreview){
+          const img = document.createElement('img');
+          img.src = url; img.style.maxHeight='200px'; img.style.borderRadius='8px'; img.style.boxShadow='0 6px 18px rgba(2,6,23,0.08)';
+          result.appendChild(img);
+        }
+        // download button
+        const a = document.createElement('a');
+        a.href = url; a.download = 'animated.gif';
+        a.className = 'btn';
+        a.textContent = 'Download GIF';
+        result.appendChild(a);
+
+        // small info
+        const info = document.createElement('div');
+        info.className = 'small'; info.style.marginTop='6px'; info.textContent = 'Right-click the download button -> Save link as... if needed';
+        result.appendChild(info);
+      });
+
+      // start render
+      try{
+        gif.render();
+      }catch(e){
+        console.error('gif.render error', e);
+        alert('Failed to render GIF — check console for details. Ensure gif.worker.js is reachable and you are serving via http.');
+      }
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      // revoke object URLs
+      files.forEach(f => { try{ URL.revokeObjectURL(f.url);}catch(e){} });
+      files = []; thumbs.innerHTML=''; result.innerHTML=''; setProgress(0); setStatus('Cleared');
+    });
+
+    // initial messages
+    setStatus('Drop images or click "Browse" to add. Serve over http://localhost for Web Workers.');
+    setProgress(0);
+
+    // accessibility: keyboard open file dialog when drop has focus + Enter
+    drop.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' ') { fileInput.click(); e.preventDefault(); }
+    });
+
+    // warn if worker missing
+    fetch('./gif.worker.js', {method:'HEAD'}).then(res => {
+      if(!res.ok) {
+        console.warn('gif.worker.js not found at ./gif.worker.js — worker must be present and served from same origin.');
+        // show small red note
+        const note = document.createElement('div'); note.style.color='var(--danger)'; note.style.marginTop='10px';
+        note.textContent = 'Warning: gif.worker.js not found at ./gif.worker.js. Place gif.worker.js in the same folder and serve via HTTP.';
+        document.getElementById('app').appendChild(note);
+      }
+    }).catch(()=> {
+      // ignore fetch errors (file:// etc)
+    });
+
+    // cleanup object URLs when page unloads
+    window.addEventListener('beforeunload', ()=>{
+      files.forEach(f => { try{ URL.revokeObjectURL(f.url); }catch(e){} });
+    });
+
+  })();
+  </script>
+</body>
+</html>
