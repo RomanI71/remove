@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <script src="https://cdn.jsdelivr.net/npm/gif.js/dist/gif.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gif.js/dist/gif.worker.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <title>iLoveIMG-style Image → GIF (Client-side)</title>
 
-<!-- Simple modern styles inspired by iLoveIMG -->
 <style>
   :root{
     --bg:#f3f6f9; --card:#ffffff; --muted:#64748b; --accent:#2563eb; --success:#10b981;
@@ -41,7 +41,10 @@
 
   .drop .hint{font-size:15px;color:var(--muted)}
   .controls{display:flex;gap:14px;align-items:center;margin-top:12px;flex-wrap:wrap}
-  .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+  /* BTN styles from crop.html for consistency */
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+  .btn-secondary{background:#111827;color:#fff} /* Added secondary style */
+
   .btn.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:#0f1724}
   .small{font-size:13px;color:var(--muted)}
 
@@ -94,11 +97,12 @@
           <div class="muted">Simple iLoveIMG-like UI — client-side, no upload</div>
         </div>
       </div>
-      <div class="muted">Make GIFs locally — keep privacy</div>
-    </div>
+      <div class="actions">
+        <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+      </div>
 
     <div class="card" id="app">
-      <!-- Drop area -->
       <div id="drop" class="drop" tabindex="0">
         <div style="text-align:center">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 8px">
@@ -112,10 +116,8 @@
         <input id="fileInput" type="file" accept="image/*" multiple style="display:none">
       </div>
 
-      <!-- Thumbs -->
       <div id="thumbs" class="thumbs"></div>
 
-      <!-- Options -->
       <div class="grid">
         <div class="field">
           <label for="delay">Delay per frame (ms)</label>
@@ -181,7 +183,6 @@
     </div>
   </div>
 
-  <!-- gif.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
 
   <script>
