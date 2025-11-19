@@ -587,6 +587,37 @@ async def resize_tool():
 async def rotate_image():
     return FileResponse("static/rotate-image.html")
 
+@app.get("/privacy_policy.html")
+async def privacy_policy():
+    return FileResponse("static/privacy_policy.html")
+
+@app.get("/help_center.html")
+async def help_center():
+    return FileResponse("static/help_center.html")
+
+@app.get("/tutorial.html")
+async def tutorial():
+    return FileResponse("static/tutorial.html")
+
+
+@app.get("/report_bug.html")
+async def report_bug():
+    return FileResponse("static/report_bug.html")
+
+@app.get("/contact_us.html")
+async def contact_us():
+    return FileResponse("static/contact_us.html")
+
+@app.get("/pricing.html")
+async def pricing():
+    return FileResponse("static/pricing.html")
+
+@app.get("/about_us.html")
+async def about_us():
+    return FileResponse("static/about_us.html")
+
+
+
 # API Status
 @app.get("/api-status")
 async def api_status():
