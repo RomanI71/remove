@@ -136,6 +136,39 @@
 }
 
 /* Custom Scrollbar for Sidebar */
+/* --- UPDATED SIDEBAR STYLES (SCROLLABLE) --- */
+.sidebar-list { 
+    background-color: #ffffff; 
+    border-radius: 12px; 
+    padding: 20px 10px 20px 20px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    border: 1px solid #e5e7eb; 
+    height: fit-content; 
+    position: sticky; 
+    top: 80px; 
+}
+
+.sidebar-list h3 { 
+    color: #4a90e2; 
+    border-bottom: 2px solid #e5e7eb; 
+    padding-bottom: 10px; 
+    margin-bottom: 10px; 
+    font-size: 18px; 
+    font-weight: 700; 
+    margin-right: 10px;
+}
+
+.sidebar-list ul { 
+    list-style-type: none; 
+    padding: 0; 
+    
+    /* SCROLLABLE SETTINGS */
+    max-height: 450px; /* Limits height */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+/* Custom Scrollbar for Sidebar */
 .sidebar-list ul::-webkit-scrollbar { width: 5px; }
 .sidebar-list ul::-webkit-scrollbar-track { background: #f8f9fa; border-radius: 10px; }
 .sidebar-list ul::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }

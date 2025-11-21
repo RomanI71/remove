@@ -1,623 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Tutorials & Guides - ImageEdit</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ========================================================== */
-        /* --- STYLES COPIED FROM INDEX.HTML (Header, Footer, Global) --- */
-        /* ========================================================== */
-        
-        /* Define CSS variables */
-        :root {
-            --accent: #3498db; 
-            --bg: #f8f9fa;
-            --card: #ffffff;
-            --text-color: #343a40;
-            --muted-text: #6c757d;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorials & Guides - ImageEdit</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        /* Basic Resets & Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+    /* --- GLOBAL STYLES (from about_us.html) --- */
+    :root { --primary: #3498db; --primary-dark: #2980b9; --bg: #f8f9fa; --text: #343a40; --muted: #6c757d; --card-bg: #ffffff; --border: #e5e7eb; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: var(--bg); color: var(--text); }
+    body.menu-open { overflow: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: var(--primary); transition: 0.3s ease; }
+    a:hover { color: var(--primary-dark); }
+    ul { list-style: none; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-        
-        body.menu-open {
-            overflow: hidden;
-        }
+    /* --- HEADER (Copied from about_us.html) --- */
+    .btn { display: inline-block; padding: 10px 20px; border-radius: 5px; font-weight: 600; text-align: center; cursor: pointer; font-size: 16px; border: none; }
+    .btn-login { background: transparent; color: #343a40; padding: 12px 15px; font-weight: 500; }
+    .btn-signup { background: #4a90e2; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; height: 40px; display: flex; align-items: center; gap: 8px; }
+    .btn-signup:hover { background: #3b78c8; }
+    .header-flex { display: flex; align-items: center; justify-content: space-between; }
+    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; }
+    #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
+    .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text); white-space: nowrap; }
+    .logo span { color: #eb4040; margin-right: 3px; }
+    nav { display: flex; align-items: center; width: 100%; justify-content: flex-end; }
+    .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
+    .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 0px 0; white-space: nowrap; text-transform: uppercase; }
+    .main-nav li a:hover { color: var(--primary); }
+    .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
+    /* Dropdown and Mobile Menu styles remain the same for functionality */
+    .dropdown { position: relative; }
+    .dropbtn { display: flex; align-items: center; }
+    .dropbtn i { margin-left: 5px; font-size: 10px; transition: transform 0.3s ease; }
+    .dropdown-content { position: absolute; top: 110%; right: 0; left: auto; display: none; opacity: 0; visibility: hidden; transition: 0.2s ease; margin-top: 5px; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 5px; min-width: 800px; padding: 20px; z-index: 9999; border-top: 2px solid #4a90e2; margin: 26px -160px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+    .dropdown:hover .dropdown-content { display: grid; opacity: 1; visibility: visible; }
+    .dropdown-column { display: flex; flex-direction: column; gap: 5px; }
+    .dropdown-category-title { font-size: 14px; font-weight: 700; color: #343a40; margin-bottom: 10px; padding: 0 10px 5px 10px; text-transform: uppercase; border-bottom: 1px solid #eee; margin-top: 0; white-space: nowrap; }
+    .dropdown-content a { padding: 8px 10px; font-size: 14px; display: flex; align-items: center; color: #343a40; text-transform: none; font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+    .dropdown-content a i { font-size: 16px; margin-right: 12px; width: 20px; text-align: center; }
+    .dropdown-column:nth-child(1) a i { color: #4CAF50; } .dropdown-column:nth-child(2) a i { color: #E91E63; } .dropdown-column:nth-child(3) a i { color: #00BCD4; } .dropdown-column:nth-child(4) a i { color: #FF9800; } .dropdown-column:nth-child(5) a i { color: #3F51B5; }
+    .dropdown-content a:hover { background: #f1f1f1; color: #4a90e2; }
+    .mobile-menu-toggle { display: none; cursor: pointer; font-size: 24px; padding: 10px 15px; color: #343a40; z-index: 100001; border-radius: 6px; transition: background 0.2s; }
+    #mobileSidebar { position: fixed; top: 0; right: 0; width: 80%; max-width: 300px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 100000; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; padding: 20px; }
+    #mobileSidebar.open { transform: translateX(0); }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; }
+    .sidebar-close { font-size: 24px; cursor: pointer; color: #343a40; }
+    .sidebar-nav ul { display: flex; flex-direction: column; gap: 15px; }
+    .sidebar-nav a { font-size: 16px; font-weight: 600; color: #343a40; padding: 10px 0; display: block; border-bottom: 1px dashed #eee; }
+    .sidebar-auth-actions { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 10px; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    /* --- FOOTER STYLING (Copied from about_us.html) --- */
+    footer { background-color: #2c3e50; padding: 50px 0 20px; color: #ecf0f1; }
+    .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; }
+    .footer-logo-col { flex-basis: 300px; max-width: 100%; }
+    .footer-logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #ecf0f1; margin-bottom: 15px; }
+    .footer-logo span { color: #eb4040; margin-right: 3px; }
+    .footer-logo-col p { color: #bdc3c7; line-height: 1.8; font-size: 14px; }
+    .footer-links-col { flex-grow: 1; display: flex; gap: 50px; justify-content: space-around; }
+    .footer-links-col h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
+    .footer-links-col ul li a { color: #bdc3c7; transition: color 0.2s; font-weight: 400; }
+    .footer-links-col ul li a:hover { color: #4a90e2; }
+    .footer-bottom { margin-top: 20px; text-align: center; color: #bdc3c7; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .social-links { margin-top: 20px; }
+    .social-links a { color: #ecf0f1; margin: 0 10px; font-size: 18px; transition: color 0.2s; }
+    .social-links a:hover { color: #4a90e2; }
 
-        a {
-            text-decoration: none;
-            color: #3498db;
-            transition: 0.3s ease;
-        }
+    /* --- RESPONSIVE (Copied from about_us.html) --- */
+    @media (max-width: 991px) { .main-nav, .auth-actions { display: none; } .mobile-menu-toggle { display: block; } .footer-content { flex-direction: column; text-align: center; } .footer-links-col { gap: 30px; justify-content: space-between; } .footer-logo-col { margin-bottom: 20px; } .footer-logo { justify-content: center; } .dropdown-content { display: none !important; } }
+    @media (max-width: 600px) { .footer-links-col { flex-direction: column; gap: 20px; } .footer-links-col div { text-align: center; } .footer-links-col h4 { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-bottom: 10px; } }
 
-        a:hover {
-            color: #2980b9;
-        }
+    /* ==================================== */
+    /* --- MODERN TUTORIAL PAGE STYLES --- */
+    /* ==================================== */
+    main { padding-top: 80px; padding-bottom: 60px; }
 
-        ul {
-            list-style: none;
-        }
+    .hero-section {
+        background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+        padding: 80px 0 40px;
+        text-align: center;
+        border-bottom: 1px solid #e5e7eb;
+        margin-bottom: 40px;
+    }
+    .hero-section h1 { font-size: 36px; font-weight: 800; color: var(--text); margin-bottom: 15px; }
+    .hero-section p { font-size: 18px; color: var(--muted); max-width: 600px; margin: 0 auto; }
 
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            font-size: 16px;
-            border: none;
-        }
+    /* --- GRID LAYOUT (5 Cards per Row) --- */
+    .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 Columns on Desktop */
+        gap: 20px;
+    }
 
-        /* Header Buttons */
-        .btn-login {
-            background: transparent;
-            color: #343a40;
-            padding: 12px 15px;
-            font-weight: 500;
-        }
+    /* --- MODERN CARD DESIGN --- */
+    .tutorial-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        padding: 20px; /* Reduced padding for compact 5-column look */
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth cubic transition */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
 
-        .btn-login:hover {
-            color: #3498db;
-        }
+    .tutorial-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2); /* Accent-colored shadow on hover */
+        border-color: var(--primary);
+    }
 
-        .btn-signup {
-            background: #4a90e2;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .card-icon {
+        width: 50px; /* Slightly smaller icon */
+        height: 50px;
+        background-color: var(--primary);
+        border-radius: 50%; /* Circular background */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #fff;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+    
+    .tutorial-card:hover .card-icon {
+        transform: rotate(10deg);
+        background-color: var(--primary-dark);
+    }
 
-        .btn-signup:hover {
-            background: #3b78c8;
-        }
+    .tutorial-card h3 { 
+        font-size: 16px; /* Smaller title for compact card */
+        font-weight: 700; 
+        margin-bottom: 8px; 
+        color: var(--text); 
+    }
+    .tutorial-card p { 
+        font-size: 12px; /* Smaller text for compact card */
+        color: var(--muted); 
+        margin-bottom: 20px; 
+        line-height: 1.4; 
+        flex-grow: 1; /* Ensures cards are same height */
+    }
 
-        /* --- HEADER --- */
-        .header-flex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .read-more {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-transform: uppercase;
+    }
+    .read-more i { 
+        transition: transform 0.3s;
+        font-size: 10px; 
+    }
+    .tutorial-card:hover .read-more i { 
+        transform: translateX(4px); 
+    }
 
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-        .dropdown-content {
-            position: absolute;
-            top: 110%;
-            right: 0;
-            left: auto;
-            display: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.2s ease;
-            margin-top: 5px;
-        }
-        .dropdown:hover .dropdown-content {
-            display: grid;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Scroll Header Shrink */
-        #mainHeader {
-            background: #fff;
-            position: fixed;
-            width: 100%;
-            z-index: 99999;
-            transition: 0.3s;
-            padding: 12px 0;
-        }
-        #mainHeader.scrolled {
-            padding: 5px 0;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.12);
-        }
-
-        .auth-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .mobile-menu-toggle {
-            display: none; 
-            cursor: pointer;
-            font-size: 24px;
-            padding: 10px 15px;
-            color: #343a40;
-            z-index: 100001; 
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-        .mobile-menu-toggle:hover {
-            color: #4a90e2;
-            background: #f1f1f1;
-        }
-        .mobile-menu-toggle i {
-            margin: 0;
-            padding: 0;
-            line-height: 1;
-            pointer-events: none; 
-        }
-
-        /* Logo */
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            color: #343a40;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            color: #eb4040;
-            margin-right: 3px;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            justify-content: flex-end;
-        }
-        
-        /* Main nav (Desktop) */
-        .main-nav {
-            display: flex;
-            gap: 20px;
-            margin-left: 76px;
-            margin-right: auto;
-        }
-
-        .main-nav li a {
-            color: #555;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 0px 0;
-            white-space: nowrap;
-            text-transform: uppercase;
-        }
-
-        .main-nav li a:hover {
-            color: #3498db;
-        }
-        a.dropbtn {
-            margin-top: 3px;
-        }
-        /* Auth Actions */
-        .auth-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-left: 20px;
-        }
-        
-        .menu-dots {
-            display: none; 
-        }
-
-        /* --- DROPDOWN MENU STYLING --- */
-        .dropbtn {
-            display: flex;
-            align-items: center;
-        }
-        .dropbtn i {
-            margin-left: 5px;
-            font-size: 10px;
-            transition: transform 0.3s ease;
-        }
-        .dropdown:hover .dropbtn i {
-            transform: rotate(180deg);
-        }
-        
-        .dropdown-content {
-            background: white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border-radius: 5px;
-            min-width: 800px;
-            padding: 20px;
-            z-index: 9999;
-            border-top: 2px solid #4a90e2; 
-            margin: 26px -160px;
-            
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-        }
-        
-        .dropdown-column {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .dropdown-category-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #343a40;
-            margin-bottom: 10px;
-            padding: 0 10px 5px 10px;
-            text-transform: uppercase;
-            border-bottom: 1px solid #eee;
-            margin-top: 0; 
-            white-space: nowrap;
-        }
-
-        .dropdown-content a {
-            padding: 8px 10px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            color: #343a40; 
-            text-transform: none;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: background 0.2s, color 0.2s;
-        }
-        
-        .dropdown-content a i {
-            font-size: 16px;
-            margin-right: 12px;
-            width: 20px; 
-            text-align: center;
-        }
-        
-        /* Static Icon Colors */
-        .dropdown-column:nth-child(1) a i { color: #4CAF50; } 
-        .dropdown-column:nth-child(2) a i { color: #E91E63; } 
-        .dropdown-column:nth-child(3) a i { color: #00BCD4; } 
-        .dropdown-column:nth-child(4) a i { color: #FF9800; } 
-        .dropdown-column:nth-child(5) a i { color: #3F51B5; } 
-
-        .dropdown-content a:hover {
-            background: #f1f1f1;
-            color: #4a90e2;
-        }
-        
-        .dropdown-column:nth-child(1) a:hover i { color: #4CAF50; }
-        .dropdown-column:nth-child(2) a:hover i { color: #E91E63; }
-        .dropdown-column:nth-child(3) a:hover i { color: #00BCD4; }
-        .dropdown-column:nth-child(4) a:hover i { color: #FF9800; }
-        .dropdown-column:nth-child(5) a:hover i { color: #3F51B5; }
-        
-        /* --- MOBILE SIDEBAR STYLING --- */
-        #mobileSidebar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background: #fff;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 100000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        #mobileSidebar.open {
-            transform: translateX(0);
-        }
-        
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .sidebar-close {
-            font-size: 24px;
-            cursor: pointer;
-            color: #343a40;
-        }
-
-        .sidebar-nav ul {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .sidebar-nav a {
-            font-size: 16px;
-            font-weight: 600;
-            color: #343a40;
-            padding: 10px 0;
-            display: block;
-            border-bottom: 1px dashed #eee;
-        }
-
-        .sidebar-nav a:hover {
-            color: #4a90e2;
-        }
-        
-        .sidebar-auth-actions {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .sidebar-auth-actions .btn {
-            width: 100%;
-        }
-        .sidebar-auth-actions .btn-login {
-            border: 1px solid #ccc;
-        }
-
-
-        /* --- FOOTER STYLING --- */
-        footer {
-            background-color: #2c3e50; 
-            color: #ecf0f1;
-            padding: 60px 0 20px 0;
-            font-size: 14px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #455a64; 
-            gap: 30px;
-        }
-
-        .footer-logo-col {
-            flex-basis: 300px;
-            max-width: 100%;
-        }
-
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            color: #ecf0f1;
-            margin-bottom: 15px;
-        }
-
-        .footer-logo span {
-            color: #eb4040;
-            margin-right: 3px;
-        }
-
-        .footer-logo-col p {
-            color: #bdc3c7;
-            line-height: 1.8;
-            font-size: 14px;
-        }
-        
-        .footer-links-col {
-            flex-grow: 1;
-            display: flex;
-            gap: 50px;
-            justify-content: space-around;
-        }
-
-        .footer-links-col h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .footer-links-col ul li {
-            margin-bottom: 8px;
-        }
-
-        .footer-links-col ul li a {
-            color: #bdc3c7;
-            transition: color 0.2s;
-            font-weight: 400;
-        }
-
-        .footer-links-col ul li a:hover {
-            color: #4a90e2; 
-        }
-        
-        .footer-bottom {
-            margin-top: 20px;
-            text-align: center;
-            color: #bdc3c7;
-        }
-
-        .social-links {
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: #ecf0f1;
-            margin: 0 10px;
-            font-size: 18px;
-            transition: color 0.2s;
-        }
-
-        .social-links a:hover {
-            color: #4a90e2; 
-        }
-
-        /* ========================================================== */
-        /* --- TUTORIALS PAGE SPECIFIC STYLES --- */
-        /* ========================================================== */
-        .tutorials-section {
-            padding: 120px 0 80px 0; 
-            text-align: center;
-        }
-
-        .tutorials-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .tutorials-section p.subtitle {
-            font-size: 1.1rem;
-            color: var(--muted-text);
-            margin-bottom: 40px;
-        }
-        
-        .tutorial-category {
-            margin-bottom: 50px;
-            text-align: left;
-        }
-        
-        .tutorial-category h2 {
-            font-size: 2rem;
-            color: #2980b9; 
-            margin-bottom: 25px;
-            border-bottom: 3px solid #e0e0e0;
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .tutorial-category h2 i {
-            margin-right: 10px;
-            color: #4a90e2;
-        }
-        
-        .tutorial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .tutorial-card {
-            background: var(--card);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: left;
-            border: 1px solid #eee;
-        }
-
-        .tutorial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .tutorial-card a {
-            color: inherit;
-            display: block;
-        }
-
-        .tutorial-card-image {
-            height: 180px;
-            background-color: #ddd; /* Placeholder color for the video/image thumbnail */
-            background-image: url('https://via.placeholder.com/400x180?text=Tutorial+Thumbnail');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .tutorial-card-image .play-icon {
-            position: absolute;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            transition: background 0.3s;
-        }
-        
-        .tutorial-card:hover .play-icon {
-            background: var(--accent);
-        }
-
-        .tutorial-card-content {
-            padding: 20px;
-        }
-        
-        .tutorial-card-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #343a40;
-        }
-        
-        .tutorial-card-content p {
-            font-size: 0.95rem;
-            color: var(--muted-text);
-            margin-bottom: 15px;
-        }
-        
-        .tutorial-card-content .view-link {
-            font-weight: 600;
-            color: var(--accent);
-            display: inline-block;
-        }
-        
-        /* Responsive Fix */
-        @media (max-width: 650px) {
-            .tutorial-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* --- RESPONSIVE ADJUSTMENTS for 5 columns --- */
+    @media (max-width: 1250px) {
+        .grid-layout { grid-template-columns: repeat(4, 1fr); } 
+    }
+    @media (max-width: 1024px) {
+        .grid-layout { grid-template-columns: repeat(3, 1fr); } 
+    }
+    @media (max-width: 768px) {
+        .grid-layout { grid-template-columns: repeat(2, 1fr); } 
+        .tutorial-card h3 { font-size: 18px; }
+        .tutorial-card p { font-size: 14px; }
+    }
+    @media (max-width: 480px) {
+        .grid-layout { grid-template-columns: 1fr; } 
+    }
+</style>
 </head>
 <body>
 
 <header id="mainHeader">
     <div class="container header-flex">
-        
         <a href="index.html" class="logo">
             <span><i class="fas fa-heart"></i></span> IMG
         </a>
-
         <nav class="nav">
             <ul class="main-nav">
                 <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
                 <li><a href="resize.html">RESIZE IMAGE</a></li>
                 <li><a href="crop.html">CROP IMAGE</a></li>
-                <li><a href="pricing.html">PRICING</a></li>
                 <li><a href="gif-to-jpg.html">GIF TO JPG</a></li>
                 <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
-
                 <li class="dropdown">
                     <a class="dropbtn">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
@@ -627,7 +206,6 @@
                             <a href="bg_remove.html"><i class="fas fa-eraser"></i> Remove background</a>
                             <a href="color-picker.html"><i class="fas fa-palette"></i> Image Color Picker</a>
                         </div>
-                        
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CREATE</div>
                             <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
@@ -637,7 +215,6 @@
                             <a href="image-to-pdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
                             <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
                         </div>
-                        
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">MODIFY</div>
                             <a href="resize.html"><i class="fas fa-ruler-combined"></i> Resize IMAGE</a>
@@ -646,35 +223,32 @@
                             <a href="flip-image.html"><i class="fas fa-sync-alt"></i> Flip Image</a>
                             <a href="mosaic.html"><i class="fas fa-braille"></i> Mosaic</a>
                         </div>
-                        
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CONVERT</div>
                             <a href="gif-to-jpg.html"><i class="fas fa-file-image"></i> GIF to JPG</a>
                             <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt"></i> HEIC to JPG</a>
                             <a href="jpg-to-png.html"><i class="fas fa-file-export"></i> JPG to PNG</a>
-                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> IMAGE to GIF</a>
-                            <a href="all-convert.html"><i class="fas fa-globe"></i> ALL CONVERT</a>
-                            <a href="image-to-vector.html"><i class="fas fa-bezier-curve"></i> Image to Vector</a>
+                            <a href="png-to-jpg.html"><i class="fas fa-file-export"></i> PNG to JPG</a>
+                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
+                            <a href="all-convert.html"><i class="fas fa-globe"></i> All Convert</a>
                         </div>
-                        
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">SECURITY</div>
-                            <a href="watermark.html"><i class="fas fa-tint"></i> Watermark IMAGE</a>
-                            <a href="blur-face.html"><i class="fas fa-mask"></i> Blur face</a>
+                            <a href="watermark.html"><i class="fas fa-copyright"></i> Watermark IMAGE</a>
+                            <a href="blur-face.html"><i class="fas fa-face-frown-open"></i> Blur face</a>
+                            <a href="password-protect.html"><i class="fas fa-lock"></i> Password Protect</a>
+                            <a href="metadata-remover.html"><i class="fas fa-trash-alt"></i> Metadata Remover</a>
                         </div>
                     </div>
                 </li>
             </ul>
-
             <div class="auth-actions">
                 <a href="#" class="btn btn-login">Login</a>
                 <a href="#" class="btn btn-signup"><i class="fas fa-user-plus"></i> Sign Up</a>
-            </div>
-            
-            <div class="mobile-menu-toggle" id="mobileMenuToggle">
-                <i class="fas fa-bars"></i>
+                <a href="#" class="menu-dots"><i class="fas fa-ellipsis-v"></i></a>
             </div>
         </nav>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
     </div>
 </header>
 
@@ -683,21 +257,17 @@
         <a href="index.html" class="logo">
             <span><i class="fas fa-heart"></i></span> IMG
         </a>
-        <i class="fas fa-times sidebar-close" id="sidebarClose"></i>
+        <span class="sidebar-close"><i class="fas fa-times"></i></span>
     </div>
-    
     <div class="sidebar-nav">
         <ul>
-            <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
-            <li><a href="resize.html">RESIZE IMAGE</a></li>
-            <li><a href="crop.html">CROP IMAGE</a></li>
-            <li><a href="pricing.html">PRICING</a></li>
-            <li><a href="gif-to-jpg.html">GIF TO JPG</a></li>
-            <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
-            
-            <li class="dropdown-mobile">
-                <a class="dropbtn-mobile" id="mobileDropdownToggle">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
-                
+            <li><a href="compress_tool.html">Compress Image</a></li>
+            <li><a href="resize.html">Resize Image</a></li>
+            <li><a href="crop.html">Crop Image</a></li>
+            <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
+            <li><a href="photoEdit.html">Photo Editor</a></li>
+            <li>
+                <a href="#" id="mobileDropdownToggle">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
                     <li><div class="dropdown-category-title">OPTIMIZE</div></li>
                     <li><a href="compress_tool.html">Compress IMAGE</a></li>
@@ -717,123 +287,177 @@
             </li>
         </ul>
     </div>
-    
     <div class="sidebar-auth-actions">
         <a href="#" class="btn btn-login">Login</a>
         <a href="#" class="btn btn-signup"><i class="fas fa-user-plus"></i> Sign Up</a>
     </div>
 </div>
+
 <main>
-    <section class="tutorials-section">
+    <section class="hero-section">
         <div class="container">
-            <h1>Learn How to Master ImageEdit</h1>
-            <p class="subtitle">Quick video guides and step-by-step instructions for all our powerful image tools.</p>
-
-            <div class="tutorial-category" id="category-optimize">
-                <h2><i class="fas fa-lightbulb"></i> Optimization & Enhancement</h2>
-                <div class="tutorial-grid">
-                    
-                    <div class="tutorial-card">
-                        <a href="tutorial_compress.html">
-                            <div class="tutorial-card-image" style="background-image: url('https://via.placeholder.com/400x180?text=Compress+Guide');">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
-                            </div>
-                            <div class="tutorial-card-content">
-                                <h3>Compressing Images without Quality Loss</h3>
-                                <p>Learn the best settings for lossy and lossless compression to optimize your website speed.</p>
-                                <span class="view-link">Watch Tutorial <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="tutorial-card">
-                        <a href="tutorial_bg_remove.html">
-                            <div class="tutorial-card-image" style="background-image: url('https://via.placeholder.com/400x180?text=BG+Remove+Guide');">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
-                            </div>
-                            <div class="tutorial-card-content">
-                                <h3>Perfect Background Removal in 3 Steps</h3>
-                                <p>A quick guide on how to automatically isolate subjects and remove backgrounds instantly.</p>
-                                <span class="view-link">Read Guide <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="tutorial-card">
-                        <a href="tutorial_colorize.html">
-                            <div class="tutorial-card-image" style="background-image: url('https://via.placeholder.com/400x180?text=Color+Enhance+Guide');">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
-                            </div>
-                            <div class="tutorial-card-content">
-                                <h3>Adjusting Brightness and Colors</h3>
-                                <p>Enhance the look and feel of your photos using our simple Photo Editor sliders.</p>
-                                <span class="view-link">Watch Tutorial <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-            
-            <div class="tutorial-category" id="category-convert">
-                <h2><i class="fas fa-exchange-alt"></i> Conversion & Format Change</h2>
-                <div class="tutorial-grid">
-                    
-                    <div class="tutorial-card">
-                        <a href="tutorial_gif_to_jpg.html">
-                            <div class="tutorial-card-image" style="background-image: url('https://via.placeholder.com/400x180?text=GIF+to+JPG+Guide');">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
-                            </div>
-                            <div class="tutorial-card-content">
-                                <h3>Converting GIF to Static JPG/PNG</h3>
-                                <p>How to convert an animated GIF file into a single, high-quality JPG image.</p>
-                                <span class="view-link">Read Guide <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="tutorial-card">
-                        <a href="tutorial_heic.html">
-                            <div class="tutorial-card-image" style="background-image: url('https://via.placeholder.com/400x180?text=HEIC+Guide');">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
-                            </div>
-                            <div class="tutorial-card-content">
-                                <h3>iPhone (HEIC) to Universal JPG</h3>
-                                <p>A step-by-step guide to converting Apple's HEIC format for compatibility everywhere.</p>
-                                <span class="view-link">Watch Tutorial <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="tutorial-card">
-                        <a href="tutorial_vector.html">
-                            <div class="tutorial-card-image" style="background-image: url('https://via.placeholder.com/400x180?text=Image+to+Vector');">
-                                <div class="play-icon"><i class="fas fa-play"></i></div>
-                            </div>
-                            <div class="tutorial-card-content">
-                                <h3>Converting Raster Images to Vector (SVG)</h3>
-                                <p>An overview of how our Image to Vector tool works for logo and graphic conversion.</p>
-                                <span class="view-link">Read Guide <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-            
-            <div style="margin-top: 50px; text-align: center; padding-top: 20px; border-top: 1px dashed #eee;">
-                <p style="color: var(--muted-text);">Need more help? Check out our <a href="help_center.html">Help Center</a>.</p>
-            </div>
-
+            <h1>Tutorials & Guides</h1>
+            <p>Master our image editing tools with these step-by-step guides. Learn how to compress, convert, resize, and edit your photos like a pro.</p>
         </div>
     </section>
-</main>
 
+    <div class="container">
+        <div class="grid-layout">
+            
+            <a href="/static/guide/img-composser-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-compress"></i></div>
+                <h3>Image Compressor</h3>
+                <p>Reduce image file size while maintaining quality for faster web loading.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/resize-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-expand"></i></div>
+                <h3>Image Resizer</h3>
+                <p>Change image dimensions (width & height) easily and accurately.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/crop-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-crop"></i></div>
+                <h3>Image Cropper</h3>
+                <p>Trim unwanted parts of your photos by using visual crop or aspect ratio.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/rotate-image-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-redo"></i></div>
+                <h3>Rotate Image</h3>
+                <p>Fix orientation issues by rotating images 90 degrees or by custom angles.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/gif-to-jpg-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-file-image"></i></div>
+                <h3>GIF to JPG</h3>
+                <p>Extract the first frame of an animated GIF and save it as a static JPG image.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+            
+            <a href="/static/guide/png-to-jpg-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-file-export"></i></div>
+                <h3>PNG to JPG</h3>
+                <p>Convert PNGs to JPG format, handling transparency with a background color.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/image-to-pdf-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
+                <h3>Image to PDF</h3>
+                <p>Combine multiple images into a single, easy-to-share PDF document.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/watermark-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                <h3>Watermark Adder</h3>
+                <p>Protect your copyright by adding text or image logos to your photos.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/bg-remove-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-eraser"></i></div>
+                <h3>Remove Background</h3>
+                <p>Automatically remove image backgrounds to create transparent PNGs.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/flip-image-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-sync-alt"></i></div>
+                <h3>Flip Image</h3>
+                <p>Mirror your images horizontally or vertically with a single click.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/heice-to-jpg-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>HEIC to JPG</h3>
+                <p>Convert iPhone HEIC photos to widely supported JPG format.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/jpg-to-png-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                <h3>JPG to PNG</h3>
+                <p>Convert JPG images to PNG for higher quality and lossless compression.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/color-picker-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-palette"></i></div>
+                <h3>Color Picker</h3>
+                <p>Pick any color from your image and get the HEX, RGB, or HSL code instantly.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/img-to-gif-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-video"></i></div>
+                <h3>Image to GIF</h3>
+                <p>Create animated GIFs from a series of static images with custom timing.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/img-to-text-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-font"></i></div>
+                <h3>Image to Text (OCR)</h3>
+                <p>Extract editable text from images using Optical Character Recognition.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+            
+            <a href="/static/guide/join-image-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-object-group"></i></div>
+                <h3>Join Images</h3>
+                <p>Merge two or more images together either horizontally or vertically.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/meme-generat-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-face-grin-squint"></i></div>
+                <h3>Meme Generator</h3>
+                <p>Create funny memes by adding custom text to templates or your own photos.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/mosaic-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-border-all"></i></div>
+                <h3>Image Mosaic</h3>
+                <p>Blur parts of an image (pixelate) to hide sensitive information.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/image-to-vector-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-bezier-curve"></i></div>
+                <h3>Image to SVG</h3>
+                <p>Convert raster images (JPG/PNG) into scalable vector graphics (SVG).</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="/static/guide/web-to-jpg-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-file-code"></i></div>
+                <h3>WEBP to JPG</h3>
+                <p>Convert modern WEBP files to standard JPG format for better compatibility.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+            
+             <a href="/static/guide/collage-maker-guide.html" class="tutorial-card">
+                <div class="card-icon"><i class="fas fa-columns"></i></div>
+                <h3>Collage Maker</h3>
+                <p>Create beautiful photo collages with various layouts and grids.</p>
+                <span class="read-more">Read Guide <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+        </div>
+    </div>
+</main>
 
 <footer>
     <div class="container">
         <div class="footer-content">
-            
             <div class="footer-logo-col">
                 <div class="footer-logo">
                     <span><i class="fas fa-heart"></i></span> IMG
@@ -848,18 +472,16 @@
                     <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            
             <div class="footer-links-col">
                 <div>
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="about_us.html">About Us</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact_us.html">Contact</a></li>
                         <li><a href="privacy_policy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h4>Tools</h4>
                     <ul>
@@ -869,7 +491,6 @@
                         <li><a href="bg_remove.html">Remove Background</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4>Support</h4>
                     <ul>
@@ -880,7 +501,6 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
             &copy; 2025 IMG Editor. All rights reserved.
         </div>
@@ -889,40 +509,29 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-
-        // =======================
-        // Header Scroll Effect 
-        // =======================
-        window.addEventListener("scroll", function () {
-            const header = document.getElementById("mainHeader");
-            if (window.scrollY > 30) {
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 0) {
                 header.classList.add("scrolled");
             } else {
                 header.classList.remove("scrolled");
             }
         });
-        
-        // =======================
-        // MOBILE MENU JAVASCRIPT
-        // =======================
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const sidebar = document.getElementById('mobileSidebar');
-        const sidebarClose = document.getElementById('sidebarClose');
-        const body = document.body;
-        
-        function openSidebar() {
-            if (sidebar) {
-                sidebar.classList.add('open');
-                body.classList.add('menu-open'); 
-            }
-        }
 
-        function closeSidebar() {
-            if (sidebar) {
-                sidebar.classList.remove('open');
-                body.classList.remove('menu-open');
-            }
-        }
+        // Mobile Sidebar Logic
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const sidebar = document.getElementById('mobileSidebar');
+        const sidebarClose = document.querySelector('.sidebar-close');
+
+        const openSidebar = () => {
+            sidebar.classList.add('open');
+            document.body.classList.add('menu-open');
+        };
+
+        const closeSidebar = () => {
+            sidebar.classList.remove('open');
+            document.body.classList.remove('menu-open');
+        };
 
         if (mobileMenuToggle) {
             mobileMenuToggle.addEventListener('click', openSidebar);
@@ -957,9 +566,6 @@
                 }
             });
         }
-        // =======================
-        // END MOBILE MENU JAVASCRIPT
-        // =======================
     });
 </script>
 

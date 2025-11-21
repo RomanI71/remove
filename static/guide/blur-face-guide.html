@@ -512,50 +512,51 @@
     }
 
     /* Sidebar Styles (Tutorial List) */
-    .sidebar-list {
-        background-color: #ffffff;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e5e7eb;
-        height: fit-content;
-        position: sticky;
-        top: 80px;
-    }
+    /* --- UPDATED SIDEBAR STYLES (SCROLLABLE) --- */
+.sidebar-list { 
+    background-color: #ffffff; 
+    border-radius: 12px; 
+    padding: 20px 10px 20px 20px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    border: 1px solid #e5e7eb; 
+    height: fit-content; 
+    position: sticky; 
+    top: 80px; 
+}
 
-    .sidebar-list h3 {
-        color: #4a90e2;
-        border-bottom: 2px solid #e5e7eb;
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-        font-size: 18px;
-        font-weight: 700;
-    }
+.sidebar-list h3 { 
+    color: #4a90e2; 
+    border-bottom: 2px solid #e5e7eb; 
+    padding-bottom: 10px; 
+    margin-bottom: 10px; 
+    font-size: 18px; 
+    font-weight: 700; 
+    margin-right: 10px;
+}
 
-    .sidebar-list ul {
-        list-style-type: none;
-        padding: 0;
-    }
+.sidebar-list ul { 
+    list-style-type: none; 
+    padding: 0; 
+    
+    /* SCROLLABLE SETTINGS */
+    max-height: 450px; /* Limits height */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding-right: 10px; /* Space for scrollbar */
+}
 
-    .sidebar-list li a {
-        display: block;
-        padding: 10px 5px;
-        color: #343a40;
-        text-decoration: none;
-        border-bottom: 1px dashed #e5e7eb;
-        transition: all 0.2s;
-        font-size: 15px;
-    }
+/* Custom Scrollbar for Sidebar */
+.sidebar-list ul::-webkit-scrollbar { width: 5px; }
+.sidebar-list ul::-webkit-scrollbar-track { background: #f8f9fa; border-radius: 10px; }
+.sidebar-list ul::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+.sidebar-list ul::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-    .sidebar-list li:last-child a {
-        border-bottom: none;
-    }
-
-    .sidebar-list li a:hover {
-        color: #4a90e2;
-        background-color: #f8f9fa;
-        padding-left: 10px;
-    }
+.sidebar-list li a { display: block; padding: 10px 5px; color: #343a40; text-decoration: none; border-bottom: 1px dashed #e5e7eb; transition: all 0.2s; font-size: 14px; display: flex; align-items: center; gap: 8px;}
+.sidebar-list li a i { width: 20px; text-align: center; color: #a0aec0; transition: 0.2s; }
+.sidebar-list li:last-child a { border-bottom: none; }
+.sidebar-list li a:hover { color: #4a90e2; background-color: #f8f9fa; padding-left: 10px; }
+.sidebar-list li a:hover i { color: #4a90e2; }
+.sidebar-list li.active a { color: #4a90e2; font-weight: 600; background-color: #f0f4ff; border-radius: 6px; border-bottom: none; }
+.sidebar-list li.active a i { color: #4a90e2; }
 
     /* --- RESPONSIVE MEDIA QUERIES --- */
     @media (max-width: 991px) { 
