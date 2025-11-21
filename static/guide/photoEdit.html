@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image to GIF Tutorial - ImageEdit</title>
+<title>Photo Editor Tutorial - ImageEdit</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-    /* --- GLOBAL STYLES (Same as provided file) --- */
+    /* --- GLOBAL STYLES --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f8f9fa; color: #343a40; }
     body.menu-open { overflow: hidden; }
@@ -132,9 +132,9 @@
         <nav class="nav">
             <ul class="main-nav">
                 <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
+                <li><a href="meme-generator.html">MEME GENERATOR</a></li>
                 <li><a href="resize.html">RESIZE IMAGE</a></li>
                 <li><a href="crop.html">CROP IMAGE</a></li>
-                <li><a href="image-to-gif.html">IMAGE TO GIF</a></li>
                 <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
                 <li class="dropdown">
                     <a class="dropbtn">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
@@ -147,24 +147,24 @@
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CREATE</div>
+                            <a href="mosaic.html"><i class="fas fa-th-large"></i> Image Mosaic</a>
                             <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
-                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
+                            <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
                             <a href="join-image.html"><i class="fas fa-object-group"></i> Join IMAGE</a>
-                            <a href="collage-maker.html"><i class="fas fa-images"></i> Collage Maker</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">MODIFY</div>
+                            <a href="photoEdit.html"><i class="fas fa-paint-brush"></i> Photo Editor</a>
                             <a href="resize.html"><i class="fas fa-ruler-combined"></i> Resize IMAGE</a>
                             <a href="crop.html"><i class="fas fa-crop-alt"></i> Crop IMAGE</a>
                             <a href="rotate-image.html"><i class="fas fa-redo-alt"></i> Rotate IMAGE</a>
-                            <a href="flip-image.html"><i class="fas fa-sync-alt"></i> Flip Image</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CONVERT</div>
                             <a href="gif-to-jpg.html"><i class="fas fa-file-image"></i> GIF to JPG</a>
                             <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt"></i> HEIC to JPG</a>
                             <a href="jpg-to-png.html"><i class="fas fa-file-export"></i> JPG to PNG</a>
-                            <a href="png-to-jpg.html"><i class="fas fa-file-export"></i> PNG to JPG</a>
+                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">SECURITY</div>
@@ -194,15 +194,15 @@
     <div class="sidebar-nav">
         <ul>
             <li><a href="compress_tool.html">Compress Image</a></li>
-            <li><a href="resize.html">Resize Image</a></li>
-            <li><a href="image-to-gif.html">Image to GIF</a></li>
             <li><a href="photoEdit.html">Photo Editor</a></li>
+            <li><a href="join-image.html">Join Image</a></li>
+            <li><a href="meme-generator.html">Meme Generator</a></li>
             <li>
                 <a href="#" id="mobileDropdownToggle">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
-                    <li><div class="dropdown-category-title">CREATE</div></li>
-                    <li><a href="image-to-gif.html">Image to GIF</a></li>
-                    <li><a href="meme-generator.html">Meme generator</a></li>
+                    <li><div class="dropdown-category-title">MODIFY</div></li>
+                    <li><a href="resize.html">Resize Image</a></li>
+                    <li><a href="crop.html">Crop Image</a></li>
                     <li><div class="dropdown-category-title">CONVERT</div></li>
                     <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
                     <li><a href="heice-to-jpg.html">HEIC to JPG</a></li>
@@ -221,68 +221,83 @@
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-file-video"></i> Image to GIF Creator Tutorial</h1>
-                <p>The **Image to GIF** tool allows you to create animated GIFs directly from a series of static images (JPG, PNG) right in your browser. It is client-side, secure, and supports reordering, delay adjustment, and resizing.</p>
+                <h1><i class="fa fa-paint-brush"></i> All-in-One Photo Editor Tutorial</h1>
+                <p>Our **Photo Editor** tool helps you quickly and easily change the color, light, effects, and position of an image. In this guide, you will learn about its core features.</p>
 
                 <hr>
 
-                <h2>1. Upload Your Images <i class="fa fa-upload"></i></h2>
+                <h2>1. Image Upload and Initial Setup <i class="fa fa-image"></i></h2>
                 <div class="step-content">
-                    <p>Begin by selecting the frames you want to include in your animation.</p>
+                    <p>Upload the image you wish to edit.</p>
                     
-                    <h3>How to Add Images:</h3>
+                    <h3>Upload Tips:</h3>
                     <ul>
-                        <li><strong>Drag and Drop:</strong> Simply drag your images into the dashed drop area.</li>
-                        <li><strong>Browse:</strong> Click the "Browse" button to select multiple files from your device.</li>
-                        <li><strong>Supported Formats:</strong> You can upload JPG and PNG files.</li>
+                        <li><strong>Drag & Drop:</strong> Drag and drop the file into the upload area.</li>
+                        <li><strong>Select Image:</strong> Browse your device's files to select the image.</li>
+                        <li>As soon as the image is uploaded, you will see a preview on the editing canvas.</li>
                     </ul>
-                    <p>Once uploaded, your images will appear as thumbnails below the upload box.</p>
                 </div>
 
                 <hr>
 
-                <h2>2. Customize & Reorder <i class="fa fa-sliders-h"></i></h2>
-                <p>Arrange your frames and tweak the settings to get the perfect animation.</p>
+                <h2>2. Image Adjustments (Color and Light) <i class="fa fa-sliders-h"></i></h2>
+                <p>Change the fundamental visibility of the photo using the sliders.</p>
 
-                <h3>Configuration Options:</h3>
+                <h3>Available Adjustments:</h3>
                 <ul>
-                    <li><strong>Reorder Frames:</strong> Drag and drop the thumbnails to change the sequence of the animation.</li>
-                    <li><strong>Delay (ms):</strong> Set the time each frame is visible (e.g., 300ms). Lower numbers make the GIF faster.</li>
-                    <li><strong>Output Width:</strong> Define the width of your final GIF (height is calculated automatically).</li>
-                    <li><strong>Quality:</strong> Choose between speed and quality (10 is a good balance).</li>
-                    <li><strong>Loop:</strong> Set the GIF to loop forever, once, or not at all.</li>
+                    <li><strong>Brightness:</strong> Increase or decrease the overall light in the photo.</li>
+                    <li><strong>Contrast:</strong> Increase the difference between the bright and dark areas of the photo.</li>
+                    <li><strong>Saturate:</strong> Increase or decrease the intensity (color vibrancy) of the colors in the photo.</li>
+                    <li><strong>Background Blur:</strong> Add a soft blur effect to the image background. This helps to bring the subject of the photo into focus.</li>
                 </ul>
 
                 <hr>
 
-                <h2>3. Create & Download <i class="fa fa-download"></i></h2>
-                <p>Generate your GIF and save it to your computer.</p>
+                <h2>3. Adding Filters and Effects <i class="fa fa-magic"></i></h2>
+                <p>Apply artistic changes to your photo with a single click.</p>
 
-                <h3>Final Steps:</h3>
+                <h3>Effects:</h3>
                 <ul>
-                    <li>Click the **"Create GIF"** button to start processing.</li>
-                    <li>A progress bar will show the rendering status.</li>
-                    <li>Once finished, a preview will appear. Click **"Download GIF"** to save your animation.</li>
+                    <li><strong>B&W (Black and White):</strong> Convert the photo to a classic monochrome style.</li>
+                    <li><strong>Sepia:</strong> Add a vintage brown-yellow tint to the photo.</li>
                 </ul>
-                <p><strong>Note:</strong> This tool uses Web Workers for performance. Please ensure you are running it from a local server (http://localhost) if testing locally.</p>
 
                 <hr>
 
-                <h2>Why use Image to GIF?</h2>
-                <p>Animated GIFs are perfect for social media, memes, and simple tutorials. Unlike video files, they play automatically and loop on almost all platforms. This tool gives you full control over speed and size without uploading your private photos to a remote server.</p>
+                <h2>4. Rotate and Flip (Transformations) <i class="fa fa-sync-alt"></i></h2>
+                <p>Use these tools to correct the image's position:</p>
+
+                <h3>Transformations:</h3>
+                <ul>
+                    <li><strong>Rotate:</strong> Rotate the image by 90 degrees with each click.</li>
+                    <li><strong>Flip:</strong> Invert the image horizontally.</li>
+                    <li><strong>Reset:</strong> Return all editing options and effects to the default state with one click.</li>
+                </ul>
+
+                <hr>
+
+                <h2>5. Download <i class="fa fa-download"></i></h2>
+                <p>Save your edited image.</p>
+
+                <h3>Download Process:</h3>
+                <ul>
+                    <li>Once editing is complete, click the **Download** button located below the canvas.</li>
+                    <li>Your edited image will be saved to your device as a JPG file.</li>
+                </ul>
 
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
                 <ul>
+                    <li class="active"><a href="photoEdit.html"><i class="fa fa-paint-brush"></i> Photo Editor Guide</a></li>
+                    <li><a href="meme-generator.html"><i class="fa fa-face-grin-squint"></i> Meme Generator Guide</a></li>
+                    <li><a href="mosaic.html"><i class="fa fa-th-large"></i> Image Mosaic Guide</a></li>
+                    <li><a href="join-image.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
                     <li><a href="compress_tool.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
-                    <li><a href="resize.html"><i class="fa fa-expand"></i> Image Resizer Tutorial</a></li>
-                    <li class="active"><a href="image-to-gif.html"><i class="fa fa-file-video"></i> Image to GIF Tutorial</a></li>
-                    <li><a href="gif-to-jpg.html"><i class="fa fa-file-image"></i> GIF to JPG Converter Guide</a></li>
                     <li><a href="heice-to-jpg.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
                     <li><a href="jpg-to-png.html"><i class="fa fa-file-export"></i> JPG to PNG Conversion</a></li>
-                    <li><a href="watermark.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
+                    <li><a href="image-to-gif.html"><i class="fa fa-file-video"></i> Image to GIF Guide</a></li>
                 </ul>
             </aside>
 
@@ -320,10 +335,10 @@
                 <div>
                     <h4>Tools</h4>
                     <ul>
+                        <li><a href="photoEdit.html">Photo Editor</a></li>
+                        <li><a href="meme-generator.html">Meme Generator</a></li>
+                        <li><a href="join-image.html">Join Image</a></li>
                         <li><a href="compress_tool.html">Compress Image</a></li>
-                        <li><a href="image-to-gif.html">Image to GIF</a></li>
-                        <li><a href="web-to-jpg.html">Webp to JPG</a></li>
-                        <li><a href="bg_remove.html">Remove Background</a></li>
                     </ul>
                 </div>
                 <div>

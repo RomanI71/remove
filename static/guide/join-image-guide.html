@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image to GIF Tutorial - ImageEdit</title>
+<title>Combine Images Tutorial - ImageEdit</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-    /* --- GLOBAL STYLES (Same as provided file) --- */
+    /* --- GLOBAL STYLES --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f8f9fa; color: #343a40; }
     body.menu-open { overflow: hidden; }
@@ -132,9 +132,9 @@
         <nav class="nav">
             <ul class="main-nav">
                 <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
+                <li><a href="join-image.html">JOIN IMAGE</a></li>
                 <li><a href="resize.html">RESIZE IMAGE</a></li>
                 <li><a href="crop.html">CROP IMAGE</a></li>
-                <li><a href="image-to-gif.html">IMAGE TO GIF</a></li>
                 <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
                 <li class="dropdown">
                     <a class="dropbtn">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
@@ -147,10 +147,10 @@
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CREATE</div>
-                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
-                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
                             <a href="join-image.html"><i class="fas fa-object-group"></i> Join IMAGE</a>
-                            <a href="collage-maker.html"><i class="fas fa-images"></i> Collage Maker</a>
+                            <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
+                            <a href="image-to-vector.html"><i class="fas fa-vector-square"></i> Image to SVG</a>
+                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">MODIFY</div>
@@ -164,7 +164,7 @@
                             <a href="gif-to-jpg.html"><i class="fas fa-file-image"></i> GIF to JPG</a>
                             <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt"></i> HEIC to JPG</a>
                             <a href="jpg-to-png.html"><i class="fas fa-file-export"></i> JPG to PNG</a>
-                            <a href="png-to-jpg.html"><i class="fas fa-file-export"></i> PNG to JPG</a>
+                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">SECURITY</div>
@@ -194,15 +194,15 @@
     <div class="sidebar-nav">
         <ul>
             <li><a href="compress_tool.html">Compress Image</a></li>
+            <li><a href="join-image.html">Join Image</a></li>
             <li><a href="resize.html">Resize Image</a></li>
-            <li><a href="image-to-gif.html">Image to GIF</a></li>
             <li><a href="photoEdit.html">Photo Editor</a></li>
             <li>
                 <a href="#" id="mobileDropdownToggle">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
                     <li><div class="dropdown-category-title">CREATE</div></li>
-                    <li><a href="image-to-gif.html">Image to GIF</a></li>
-                    <li><a href="meme-generator.html">Meme generator</a></li>
+                    <li><a href="join-image.html">Join IMAGE</a></li>
+                    <li><a href="image-to-text.html">Image to Text</a></li>
                     <li><div class="dropdown-category-title">CONVERT</div></li>
                     <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
                     <li><a href="heice-to-jpg.html">HEIC to JPG</a></li>
@@ -221,67 +221,64 @@
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-file-video"></i> Image to GIF Creator Tutorial</h1>
-                <p>The **Image to GIF** tool allows you to create animated GIFs directly from a series of static images (JPG, PNG) right in your browser. It is client-side, secure, and supports reordering, delay adjustment, and resizing.</p>
+                <h1><i class="fa fa-object-group"></i> Combine Images Tutorial</h1>
+                <p>The **Combine Images** tool allows you to merge two or more photos into a single image instantly. You can choose to stitch them horizontally or vertically, making it perfect for creating panoramas, comparisons, or collages.</p>
 
                 <hr>
 
-                <h2>1. Upload Your Images <i class="fa fa-upload"></i></h2>
+                <h2>1. Upload Your Images <i class="fa fa-cloud-upload-alt"></i></h2>
                 <div class="step-content">
-                    <p>Begin by selecting the frames you want to include in your animation.</p>
+                    <p>Start by selecting the photos you want to join together.</p>
                     
-                    <h3>How to Add Images:</h3>
+                    <h3>Upload Options:</h3>
                     <ul>
-                        <li><strong>Drag and Drop:</strong> Simply drag your images into the dashed drop area.</li>
-                        <li><strong>Browse:</strong> Click the "Browse" button to select multiple files from your device.</li>
-                        <li><strong>Supported Formats:</strong> You can upload JPG and PNG files.</li>
+                        <li><strong>Drag & Drop:</strong> Select multiple files and drag them into the dashed upload box.</li>
+                        <li><strong>Select Files:</strong> Click the button to browse and pick images from your device.</li>
+                        <li><strong>Formats:</strong> Supports JPG, PNG, and WebP images.</li>
                     </ul>
-                    <p>Once uploaded, your images will appear as thumbnails below the upload box.</p>
+                    <p>Your uploaded images will be queued in memory, ready for merging.</p>
                 </div>
 
                 <hr>
 
-                <h2>2. Customize & Reorder <i class="fa fa-sliders-h"></i></h2>
-                <p>Arrange your frames and tweak the settings to get the perfect animation.</p>
+                <h2>2. Choose Layout & Preview <i class="fa fa-columns"></i></h2>
+                <p>Decide how you want the images to be arranged.</p>
 
-                <h3>Configuration Options:</h3>
+                <h3>Layout Modes:</h3>
                 <ul>
-                    <li><strong>Reorder Frames:</strong> Drag and drop the thumbnails to change the sequence of the animation.</li>
-                    <li><strong>Delay (ms):</strong> Set the time each frame is visible (e.g., 300ms). Lower numbers make the GIF faster.</li>
-                    <li><strong>Output Width:</strong> Define the width of your final GIF (height is calculated automatically).</li>
-                    <li><strong>Quality:</strong> Choose between speed and quality (10 is a good balance).</li>
-                    <li><strong>Loop:</strong> Set the GIF to loop forever, once, or not at all.</li>
+                    <li><strong>Horizontal:</strong> Stitches images side-by-side (left to right). Ideal for panoramic views.</li>
+                    <li><strong>Vertical:</strong> Stacks images one on top of another (top to bottom). Great for long screenshots or comparisons.</li>
+                    <li><strong>Preview:</strong> Click the **"Preview"** button to see the result instantly on the canvas.</li>
                 </ul>
 
                 <hr>
 
-                <h2>3. Create & Download <i class="fa fa-download"></i></h2>
-                <p>Generate your GIF and save it to your computer.</p>
+                <h2>3. Download Combined Image <i class="fa fa-download"></i></h2>
+                <p>Once satisfied with the preview, save your new image.</p>
 
-                <h3>Final Steps:</h3>
+                <h3>Final Step:</h3>
                 <ul>
-                    <li>Click the **"Create GIF"** button to start processing.</li>
-                    <li>A progress bar will show the rendering status.</li>
-                    <li>Once finished, a preview will appear. Click **"Download GIF"** to save your animation.</li>
+                    <li>Click the **"Download"** button to save the merged file as a high-quality JPG.</li>
+                    <li>Use **"Reset"** if you want to clear the canvas and start over with new images.</li>
                 </ul>
-                <p><strong>Note:</strong> This tool uses Web Workers for performance. Please ensure you are running it from a local server (http://localhost) if testing locally.</p>
 
                 <hr>
 
-                <h2>Why use Image to GIF?</h2>
-                <p>Animated GIFs are perfect for social media, memes, and simple tutorials. Unlike video files, they play automatically and loop on almost all platforms. This tool gives you full control over speed and size without uploading your private photos to a remote server.</p>
+                <h2>Why Combine Images?</h2>
+                <p>Merging images is useful for creating before/after comparisons, long scrolling screenshots, photo strips, and simple collages without needing complex photo editing software.</p>
 
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
                 <ul>
+                    <li class="active"><a href="join-image.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
+                    <li><a href="image-to-text.html"><i class="fa fa-font"></i> Image to Text Guide</a></li>
+                    <li><a href="image-to-vector.html"><i class="fa fa-vector-square"></i> Image to SVG Tutorial</a></li>
                     <li><a href="compress_tool.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
-                    <li><a href="resize.html"><i class="fa fa-expand"></i> Image Resizer Tutorial</a></li>
-                    <li class="active"><a href="image-to-gif.html"><i class="fa fa-file-video"></i> Image to GIF Tutorial</a></li>
-                    <li><a href="gif-to-jpg.html"><i class="fa fa-file-image"></i> GIF to JPG Converter Guide</a></li>
                     <li><a href="heice-to-jpg.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
                     <li><a href="jpg-to-png.html"><i class="fa fa-file-export"></i> JPG to PNG Conversion</a></li>
+                    <li><a href="image-to-gif.html"><i class="fa fa-file-video"></i> Image to GIF Guide</a></li>
                     <li><a href="watermark.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
                 </ul>
             </aside>
@@ -320,10 +317,10 @@
                 <div>
                     <h4>Tools</h4>
                     <ul>
+                        <li><a href="join-image.html">Join Image</a></li>
+                        <li><a href="image-to-text.html">Image to Text</a></li>
+                        <li><a href="image-to-pdf.html">Image to PDF</a></li>
                         <li><a href="compress_tool.html">Compress Image</a></li>
-                        <li><a href="image-to-gif.html">Image to GIF</a></li>
-                        <li><a href="web-to-jpg.html">Webp to JPG</a></li>
-                        <li><a href="bg_remove.html">Remove Background</a></li>
                     </ul>
                 </div>
                 <div>
