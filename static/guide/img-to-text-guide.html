@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Photo Editor Tutorial - ImageEdit</title>
+<title>Image to Text (OCR) Tutorial - ImageEdit</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     /* --- GLOBAL STYLES --- */
@@ -132,7 +132,7 @@
         <nav class="nav">
             <ul class="main-nav">
                 <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
-                <li><a href="meme-generator.html">MEME GENERATOR</a></li>
+                <li><a href="image-to-text.html">IMAGE TO TEXT</a></li>
                 <li><a href="resize.html">RESIZE IMAGE</a></li>
                 <li><a href="crop.html">CROP IMAGE</a></li>
                 <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
@@ -147,17 +147,17 @@
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CREATE</div>
-                            <a href="mosaic.html"><i class="fas fa-th-large"></i> Image Mosaic</a>
-                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
                             <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
+                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
+                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
                             <a href="join-image.html"><i class="fas fa-object-group"></i> Join IMAGE</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">MODIFY</div>
-                            <a href="photoEdit.html"><i class="fas fa-paint-brush"></i> Photo Editor</a>
                             <a href="resize.html"><i class="fas fa-ruler-combined"></i> Resize IMAGE</a>
                             <a href="crop.html"><i class="fas fa-crop-alt"></i> Crop IMAGE</a>
                             <a href="rotate-image.html"><i class="fas fa-redo-alt"></i> Rotate IMAGE</a>
+                            <a href="flip-image.html"><i class="fas fa-sync-alt"></i> Flip Image</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CONVERT</div>
@@ -194,15 +194,15 @@
     <div class="sidebar-nav">
         <ul>
             <li><a href="compress_tool.html">Compress Image</a></li>
+            <li><a href="image-to-text.html">Image to Text</a></li>
+            <li><a href="image-to-pdf.html">Image to PDF</a></li>
             <li><a href="photoEdit.html">Photo Editor</a></li>
-            <li><a href="join-image.html">Join Image</a></li>
-            <li><a href="meme-generator.html">Meme Generator</a></li>
             <li>
                 <a href="#" id="mobileDropdownToggle">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
-                    <li><div class="dropdown-category-title">MODIFY</div></li>
-                    <li><a href="resize.html">Resize Image</a></li>
-                    <li><a href="crop.html">Crop Image</a></li>
+                    <li><div class="dropdown-category-title">CREATE</div></li>
+                    <li><a href="image-to-text.html">Image to Text (OCR)</a></li>
+                    <li><a href="image-to-pdf.html">Image to PDF</a></li>
                     <li><div class="dropdown-category-title">CONVERT</div></li>
                     <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
                     <li><a href="heice-to-jpg.html">HEIC to JPG</a></li>
@@ -221,86 +221,84 @@
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-paint-brush"></i> All-in-One Photo Editor Tutorial</h1>
-                <p>Our **Photo Editor** tool helps you quickly and easily change the color, light, effects, and position of an image. In this guide, you will learn about its core features.</p>
+                <h1><i class="fa fa-font"></i> Image to Text (OCR) Tutorial</h1>
+                <p>The **Image to Text** tool (OCR) allows you to extract editable text from images, screenshots, or scanned documents instantly. It supports multiple languages and offers downloads in **TXT**, **Word (DOCX)**, and **PDF** formats.</p>
 
                 <hr>
 
-                <h2>1. Image Upload and Initial Setup <i class="fa fa-image"></i></h2>
+                <h2>1. Upload Your Image <i class="fa fa-cloud-upload-alt"></i></h2>
                 <div class="step-content">
-                    <p>Upload the image you wish to edit.</p>
+                    <p>Start by loading the image containing the text you want to extract.</p>
                     
-                    <h3>Upload Tips:</h3>
+                    <h3>Upload Methods:</h3>
                     <ul>
-                        <li><strong>Drag & Drop:</strong> Drag and drop the file into the upload area.</li>
-                        <li><strong>Select Image:</strong> Browse your device's files to select the image.</li>
-                        <li>As soon as the image is uploaded, you will see a preview on the editing canvas.</li>
+                        <li><strong>Drag & Drop:</strong> Place your file directly into the upload box.</li>
+                        <li><strong>Select Image:</strong> Click the button to browse files on your device.</li>
+                        <li><strong>Formats:</strong> Supports JPG, PNG, and WebP files.</li>
                     </ul>
+                    <p>A preview of your image will appear once uploaded.</p>
                 </div>
 
                 <hr>
 
-                <h2>2. Image Adjustments (Color and Light) <i class="fa fa-sliders-h"></i></h2>
-                <p>Change the fundamental visibility of the photo using the sliders.</p>
+                <h2>2. Select Language & Extract <i class="fa fa-language"></i></h2>
+                <p>For accurate results, tell the tool which language is used in the image.</p>
 
-                <h3>Available Adjustments:</h3>
+                <h3>Configuration:</h3>
                 <ul>
-                    <li><strong>Brightness:</strong> Increase or decrease the overall light in the photo.</li>
-                    <li><strong>Contrast:</strong> Increase the difference between the bright and dark areas of the photo.</li>
-                    <li><strong>Saturate:</strong> Increase or decrease the intensity (color vibrancy) of the colors in the photo.</li>
-                    <li><strong>Background Blur:</strong> Add a soft blur effect to the image background. This helps to bring the subject of the photo into focus.</li>
+                    <li><strong>Choose Language:</strong> Select from English, Bengali, Hindi, Arabic, Spanish, French, and many more.</li>
+                    <li><strong>Start OCR:</strong> Click the **"Extract Text"** button to begin the scanning process.</li>
+                    <li>The extraction uses Tesseract OCR technology to convert pixels into editable characters.</li>
                 </ul>
 
                 <hr>
 
-                <h2>3. Adding Filters and Effects <i class="fa fa-magic"></i></h2>
-                <p>Apply artistic changes to your photo with a single click.</p>
+                <h2>3. Copy or Download <i class="fa fa-file-export"></i></h2>
+                <p>Once processing is complete, your text will appear in the result box.</p>
 
-                <h3>Effects:</h3>
+                <h3>Export Options:</h3>
                 <ul>
-                    <li><strong>B&W (Black and White):</strong> Convert the photo to a classic monochrome style.</li>
-                    <li><strong>Sepia:</strong> Add a vintage brown-yellow tint to the photo.</li>
+                    <li><strong>Copy to Clipboard:</strong> Quickly copy the text to paste it elsewhere.</li>
+                    <li><strong>Download as Word (.docx):</strong> Perfect for editing the layout and formatting later.</li>
+                    <li><strong>Download as .txt or .pdf:</strong> Save purely as text or a portable document format.</li>
                 </ul>
 
                 <hr>
 
-                <h2>4. Rotate and Flip (Transformations) <i class="fa fa-sync-alt"></i></h2>
-                <p>Use these tools to correct the image's position:</p>
-
-                <h3>Transformations:</h3>
-                <ul>
-                    <li><strong>Rotate:</strong> Rotate the image by 90 degrees with each click.</li>
-                    <li><strong>Flip:</strong> Invert the image horizontally.</li>
-                    <li><strong>Reset:</strong> Return all editing options and effects to the default state with one click.</li>
-                </ul>
-
-                <hr>
-
-                <h2>5. Download <i class="fa fa-download"></i></h2>
-                <p>Save your edited image.</p>
-
-                <h3>Download Process:</h3>
-                <ul>
-                    <li>Once editing is complete, click the **Download** button located below the canvas.</li>
-                    <li>Your edited image will be saved to your device as a JPG file.</li>
-                </ul>
+                <h2>Why use OCR?</h2>
+                <p>Optical Character Recognition (OCR) saves you time by digitizing physical documents, extracting text from screenshots, or translating text from images without having to manually retype everything.</p>
 
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
                 <ul>
-                    <li class="active"><a href="photoEdit.html"><i class="fa fa-paint-brush"></i> Photo Editor Guide</a></li>
-                    <li><a href="meme-generator.html"><i class="fa fa-face-grin-squint"></i> Meme Generator Guide</a></li>
-                    <li><a href="mosaic.html"><i class="fa fa-th-large"></i> Image Mosaic Guide</a></li>
-                    <li><a href="join-image.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
-                    <li><a href="compress_tool.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
-                    <li><a href="heice-to-jpg.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
-                    <li><a href="jpg-to-png.html"><i class="fa fa-file-export"></i> JPG to PNG Conversion</a></li>
-                    <li><a href="image-to-gif.html"><i class="fa fa-file-video"></i> Image to GIF Guide</a></li>
+                    <li><a href="img-composser-guide.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
+                    <li><a href="all-convert-guide.html"><i class="fa fa-compress"></i> Universal Image Converter</a></li>
+                    <li><a href="blur-face-guide.html"><i class="fa fa-compress"></i> Blur Face</a></li>
+                    <li><a href="resize-guide.html"><i class="fa fa-expand"></i> Image Resizer Tutorial</a></li>
+                    <li><a href="crop-guide.html"><i class="fa fa-crop"></i> Image Cropper Instructions</a></li>
+                    <li><a href="rotate-image-guide.html"><i class="fa fa-redo"></i> Rotate Image Tutorial</a></li>
+                    <li><a href="gif-to-jpg-guide.html"><i class="fa fa-file-image"></i> GIF to JPG Converter Guide</a></li>
+                    <li><a href="png-to-jpg-guide.html"><i class="fa fa-file-export"></i> PNG to JPG Converter Guide</a></li>
+                    <li><a href="image-to-pdf-guide.html"><i class="fa fa-file-pdf"></i> Image to PDF Converter</a></li>
+                    <li><a href="watermark-guide.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
+                    <li><a href="bg-remove-guide.html"><i class="fa fa-eraser"></i> Remove Background Guide</a></li>
+                    <li><a href="photoEdit-guide.html"><i class="fa fa-file-pdf"></i> Photo Editor Tutorial</a></li>
+                    <li><a href="flip-image-guide.html"><i class="fa fa-sync-alt"></i> Flip Image Tutorial</a></li>
+                    <li><a href="heice-to-jpg-guide.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
+                    <li><a href="jpg-to-png-guide.html"><i class="fa fa-exchange-alt"></i> JPG to PNG Conversion</a></li>
+                    <li><a href="color-picker-guide.html"><i class="fa fa-palette"></i> Image Color Picker</a></li>
+                    <li><a href="img-to-gif-guide.html"><i class="fa fa-video"></i> Image to GIF Tutorial</a></li>
+                    <li class="active"><a href="img-to-text-guide.html"><i class="fa fa-font"></i> Image to Text Guide</a></li>
+                    <li><a href="join-image-guide.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
+                    <li><a href="meme-generat-guide.html"><i class="fa fa-face-grin-squint"></i> Meme Generator Guide</a></li>
+                    <li><a href="mosaic-guide.html"><i class="fa fa-border-all"></i> Image Mosaic Guide</a></li>
+                    <li><a href="image-to-vector-guide.html"><i class="fa fa-bezier-curve"></i> Image to SVG Guide</a></li>
+                    <li><a href="web-to-jpg-guide.html"><i class="fa fa-file-code"></i> WEBP to JPG Converter</a></li>
+                    <li><a href="collage-maker-guide.html"><i class="fa fa-columns"></i> Image Collage Maker</a></li>
                 </ul>
             </aside>
-
         </div>
     </div>
 </main>
@@ -335,10 +333,10 @@
                 <div>
                     <h4>Tools</h4>
                     <ul>
-                        <li><a href="photoEdit.html">Photo Editor</a></li>
-                        <li><a href="meme-generator.html">Meme Generator</a></li>
-                        <li><a href="join-image.html">Join Image</a></li>
+                        <li><a href="image-to-text.html">Image to Text</a></li>
+                        <li><a href="image-to-pdf.html">Image to PDF</a></li>
                         <li><a href="compress_tool.html">Compress Image</a></li>
+                        <li><a href="bg_remove.html">Remove Background</a></li>
                     </ul>
                 </div>
                 <div>

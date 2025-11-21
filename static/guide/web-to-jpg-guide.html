@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image to Text (OCR) Tutorial - ImageEdit</title>
+<title>WEBP to JPG Tutorial - ImageEdit</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     /* --- GLOBAL STYLES --- */
@@ -14,6 +14,8 @@
     a { text-decoration: none; color: #3498db; transition: 0.3s ease; }
     a:hover { color: #2980b9; }
     ul { list-style: none; }
+
+    /* --- BUTTONS --- */
     .btn { display: inline-block; padding: 10px 20px; border-radius: 5px; font-weight: 600; text-align: center; cursor: pointer; font-size: 16px; border: none; }
     .btn-login { background: transparent; color: #343a40; padding: 12px 15px; font-weight: 500; }
     .btn-login:hover { color: #3498db; }
@@ -31,9 +33,9 @@
     .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 0px 0; white-space: nowrap; text-transform: uppercase; }
     .main-nav li a:hover { color: #3498db; }
     a.dropbtn { margin-top: 3px; }
-    .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
     
-    /* Dropdown */
+    /* Auth Actions & Dropdown */
+    .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
     .dropdown { position: relative; }
     .dropbtn { display: flex; align-items: center; }
     .dropbtn i { margin-left: 5px; font-size: 10px; transition: transform 0.3s ease; }
@@ -44,6 +46,8 @@
     .dropdown-category-title { font-size: 14px; font-weight: 700; color: #343a40; margin-bottom: 10px; padding: 0 10px 5px 10px; text-transform: uppercase; border-bottom: 1px solid #eee; margin-top: 0; white-space: nowrap; }
     .dropdown-content a { padding: 8px 10px; font-size: 14px; display: flex; align-items: center; color: #343a40; text-transform: none; font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; }
     .dropdown-content a i { font-size: 16px; margin-right: 12px; width: 20px; text-align: center; }
+    
+    /* Icon Colors */
     .dropdown-column:nth-child(1) a i { color: #4CAF50; } 
     .dropdown-column:nth-child(2) a i { color: #E91E63; } 
     .dropdown-column:nth-child(3) a i { color: #00BCD4; } 
@@ -64,7 +68,7 @@
     .sidebar-auth-actions .btn { width: 100%; }
     .sidebar-auth-actions .btn-login { border: 1px solid #ccc; }
 
-    /* --- FOOTER --- */
+    /* --- FOOTER STYLING --- */
     footer { background-color: #2c3e50; padding: 50px 0 20px; color: #ecf0f1; }
     .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; }
     .footer-logo-col { flex-basis: 300px; max-width: 100%; }
@@ -93,17 +97,55 @@
     article ul { list-style: none; padding: 0; margin-top: 15px; }
     article ul li { background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 15px; margin-bottom: 10px; transition: all 0.2s; }
     article ul li:hover { box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); border-color: #4a90e2; }
-    
-    /* Sidebar Styles */
-    .sidebar-list { background-color: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); border: 1px solid #e5e7eb; height: fit-content; position: sticky; top: 80px; }
-    .sidebar-list h3 { color: #4a90e2; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin-bottom: 15px; font-size: 18px; font-weight: 700; }
-    .sidebar-list ul { list-style-type: none; padding: 0; }
-    .sidebar-list li a { display: block; padding: 10px 5px; color: #343a40; text-decoration: none; border-bottom: 1px dashed #e5e7eb; transition: all 0.2s; font-size: 15px; }
+
+    /* --- UPDATED SIDEBAR STYLES (SCROLLABLE) --- */
+    .sidebar-list { 
+        background-color: #ffffff; 
+        border-radius: 12px; 
+        padding: 20px 10px 20px 20px; /* Adjusted right padding */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+        border: 1px solid #e5e7eb; 
+        height: fit-content; 
+        position: sticky; 
+        top: 80px; 
+    }
+
+    .sidebar-list h3 { 
+        color: #4a90e2; 
+        border-bottom: 2px solid #e5e7eb; 
+        padding-bottom: 10px; 
+        margin-bottom: 10px; 
+        font-size: 18px; 
+        font-weight: 700; 
+        margin-right: 10px;
+    }
+
+    .sidebar-list ul { 
+        list-style-type: none; 
+        padding: 0; 
+        
+        /* SCROLLABLE SETTINGS */
+        max-height: 450px; /* Limits height */
+        overflow-y: auto;  /* Enables vertical scrolling */
+        padding-right: 10px; /* Space for scrollbar */
+    }
+
+    /* Custom Scrollbar for Sidebar */
+    .sidebar-list ul::-webkit-scrollbar { width: 5px; }
+    .sidebar-list ul::-webkit-scrollbar-track { background: #f8f9fa; border-radius: 10px; }
+    .sidebar-list ul::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    .sidebar-list ul::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    .sidebar-list li a { display: block; padding: 10px 5px; color: #343a40; text-decoration: none; border-bottom: 1px dashed #e5e7eb; transition: all 0.2s; font-size: 14px; display: flex; align-items: center; gap: 8px;}
+    .sidebar-list li a i { width: 20px; text-align: center; color: #a0aec0; transition: 0.2s; }
     .sidebar-list li:last-child a { border-bottom: none; }
     .sidebar-list li a:hover { color: #4a90e2; background-color: #f8f9fa; padding-left: 10px; }
-    .sidebar-list li.active a { color: #4a90e2; font-weight: 600; background-color: #f0f4ff; }
+    .sidebar-list li a:hover i { color: #4a90e2; }
+    .sidebar-list li.active a { color: #4a90e2; font-weight: 600; background-color: #f0f4ff; border-radius: 6px; border-bottom: none; }
+    .sidebar-list li.active a i { color: #4a90e2; }
 
-    /* --- RESPONSIVE --- */
+
+    /* --- RESPONSIVE MEDIA QUERIES --- */
     @media (max-width: 991px) { 
         .main-nav, .auth-actions { display: none; }
         .mobile-menu-toggle { display: block; }
@@ -113,7 +155,8 @@
         .footer-logo { justify-content: center; }
         .dropdown-content { display: none !important; }
         .tutorial-wrapper { grid-template-columns: 1fr; }
-        .sidebar-list { position: static; order: -1; }
+        .sidebar-list { position: static; order: -1; max-height: none; }
+        .sidebar-list ul { max-height: 300px; }
     }
     @media (max-width: 600px) {
         .footer-links-col { flex-direction: column; gap: 20px; }
@@ -132,9 +175,9 @@
         <nav class="nav">
             <ul class="main-nav">
                 <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
-                <li><a href="image-to-text.html">IMAGE TO TEXT</a></li>
                 <li><a href="resize.html">RESIZE IMAGE</a></li>
                 <li><a href="crop.html">CROP IMAGE</a></li>
+                <li><a href="web-to-jpg.html">WEBP TO JPG</a></li>
                 <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
                 <li class="dropdown">
                     <a class="dropbtn">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
@@ -147,10 +190,12 @@
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CREATE</div>
-                            <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
-                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
                             <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
+                            <a href="photoEdit.html"><i class="fas fa-paint-brush"></i> Photo editor</a>
                             <a href="join-image.html"><i class="fas fa-object-group"></i> Join IMAGE</a>
+                            <a href="collage-maker.html"><i class="fas fa-images"></i> Collage Maker</a>
+                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
+                            <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">MODIFY</div>
@@ -158,18 +203,24 @@
                             <a href="crop.html"><i class="fas fa-crop-alt"></i> Crop IMAGE</a>
                             <a href="rotate-image.html"><i class="fas fa-redo-alt"></i> Rotate IMAGE</a>
                             <a href="flip-image.html"><i class="fas fa-sync-alt"></i> Flip Image</a>
+                            <a href="mosaic.html"><i class="fas fa-braille"></i> Mosaic</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">CONVERT</div>
                             <a href="gif-to-jpg.html"><i class="fas fa-file-image"></i> GIF to JPG</a>
+                            <a href="web-to-jpg.html"><i class="fas fa-file-image"></i> WEBP to JPG</a>
                             <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt"></i> HEIC to JPG</a>
                             <a href="jpg-to-png.html"><i class="fas fa-file-export"></i> JPG to PNG</a>
+                            <a href="png-to-jpg.html"><i class="fas fa-file-export"></i> PNG to JPG</a>
                             <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
+                            <a href="all-convert.html"><i class="fas fa-globe"></i> All Convert</a>
                         </div>
                         <div class="dropdown-column">
                             <div class="dropdown-category-title">SECURITY</div>
                             <a href="watermark.html"><i class="fas fa-copyright"></i> Watermark IMAGE</a>
                             <a href="blur-face.html"><i class="fas fa-face-frown-open"></i> Blur face</a>
+                            <a href="password-protect.html"><i class="fas fa-lock"></i> Password Protect</a>
+                            <a href="metadata-remover.html"><i class="fas fa-trash-alt"></i> Metadata Remover</a>
                         </div>
                     </div>
                 </li>
@@ -194,18 +245,28 @@
     <div class="sidebar-nav">
         <ul>
             <li><a href="compress_tool.html">Compress Image</a></li>
-            <li><a href="image-to-text.html">Image to Text</a></li>
-            <li><a href="image-to-pdf.html">Image to PDF</a></li>
+            <li><a href="resize.html">Resize Image</a></li>
+            <li><a href="crop.html">Crop Image</a></li>
+            <li><a href="web-to-jpg.html">WEBP to JPG</a></li>
             <li><a href="photoEdit.html">Photo Editor</a></li>
             <li>
                 <a href="#" id="mobileDropdownToggle">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
+                    <li><div class="dropdown-category-title">OPTIMIZE</div></li>
+                    <li><a href="compress_tool.html">Compress IMAGE</a></li>
+                    <li><a href="bg_remove.html">Remove background</a></li>
                     <li><div class="dropdown-category-title">CREATE</div></li>
-                    <li><a href="image-to-text.html">Image to Text (OCR)</a></li>
+                    <li><a href="meme-generator.html">Meme generator</a></li>
+                    <li><a href="photoEdit.html">Photo editor</a></li>
                     <li><a href="image-to-pdf.html">Image to PDF</a></li>
                     <li><div class="dropdown-category-title">CONVERT</div></li>
                     <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
-                    <li><a href="heice-to-jpg.html">HEIC to JPG</a></li>
+                    <li><a href="web-to-jpg.html">WEBP to JPG</a></li>
+                    <li><a href="png-to-jpg.html">PNG to JPG</a></li>
+                    <li><a href="jpg-to-png.html">JPG to PNG</a></li>
+                    <li><div class="dropdown-category-title">SECURITY</div></li>
+                    <li><a href="watermark.html">Watermark IMAGE</a></li>
+                    <li><a href="blur-face.html">Blur face</a></li>
                 </ul>
             </li>
         </ul>
@@ -221,65 +282,76 @@
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-font"></i> Image to Text (OCR) Tutorial</h1>
-                <p>The **Image to Text** tool (OCR) allows you to extract editable text from images, screenshots, or scanned documents instantly. It supports multiple languages and offers downloads in **TXT**, **Word (DOCX)**, and **PDF** formats.</p>
+                <h1><i class="fa fa-file-image"></i> WEBP to JPG Converter Tutorial</h1>
+                <p>The **WEBP to JPG** tool is a specialized, free online utility that allows you to convert modern WEBP images into the standard JPG format. This tool supports **batch processing**, meaning you can convert multiple files at once and download them individually or as a ZIP archive.</p>
 
                 <hr>
 
-                <h2>1. Upload Your Image <i class="fa fa-cloud-upload-alt"></i></h2>
+                <h2>1. Upload WEBP Files <i class="fa fa-cloud-upload"></i></h2>
                 <div class="step-content">
-                    <p>Start by loading the image containing the text you want to extract.</p>
+                    <p>Begin by selecting the WEBP images you wish to convert. The tool is designed for client-side processing, ensuring your data remains private.</p>
                     
-                    <h3>Upload Methods:</h3>
+                    <h3>Upload Options:</h3>
                     <ul>
-                        <li><strong>Drag & Drop:</strong> Place your file directly into the upload box.</li>
-                        <li><strong>Select Image:</strong> Click the button to browse files on your device.</li>
-                        <li><strong>Formats:</strong> Supports JPG, PNG, and WebP files.</li>
+                        <li><strong>Select Files:</strong> Click the **"Select WEBP Files"** button to browse your device.</li>
+                        <li><strong>Drag & Drop:</strong> Drag multiple WEBP files directly into the dashed upload box.</li>
+                        <li><strong>Requirements:</strong> The tool supports WEBP files with a maximum size of **25MB** per file.</li>
                     </ul>
-                    <p>A preview of your image will appear once uploaded.</p>
+                    <p>Your uploaded images will appear in the "Original Images" preview section.</p>
                 </div>
 
                 <hr>
 
-                <h2>2. Select Language & Extract <i class="fa fa-language"></i></h2>
-                <p>For accurate results, tell the tool which language is used in the image.</p>
+                <h2>2. Convert Batch <i class="fa fa-sync"></i></h2>
+                <p>Once your files are selected, initiate the conversion process.</p>
 
-                <h3>Configuration:</h3>
+                <h3>Process:</h3>
                 <ul>
-                    <li><strong>Choose Language:</strong> Select from English, Bengali, Hindi, Arabic, Spanish, French, and many more.</li>
-                    <li><strong>Start OCR:</strong> Click the **"Extract Text"** button to begin the scanning process.</li>
-                    <li>The extraction uses Tesseract OCR technology to convert pixels into editable characters.</li>
+                    <li>Click the **"Convert to JPG"** button.</li>
+                    <li>A progress bar will indicate the status as the tool processes each image one by one.</li>
+                    <li>Converted images will appear in the **"Converted (JPG)"** preview grid on the right side (or bottom on mobile).</li>
                 </ul>
 
                 <hr>
 
-                <h2>3. Copy or Download <i class="fa fa-file-export"></i></h2>
-                <p>Once processing is complete, your text will appear in the result box.</p>
+                <h2>3. Download Files <i class="fa fa-download"></i></h2>
+                <p>After conversion is complete, you have options for saving your new JPGs.</p>
 
-                <h3>Export Options:</h3>
+                <h3>Saving Your Data:</h3>
                 <ul>
-                    <li><strong>Copy to Clipboard:</strong> Quickly copy the text to paste it elsewhere.</li>
-                    <li><strong>Download as Word (.docx):</strong> Perfect for editing the layout and formatting later.</li>
-                    <li><strong>Download as .txt or .pdf:</strong> Save purely as text or a portable document format.</li>
+                    <li><strong>Download ZIP:</strong> If you converted multiple files, a **"Download ZIP"** button will appear. Clicking this will bundle all converted JPGs into a single `converted_webp_to_jpg.zip` file.</li>
+                    <li><strong>Automatic Quality:</strong> The tool automatically converts images with high quality (0.9 setting) to ensure minimal loss.</li>
                 </ul>
-
-                <hr>
-
-                <h2>Why use OCR?</h2>
-                <p>Optical Character Recognition (OCR) saves you time by digitizing physical documents, extracting text from screenshots, or translating text from images without having to manually retype everything.</p>
 
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
                 <ul>
-                    <li class="active"><a href="image-to-text.html"><i class="fa fa-font"></i> Image to Text Guide</a></li>
-                    <li><a href="image-to-pdf.html"><i class="fa fa-file-pdf"></i> Image to PDF Tutorial</a></li>
-                    <li><a href="compress_tool.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
-                    <li><a href="heice-to-jpg.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
-                    <li><a href="jpg-to-png.html"><i class="fa fa-file-export"></i> JPG to PNG Conversion</a></li>
-                    <li><a href="image-to-gif.html"><i class="fa fa-file-video"></i> Image to GIF Guide</a></li>
-                    <li><a href="watermark.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
+                    <li><a href="img-composser-guide.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
+                    <li><a href="all-convert-guide.html"><i class="fa fa-compress"></i> Universal Image Converter</a></li>
+                    <li><a href="blur-face-guide.html"><i class="fa fa-compress"></i> Blur Face</a></li>
+                    <li><a href="resize-guide.html"><i class="fa fa-expand"></i> Image Resizer Tutorial</a></li>
+                    <li><a href="crop-guide.html"><i class="fa fa-crop"></i> Image Cropper Instructions</a></li>
+                    <li><a href="rotate-image-guide.html"><i class="fa fa-redo"></i> Rotate Image Tutorial</a></li>
+                    <li><a href="gif-to-jpg-guide.html"><i class="fa fa-file-image"></i> GIF to JPG Converter Guide</a></li>
+                    <li><a href="png-to-jpg-guide.html"><i class="fa fa-file-export"></i> PNG to JPG Converter Guide</a></li>
+                    <li><a href="image-to-pdf-guide.html"><i class="fa fa-file-pdf"></i> Image to PDF Converter</a></li>
+                    <li><a href="watermark-guide.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
+                    <li><a href="bg-remove-guide.html"><i class="fa fa-eraser"></i> Remove Background Guide</a></li>
+                    <li><a href="photoEdit-guide.html"><i class="fa fa-file-pdf"></i> Photo Editor Tutorial</a></li>
+                    <li><a href="flip-image-guide.html"><i class="fa fa-sync-alt"></i> Flip Image Tutorial</a></li>
+                    <li><a href="heice-to-jpg-guide.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
+                    <li><a href="jpg-to-png-guide.html"><i class="fa fa-exchange-alt"></i> JPG to PNG Conversion</a></li>
+                    <li><a href="color-picker-guide.html"><i class="fa fa-palette"></i> Image Color Picker</a></li>
+                    <li><a href="img-to-gif-guide.html"><i class="fa fa-video"></i> Image to GIF Tutorial</a></li>
+                    <li><a href="img-to-text-guide.html"><i class="fa fa-font"></i> Image to Text Guide</a></li>
+                    <li><a href="join-image-guide.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
+                    <li><a href="meme-generat-guide.html"><i class="fa fa-face-grin-squint"></i> Meme Generator Guide</a></li>
+                    <li><a href="mosaic-guide.html"><i class="fa fa-border-all"></i> Image Mosaic Guide</a></li>
+                    <li><a href="image-to-vector-guide.html"><i class="fa fa-bezier-curve"></i> Image to SVG Guide</a></li>
+                    <li class="active"><a href="web-to-jpg-guide.html"><i class="fa fa-file-code"></i> WEBP to JPG Converter</a></li>
+                    <li><a href="collage-maker-guide.html"><i class="fa fa-columns"></i> Image Collage Maker</a></li>
                 </ul>
             </aside>
 
@@ -317,9 +389,9 @@
                 <div>
                     <h4>Tools</h4>
                     <ul>
-                        <li><a href="image-to-text.html">Image to Text</a></li>
-                        <li><a href="image-to-pdf.html">Image to PDF</a></li>
                         <li><a href="compress_tool.html">Compress Image</a></li>
+                        <li><a href="resize.html">Resize Image</a></li>
+                        <li><a href="web-to-jpg.html">WEBP to JPG</a></li>
                         <li><a href="bg_remove.html">Remove Background</a></li>
                     </ul>
                 </div>
@@ -388,6 +460,7 @@
             mobileDropdownToggle.addEventListener('click', (e) => {
                 e.preventDefault(); 
                 const isExpanded = mobileDropdownContent.style.display === 'block';
+                
                 if (isExpanded) {
                     mobileDropdownContent.style.display = 'none';
                     mobileDropdownToggle.querySelector('i').style.transform = 'rotate(0deg)';
