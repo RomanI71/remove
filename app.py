@@ -616,6 +616,11 @@ async def pricing():
 async def about_us():
     return FileResponse("static/about_us.html")
 
+@app.get("/terms_and_conditions.html")
+async def terms_and_conditions():
+    return FileResponse("static/terms_and_conditions.html")
+
+
 
 
 # API Status
