@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
     <style>
-        /* --- Basic CSS Styling for Sign Up --- */
+        /* --- Basic CSS Styling --- */
         body {
             font-family: Arial, sans-serif;
             background-color: #e9ecef;
@@ -21,7 +21,7 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            width: 400px; /* Slightly wider than login for more fields */
+            width: 400px;
             max-width: 100%;
             text-align: center;
         }
@@ -55,7 +55,7 @@
         .signup-button {
             width: 100%;
             padding: 12px;
-            background-color: #28a745; /* Success/Green color for Sign Up */
+            background-color: #28a745;
             color: white;
             border: none;
             border-radius: 6px;
@@ -77,8 +77,15 @@
             text-decoration: none;
             font-weight: bold;
         }
-        .link-text a:hover {
-            text-decoration: underline;
+        /* 🔥 Error Message Style */
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -86,16 +93,23 @@
 
     <div class="signup-container">
         <h2>Create Your Account</h2>
-        <form action="/register" method="POST">
+
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/signup" method="POST">
             
             <div class="input-group">
                 <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" value="{{ fullname }}" required>
             </div>
 
             <div class="input-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter a valid email address" required>
+                <input type="email" id="email" name="email" placeholder="Enter a valid email address" value="{{ email }}" required>
             </div>
             
             <div class="input-group">
@@ -105,7 +119,7 @@
             
             <div class="input-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Repeat your password" required>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="Repeat your password" required>
             </div>
 
             <button type="submit" class="signup-button">Sign Up</button>

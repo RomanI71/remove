@@ -26,6 +26,9 @@ import gc
 import asyncio
 import psutil
 import uvicorn
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from signup import router as signup_router
 
 # -------- AI Models -------- #
 try:
@@ -112,8 +115,10 @@ memory_manager = MemoryManager(cleanup_interval=300)
 
 # ----------------- FastAPI App ----------------- #
 app = FastAPI(title="AI Image Processing API (BG Removal & SVG Converter)")
+app.include_router(signup_router)
 
 REMOVEBG_FOLDER = "/tmp"
+
 
 app.add_middleware(
     CORSMiddleware,
