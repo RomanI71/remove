@@ -11,6 +11,8 @@ psutil
 rembg==2.0.50
 anyio
 starlette
+jinja2
+python-multipart
 
 
 
