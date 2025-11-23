@@ -13,6 +13,6 @@ anyio
 starlette
 jinja2
 python-multipart
-
+email-validator
 
 
