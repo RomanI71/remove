@@ -185,7 +185,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
 
-  <script>
+<script>
   (function(){
     // Elements
     const drop = document.getElementById('drop');
@@ -214,8 +214,12 @@
     function setStatus(text){ status.textContent = text; }
     function setProgress(p){ bar.style.width = p + '%'; }
 
-    // File handling
-    chooseBtn.addEventListener('click', ()=> fileInput.click());
+    // --- FIX 1: Event Propagation ঠিক করা হয়েছে ---
+    chooseBtn.addEventListener('click', (e)=> {
+        e.stopPropagation(); // ক্লিক করলে যেন প্যারেন্ট ডিভ এফেক্টেড না হয়
+        fileInput.click();
+    });
+    
     fileInput.addEventListener('change', e => handleFiles(e.target.files));
 
     drop.addEventListener('click', ()=> fileInput.click());
@@ -350,11 +354,18 @@
       const showPreview = previewToggle.value === '1';
 
       setStatus('Preparing frames...');
+      
+      // --- FIX 2: Worker Path CDN ব্যবহার করা হচ্ছে (লোকাল ফাইল না থাকলে) ---
+      // যদি আপনার নিজের সার্ভারে gif.worker.js থাকে তবে পাথ পরিবর্তন করুন
+      const workerUrl = 'https://cdn.jsdelivr.net/npm/gif.js/dist/gif.worker.js';
+
       // instantiate GIF
+      // Note: CDN workers might have CORS issues depending on the browser.
+      // Best practice: Download gif.worker.js and place it in your project folder.
       const gif = new GIF({
         workers: workers,
         quality: quality,
-        workerScript: '/static/gif.worker.js', // IMPORTANT: file must be present at this path (same folder)
+        workerScript: workerUrl, 
         width: outW,
         repeat: repeat
       });
@@ -365,17 +376,15 @@
           const f = files[i].file;
           const img = await loadImage(f);
           const canvas = drawToCanvas(img, outW);
-          // adjust delay by speed slider (higher speed → smaller delay)
           const frameDelay = Math.round(delayMs / speed);
           gif.addFrame(canvas, {delay: frameDelay});
-          setProgress(Math.round(((i+1)/files.length) * 20)); // up to 20% while preparing
+          setProgress(Math.round(((i+1)/files.length) * 20)); 
           setStatus(`Added ${i+1} / ${files.length} frames`);
         }catch(err){
           console.error('load image error', err);
         }
       }
 
-      // progress from gif.js
       setStatus('Rendering GIF...');
       gif.on('progress', p => {
         setProgress(Math.round(20 + p*80));
@@ -386,63 +395,41 @@
         setProgress(100);
         setStatus('GIF ready');
         const url = URL.createObjectURL(blob);
-        // preview image
         if(showPreview){
           const img = document.createElement('img');
           img.src = url; img.style.maxHeight='200px'; img.style.borderRadius='8px'; img.style.boxShadow='0 6px 18px rgba(2,6,23,0.08)';
           result.appendChild(img);
         }
-        // download button
         const a = document.createElement('a');
         a.href = url; a.download = 'animated.gif';
         a.className = 'btn';
         a.textContent = 'Download GIF';
         result.appendChild(a);
-
-        // small info
+        
         const info = document.createElement('div');
-        info.className = 'small'; info.style.marginTop='6px'; info.textContent = 'Right-click the download button -> Save link as... if needed';
+        info.className = 'small'; info.style.marginTop='6px'; info.textContent = 'Right-click -> Save link as... if needed';
         result.appendChild(info);
       });
 
-      // start render
       try{
         gif.render();
       }catch(e){
         console.error('gif.render error', e);
-        alert('Failed to render GIF — check console for details. Ensure gif.worker.js is reachable and you are serving via http.');
+        alert('Failed to render. Ensure you are on http/https and worker script is accessible.');
       }
     });
 
     clearBtn.addEventListener('click', ()=>{
-      // revoke object URLs
       files.forEach(f => { try{ URL.revokeObjectURL(f.url);}catch(e){} });
       files = []; thumbs.innerHTML=''; result.innerHTML=''; setProgress(0); setStatus('Cleared');
     });
 
-    // initial messages
-    setStatus('Drop images or click "Browse" to add. Serve over http://localhost for Web Workers.');
-    setProgress(0);
+    setStatus('Drop images or click "Browse" to add. Serve over http://localhost.');
 
-    // accessibility: keyboard open file dialog when drop has focus + Enter
     drop.addEventListener('keydown', (e)=>{
       if(e.key === 'Enter' || e.key === ' ') { fileInput.click(); e.preventDefault(); }
     });
-
-    // warn if worker missing
-    fetch('/static/gif.worker.js', { method:'HEAD' }).then(res => {
-      if(!res.ok) {
-        console.warn('gif.worker.js not found at ./gif.worker.js — worker must be present and served from same origin.');
-        // show small red note
-        const note = document.createElement('div'); note.style.color='var(--danger)'; note.style.marginTop='10px';
-        note.textContent = 'Warning: gif.worker.js not found at ./gif.worker.js. Place gif.worker.js in the same folder and serve via HTTP.';
-        document.getElementById('app').appendChild(note);
-      }
-    }).catch(()=> {
-      // ignore fetch errors (file:// etc)
-    });
-
-    // cleanup object URLs when page unloads
+    
     window.addEventListener('beforeunload', ()=>{
       files.forEach(f => { try{ URL.revokeObjectURL(f.url); }catch(e){} });
     });
