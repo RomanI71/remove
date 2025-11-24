@@ -29,6 +29,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from signup import router as signup_router
+from login import router as login_router
 
 # -------- AI Models -------- #
 try:
@@ -116,6 +117,8 @@ memory_manager = MemoryManager(cleanup_interval=300)
 # ----------------- FastAPI App ----------------- #
 app = FastAPI(title="AI Image Processing API (BG Removal & SVG Converter)")
 app.include_router(signup_router)
+app.include_router(login_router)
+
 
 REMOVEBG_FOLDER = "/tmp"
 
@@ -638,6 +641,20 @@ async def api_status():
         "svg_conversion": "Available",
         "memory_management": "Active (Auto-clean every 5 minutes)"
     }
+
+@app.get("/")
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/dashboard")
+def dashboard(request: Request, user: dict = Depends(get_current_user)):
+    if not user:
+        return RedirectResponse("/")
+    return templates.TemplateResponse("dashboard.html", {
+        "request": request,
+        "username": user["username"],
+        "email": user["email"]
+    })
 
 # ----------------------------------------------------
 # --- SVG Vectorization Routes ---
