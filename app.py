@@ -646,15 +646,15 @@ async def api_status():
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/dashboard")
-def dashboard(request: Request, user: dict = Depends(get_current_user)):
-    if not user:
-        return RedirectResponse("/")
-    return templates.TemplateResponse("dashboard.html", {
-        "request": request,
-        "username": user["username"],
-        "email": user["email"]
-    })
+# @app.get("/dashboard")
+# def dashboard(request: Request, user: dict = Depends(get_current_user)):
+#     if not user:
+#         return RedirectResponse("/")
+#     return templates.TemplateResponse("dashboard.html", {
+#         "request": request,
+#         "username": user["username"],
+#         "email": user["email"]
+#     })
 
 # ----------------------------------------------------
 # --- SVG Vectorization Routes ---
