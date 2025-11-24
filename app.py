@@ -30,6 +30,10 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from signup import router as signup_router
 from login import router as login_router
+from fastapi import FastAPI, Request, Depends
+from fastapi.responses import RedirectResponse
+from fastapi.templating import Jinja2Templates
+
 
 # -------- AI Models -------- #
 try:

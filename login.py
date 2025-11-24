@@ -4,6 +4,7 @@ from pydantic import EmailStr
 from pathlib import Path
 from starlette.responses import RedirectResponse
 from typing import List
+from fastapi.templating import Jinja2Templates
 
 # --- 1. Router Setup ---
 router = APIRouter()
@@ -11,6 +12,7 @@ router = APIRouter()
 # টেমপ্লেট ফোল্ডার কনফিগারেশন (আপনার HTML ফাইলগুলো static ফোল্ডারে আছে)
 TEMPLATES_DIR = Path(__file__).parent / "static"
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = Jinja2Templates(directory="templates")
 
 # --- 2. Simulated Database Access ---
 # NOTE: বাস্তব অ্যাপ্লিকেশনে, আপনি এখানে একটি মডিউল থেকে
