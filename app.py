@@ -28,8 +28,6 @@ import psutil
 import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from signup import router as signup_router
-from login import router as login_router
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -120,8 +118,6 @@ memory_manager = MemoryManager(cleanup_interval=300)
 
 # ----------------- FastAPI App ----------------- #
 app = FastAPI(title="AI Image Processing API (BG Removal & SVG Converter)")
-app.include_router(signup_router)
-app.include_router(login_router)
 
 
 REMOVEBG_FOLDER = "/tmp"
