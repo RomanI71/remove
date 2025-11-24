@@ -5,6 +5,8 @@ from pathlib import Path
 from starlette.responses import RedirectResponse
 from typing import List
 from fastapi.templating import Jinja2Templates
+from login import get_current_user
+
 
 # --- 1. Router Setup ---
 router = APIRouter()
@@ -30,6 +32,9 @@ TEMP_USERS_DUMMY = [
 # --- 3. Routes ---
 
 # লগইন ফর্ম দেখানোর জন্য (GET Request)
+def get_current_user(request: Request):
+    user = request.session.get("user")
+    return user
 @router.get("/login")
 async def login_form(request: Request):
     """Loads the login.html page."""
