@@ -472,7 +472,6 @@ async def sitemap():
     return FileResponse("static/sitemap.xml", media_type="application/xml")
 
 
-
 # Root route - index.html serve করুন
 
 @app.get("/health")
