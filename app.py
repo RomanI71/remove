@@ -24,12 +24,12 @@ import base64
 import re
 import gc
 import asyncio
-import psutil
 import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import RedirectResponse
+from pathlib import Path
 
 
 
@@ -61,7 +61,7 @@ UPLOAD_FOLDER = 'uploads'
 REMOVEBG_FOLDER = 'removebg'
 VECTOR_FOLDER = 'vectorized'
 STATIC_FOLDER = 'static'
-for folder in [UPLOAD_FOLDER, REMOVEBG_FOLDER, VECTOR_FOLDER, STATIC_FOLDER]:
+for folder in [UPLOAD_FOLDER, REMOVEBG_FOLDER, VECTOR_FOLDER]:
     os.makedirs(folder, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp', 'webp', 'gif'}
@@ -482,7 +482,7 @@ async def index_page():
     return FileResponse("static/index.html")
 
 # All HTML page routes
-@app.get("/compress_tool")
+# @app.get("/compress_tool")
 @app.get("/compress_tool.html")
 async def compress_tool():
     return FileResponse("static/compress_tool.html")
@@ -519,7 +519,7 @@ async def collage_maker():
 async def crop_tool():
     return FileResponse("static/crop.html")
 
-@app.get("/flip-image")
+# @app.get("/flip-image")
 @app.get("/flip-image.html")
 async def flip_tool():
     return FileResponse("static/flip-image.html")
@@ -536,7 +536,7 @@ async def heice_to_jpg():
 async def image_to_text():
     return FileResponse("static/image-to-text.html")
 
-@app.get("/join-image")
+# @app.get("/join-image")
 @app.get("/join-image.html")
 async def join_image_page():
     return FileResponse("static/join-image.html")
@@ -545,7 +545,7 @@ async def join_image_page():
 async def meme_generator():
     return FileResponse("static/meme-generator.html")
 
-@app.get("/image-to-gif")
+# @app.get("/image-to-gif")
 @app.get("/image-to-gif.html")
 async def gif_tool():
     file_path = os.path.join(os.path.dirname(__file__), "static/image-to-gif.html")
@@ -570,8 +570,8 @@ async def mosaic_tool():
     return FileResponse("static/mosaic.html")
 
 @app.get("/photoEdit.html")
-@app.get("/photo-edit.html") 
-@app.get("/photo-edit")
+# @app.get("/photo-edit.html") 
+# @app.get("/photo-edit")
 async def photo_edit():
     return FileResponse("static/photoEdit.html")
 
