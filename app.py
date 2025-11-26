@@ -860,7 +860,7 @@ def cleanup_files():
     while True:
         try:
             now = datetime.datetime.now()
-            for folder in [UPLOAD_FOLDER, REMOVEBG_FOLDER, VECTOR_FOLDER, STATIC_FOLDER]: 
+            for folder in [UPLOAD_FOLDER, REMOVEBG_FOLDER, VECTOR_FOLDER]: 
                 for fname in os.listdir(folder):
                     fpath = os.path.join(folder, fname)
                     if folder == STATIC_FOLDER and fname.lower() == 'index.html':
