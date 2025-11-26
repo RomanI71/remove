@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://topimgtools.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/png-to-jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/jpg-to-png.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/webp-to-jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/bg-remove.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/resize.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/vector.html</loc>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/about_us.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/pricing.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/contact_us.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/privacy_policy.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/terms_and_conditions.html</loc>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/tutorial.html</loc>
+  </url>
+
+</urlset>

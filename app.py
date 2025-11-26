@@ -467,6 +467,12 @@ static_dir = os.path.join(current_dir, "static")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
+@app.get("/sitemap.xml", include_in_schema=False)
+async def sitemap():
+    return FileResponse("static/sitemap.xml", media_type="application/xml")
+
+
+
 # Root route - index.html serve করুন
 
 @app.get("/health")
