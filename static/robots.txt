@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block admin, login, and backend paths (if any)
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Sitemap locations
+Sitemap: https://topimgtools.com/sitemap.xml
