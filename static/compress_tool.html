@@ -3,317 +3,314 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
- <title>Online Image Compressor – Reduce Image Size | TopImgTools</title>
-<meta name="description" content="Compress images online instantly. Reduce JPG, PNG, and WebP image file size without losing quality. Free and fast image compression tool by TopImgTools." />
-<meta name="keywords" content="image compressor, compress image online, reduce image size, jpg compressor, png compressor, webp compressor, TopImgTools" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/image-compressor.html" />
-<meta property="og:title" content="Online Image Compressor – Reduce Image Size Fast" />
-<meta property="og:description" content="Compress JPG, PNG, and WebP images online without losing quality. Free, fast, and secure image compression tool by TopImgTools." />
-<meta property="og:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/image-compressor.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Online Image Compressor – Reduce Image Size Fast" />
-<meta name="twitter:description" content="Compress JPG, PNG, and WebP images online instantly. Free and fast image compression tool by TopImgTools." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
+  <title>Online Image Compressor – Reduce Image Size | TopImgTools</title>
+  <meta name="description" content="Compress images online instantly. Reduce JPG, PNG, and WebP image file size without losing quality. Free and fast image compression tool by TopImgTools." />
+  <meta name="keywords" content="image compressor, compress image online, reduce image size, jpg compressor, png compressor, webp compressor, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <link rel="canonical" href="https://topimgtools.com/image-compressor.html" />
+  
+  <meta property="og:title" content="Online Image Compressor – Reduce Image Size Fast" />
+  <meta property="og:description" content="Compress JPG, PNG, and WebP images online without losing quality. Free, fast, and secure image compression tool by TopImgTools." />
+  <meta property="og:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/image-compressor.html" />
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Image Compressor – Reduce Image Size Fast" />
+  <meta name="twitter:description" content="Compress JPG, PNG, and WebP images online instantly. Free and fast image compression tool by TopImgTools." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://picsum.photos">
 
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM', { 'anonymize_ip': true });
+  </script>
   
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--accent:#e74c3c;--muted:#6b7280}
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#0f172a}
-    .wrap{max-width:980px;margin:36px auto;padding:20px}
-    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .logo{display:flex;gap:12px;align-items:center}
-    .logo img{height:36px}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 0}
+    /* Critical CSS Inlined & Optimized */
+    :root { --bg: #f8fafc; --card: #fff; --accent: #e74c3c; --muted: #6b7280; --text: #0f172a; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); margin: 0; color: var(--text); line-height: 1.5; }
+    
+    /* Layout */
+    .wrap { max-width: 980px; margin: 36px auto; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .logo { display: flex; gap: 12px; align-items: center; }
+    .logo img { height: 36px; width: auto; }
+    h1 { font-size: 20px; margin: 0; }
+    p.lead { color: var(--muted); margin: 6px 0 0; }
 
-    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
-    .upload-box.highlight{background:linear-gradient(90deg,rgba(231,76,60,0.06),rgba(52,152,219,0.03));border-color:var(--accent)}
-    .upload-actions{display:flex;gap:10px;align-items:center}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:#111827;color:#fff}
-    .muted{color:var(--muted)}
+    /* Cards & Components */
+    .card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 6px 20px rgba(2,6,23,0.06); }
+    
+    .upload-box { border: 2px dashed rgba(15,23,42,0.08); border-radius: 10px; padding: 28px; display: flex; gap: 20px; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+    .upload-box.highlight { background: linear-gradient(90deg, rgba(231,76,60,0.06), rgba(52,152,219,0.03)); border-color: var(--accent); }
+    
+    .upload-actions { display: flex; gap: 10px; align-items: center; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; text-decoration: none; font-size: 14px; font-family: inherit; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: #111827; color: #fff; }
+    .muted { color: var(--muted); }
+    
+    /* SVG Icons (Replacing FontAwesome for Speed) */
+    .icon { width: 16px; height: 16px; fill: currentColor; }
+    .icon-lg { width: 36px; height: 36px; }
 
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    .panel{display:flex;flex-direction:column;gap:12px}
+    /* Grid & Panels */
+    .grid { display: grid; grid-template-columns: 1fr 360px; gap: 18px; margin-top: 18px; }
+    .panel { display: flex; flex-direction: column; gap: 12px; }
 
-    .preview{display:flex;flex-direction:column;gap:8px;align-items:center}
-    .preview img{max-width:100%;max-height:360px;border-radius:8px;object-fit:contain;background:#f3f4f6;padding:8px}
-    .info{display:flex;gap:12px;flex-wrap:wrap}
-    .chip{background:#f8fafc;padding:8px 10px;border-radius:8px;border:1px solid #eef2f7;color:#0f172a;font-weight:600}
+    .preview { display: flex; flex-direction: column; gap: 8px; align-items: center; min-height: 200px; justify-content: center; }
+    .preview img { max-width: 100%; max-height: 360px; border-radius: 8px; object-fit: contain; background: #f3f4f6; padding: 8px; }
+    .info { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .chip { background: #f8fafc; padding: 8px 10px; border-radius: 8px; border: 1px solid #eef2f7; color: var(--text); font-weight: 600; font-size: 12px; }
 
-    label{font-size:14px;color:var(--muted);font-weight:700}
-    input[type=range]{width:100%}
-    .form-row{display:flex;gap:10px;align-items:center}
-    .form-row .field{flex:1}
-    .small{font-size:13px;color:var(--muted)}
+    /* Form Elements */
+    label { font-size: 14px; color: var(--muted); font-weight: 700; display: block; margin-bottom: 4px; }
+    .form-row { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+    .form-row .field { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #e6edf3; font-family: inherit; }
+    .small { font-size: 13px; color: var(--muted); }
+    input[type=range] { width: 100%; cursor: pointer; }
 
-    .output{display:flex;flex-direction:column;gap:10px}
-    .result-meta{display:flex;justify-content:space-between;align-items:center}
-    .progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden}
-    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f39c12)}
+    /* Checkbox Alignment */
+    .checkbox-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+    .checkbox-row input { margin: 0; width: 16px; height: 16px; }
+    .checkbox-row label { margin: 0; font-weight: 400; cursor: pointer; }
 
-    .download-btn{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:#0f172a;color:#fff}
+    /* Output Section */
+    .output { display: flex; flex-direction: column; gap: 10px; }
+    .result-meta { display: flex; justify-content: space-between; align-items: center; }
+    
+    .progress { height: 8px; background: #eef2f7; border-radius: 8px; overflow: hidden; margin: 8px 0; }
+    .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #f39c12); transition: width 0.3s ease; }
 
-    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+    .download-btn { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 10px; background: #0f172a; color: #fff; margin-top: 10px; }
+    .download-link { color: #fff; text-decoration: none; display: flex; align-items: center; gap: 6px; font-weight: 600; }
 
-    @media (max-width:900px){.grid{grid-template-columns:1fr}.preview img{max-height:300px}}
+    /* Content Section */
+    .content-area { max-width: 900px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; line-height: 1.7; background: var(--card); }
+    .nav-links { margin-top: 35px; padding: 14px; background: #f3f4f6; border-radius: 14px; display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .nav-btn { padding: 10px 22px; background: linear-gradient(145deg,#e7e9eb,#ffffff); border-radius: 30px; text-decoration: none; color: #1f2937; font-weight: 700; font-size: 14px; box-shadow: 3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff; transition: 0.25s ease; display: inline-block; }
+    .nav-btn:hover { transform: translateY(-2px); box-shadow: 4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff; }
+
+    footer { margin-top: 20px; text-align: center; color: var(--muted); font-size: 13px; padding-bottom: 20px; }
+
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .preview img { max-height: 300px; } }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="header">
+    <header class="header">
       <div class="logo">
-        <img src="/static/img/compress.png" alt="logo">
+        <img src="/static/img/compress.png" alt="TopImgTools Logo" width="36" height="36">
         <div>
           <h1>Compress & Resize</h1>
           <p class="lead">Compress and resize images quickly in the browser.</p>
         </div>
       </div>
       <div class="actions">
-        <a class="btn btn-secondary" href="/index.html"><i class="fa fa-arrow-left"></i> Back</a>
+        <a class="btn btn-secondary" href="/index.html" aria-label="Go back to homepage">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back
+        </a>
       </div>
-    </div>
+    </header>
 
-    <div class="card">
-      <div class="upload-box" id="uploadBox">
-        <div style="text-align:center">
-          <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)"></i>
-          <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
-          <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
-        </div>
-        <div class="upload-actions">
-          <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
-          <input id="fileInput" type="file" accept="image/*" style="display:none">
-          <button id="sampleBtn" class="btn" title="Use sample image">Sample</button>
-        </div>
-      </div>
-
-      <div class="grid" style="margin-top:18px">
-        <div class="panel">
-          <div class="card">
-            <div class="preview" id="previewArea">
-              <img id="previewImg" src="" alt="preview" style="display:none">
-              <div id="placeholder" style="padding:26px;text-align:center;color:var(--muted)">Preview will appear here</div>
-              <div class="info" id="metaInfo" style="display:none">
-                <div class="chip" id="origSize">Original: —</div>
-                <div class="chip" id="origDim">Dimensions: —</div>
-                <div class="chip" id="origType">Type: —</div>
-              </div>
-            </div>
+    <main>
+      <div class="card">
+        <div class="upload-box" id="uploadBox" role="button" tabindex="0" aria-label="Upload area">
+          <div style="text-align:center">
+            <svg class="icon-lg" style="color:var(--accent)" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+            <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
+            <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
           </div>
-
-          <div class="card">
-            <label for="mode">Mode</label>
-            <div class="form-row">
-              <select id="mode" class="field" style="padding:10px;border-radius:8px;border:1px solid #e6edf3">
-                <option value="compress">Compress (lossy)</option>
-                <option value="resize">Resize only</option>
-              </select>
-              <div style="min-width:120px;text-align:right"><span class="small muted">Choose action</span></div>
-            </div>
-
-            <label for="format" style="margin-top:12px">Output Format</label>
-            <div class="form-row">
-              <select id="format" class="field" style="padding:10px;border-radius:8px;border:1px solid #e6edf3">
-                <option value="auto">Auto (keep original)</option>
-                <option value="image/jpeg">JPEG (smaller)</option>
-                <option value="image/webp">WebP (best for web)</option>
-                <option value="image/png">PNG (lossless)</option>
-              </select>
-              <div style="min-width:120px;text-align:right"><span class="small muted">Format</span></div>
-            </div>
-
-            <div id="qualityBlock">
-              <label style="margin-top:12px">Quality <span id="qualityVal" style="font-weight:700">85%</span></label>
-              <input type="range" id="quality" min="10" max="100" value="85">
-              <p class="small">Quality affects JPEG/WebP. PNG ignores quality — convert to JPEG/WebP for smaller files.</p>
-            </div>
-
-            <label style="margin-top:8px">Resize (optional)</label>
-            <div class="form-row">
-              <input id="width" type="number" placeholder="Width px" class="field" style="padding:8px;border-radius:8px;border:1px solid #e6edf3">
-              <input id="height" type="number" placeholder="Height px" class="field" style="padding:8px;border-radius:8px;border:1px solid #e6edf3">
-            </div>
-            <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
-              <input type="checkbox" id="keepRatio" checked>
-              <label for="keepRatio" class="small muted">Maintain aspect ratio</label>
-            </div>
-
-            <div style="display:flex;gap:10px;margin-top:14px">
-              <button id="compressBtn" class="btn btn-primary"><i class="fa fa-compress"></i> Execute</button>
-              <button id="resetBtn" class="btn">Reset</button>
-            </div>
+          <div class="upload-actions">
+            <button id="selectBtn" class="btn btn-primary">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                Select Image
+            </button>
+            <input id="fileInput" type="file" accept="image/*" style="display:none" aria-hidden="true">
+            <button id="sampleBtn" class="btn btn-secondary" aria-label="Load sample image">Sample</button>
           </div>
-
         </div>
 
-        <aside class="card panel">
-          <div class="output">
-            <div class="result-meta">
-              <strong>Result</strong>
-              <span class="small muted" id="status">No file</span>
-            </div>
-
-            <div class="progress" aria-hidden>
-              <i id="bar"></i>
-            </div>
-
-            <div style="display:flex;gap:8px;flex-direction:column">
-              <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
-                <div class="small muted">Original size</div>
-                <div id="origBytes" class="small">—</div>
-              </div>
-              <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
-                <div class="small muted">Output size</div>
-                <div id="compBytes" class="small">—</div>
-              </div>
-              <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
-                <div class="small muted">Savings</div>
-                <div id="savings" class="small">—</div>
-              </div>
-            </div>
-
-            <div style="margin-top:10px">
-              <div id="downloadWrap" style="display:none">
-                <div class="download-btn">
-                  <div>
-                    <div style="font-weight:700" id="outName">output.jpg</div>
-                    <div class="small muted" id="outInfo">JPEG • 800 × 600</div>
-                  </div>
-                  <div style="display:flex;gap:8px;align-items:center">
-                    <a id="downloadLink" class="btn btn-secondary" download><i class="fa fa-download"></i> Download</a>
-                  </div>
+        <div class="grid">
+          <div class="panel">
+            <div class="card">
+              <div class="preview" id="previewArea" aria-live="polite">
+                <img id="previewImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Image preview" style="display:none">
+                <div id="placeholder" style="padding:26px;text-align:center;color:var(--muted)">Preview will appear here</div>
+                <div class="info" id="metaInfo" style="display:none">
+                  <div class="chip" id="origSize">Original: —</div>
+                  <div class="chip" id="origDim">Dimensions: —</div>
+                  <div class="chip" id="origType">Type: —</div>
                 </div>
               </div>
             </div>
 
-            <div style="margin-top:10px;font-size:13px;color:var(--muted)">
-              <strong>Notes:</strong>
-              <ul style="margin:6px 0 0 18px;color:var(--muted)">
-                <li>Client-side processing — no files are uploaded to a server in this demo.</li>
-                <li>For PNG compression, consider converting to WebP or JPEG for smaller results.</li>
-                <li>Large images may hit browser memory limits.</li>
-              </ul>
+            <div class="card">
+              <label for="mode">Mode</label>
+              <div class="form-row">
+                <select id="mode" class="field">
+                  <option value="compress">Compress (lossy)</option>
+                  <option value="resize">Resize only</option>
+                </select>
+                <div style="min-width:120px;text-align:right"><span class="small muted">Choose action</span></div>
+              </div>
+
+              <label for="format" style="margin-top:12px">Output Format</label>
+              <div class="form-row">
+                <select id="format" class="field">
+                  <option value="auto">Auto (keep original)</option>
+                  <option value="image/jpeg">JPEG (smaller)</option>
+                  <option value="image/webp">WebP (best for web)</option>
+                  <option value="image/png">PNG (lossless)</option>
+                </select>
+                <div style="min-width:120px;text-align:right"><span class="small muted">Format</span></div>
+              </div>
+
+              <div id="qualityBlock">
+                <label for="quality" style="margin-top:12px; display:flex; justify-content:space-between;">
+                    Quality <span id="qualityVal" style="font-weight:700">85%</span>
+                </label>
+                <input type="range" id="quality" min="10" max="100" value="85" aria-valuemin="10" aria-valuemax="100" aria-valuenow="85">
+                <p class="small" style="margin-top:4px">Quality affects JPEG/WebP. PNG ignores quality.</p>
+              </div>
+
+              <label for="width" style="margin-top:12px">Resize (optional)</label>
+              <div class="form-row">
+                <input id="width" type="number" placeholder="Width px" class="field" aria-label="Width in pixels">
+                <input id="height" type="number" placeholder="Height px" class="field" aria-label="Height in pixels">
+              </div>
+              <div class="checkbox-row">
+                <input type="checkbox" id="keepRatio" checked>
+                <label for="keepRatio" class="small muted">Maintain aspect ratio</label>
+              </div>
+
+              <div style="display:flex;gap:10px;margin-top:14px">
+                <button id="compressBtn" class="btn btn-primary">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M8 19h3v3h2v-3h3l-4-4-4 4zm8-15h-3V1h-2v3H8l4 4 4-4zM4 9v2h16V9H4z"/></svg>
+                    Execute
+                </button>
+                <button id="resetBtn" class="btn btn-secondary">Reset</button>
+              </div>
             </div>
+
           </div>
-        </aside>
+
+          <aside class="panel">
+            <div class="card output">
+              <div class="result-meta">
+                <strong>Result</strong>
+                <span class="small muted" id="status" aria-live="polite">No file</span>
+              </div>
+
+              <div class="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div id="bar"></div>
+              </div>
+
+              <div style="display:flex;gap:8px;flex-direction:column">
+                <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+                  <div class="small muted">Original size</div>
+                  <div id="origBytes" class="small">—</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+                  <div class="small muted">Output size</div>
+                  <div id="compBytes" class="small">—</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+                  <div class="small muted">Savings</div>
+                  <div id="savings" class="small">—</div>
+                </div>
+              </div>
+
+              <div style="margin-top:10px">
+                <div id="downloadWrap" style="display:none">
+                  <div class="download-btn">
+                    <div>
+                      <div style="font-weight:700" id="outName">output.jpg</div>
+                      <div class="small muted" id="outInfo" style="color:#94a3b8">JPEG • 800 × 600</div>
+                    </div>
+                    <div>
+                      <a id="downloadLink" class="btn btn-secondary" download aria-label="Download compressed image">
+                          <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                          Download
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:10px;font-size:13px;color:var(--muted)">
+                <strong>Notes:</strong>
+                <ul style="margin:6px 0 0 18px;color:var(--muted);padding-left:0;">
+                  <li>Client-side processing — no files upload.</li>
+                  <li>For PNG, convert to WebP for best size.</li>
+                  <li>Memory limits apply to large images.</li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
-    </div>
 
+      <nav class="nav-links" aria-label="Related Tools">
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/heice-to-jpg.html" class="nav-btn">HEIC → JPG</a>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
+      </nav>
 
-
-<div style="
-    max-width:980px;
-    margin:35px auto;
-">
-    <div style="
-        background:#ffffff;
-        padding:25px;
-        border-radius:14px;
-        box-shadow:0 6px 20px rgba(2,6,23,0.06);
-        line-height:1.7;
-    ">
-        <h2 style="
-            font-size:24px;
-            margin-bottom:14px;
-            color:#111827;
-            font-weight:700;
-        ">
-            Free Online Image Compressor – Reduce Image Size Without Losing Quality
+      <section class="content-area">
+        <h2 style="font-size:28px;margin-bottom:15px;text-align:center;">
+            Best Free Image Compressor Online
         </h2>
-
-        <p style="color:#374151; margin-bottom:16px; font-size:15px;">
-            Our <strong>Image Compressor</strong> allows you to reduce the size of JPG, PNG,
-            and WebP images instantly. Compress photos without losing visible quality — perfect
-            for websites, social media, e-commerce, and faster uploads. No installation required.
+        <p>
+            Do you want to make your website faster or save space on your device?
+            Our Image Compressor tool allows you to reduce the size of your images 
+            without compromising their quality. Simply upload your image, and our 
+            smart algorithm will compress it while keeping it clear and sharp.
         </p>
-
-        <h3 style="
-            font-size:20px;
-            margin:20px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            Why Use This Image Compression Tool?
-        </h3>
-        <ul style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">Compress images up to 90% smaller</li>
-            <li style="margin-bottom:6px;">Keep high visual quality after compression</li>
-            <li style="margin-bottom:6px;">Supports JPG, PNG, WEBP files</li>
-            <li style="margin-bottom:6px;">Drag & drop or select images</li>
-            <li style="margin-bottom:6px;">No watermark, no login required</li>
-            <li style="margin-bottom:6px;">Fast, secure, and free forever</li>
+        <p>
+            This free online image compressor supports JPG, PNG, and WebP formats, 
+            making it perfect for bloggers and website owners.
+        </p>
+        
+        <h3 style="font-size:22px;margin-top:25px;">Features:</h3>
+        <ul style="margin-left:20px;">
+            <li>Compress JPG, PNG, and WebP images easily</li>
+            <li>Keep image quality high while reducing file size</li>
+            <li>Free to use with no registration required</li>
+            <li>Fast processing and simple interface</li>
         </ul>
 
-        <h3 style="
-            font-size:20px;
-            margin:22px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            How to Compress an Image
-        </h3>
-        <ol style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">Upload any photo (JPG, PNG, WebP supported)</li>
-            <li style="margin-bottom:6px;">AI automatically compresses the image size</li>
-            <li style="margin-bottom:6px;">Preview the output quality</li>
-            <li style="margin-bottom:6px;">Download your compressed file instantly</li>
+        <h3 style="font-size:22px;margin-top:25px;">How to Use:</h3>
+        <ol style="margin-left:20px;">
+            <li>Click “Upload Image” button</li>
+            <li>Choose your image file</li>
+            <li>Wait a few seconds while the tool compresses your image</li>
+            <li>Download your compressed image</li>
         </ol>
 
-        <h3 style="
-            font-size:20px;
-            margin:22px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            Best Use Cases
-        </h3>
-        <ul style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">Website speed optimization</li>
-            <li style="margin-bottom:6px;">Social media uploads</li>
-            <li style="margin-bottom:6px;">E-commerce product images</li>
-            <li style="margin-bottom:6px;">Email attachments & documents</li>
-            <li style="margin-bottom:6px;">Photo storage & backup saving</li>
-        </ul>
-
-        <h3 style="
-            font-size:20px;
-            margin:22px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            Supported Formats
-        </h3>
-        <ul style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">JPEG / JPG</li>
-            <li style="margin-bottom:6px;">PNG</li>
-            <li style="margin-bottom:6px;">WEBP</li>
-        </ul>
-    </div>
-</div>
-
+        <h3 style="font-size:22px;margin-top:25px;">FAQ</h3>
+        <p><strong>Q: Is it really free?</strong><br> A: Yes! Our Image Compressor is 100% free.</p>
+        <p><strong>Q: Will quality be reduced?</strong><br> A: No. Our tool balances quality and size intelligently.</p>
+        <p><strong>Q: Supported formats?</strong><br> A: JPG, PNG, and WebP.</p>
+      </section>
+    </main>
 
     <footer>
-      <p>&copy; 2025 LoveIMG Clone — Compress & Resize Tool</p>
+      <p>&copy; 2025 TopImgTools — Compress & Resize Tool</p>
     </footer>
   </div>
-
 
   <script>
     // Elements
@@ -371,17 +368,27 @@
     selectBtn.addEventListener('click', ()=> fileInput.click());
     fileInput.addEventListener('change', (e)=> handleFiles(e.target.files));
 
-    sampleBtn.addEventListener('click', ()=>{
+    // Keyboard accessibility for Upload Box
+    uploadBox.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+            fileInput.click();
+        }
+    });
+
+    sampleBtn.addEventListener('click', (e)=>{
+      e.stopPropagation(); // prevent triggering parent uploadBox click
+      status.textContent = 'Loading sample...';
       fetch('https://picsum.photos/1200/800').then(r=>r.blob()).then(blob=>{
         const f = new File([blob],'sample.jpg',{type:blob.type});
         handleFiles([f]);
-      });
+      }).catch(()=>{ status.textContent = 'Error loading sample'; });
     });
 
     // Drag & drop
     ['dragenter','dragover'].forEach(evt=>{uploadBox.addEventListener(evt,(e)=>{e.preventDefault();uploadBox.classList.add('highlight');});});
     ['dragleave','drop'].forEach(evt=>{uploadBox.addEventListener(evt,(e)=>{e.preventDefault();uploadBox.classList.remove('highlight');});});
     uploadBox.addEventListener('drop', (e)=>{
+      e.preventDefault();
       const dt = e.dataTransfer; const files = dt.files; handleFiles(files);
     });
 
@@ -406,7 +413,7 @@
         imgNatural.w = img.width; imgNatural.h = img.height;
         origDim.textContent = `Dimensions: ${img.width} × ${img.height}`;
         origSize.textContent = `Original: ${humanSize(file.size)}`;
-        origType.textContent = `Type: ${file.type || '—'}`;
+        origType.textContent = `Type: ${file.type.split('/')[1].toUpperCase()}`;
         widthInp.value = img.width; heightInp.value = img.height;
       };
       img.src = URL.createObjectURL(file);
@@ -428,7 +435,10 @@
       }
     });
 
-    quality.addEventListener('input', ()=> qualityVal.textContent = quality.value + '%');
+    quality.addEventListener('input', ()=> {
+        qualityVal.textContent = quality.value + '%';
+        quality.setAttribute('aria-valuenow', quality.value);
+    });
 
     // Mode toggle: show/hide quality
     mode.addEventListener('change', ()=>{
@@ -444,6 +454,7 @@
       if(!currentFile) { alert('No image selected'); return; }
       status.textContent = mode.value === 'resize' ? 'Resizing...' : 'Processing...';
       bar.style.width = '10%';
+      document.querySelector('.progress').setAttribute('aria-valuenow', 10);
 
       // Determine output mime
       let outMime = format.value === 'auto' ? currentFile.type : format.value;
@@ -476,27 +487,20 @@
       // Generate blob
       const blob = await new Promise(resolve => {
         if(canvas.toBlob){
-          // If finalMime supports quality and we're not resize-only
-          if((finalMime === 'image/jpeg' || finalMime === 'image/webp') && !isResizeOnly){
-            canvas.toBlob(resolve, finalMime, qualityVal);
-          } else if((finalMime === 'image/jpeg' || finalMime === 'image/webp') && isResizeOnly){
-            // For resize-only, still allow quality when changing format
+          if((finalMime === 'image/jpeg' || finalMime === 'image/webp')){
             canvas.toBlob(resolve, finalMime, qualityVal);
           } else {
             canvas.toBlob(resolve, finalMime);
           }
         } else {
-          const data = canvas.toDataURL(finalMime);
-          const arr = data.split(',')[1];
-          const bstr = atob(arr);
-          let n = bstr.length; const u8 = new Uint8Array(n);
-          while(n--) u8[n]=bstr.charCodeAt(n);
-          resolve(new Blob([u8],{type:finalMime}));
+          // Fallback
+          resolve(new Blob([new Uint8Array(0)],{type:finalMime})); 
         }
       });
 
       bar.style.width = '70%';
-      await new Promise(r=>setTimeout(r,250));
+      document.querySelector('.progress').setAttribute('aria-valuenow', 70);
+      await new Promise(r=>setTimeout(r,200));
 
       // Update UI with results
       const outSize = blob.size;
@@ -517,8 +521,9 @@
 
       // Update preview to output image
       previewImg.src = url;
-      status.textContent = 'Done';
+      status.textContent = 'Done!';
       bar.style.width = '100%';
+      document.querySelector('.progress').setAttribute('aria-valuenow', 100);
 
       // Revoke URL after some time
       setTimeout(()=> URL.revokeObjectURL(url), 60_000);
@@ -544,7 +549,6 @@
 
     // Init
     resetUI();
-    // ensure quality block visibility initial state
     if(mode.value === 'resize') qualityBlock.style.display = 'none';
   </script>
 </body>
