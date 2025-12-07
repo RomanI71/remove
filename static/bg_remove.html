@@ -3,134 +3,167 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Remove Background from Image – Free Online Tool | TopImgTools</title>
-<meta name="description" content="Remove background from images online instantly. Free, fast, and easy background remover tool by TopImgTools. Supports JPG, PNG, and WebP." />
-<meta name="keywords" content="remove background, bg remover, background eraser, online background remover, TopImgTools" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/bg-remove.html" />
-<meta property="og:title" content="Remove Background from Image – Free Online Tool" />
-<meta property="og:description" content="Instantly remove background from images online. Free, fast, and secure tool by TopImgTools. Supports JPG, PNG, and WebP." />
-<meta property="og:image" content="https://topimgtools.com/assets/bg-remove-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/bg-remove.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Remove Background from Image – Free Online Tool" />
-<meta name="twitter:description" content="Remove background from images online instantly with TopImgTools. Free, fast, and easy to use." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/bg-remove-banner.jpg" />
+  <title>Remove Background from Image – Free Online Tool | TopImgTools</title>
+  <meta name="description" content="Remove background from images online instantly. Free, fast, and easy background remover tool by TopImgTools. Supports JPG, PNG, and WebP." />
+  <meta name="keywords" content="remove background, bg remover, background eraser, online background remover, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <link rel="canonical" href="https://topimgtools.com/bg-remove.html" />
+  
+  <meta property="og:title" content="Remove Background from Image – Free Online Tool" />
+  <meta property="og:description" content="Instantly remove background from images online. Free, fast, and secure tool by TopImgTools. Supports JPG, PNG, and WebP." />
+  <meta property="og:image" content="https://topimgtools.com/assets/bg-remove-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/bg-remove.html" />
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Remove Background from Image – Free Online Tool" />
+  <meta name="twitter:description" content="Remove background from images online instantly with TopImgTools. Free, fast, and easy to use." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/bg-remove-banner.jpg" />
 
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280;--success:#10b981;--warning:#f59e0b;--error:#ef4444}
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#4b5563; /* Darkened for Contrast */;--success:#10b981;--warning:#f59e0b;--error:#ef4444; --border:#e2e8f0;}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:var(--bg);margin:0;color:#0f172a}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:var(--bg);margin:0;color:#0f172a; line-height: 1.5;}
+    
     .wrap{max-width:980px;margin:36px auto;padding:20px}
     .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .logo{display:flex;gap:12px;flex-direction:column}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:4px 0 0;font-size:14px}
+    .logo{display:flex;gap:5px;flex-direction:column}
+    h1{font-size:22px;margin:0; display:flex; align-items:center; gap: 8px;}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:15px}
+    
     .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-align:center;transition:all 0.3s ease}
-    .upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
+    
+    .upload-box{
+      border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      cursor:pointer;text-align:center;transition:background 0.3s ease, border-color 0.3s ease;
+      outline: none;
+    }
+    .upload-box:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .upload-box:hover, .upload-box.highlight{background:#eff6ff; border-color:var(--accent)}
     .upload-box h3{font-size:16px;margin:8px 0}
-    .upload-box p.small{font-size:12px;margin:0;color:var(--muted)}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:13px;transition:all 0.2s ease}
+    .upload-box p.small{font-size:13px;margin:0;color:var(--muted)}
+    
+    .btn{display:inline-flex;align-items:center;justify-content: center; gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:13px;transition:all 0.2s ease; text-decoration: none;}
     .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
     .btn-primary{background:var(--accent);color:#fff}
     .btn-secondary{background:#111827;color:#fff}
     .btn-success{background:var(--success);color:#fff}
     .btn:disabled{opacity:0.6;cursor:not-allowed;transform:none !important}
+    
     .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
     .preview{position:relative}
     #preview {background: repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 20px 20px;border-radius: 10px;padding: 10px;}
     .preview img{max-width:100%;max-height:360px;border-radius:8px;object-fit:contain;padding:8px;background:#f3f4f6;transition:all 0.3s ease}
+    
     .small{font-size:13px;color:var(--muted)}
+    
     .progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden;margin:8px 0}
     .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f39c12);transition:width 0.4s ease}
+    
     .download-btn{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:#0f172a;color:#fff;margin-top:10px;animation:fadeIn 0.5s ease}
+    
     .status-indicator{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500}
     .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
     .status-dot.ready{background:var(--success)}
     .status-dot.processing{background:var(--accent);animation:pulse 1.5s infinite}
     .status-dot.error{background:var(--error)}
+    
     footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
     #outName{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;display:block}
-    .feature-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:white;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:600;margin-left:8px}
+    
+    .feature-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:white;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:600;}
+    
     .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-    .option-card{padding:10px;border:1px solid #e2e8f0;border-radius:8px;text-align:center;cursor:pointer;transition:all 0.2s ease}
+    /* Semantic Button Styles for Options */
+    .option-card{
+        padding:10px; border:1px solid var(--border); border-radius:8px; text-align:center; cursor:pointer; 
+        background: white; width: 100%; font-family: inherit; color: inherit;
+        transition:all 0.2s ease;
+    }
+    .option-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .option-card:hover{border-color:var(--accent);background:#f8fafc}
     .option-card.active{border-color:var(--accent);background:#dbeafe}
     .option-card i{font-size:16px;margin-bottom:4px;display:block}
     .option-card .label{font-size:11px;font-weight:600}
+    
+    /* Accessibility Utility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+
     @keyframes fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
     @keyframes pulse {0%,100%{opacity:1;}50%{opacity:0.5;}}
     @media(max-width:900px){.grid{grid-template-columns:1fr}.preview img{max-height:300px}.options-grid{grid-template-columns:1fr}}
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="header">
+    <header class="header">
       <div class="logo">
-        <h1>Remove Background <span class="feature-badge"><i class="fa fa-star"></i> AI Powered</span></h1>
-        <p class="lead">Remove and customize image backgrounds instantly with remove.bg-like quality.</p>
+        <h1>Remove Background <span class="feature-badge"><i class="fa fa-star" aria-hidden="true"></i> AI Powered</span></h1>
+        <p class="lead">Remove and customize image backgrounds instantly with high quality.</p>
       </div>
       <div class="actions">
-        <a class="btn btn-secondary" href="/index.html"><i class="fa fa-arrow-left"></i> Back</a>
+        <a class="btn btn-secondary" href="/index.html" aria-label="Go back to home"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
       </div>
-    </div>
+    </header>
 
-    <div class="card">
-      <div class="upload-box" id="uploadBox">
-        <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)"></i>
+    <main class="card">
+      <div class="upload-box" id="uploadBox" role="button" tabindex="0" aria-label="Upload image area">
+        <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)" aria-hidden="true"></i>
         <h3>Drag & drop or select an image</h3>
         <p class="small muted">JPG, PNG, WebP — max 10MB</p>
-        <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
+        <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Image</button>
+        <label for="fileInput" class="sr-only">Upload Image File</label>
         <input id="fileInput" type="file" accept="image/*" style="display:none">
       </div>
 
       <div class="grid" style="margin-top:18px">
         <div class="panel">
           <div class="card preview">
-            <img id="previewImg" src="" alt="preview" style="display:none">
+            <img id="previewImg" src="" alt="Uploaded image preview" style="display:none">
             <div id="placeholder" class="small muted">Preview will appear here</div>
           </div>
 
           <div class="card">
             <button id="removeBgBtn" class="btn btn-primary" style="width:100%">
-              <i class="fa fa-scissors"></i> Remove Background
+              <i class="fa fa-scissors" aria-hidden="true"></i> Remove Background
             </button>
 
-            <div class="options-grid">
-              <div class="option-card active" data-quality="high">
-                <i class="fa fa-crown" style="color:#f59e0b"></i>
+            <div class="options-grid" role="group" aria-label="Quality Selection">
+              <button type="button" class="option-card active" data-quality="high" aria-pressed="true">
+                <i class="fa fa-crown" style="color:#f59e0b" aria-hidden="true"></i>
                 <div class="label">High Quality</div>
                 <div class="small">remove.bg like</div>
-              </div>
-              <div class="option-card" data-quality="standard">
-                <i class="fa fa-bolt" style="color:#10b981"></i>
+              </button>
+              <button type="button" class="option-card" data-quality="standard" aria-pressed="false">
+                <i class="fa fa-bolt" style="color:#10b981" aria-hidden="true"></i>
                 <div class="label">Fast</div>
                 <div class="small">Standard quality</div>
-              </div>
+              </button>
             </div>
 
             <div style="margin-top:12px">
-              <label for="bgColorPicker" class="small" style="font-weight:600">Background:</label>
+              <label for="bgMode" class="small" style="font-weight:600">Background:</label>
               <select id="bgMode" class="btn btn-secondary" style="margin-left:8px;">
                 <option value="transparent">Transparent</option>
                 <option value="#ffffff">White</option>
                 <option value="#000000">Black</option>
                 <option value="custom">Custom Color</option>
               </select>
+              
+              <label for="bgColorPicker" class="sr-only">Pick Custom Color</label>
               <input type="color" id="bgColorPicker" value="#3498db" style="display:none;margin-left:8px;">
             </div>
           </div>
@@ -138,112 +171,117 @@
 
         <aside class="card">
           <strong>Processing Status</strong>
-          <div class="status-indicator">
+          <div class="status-indicator" aria-live="polite">
             <div id="statusDot" class="status-dot"></div>
             <span id="status">Ready to process</span>
           </div>
-          <div class="progress"><i id="bar"></i></div>
+          
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"><i id="bar"></i></div>
+          
           <div id="downloadWrap" style="display:none;">
             <div class="download-btn">
               <div>
                 <div id="outName">output.png</div>
                 <div class="small muted" id="outInfo">PNG • Transparent</div>
               </div>
-              <a id="downloadLink" class="btn btn-success" download>
-                <i class="fa fa-download"></i> Download
+              <a id="downloadLink" class="btn btn-success" download href="#">
+                <i class="fa fa-download" aria-hidden="true"></i> Download
               </a>
+            </div>
+            
+            <div id="previewContainer" style="display:none; margin-top: 1.5rem; text-align: center;">
+                <h3 style="color: #111; font-size: 1.1rem; margin-bottom: 0.5rem;">Live Preview</h3>
+                <img id="previewImage" alt="Background Removed Result" style="max-width: 100%; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             </div>
           </div>
         </aside>
       </div>
-    </div>
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
+    </main>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
+    <nav style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
+                box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
+                align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;" aria-label="Other Tools">
 
-    <a href="https://topimgtools.com/crop.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       IMAGE → CROP
-    </a>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟵</span>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
+        <a href="https://topimgtools.com/crop.html"
+           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+           IMAGE → CROP
+        </a>
 
-    <a href="https://topimgtools.com/blur-face.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       BLUR → FACE
-    </a>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
+        <a href="https://topimgtools.com/blur-face.html"
+           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+           BLUR → FACE
+        </a>
 
-    <a href="https://topimgtools.com/photoEdit.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PHOTO → EDIT
-    </a>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
-<section style="margin-top:35px; padding:25px; background:#ffffff; border-radius:14px;
-                box-shadow:0 4px 16px rgba(0,0,0,0.06); line-height:1.7;">
+        <a href="https://topimgtools.com/photoEdit.html"
+           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+           PHOTO → EDIT
+        </a>
 
-    <h2 style="font-size:24px; margin-bottom:14px; color:#111827; font-weight:700;">
-        Remove Background Online – Free & Fast AI Tool
-    </h2>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
+    </nav>
 
-    <p style="color:#374151; margin-bottom:16px; font-size:15px;">
-        Our <strong>AI Background Remover</strong> allows you to erase the background from any photo instantly.
-        No Photoshop, no apps, and no editing skills required. Upload your image and get a clean, transparent
-        PNG within seconds.
-    </p>
+    <section style="margin-top:35px; padding:25px; background:#ffffff; border-radius:14px;
+                    box-shadow:0 4px 16px rgba(0,0,0,0.06); line-height:1.7;">
 
-    <h3 style="font-size:20px; margin-top:18px; margin-bottom:10px; color:#111827;">Why Use This Tool?</h3>
-    <ul style="padding-left:20px; color:#374151; font-size:15px;">
-        <li style="margin-bottom:6px;">AI-powered automatic background removal</li>
-        <li style="margin-bottom:6px;">Perfect edge detection (hair, shadow, objects)</li>
-        <li style="margin-bottom:6px;">No watermark, no limits, completely free</li>
-        <li style="margin-bottom:6px;">High-quality transparent PNG output</li>
-        <li style="margin-bottom:6px;">Works on phone and computer easily</li>
-    </ul>
+        <h2 style="font-size:24px; margin-bottom:14px; color:#111827; font-weight:700;">
+            Remove Background Online – Free & Fast AI Tool
+        </h2>
 
-    <h3 style="font-size:20px; margin-top:18px; margin-bottom:10px; color:#111827;">How It Works</h3>
-    <ol style="padding-left:20px; color:#374151; font-size:15px;">
-        <li style="margin-bottom:6px;">Upload your photo (JPG, JPEG, PNG, WEBP supported)</li>
-        <li style="margin-bottom:6px;">AI removes background automatically</li>
-        <li style="margin-bottom:6px;">Download your transparent PNG</li>
-    </ol>
+        <p style="color:#374151; margin-bottom:16px; font-size:15px;">
+            Our <strong>AI Background Remover</strong> allows you to erase the background from any photo instantly.
+            No Photoshop, no apps, and no editing skills required. Upload your image and get a clean, transparent
+            PNG within seconds.
+        </p>
 
-    <h3 style="font-size:20px; margin-top:20px; margin-bottom:10px; color:#111827;">Best For:</h3>
-    <ul style="padding-left:20px; color:#374151; font-size:15px;">
-        <li style="margin-bottom:6px;">E-commerce product photos</li>
-        <li style="margin-bottom:6px;">Profile pictures & ID photos</li>
-        <li style="margin-bottom:6px;">Social media content</li>
-        <li style="margin-bottom:6px;">Logo background removal</li>
-        <li style="margin-bottom:6px;">Marketing, thumbnails & ads</li>
-    </ul>
+        <h3 style="font-size:20px; margin-top:18px; margin-bottom:10px; color:#111827;">Why Use This Tool?</h3>
+        <ul style="padding-left:20px; color:#374151; font-size:15px;">
+            <li style="margin-bottom:6px;">AI-powered automatic background removal</li>
+            <li style="margin-bottom:6px;">Perfect edge detection (hair, shadow, objects)</li>
+            <li style="margin-bottom:6px;">No watermark, no limits, completely free</li>
+            <li style="margin-bottom:6px;">High-quality transparent PNG output</li>
+            <li style="margin-bottom:6px;">Works on phone and computer easily</li>
+        </ul>
 
-   
-    
-</section>
+        <h3 style="font-size:20px; margin-top:18px; margin-bottom:10px; color:#111827;">How It Works</h3>
+        <ol style="padding-left:20px; color:#374151; font-size:15px;">
+            <li style="margin-bottom:6px;">Upload your photo (JPG, JPEG, PNG, WEBP supported)</li>
+            <li style="margin-bottom:6px;">AI removes background automatically</li>
+            <li style="margin-bottom:6px;">Download your transparent PNG</li>
+        </ol>
 
+        <h3 style="font-size:20px; margin-top:20px; margin-bottom:10px; color:#111827;">Best For:</h3>
+        <ul style="padding-left:20px; color:#374151; font-size:15px;">
+            <li style="margin-bottom:6px;">E-commerce product photos</li>
+            <li style="margin-bottom:6px;">Profile pictures & ID photos</li>
+            <li style="margin-bottom:6px;">Social media content</li>
+            <li style="margin-bottom:6px;">Logo background removal</li>
+            <li style="margin-bottom:6px;">Marketing, thumbnails & ads</li>
+        </ul>
+    </section>
 
     <footer>
-      <p>&copy; 2025 LoveIMG — Professional Background Remover</p>
+      <p>&copy; 2025 TopImgTools — Professional Background Remover</p>
     </footer>
   </div>
 
@@ -262,14 +300,27 @@ const statusDot = document.getElementById("statusDot");
 const bgMode = document.getElementById("bgMode");
 const bgColorPicker = document.getElementById("bgColorPicker");
 const optionCards = document.querySelectorAll(".option-card");
+const previewContainer = document.getElementById("previewContainer");
+const previewImage = document.getElementById("previewImage");
 
 let currentFile = null;
 let selectedQuality = "high";
 let backgroundColor = "transparent";
 const BACKEND_URL = "https://remove-production.up.railway.app";
 
-// File selection handlers
-selectBtn.addEventListener("click", ()=> fileInput.click());
+// Handle File Select
+const triggerFileSelect = () => fileInput.click();
+selectBtn.addEventListener("click", (e) => { e.stopPropagation(); triggerFileSelect(); });
+uploadBox.addEventListener("click", triggerFileSelect);
+
+// Keyboard Access for Upload Box
+uploadBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerFileSelect();
+    }
+});
+
 fileInput.addEventListener("change", e=> handleFile(e.target.files[0]));
 uploadBox.addEventListener("dragover", e=>{e.preventDefault();uploadBox.classList.add("highlight");});
 uploadBox.addEventListener("dragleave", e=>{e.preventDefault();uploadBox.classList.remove("highlight");});
@@ -288,15 +339,20 @@ function handleFile(file){
     previewImg.style.display="block";
     placeholder.style.display="none";
     downloadWrap.style.display="none";
+    previewContainer.style.display="none"; // Hide result preview on new upload
   };
   reader.readAsDataURL(file);
 }
 
-// Quality selection
+// Quality selection (Updated for Buttons)
 optionCards.forEach(card=>{
   card.addEventListener("click", ()=>{
-    optionCards.forEach(c=>c.classList.remove("active"));
+    optionCards.forEach(c=> {
+        c.classList.remove("active");
+        c.setAttribute("aria-pressed", "false");
+    });
     card.classList.add("active");
+    card.setAttribute("aria-pressed", "true");
     selectedQuality = card.dataset.quality;
   });
 });
@@ -342,72 +398,41 @@ removeBgBtn.addEventListener("click", async () => {
   const progressSim = animateProgress();
 
   try {
-  const res = await fetch(`${BACKEND_URL}/remove-bg`, { method: "POST", body: formData });
-  clearInterval(progressSim);
+    const res = await fetch(`${BACKEND_URL}/remove-bg`, { method: "POST", body: formData });
+    clearInterval(progressSim);
 
-  if (!res.ok) throw new Error("Server error!");
-  const data = await res.json();
+    if (!res.ok) throw new Error("Server error!");
+    const data = await res.json();
 
-  if (data.downloadUrl) {
-    // Handle URL
-    const url = data.downloadUrl.startsWith("http") 
-      ? data.downloadUrl 
-      : `${BACKEND_URL}${data.downloadUrl}`;
+    if (data.downloadUrl) {
+      // Handle URL
+      const url = data.downloadUrl.startsWith("http") 
+        ? data.downloadUrl 
+        : `${BACKEND_URL}${data.downloadUrl}`;
 
-    // ✅ Download setup
-    downloadLink.href = url;
-    downloadWrap.style.display = "block";
-    statusDot.className = "status-dot ready";
-    status.textContent = "Done ✅ Ready to Download";
-    bar.style.width = "100%";
-    document.getElementById("outInfo").textContent =
-      `${selectedQuality.toUpperCase()} • ${backgroundColor === "transparent" ? "Transparent" : backgroundColor}`;
+      // Download setup
+      downloadLink.href = url;
+      downloadWrap.style.display = "block";
+      statusDot.className = "status-dot ready";
+      status.textContent = "Done ✅ Ready to Download";
+      bar.style.width = "100%";
+      document.getElementById("outInfo").textContent =
+        `${selectedQuality.toUpperCase()} • ${backgroundColor === "transparent" ? "Transparent" : backgroundColor}`;
 
-    // ✅ LIVE PREVIEW (👇 new part)
-    let previewContainer = document.getElementById("previewContainer");
-    let previewImage = document.getElementById("previewImage");
+      // Show Live Preview (Using existing DOM element to prevent CLS)
+      previewImage.src = url;
+      previewContainer.style.display = "block";
 
-    // If not already added, create the preview elements
-    if (!previewContainer) {
-      previewContainer = document.createElement("div");
-      previewContainer.id = "previewContainer";
-      previewContainer.style.marginTop = "1.5rem";
-      previewContainer.style.textAlign = "center";
+    } else throw new Error("No image returned!");
 
-      const title = document.createElement("h3");
-      title.textContent = "Live Preview";
-      title.style.color = "#111";
-      title.style.fontSize = "1.1rem";
-      title.style.marginBottom = "0.5rem";
-
-      previewImage = document.createElement("img");
-      previewImage.id = "previewImage";
-      previewImage.style.maxWidth = "100%";
-      previewImage.style.borderRadius = "10px";
-      previewImage.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
-
-      previewContainer.appendChild(title);
-      previewContainer.appendChild(previewImage);
-
-      // Insert preview container below download button
-      downloadWrap.parentNode.insertBefore(previewContainer, downloadWrap.nextSibling);
-    }
-
-    // Update the preview image
-    previewImage.src = url;
-    previewContainer.style.display = "block";
-
-  } else throw new Error("No image returned!");
-
-} catch (err) {
-  console.error(err);
-  statusDot.className = "status-dot error";
-  status.textContent = "Failed ❌";
-  alert("Background removal failed!");
-} finally {
-  removeBgBtn.disabled = false;
-}
-
+  } catch (err) {
+    console.error(err);
+    statusDot.className = "status-dot error";
+    status.textContent = "Failed ❌";
+    alert("Background removal failed!");
+  } finally {
+    removeBgBtn.disabled = false;
+  }
 });
 </script>
 </body>
