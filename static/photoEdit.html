@@ -8,246 +8,273 @@
 <meta name="keywords" content="photo editor online, edit photo online, free photo editor, online image editor, TopImgTools" />
 <meta name="author" content="TopImgTools" />
 <link rel="canonical" href="https://topimgtools.com/photoEdit.html" />
+
 <meta property="og:title" content="Photo Editor Online – Free Photo Edit Tool" />
 <meta property="og:description" content="Edit photos online with TopImgTools. Crop, resize, adjust colors, add filters, and enhance images easily." />
 <meta property="og:image" content="https://topimgtools.com/assets/photo-edit-banner.jpg" />
 <meta property="og:url" content="https://topimgtools.com/photoEdit.html" />
 <meta property="og:type" content="website" />
+
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Photo Editor Online – Free Photo Edit Tool" />
 <meta name="twitter:description" content="Edit photos online easily with TopImgTools Photo Editor. Free, fast, and simple tool." />
 <meta name="twitter:image" content="https://topimgtools.com/assets/photo-edit-banner.jpg" />
 
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-F5XBT7MCBM');
 </script>
+
 <style>
-:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280}
+:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#4b5563; /* Darkened for Contrast */ --border:#e2e8f0;}
 *{box-sizing:border-box}
-body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:var(--bg);margin:0;color:#0f172a}
+body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:var(--bg);margin:0;color:#0f172a; line-height: 1.5;}
+
 .wrap{max-width:980px;margin:36px auto;padding:20px}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .logo{display:flex;gap:12px;align-items:center}
-.logo img{height:36px}
-h1{font-size:20px;margin:0}
-p.lead{color:var(--muted);margin:6px 0 0}
+/* Fix CLS by ensuring image has space */
+.logo img{height:36px; width:auto;} 
+
+h1{font-size:22px;margin:0}
+p.lead{color:var(--muted);margin:6px 0 0; font-size: 15px;}
+
 .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-.upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
-.upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
+
+.upload-box{
+  border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;
+  display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;
+  cursor:pointer; transition: background 0.2s, border-color 0.2s;
+  outline: none;
+}
+.upload-box:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.upload-box:hover, .upload-box.highlight{background:#eff6ff; border-color:var(--accent)}
+
 .upload-actions{display:flex;gap:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:13px; text-decoration: none;}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-secondary{background:#111827;color:#fff}
+
 .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-.preview{display:flex;flex-direction:column;gap:8px;align-items:center}
-.preview canvas{max-width:100%;max-height:360px;border-radius:8px;background:#f3f4f6}
-.small{font-size:13px;color:var(--muted)}
+
+.preview{display:flex;flex-direction:column;gap:8px;align-items:center; min-height: 360px; justify-content: center;}
+.preview canvas{max-width:100%;max-height:360px;border-radius:8px;background:#f3f4f6; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+
+.small{font-size:13px;color:var(--muted); font-weight: 500;}
+.control-group { margin-top: 12px; }
+.control-group label { display: block; margin-bottom: 4px; }
+.control-group input[type="range"] { width: 100%; cursor: pointer; }
+
 footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+
+/* Accessibility Utility */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+
 @media(max-width:900px){.grid{grid-template-columns:1fr}.preview canvas{max-height:300px}}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="header">
+  <header class="header">
     <div class="logo">
-      <img src="/static/img/edit-image.png" alt="logo">
+      <img src="/static/img/edit-image.png" alt="TopImgTools Logo" width="36" height="36">
       <div>
         <h1>Photo Edit</h1>
         <p class="lead">Background Blur + Rotate/Flip — iLoveIMG style.</p>
       </div>
     </div>
     <div class="actions">
-      <a class="btn btn-secondary" href="/index.html"><i class="fa fa-arrow-left"></i> Back</a>
+      <a class="btn btn-secondary" href="/index.html" aria-label="Go back to home"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
     </div>
-  </div>
+  </header>
 
-  <div class="card">
-    <div class="upload-box" id="uploadBox">
-      <div style="text-align:center">
-        <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)"></i>
-        <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
-        <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
-      </div>
-      <div class="upload-actions">
-        <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
-        <input id="fileInput" type="file" accept="image/*" style="display:none">
-      </div>
-    </div>
-
-    <div class="grid" style="margin-top:18px">
-      <div class="card">
-        <div class="preview">
-          <canvas id="canvas"></canvas>
-          <div id="placeholder" style="padding:26px;text-align:center;color:var(--muted)">Preview will appear here</div>
+  <main>
+    <div class="card">
+      <div class="upload-box" id="uploadBox" role="button" tabindex="0" aria-label="Upload image area">
+        <div style="text-align:center">
+          <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)" aria-hidden="true"></i>
+          <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
+          <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
+        </div>
+        <div class="upload-actions">
+          <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Image</button>
+          <label for="fileInput" class="sr-only">Upload Image File</label>
+          <input id="fileInput" type="file" accept="image/*" style="display:none">
         </div>
       </div>
 
-      <aside class="card">
-        <strong>Filters & Background Blur</strong>
-        <div style="margin-top:10px">
-          <label class="small">Background Blur</label>
-          <input type="range" id="bgBlur" min="0" max="20" value="5">
-          <label class="small">Brightness</label>
-          <input type="range" id="brightness" min="0" max="200" value="100">
-          <label class="small">Contrast</label>
-          <input type="range" id="contrast" min="0" max="200" value="100">
-          <label class="small">Saturation</label>
-          <input type="range" id="saturate" min="0" max="200" value="100">
+      <div class="grid" style="margin-top:18px">
+        <div class="card">
+          <div class="preview">
+            <canvas id="canvas" role="img" aria-label="Preview of your edited photo"></canvas>
+            <div id="placeholder" style="padding:26px;text-align:center;color:var(--muted)">Preview will appear here</div>
+          </div>
         </div>
-        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <button id="bwBtn" class="btn"><i class="fa fa-adjust"></i> B/W</button>
-          <button id="sepiaBtn" class="btn"><i class="fa fa-fire"></i> Sepia</button>
-          <button id="rotateBtn" class="btn"><i class="fa fa-rotate"></i> Rotate</button>
-          <button id="flipBtn" class="btn"><i class="fa fa-arrows-left-right"></i> Flip</button>
-          <button id="resetBtn" class="btn"><i class="fa fa-undo"></i> Reset</button>
-        </div>
-        <div style="margin-top:12px">
-          <button id="applyBtn" class="btn btn-primary"><i class="fa fa-check"></i> Apply Filters</button>
-        </div>
-        <div style="margin-top:10px">
-          <button id="downloadBtn" class="btn btn-secondary"><i class="fa fa-download"></i> Download</button>
-        </div>
-      </aside>
+
+        <aside class="card" aria-label="Photo Editing Controls">
+          <strong>Filters & Adjustments</strong>
+          
+          <div class="control-group">
+            <label class="small" for="bgBlur">Background Blur Radius</label>
+            <input type="range" id="bgBlur" min="0" max="20" value="5" aria-valuemin="0" aria-valuemax="20">
+          </div>
+          
+          <div class="control-group">
+            <label class="small" for="brightness">Brightness</label>
+            <input type="range" id="brightness" min="0" max="200" value="100" aria-valuemin="0" aria-valuemax="200">
+          </div>
+
+          <div class="control-group">
+            <label class="small" for="contrast">Contrast</label>
+            <input type="range" id="contrast" min="0" max="200" value="100" aria-valuemin="0" aria-valuemax="200">
+          </div>
+
+          <div class="control-group">
+            <label class="small" for="saturate">Saturation</label>
+            <input type="range" id="saturate" min="0" max="200" value="100" aria-valuemin="0" aria-valuemax="200">
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+            <button id="bwBtn" class="btn btn-secondary" aria-pressed="false" title="Toggle Black and White"><i class="fa fa-adjust" aria-hidden="true"></i> B/W</button>
+            <button id="sepiaBtn" class="btn btn-secondary" aria-pressed="false" title="Toggle Sepia"><i class="fa fa-fire" aria-hidden="true"></i> Sepia</button>
+            <button id="rotateBtn" class="btn btn-secondary" title="Rotate 90 degrees"><i class="fa fa-rotate" aria-hidden="true"></i> Rotate</button>
+            <button id="flipBtn" class="btn btn-secondary" title="Flip Horizontally"><i class="fa fa-arrows-left-right" aria-hidden="true"></i> Flip</button>
+            <button id="resetBtn" class="btn btn-secondary" title="Reset all changes"><i class="fa fa-undo" aria-hidden="true"></i> Reset</button>
+          </div>
+          
+          <div style="margin-top:20px; border-top: 1px solid var(--border); padding-top: 15px;">
+             <button id="applyBtn" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fa fa-check" aria-hidden="true"></i> Apply & Preview</button>
+          </div>
+          
+          <div style="margin-top:10px">
+            <button id="downloadBtn" class="btn btn-secondary" style="width:100%; justify-content:center; background:#10b981;"><i class="fa fa-download" aria-hidden="true"></i> Download Image</button>
+          </div>
+        </aside>
+      </div>
     </div>
-  </div>
 
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
+    <nav style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
+                box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
+                align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;" aria-label="Other Tools">
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟵</span>
 
-    <a href="https://topimgtools.com/web-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       WEBP → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/heice-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       HEIC → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/png-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PNG → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
-
-
-<div class="card">
-
-<section style="margin-top:35px; padding:25px; background:#ffffff; border-radius:14px;
-                box-shadow:0 4px 16px rgba(0,0,0,0.06); line-height:1.7;">
-
-    <h2 style="font-size:24px; margin-bottom:14px; color:#111827; font-weight:700;">
-        Online Photo Editor – Free & Easy Image Editing Tool
-    </h2>
-
-    <p style="color:#374151; margin-bottom:16px; font-size:15px;">
-        Our <strong>Online Photo Editor</strong> lets you edit any image instantly without installing any software. 
-        Crop, resize, adjust brightness, apply filters, add text, and enhance colors directly from your browser. 
-        No watermark, no login, and 100% free.
-    </p>
-
-    <h3 style="font-size:20px; margin-top:18px; margin-bottom:10px; color:#111827;">
-        Why Use This Photo Editor?
-    </h3>
-    <ul style="padding-left:20px; color:#374151; font-size:15px;">
-        <li style="margin-bottom:6px;">Simple and beginner-friendly interface</li>
-        <li style="margin-bottom:6px;">No app installation required</li>
-        <li style="margin-bottom:6px;">High-quality output with no watermark</li>
-        <li style="margin-bottom:6px;">Works on mobile and desktop</li>
-        <li style="margin-bottom:6px;">Supports brightness, color, exposure & contrast edit</li>
-        <li style="margin-bottom:6px;">Apply filters, blur, sharpen and enhance images</li>
-        <li style="margin-bottom:6px;">Add text, shapes, stickers and watermark easily</li>
-    </ul>
-
-    <h3 style="font-size:20px; margin-top:18px; margin-bottom:10px; color:#111827;">
-        Tools Included
-    </h3>
-    <ul style="padding-left:20px; color:#374151; font-size:15px;">
-        <li style="margin-bottom:6px;">Crop & Resize</li>
-        <li style="margin-bottom:6px;">Filters & Effects</li>
-        <li style="margin-bottom:6px;">Background Blur</li>
-        <li style="margin-bottom:6px;">Color Balance (RGB, HSL)</li>
-        <li style="margin-bottom:6px;">Rotate & Flip</li>
-        <li style="margin-bottom:6px;">Draw & highlight</li>
-        <li style="margin-bottom:6px;">Remove unwanted objects</li>
-    </ul>
-
-    <h3 style="font-size:20px; margin-top:20px; margin-bottom:10px; color:#111827;">
-        How to Edit a Photo?
-    </h3>
-    <ol style="padding-left:20px; color:#374151; font-size:15px;">
-        <li style="margin-bottom:6px;">Upload your image (JPG, PNG, WEBP etc.)</li>
-        <li style="margin-bottom:6px;">Apply filters, crop, text, blur or anything you want</li>
-        <li style="margin-bottom:6px;">Download your edited image in high quality</li>
-    </ol>
-
-    <h3 style="font-size:20px; margin-top:20px; margin-bottom:10px; color:#111827;">
-        Other Useful Tools
-    </h3>
-
-    <div style="display:flex; flex-wrap:wrap; gap:10px;">
-
-        <a href="https://topimgtools.com/background-remover.html"
-           style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
-                  color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
-           Background Remover
+        <a href="https://topimgtools.com/web-to-jpg.html"
+           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+           WEBP → JPG
         </a>
 
-        <a href="https://topimgtools.com/webp-to-jpg.html"
-           style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
-                  color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
-           WEBP to JPG
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+
+        <a href="https://topimgtools.com/heice-to-jpg.html"
+           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+           HEIC → JPG
         </a>
+
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
 
         <a href="https://topimgtools.com/png-to-jpg.html"
-           style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
-                  color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
-           PNG to JPG
+           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+           PNG → JPG
         </a>
 
-        <a href="https://topimgtools.com/all-convert.html"
-           style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
-                  color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
-           Universal Image Converter
-        </a>
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
+    </nav>
 
+    <div class="card" style="margin-top:20px;">
+      <section style="padding:25px; background:#ffffff; border-radius:14px; box-shadow:0 4px 16px rgba(0,0,0,0.06); line-height:1.7;">
+        <h2 style="font-size:24px; margin-bottom:14px; color:#111827; font-weight:700;">
+          Online Photo Editor – Free & Easy Image Editing Tool
+        </h2>
+
+        <p style="color:#374151; margin-bottom:16px; font-size:15px;">
+          Our <strong>Online Photo Editor</strong> lets you edit any image instantly without installing any software. 
+          Crop, resize, adjust brightness, apply filters, add text, and enhance colors directly from your browser. 
+          No watermark, no login, and 100% free.
+        </p>
+
+        <h3 style="font-size:20px; margin-top:18px; margin-bottom:10px; color:#111827;">Why Use This Photo Editor?</h3>
+        <ul style="padding-left:20px; color:#374151; font-size:15px;">
+          <li style="margin-bottom:6px;">Simple and beginner-friendly interface</li>
+          <li style="margin-bottom:6px;">No app installation required</li>
+          <li style="margin-bottom:6px;">High-quality output with no watermark</li>
+          <li style="margin-bottom:6px;">Works on mobile and desktop</li>
+          <li style="margin-bottom:6px;">Supports brightness, color, exposure & contrast edit</li>
+          <li style="margin-bottom:6px;">Apply filters, blur, sharpen and enhance images</li>
+          <li style="margin-bottom:6px;">Add text, shapes, stickers and watermark easily</li>
+        </ul>
+
+        <h3 style="font-size:20px; margin-top:20px; margin-bottom:10px; color:#111827;">Tools Included</h3>
+        <ul style="padding-left:20px; color:#374151; font-size:15px;">
+          <li style="margin-bottom:6px;">Crop & Resize</li>
+          <li style="margin-bottom:6px;">Filters & Effects</li>
+          <li style="margin-bottom:6px;">Background Blur</li>
+          <li style="margin-bottom:6px;">Color Balance (RGB, HSL)</li>
+          <li style="margin-bottom:6px;">Rotate & Flip</li>
+          <li style="margin-bottom:6px;">Draw & highlight</li>
+          <li style="margin-bottom:6px;">Remove unwanted objects</li>
+        </ul>
+
+        <h3 style="font-size:20px; margin-top:20px; margin-bottom:10px; color:#111827;">How to Edit a Photo?</h3>
+        <ol style="padding-left:20px; color:#374151; font-size:15px;">
+          <li style="margin-bottom:6px;">Upload your image (JPG, PNG, WEBP etc.)</li>
+          <li style="margin-bottom:6px;">Apply filters, crop, text, blur or anything you want</li>
+          <li style="margin-bottom:6px;">Download your edited image in high quality</li>
+        </ol>
+
+        <h3 style="font-size:20px; margin-top:20px; margin-bottom:10px; color:#111827;">Other Useful Tools</h3>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <a href="https://topimgtools.com/background-remover.html"
+             style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
+                    color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            Background Remover
+          </a>
+
+          <a href="https://topimgtools.com/webp-to-jpg.html"
+             style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
+                    color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            WEBP to JPG
+          </a>
+
+          <a href="https://topimgtools.com/png-to-jpg.html"
+             style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
+                    color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            PNG to JPG
+          </a>
+
+          <a href="https://topimgtools.com/all-convert.html"
+             style="padding:8px 16px; background:#f3f4f6; border-radius:8px; text-decoration:none;
+                    color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            Universal Image Converter
+          </a>
+        </div>
+      </section>
     </div>
-</section>
+  </main>
 
-</div>
   <footer>
     <p>&copy; 2025 iLoveIMG Clone — Photo Edit Tool</p>
   </footer>
@@ -260,6 +287,8 @@ const uploadBox=document.getElementById('uploadBox');
 const canvas=document.getElementById('canvas');
 const ctx=canvas.getContext('2d');
 const placeholder=document.getElementById('placeholder');
+const bwBtn=document.getElementById('bwBtn');
+const sepiaBtn=document.getElementById('sepiaBtn');
 
 let img=new Image();
 let filters={bw:false,sepia:false};
@@ -267,7 +296,19 @@ let adjustments={brightness:100,contrast:100,saturate:100,bgBlur:5};
 let rotation=0;
 let flipped=false;
 
-selectBtn.onclick=()=>fileInput.click();
+// Handle File Select (Button + UploadBox Click)
+const handleFileSelect = () => fileInput.click();
+selectBtn.onclick = (e) => { e.stopPropagation(); handleFileSelect(); };
+uploadBox.onclick = handleFileSelect;
+
+// Keyboard Access for UploadBox
+uploadBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFileSelect();
+    }
+});
+
 fileInput.onchange=e=>loadFile(e.target.files[0]);
 ['dragenter','dragover'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.add('highlight');}));
 ['dragleave','drop'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.remove('highlight');}));
@@ -289,6 +330,7 @@ function buildFilter(){
 }
 
 function draw(){
+ if(!img.src) return;
  ctx.clearRect(0,0,canvas.width,canvas.height);
  // draw background blur
  ctx.save();
@@ -309,24 +351,39 @@ function draw(){
 ['brightness','contrast','saturate','bgBlur'].forEach(id=>{
  document.getElementById(id).oninput=e=>{
    adjustments[id]=e.target.value;
-   draw();
+   requestAnimationFrame(draw); // Performance optimization
  };
 });
 
 // buttons
-document.getElementById('bwBtn').onclick=()=>{filters.bw=!filters.bw;draw();};
-document.getElementById('sepiaBtn').onclick=()=>{filters.sepia=!filters.sepia;draw();};
+bwBtn.onclick=()=>{
+    filters.bw=!filters.bw; 
+    bwBtn.setAttribute("aria-pressed", filters.bw);
+    draw();
+};
+sepiaBtn.onclick=()=>{
+    filters.sepia=!filters.sepia; 
+    sepiaBtn.setAttribute("aria-pressed", filters.sepia);
+    draw();
+};
+
 document.getElementById('rotateBtn').onclick=()=>{rotation=(rotation+90)%360;draw();};
 document.getElementById('flipBtn').onclick=()=>{flipped=!flipped;draw();};
+
 document.getElementById('resetBtn').onclick=()=>{
  filters={bw:false,sepia:false};
  adjustments={brightness:100,contrast:100,saturate:100,bgBlur:5};
  rotation=0; flipped=false;
+ 
  ['brightness','contrast','saturate','bgBlur'].forEach(id=>document.getElementById(id).value=adjustments[id]);
+ bwBtn.setAttribute("aria-pressed", "false");
+ sepiaBtn.setAttribute("aria-pressed", "false");
  draw();
 };
+
 document.getElementById('applyBtn').onclick=()=>draw();
 document.getElementById('downloadBtn').onclick=()=>{
+ if(!img.src) return alert("Please upload an image first.");
  const a=document.createElement('a');
  a.download='edited.jpg';
  a.href=canvas.toDataURL('image/jpeg',0.9);
