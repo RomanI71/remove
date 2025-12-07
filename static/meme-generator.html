@@ -8,30 +8,32 @@
 <meta name="keywords" content="meme generator, create meme online, online meme maker, free meme tool, TopImgTools" />
 <meta name="author" content="TopImgTools" />
 <link rel="canonical" href="https://topimgtools.com/meme-generator.html" />
+
 <meta property="og:title" content="Meme Generator Online – Free Tool" />
 <meta property="og:description" content="Create memes online easily with TopImgTools Meme Generator. Add text, customize, and download for free." />
 <meta property="og:image" content="https://topimgtools.com/assets/meme-generator-banner.jpg" />
 <meta property="og:url" content="https://topimgtools.com/meme-generator.html" />
 <meta property="og:type" content="website" />
+
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Meme Generator Online – Free Tool" />
 <meta name="twitter:description" content="Create memes online instantly with TopImgTools. Free, fast, and easy meme generator." />
 <meta name="twitter:image" content="https://topimgtools.com/assets/meme-generator-banner.jpg" />
 
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-F5XBT7MCBM');
 </script>
+
 <style>
 :root{
-  --bg:#f8fafc; --card:#fff; --accent:#3498db; --muted:#6b7280; --border:#e5e7eb;
+  --bg:#f8fafc; --card:#fff; --accent:#3498db; --muted:#4b5563; /* Darkened for Contrast */ --border:#e5e7eb;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{
@@ -43,161 +45,193 @@ body{
 .logo{display:flex;gap:12px;align-items:center;}
 h1{font-size:20px;margin:0;}
 p.lead{color:var(--muted);margin-top:6px;}
+
 .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,0.06);}
-.upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:all .2s;}
-.upload-box:hover{background:linear-gradient(90deg, rgba(52,152,219,0.04), rgba(0,0,0,0.01));}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;border:none;cursor:pointer;font-weight:600;font-size:13px;}
+
+.upload-box{
+  border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:24px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  cursor:pointer;
+  transition: background .2s, box-shadow .2s;
+}
+.upload-box:hover{
+  background: #f1f5f9;
+  box-shadow: 0 4px 10px rgba(52,152,219,0.1);
+}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;border:none;cursor:pointer;font-weight:600;font-size:13px; text-decoration: none;}
 .btn-primary{background:var(--accent);color:#fff;}
 .btn-secondary{background:#111827;color:#fff;}
+
 .preview{margin-top:16px;text-align:center;position:relative;}
 canvas{max-width:100%;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+
 .input-group{margin-top:12px;display:flex;flex-direction:column;gap:8px;}
 .input-group input[type="text"]{padding:6px;border-radius:6px;border:1px solid var(--border);}
-.input-group label{font-size:13px;color:var(--muted);}
-.controls{display:flex;gap:8px;flex-wrap:wrap; margin-top:8px;}
-.controls input[type="color"], .controls input[type="range"]{flex:1;}
+
+/* Fieldset reset for layout */
+fieldset.controls { border: none; padding: 0; margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+.controls label { font-size:13px; color:var(--muted); display:flex; align-items:center; gap:5px; white-space:nowrap; }
+.controls input[type="color"], .controls input[type="range"]{cursor:pointer;}
+
+/* Accessibility: Screen Reader Only Class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="header">
-  <div class="logo">
-    <i class="fa fa-face-smile" style="font-size:28px;color:var(--accent)"></i>
-    <div>
-      <h1>Advanced Meme Generator</h1>
-      <p class="lead">Drag & Move Text Anywhere</p>
+  <header class="header">
+    <div class="logo">
+      <i class="fa fa-face-smile" style="font-size:28px;color:var(--accent)" aria-hidden="true"></i>
+      <div>
+        <h1>Advanced Meme Generator</h1>
+        <p class="lead">Drag & Move Text Anywhere</p>
+      </div>
     </div>
-  </div>
-  <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
+    <a class="btn btn-secondary" href="index.html" aria-label="Go back to homepage"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="upload-box" id="uploadBox" role="button" tabindex="0" aria-label="Upload an image area">
+        <i class="fa fa-image" style="font-size:34px;color:var(--accent)" aria-hidden="true"></i>
+        <h3>Drag & drop or select an image</h3>
+        <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Image</button>
+        <input id="fileInput" type="file" accept="image/*" style="display:none">
+      </div>
+
+      <div class="input-group">
+        <label for="topText" class="sr-only">Top Text</label>
+        <input type="text" id="topText" placeholder="Top text">
+        
+        <label for="bottomText" class="sr-only">Bottom Text</label>
+        <input type="text" id="bottomText" placeholder="Bottom text">
+      </div>
+
+      <fieldset class="controls">
+        <legend class="sr-only">Meme Customization Controls</legend>
+        
+        <label for="topColor">Top: <input type="color" id="topColor" value="#ffffff"></label>
+        <label for="bottomColor">Bottom: <input type="color" id="bottomColor" value="#ffffff"></label>
+        
+        <label for="fontSize">Size: <input type="range" id="fontSize" min="20" max="200" value="50"></label>
+        <label for="rotation">Rotate: <input type="range" id="rotation" min="-90" max="90" value="0"></label>
+      </fieldset>
+
+      <div class="preview">
+        <canvas id="memeCanvas" role="img" aria-label="Preview of your generated meme"></canvas>
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:8px;">
+        <button id="generateBtn" class="btn btn-primary" style="flex:1"><i class="fa fa-pen" aria-hidden="true"></i> Generate</button>
+        <button id="downloadBtn" class="btn btn-secondary" style="flex:1"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+      </div>
+    </div>
+
+    <nav style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
+                box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
+                align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;" aria-label="Other Tools">
+
+      <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟵</span>
+
+      <a href="https://topimgtools.com/web-to-jpg.html"
+         style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                border-radius:30px; text-decoration:none; color:#1f2937;
+                font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+         onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+         onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+        WEBP → JPG
+      </a>
+
+      <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+
+      <a href="https://topimgtools.com/heice-to-jpg.html"
+         style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                border-radius:30px; text-decoration:none; color:#1f2937;
+                font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+         onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+         onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+        HEIC → JPG
+      </a>
+
+      <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+
+      <a href="https://topimgtools.com/png-to-jpg.html"
+         style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                border-radius:30px; text-decoration:none; color:#1f2937;
+                font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+         onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+         onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+        PNG → JPG
+      </a>
+
+      <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
+    </nav>
+
+    <div class="card" style="margin-top:20px;">
+      <section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333; border-radius:12px;">
+        <h2 style="font-size:28px; color:#222; margin-bottom:15px;">Meme Generator – Create Memes Online</h2>
+        <p style="font-size:16px; margin-bottom:15px;">
+          Easily <strong>create memes online</strong> with our free Meme Generator. Add text to images, customize fonts, and make funny or viral memes in seconds. Perfect for social media, messaging, and sharing laughs with friends.
+        </p>
+
+        <h3 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use a Meme Generator?</h3>
+        <ul style="margin-left:20px; margin-bottom:15px;">
+          <li>Create funny and viral memes quickly</li>
+          <li>Add custom text and captions to images</li>
+          <li>Share memes easily on social media platforms</li>
+          <li>No software installation required – works online</li>
+          <li>Perfect for personal, marketing, or entertainment use</li>
+        </ul>
+
+        <h3 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h3>
+        <ul style="margin-left:20px; margin-bottom:15px;">
+          <li>Add top and bottom text to images</li>
+          <li>Customize font, color, and size</li>
+          <li>Upload your own images or use templates</li>
+          <li>Free to use and instant download</li>
+          <li>Works on mobile and desktop devices</li>
+        </ul>
+
+        <h3 style="font-size:22px; color:#222; margin-bottom:10px;">How to Create a Meme Online</h3>
+        <ol style="margin-left:20px; margin-bottom:15px;">
+          <li>Upload an image or choose a template</li>
+          <li>Add top and bottom text</li>
+          <li>Customize font style, size, and color</li>
+          <li>Click “Generate Meme” and download instantly</li>
+        </ol>
+
+        <h3 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h3>
+        <p style="font-size:16px; margin-bottom:15px;">
+          Social media users, marketers, content creators, students, and anyone who wants to make memes for fun, engagement, or marketing purposes.
+        </p>
+      </section>
+    </div>
+  </main>
 </div>
-
-<div class="card">
-  <div class="upload-box" id="uploadBox">
-    <i class="fa fa-image" style="font-size:34px;color:var(--accent)"></i>
-    <h3>Drag & drop or select an image</h3>
-    <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
-    <input id="fileInput" type="file" accept="image/*" style="display:none">
-  </div>
-
-  <div class="input-group">
-    <input type="text" id="topText" placeholder="Top text">
-    <input type="text" id="bottomText" placeholder="Bottom text">
-  </div>
-
-  <div class="controls">
-    <label>Top Color: <input type="color" id="topColor" value="#ffffff"></label>
-    <label>Bottom Color: <input type="color" id="bottomColor" value="#ffffff"></label>
-    <label>Font Size: <input type="range" id="fontSize" min="20" max="200" value="50"></label>
-    <label>Rotation: <input type="range" id="rotation" min="-90" max="90" value="0"></label>
-  </div>
-
-  <div class="preview">
-    <canvas id="memeCanvas"></canvas>
-  </div>
-
-  <div style="margin-top:12px; display:flex; gap:8px;">
-    <button id="generateBtn" class="btn btn-primary" style="flex:1"><i class="fa fa-pen"></i> Generate</button>
-    <button id="downloadBtn" class="btn btn-secondary" style="flex:1"><i class="fa fa-download"></i> Download</button>
-  </div>
-</div>
-
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
-
-    <a href="https://topimgtools.com/web-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       WEBP → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/heice-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       HEIC → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/png-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PNG → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
-
-
-<div class="card">
-  <section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333;">
-    <h1 style="font-size:28px; color:#222; margin-bottom:15px;">Meme Generator – Create Memes Online</h1>
-    <p style="font-size:16px; margin-bottom:15px;">
-      Easily <strong>create memes online</strong> with our free Meme Generator. Add text to images, customize fonts, and make funny or viral memes in seconds. Perfect for social media, messaging, and sharing laughs with friends.
-    </p>
-
-    <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use a Meme Generator?</h2>
-    <ul style="margin-left:20px; margin-bottom:15px;">
-      <li>Create funny and viral memes quickly</li>
-      <li>Add custom text and captions to images</li>
-      <li>Share memes easily on social media platforms</li>
-      <li>No software installation required – works online</li>
-      <li>Perfect for personal, marketing, or entertainment use</li>
-    </ul>
-
-    <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h2>
-    <ul style="margin-left:20px; margin-bottom:15px;">
-      <li>Add top and bottom text to images</li>
-      <li>Customize font, color, and size</li>
-      <li>Upload your own images or use templates</li>
-      <li>Free to use and instant download</li>
-      <li>Works on mobile and desktop devices</li>
-    </ul>
-
-    <h2 style="font-size:22px; color:#222; margin-bottom:10px;">How to Create a Meme Online</h2>
-    <ol style="margin-left:20px; margin-bottom:15px;">
-      <li>Upload an image or choose a template</li>
-      <li>Add top and bottom text</li>
-      <li>Customize font style, size, and color</li>
-      <li>Click “Generate Meme” and download instantly</li>
-    </ol>
-
-    <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h2>
-    <p style="font-size:16px; margin-bottom:15px;">
-      Social media users, marketers, content creators, students, and anyone who wants to make memes for fun, engagement, or marketing purposes.
-    </p>
-
-    <!-- <p style="font-size:14px; color:#555;">
-      <strong>SEO Keywords:</strong> meme generator, create memes online, free meme maker, make memes, online meme creator, meme generator tool.
-    </p> -->
-  </section>
-</div>
-
-
-</div>
-
-
-
 
 <script>
 const fileInput=document.getElementById('fileInput');
 const selectBtn=document.getElementById('selectBtn');
+const uploadBox=document.getElementById('uploadBox');
 const canvas=document.getElementById('memeCanvas');
 const ctx=canvas.getContext('2d');
 const topText=document.getElementById('topText');
@@ -216,7 +250,19 @@ let texts=[
 ];
 let dragIndex=null;
 
-selectBtn.onclick=()=>fileInput.click();
+// Handle File Selection
+const handleFileSelect = () => fileInput.click();
+selectBtn.onclick = (e) => { e.stopPropagation(); handleFileSelect(); };
+uploadBox.onclick = handleFileSelect;
+
+// Allow Keyboard Enter/Space on UploadBox
+uploadBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFileSelect();
+    }
+});
+
 fileInput.onchange=e=>{
   if(e.target.files && e.target.files[0]){
     img.src=URL.createObjectURL(e.target.files[0]);
