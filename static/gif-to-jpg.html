@@ -1,282 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GIF to JPG Converter – Free Online Tool | TopImgTools</title>
-<meta name="description" content="Convert GIF images to JPG online instantly. Free and fast GIF to JPG converter tool by TopImgTools. High-quality conversion and easy to use." />
-<meta name="keywords" content="GIF to JPG, convert GIF to JPG, online image converter, free GIF converter, TopImgTools" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/gif-to-jpg.html" />
-<meta property="og:title" content="GIF to JPG Converter – Free Online Tool" />
-<meta property="og:description" content="Convert GIF images to JPG online instantly with TopImgTools. Free, fast, and easy tool." />
-<meta property="og:image" content="https://topimgtools.com/assets/gif-to-jpg-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/gif-to-jpg.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="GIF to JPG Converter – Free Online Tool" />
-<meta name="twitter:description" content="Convert GIF images to JPG online instantly. Free, fast, and high-quality tool by TopImgTools." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/gif-to-jpg-banner.jpg" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GIF to JPG Converter – Free Online Tool | TopImgTools</title>
+  <meta name="description" content="Convert GIF images to JPG online instantly. Free and fast GIF to JPG converter tool by TopImgTools. High-quality conversion and easy to use." />
+  <meta name="keywords" content="GIF to JPG, convert GIF to JPG, online image converter, free GIF converter, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <meta name="theme-color" content="#3498db">
+  <link rel="canonical" href="https://topimgtools.com/gif-to-jpg.html" />
 
+  <meta property="og:title" content="GIF to JPG Converter – Free Online Tool" />
+  <meta property="og:description" content="Convert GIF images to JPG online instantly with TopImgTools. Free, fast, and easy tool." />
+  <meta property="og:image" content="https://topimgtools.com/assets/gif-to-jpg-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/gif-to-jpg.html" />
+  <meta property="og:type" content="website" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GIF to JPG Converter – Free Online Tool" />
+  <meta name="twitter:description" content="Convert GIF images to JPG online instantly. Free, fast, and simple tool." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/gif-to-jpg-banner.jpg" />
 
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
-<style>
-:root{
-  --bg:#f8fafc; --card:#fff; --accent:#3498db; --muted:#6b7280; --border:#e5e7eb;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg); color:#0f172a; line-height:1.5;
-}
-.wrap{max-width:900px;margin:36px auto;padding:18px}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.logo{display:flex;gap:12px;align-items:center}
-h1{font-size:20px;margin:0}
-p.lead{color:var(--muted);margin-top:6px}
-.card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-.upload-box{
-  border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:24px;
-  display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:all .2s
-}
-.upload-box:hover{background:linear-gradient(90deg, rgba(52,152,219,0.04), rgba(0,0,0,0.01))}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
-.btn-primary{background:var(--accent);color:#fff}
-.btn-secondary{background:#111827;color:#fff}
-.preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:12px}
-.preview-item{background:#fafafa;padding:10px;border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.04); word-wrap: break-word;}
-.preview-item img{width:100%;height:90px;object-fit:cover;border-radius:8px}
-.preview-item div{overflow-wrap: break-word; word-break: break-word; font-size:12px; margin-top:6px;}
-.status{font-size:13px;color:var(--muted);margin-top:8px;text-align:center;}
-.progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden;margin:10px 0}
-.progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f39c12);transition:width .25s}
-button:disabled{opacity:0.6; cursor:not-allowed;}
-</style>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GIF to JPG Converter",
+    "operatingSystem": "All",
+    "applicationCategory": "ImageConverter",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free online tool to convert animated GIF files to static JPG images, extracting the first frame.",
+    "author": {
+        "@type": "Organization",
+        "name": "TopImgTools",
+        "url": "https://topimgtools.com"
+    }
+  }
+  </script>
+
+  <style>
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
+    *{box-sizing:border-box}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); margin:0; color:#0f172a; line-height:1.6;
+    }
+    a:focus, button:focus, .upload-box:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
+
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    h1{font-size:1.5rem;margin:0;font-weight:700}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
+
+    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:20px}
+
+    .upload-box{
+      border:2px dashed #cbd5e1;border-radius:10px;padding:32px;
+      display:flex;gap:16px;align-items:center;justify-content:center;flex-direction:column;
+      cursor:pointer;transition:all .2s ease;background-color:#f8fafc;
+    }
+    .upload-box:hover, .upload-box.dragover{background-color:#eff6ff;border-color:var(--accent)}
+    .upload-box h3{margin:0;font-size:1.25rem;color:#1e293b}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:background 0.2s;text-decoration:none}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-dark)}
+    .btn-secondary{background:#1f2937;color:#fff}
+    .btn-secondary:hover{background:#111827}
+
+    .grid{display:grid;grid-template-columns:1fr 2fr;gap:24px;margin-top:24px}
+
+    /* Progress Bar */
+    .progress-wrap { background: #e5e7eb; border-radius: 8px; height: 8px; margin-top: 15px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.3s ease; }
+    
+    /* Results List */
+    .results-grid{
+        display:grid;grid-template-columns:repeat(auto-fill, minmax(120px, 1fr));
+        gap:15px;padding:10px; max-height: 500px; overflow-y: auto;
+    }
+    .result-item{
+        background:#fff;border-radius:8px;overflow:hidden; 
+        box-shadow:0 1px 3px rgba(0,0,0,0.05); padding:10px; text-align:center;
+    }
+    .result-item img{width:100%; height:80px; object-fit:contain; display:block; border-radius:4px; margin-bottom:5px; background: #f3f4f6;}
+    .result-item .name{font-size:0.8rem; color:#1e293b; margin-bottom:5px; word-break: break-all;}
+    .result-item .btn-download{padding:6px 10px; font-size:0.8rem; width:100%;}
+    
+    /* Navigation Links */
+    .nav-links {
+        margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+        display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .nav-btn {
+        padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+        color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb; transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; }
+    
+    .seo-content { color: #334155; }
+    .seo-content h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
+    .sr-only {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);white-space: nowrap;border-width: 0;}
+
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="header">
-    <div class="logo">
-      <i class="fa fa-image" style="font-size:28px;color:var(--accent)"></i>
-      <div>
-        <h1>GIF to JPG</h1>
-        <p class="lead">Convert animated GIFs → JPG (first frame only)</p>
+  <main class="wrap">
+    <header class="header">
+      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+        <i class="fa fa-image" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
+        <div>
+          <h1>GIF to JPG</h1>
+          <p class="lead">Convert Animated GIF to Static JPG Image</p>
+        </div>
+      </a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </header>
+
+    <section class="card" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" class="sr-only">GIF to JPG Converter Tool</h2>
+      
+      <div class="upload-box" id="uploadBox" tabindex="0" role="button" aria-label="Upload area. Drag and drop GIF files here or press enter to select.">
+        <div style="text-align:center">
+          <i class="fa fa-cloud-arrow-up" aria-hidden="true" style="font-size:40px;color:var(--accent);margin-bottom:10px;display:block"></i>
+          <h3>Drag & drop or select GIF files</h3>
+          <p class="muted" style="margin-top:5px;font-size:0.9rem">Multiple files supported</p>
+        </div>
+        <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Files</button>
+        <input id="fileInput" type="file" accept=".gif" multiple class="sr-only">
       </div>
-    </div>
-    <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
-  </div>
 
-  <div class="card">
-    <div class="upload-box" id="uploadBox">
-      <i class="fa fa-cloud-arrow-up" style="font-size:34px;color:var(--accent)"></i>
-      <h3>Drag & drop or select GIF images</h3>
-      <p class="muted">Max 25MB per file</p>
-      <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Files</button>
-      <input id="fileInput" type="file" accept=".gif,image/gif" multiple style="display:none">
-    </div>
+      <div class="grid">
+        <div>
+          <div class="card">
+            <h4>Conversion</h4>
+            <div id="fileInfo" style="margin-bottom:15px; color:var(--muted); font-size:0.9rem;">
+                No files selected.
+            </div>
+            
+            <button id="convertBtn" class="btn btn-primary" style="width:100%;" disabled>
+                <i class="fa fa-gear" aria-hidden="true"></i> Convert to JPG
+            </button>
 
-    <div class="progress"><i id="bar"></i></div>
-    <div id="preview" class="preview-grid"></div>
+            <div class="progress-wrap">
+                <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
+            <p id="status" style="margin-top:15px;text-align:center;font-size:0.9rem">Waiting for files...</p>
+          </div>
+          
+          <div class="card" id="actionsCard" style="display:none;">
+            <h4>Actions</h4>
+            <button id="downloadAllBtn" class="btn btn-secondary" style="width:100%; margin-bottom:8px;">
+                <i class="fa fa-file-zip" aria-hidden="true"></i> Download All as ZIP
+            </button>
+            <button id="clearBtn" class="btn btn-secondary" style="width:100%; background:#e0e0e0; color:#333;">
+                <i class="fa fa-trash" aria-hidden="true"></i> Clear All
+            </button>
+          </div>
+        </div>
 
-    <div style="margin-top:16px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <button id="convertBtn" class="btn btn-primary" style="flex:1; min-width:140px;"><i class="fa fa-sync"></i> Convert All to JPG</button>
-      <button id="clearBtn" class="btn btn-secondary" style="flex:1; min-width:140px;"><i class="fa fa-trash"></i> Clear</button>
-    </div>
+        <div>
+            <h4 style="margin-top:0;">Converted Results (<span id="resultCount">0</span>)</h4>
+            <div class="results-grid" id="preview">
+              <div id="listPlaceholder" style="grid-column: 1 / -1; text-align: center; padding: 50px; color: var(--muted);">
+                Converted JPG files will appear here.
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="status" id="status"></div>
-  </div>
+    <nav class="nav-links" aria-label="Related Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/webp-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/heic-to-jpg.html" class="nav-btn">HEIC → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
 
+    <article class="card seo-content">
+      <h2>GIF to JPG – Convert GIF Images to JPG Online</h2>
+      <p>
+          Easily **convert GIF to JPG** with our free online tool. Turn your animated or static GIF images into high-quality JPG files in seconds. Perfect for web design, social media, presentations, and faster image loading.
+      </p>
 
+      <h3>Why Use a GIF to JPG Converter?</h3>
+      <ul>
+          <li>Convert animated or static GIFs to JPG</li>
+          <li>Reduce file size for faster loading</li>
+          <li>Prepare images for websites, blogs, and social media</li>
+          <li>No software installation required – works online</li>
+          <li>Preserve image quality during conversion</li>
+      </ul>
+      
+      <h3>Features</h3>
+      <ul>
+          <li>Supports GIF, JPG, PNG, WEBP formats</li>
+          <li>Fast and easy conversion process</li>
+          <li>100% free to use</li>
+          <li>Works on mobile and desktop</li>
+          <li>Instant download after conversion</li>
+      </ul>
 
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
+      <h3>How to Convert GIF to JPG Online</h3>
+      <ol>
+          <li>Upload your GIF image.</li>
+          <li>Select JPG as the output format.</li>
+          <li>Click “Convert”.</li>
+          <li>Download your JPG file instantly.</li>
+      </ol>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
+      <h3>Who Needs This Tool?</h3>
+      <p>
+          Bloggers, designers, marketers, photographers, and anyone who wants a quick and free way to convert GIF images to JPG for faster web usage.
+      </p>
+    </article>
 
-    <a href="https://topimgtools.com/web-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       WEBP → JPG
-    </a>
+    <footer>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
+    </footer>
+  </main>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const uploadBox = document.getElementById('uploadBox');
+    const selectBtn = document.getElementById('selectBtn');
+    const convertBtn = document.getElementById('convertBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const downloadAllBtn = document.getElementById('downloadAllBtn');
+    const preview = document.getElementById('preview');
+    const listPlaceholder = document.getElementById('listPlaceholder');
+    const status = document.getElementById('status');
+    const fileInfo = document.getElementById('fileInfo');
+    const progressBar = document.getElementById('progressBar');
+    const actionsCard = document.getElementById('actionsCard');
+    const resultCount = document.getElementById('resultCount');
 
-    <a href="https://topimgtools.com/heice-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       HEIC → JPG
-    </a>
+    let files = [];
+    let convertedFiles = [];
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
+    // Utility: Loads Image object from File (for the first frame of a GIF)
+    function loadGIFFirstFrame(file) {
+      return new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => res(img);
+          img.onerror = rej;
+          img.src = reader.result;
+        };
+        reader.onerror = rej;
+        reader.readAsDataURL(file);
+      });
+    }
 
-    <a href="https://topimgtools.com/png-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PNG → JPG
-    </a>
+    // Utility: Downloads a Blob
+    function downloadBlob(blob, filename) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    }
+    
+    // Helper: Updates file list and buttons
+    function updateUI() {
+        fileInfo.textContent = files.length > 0 
+            ? `${files.length} GIF file(s) ready for conversion.` 
+            : 'No files selected.';
+        convertBtn.disabled = files.length === 0;
+        
+        resultCount.textContent = convertedFiles.length;
+        listPlaceholder.style.display = convertedFiles.length === 0 ? 'block' : 'none';
+        
+        actionsCard.style.display = convertedFiles.length > 0 ? 'block' : 'none';
+    }
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
-<section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333;">
-  <h1 style="font-size:28px; color:#222; margin-bottom:15px;">GIF to JPG – Convert GIF Images to JPG Online</h1>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Easily <strong>convert GIF to JPG</strong> with our free online tool. Turn your animated or static GIF images into high-quality JPG files in seconds. Perfect for web design, social media, presentations, and faster image loading.
-  </p>
+    // Helper: Renders the converted file items
+    function renderResults() {
+        preview.innerHTML = '';
+        convertedFiles.forEach(f => {
+            const div = document.createElement('div');
+            div.className = 'result-item';
 
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use a GIF to JPG Converter?</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Convert animated or static GIFs to JPG</li>
-    <li>Reduce file size for faster loading</li>
-    <li>Prepare images for websites, blogs, and social media</li>
-    <li>No software installation required – works online</li>
-    <li>Preserve image quality during conversion</li>
-  </ul>
+            const img = document.createElement('img');
+            img.src = f.url;
+            img.alt = f.name;
 
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Supports GIF, JPG, PNG, WEBP formats</li>
-    <li>Fast and easy conversion process</li>
-    <li>100% free to use</li>
-    <li>Works on mobile and desktop</li>
-    <li>Instant download after conversion</li>
-  </ul>
+            const name = document.createElement('div');
+            name.className = 'name';
+            name.textContent = f.name;
 
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">How to Convert GIF to JPG Online</h2>
-  <ol style="margin-left:20px; margin-bottom:15px;">
-    <li>Upload your GIF image</li>
-    <li>Select JPG as the output format</li>
-    <li>Click “Convert”</li>
-    <li>Download your JPG file instantly</li>
-  </ol>
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-primary btn-download';
+            btn.innerHTML = '<i class="fa fa-download"></i> Save';
+            btn.onclick = () => downloadBlob(f.blob, f.name);
 
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h2>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Bloggers, designers, marketers, photographers, and anyone who wants a quick and free way to convert GIF images to JPG for faster web usage.
-  </p>
+            div.appendChild(img);
+            div.appendChild(name);
+            div.appendChild(btn);
+            preview.appendChild(div);
+        });
+        updateUI();
+    }
+    
+    // Main Conversion Logic
+    convertBtn.onclick = async () => {
+        if (files.length === 0) return;
+        
+        convertBtn.disabled = true;
+        clearBtn.disabled = true;
+        convertedFiles = [];
+        renderResults(); // Clear previous results
 
-  <p style="font-size:14px; color:#555;">
-    <strong>SEO Keywords:</strong> GIF to JPG, convert GIF to JPG, GIF to JPG online, free GIF to JPG converter, GIF image to JPG, GIF to JPG tool.
-  </p>
-</section>
+        const totalFiles = files.length;
+        let processedCount = 0;
 
+        for (let i = 0; i < totalFiles; i++) {
+            const file = files[i];
+            status.textContent = `Converting ${file.name} (${i + 1}/${totalFiles})...`;
 
+            try {
+                // 1. Load the first frame of the GIF
+                const img = await loadGIFFirstFrame(file);
+                
+                // 2. Draw to Canvas
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
 
+                // 3. Convert Canvas to JPG Blob (Quality set to 0.92)
+                const jpgBlob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.92));
+                
+                // 4. Store result
+                const outName = file.name.replace(/\.gif$/i, '.jpg');
+                convertedFiles.push({
+                    name: outName,
+                    blob: jpgBlob,
+                    url: URL.createObjectURL(jpgBlob)
+                });
+                
+            } catch (error) {
+                console.error(`Error processing ${file.name}:`, error);
+                status.textContent = `Failed to convert ${file.name}. See console for details.`;
+            }
 
-
-</div>
-
-
-<script>
-const fileInput=document.getElementById('fileInput');
-const selectBtn=document.getElementById('selectBtn');
-const uploadBox=document.getElementById('uploadBox');
-const preview=document.getElementById('preview');
-const convertBtn=document.getElementById('convertBtn');
-const clearBtn=document.getElementById('clearBtn');
-const status=document.getElementById('status');
-const bar=document.getElementById('bar');
-
-let files=[];
-
-selectBtn.onclick=()=>fileInput.click();
-uploadBox.addEventListener('dragover',e=>{e.preventDefault();});
-uploadBox.addEventListener('drop',e=>{e.preventDefault(); handleFiles(e.dataTransfer.files);});
-fileInput.onchange=e=>handleFiles(e.target.files);
-
-function handleFiles(selectedFiles){
-  files=Array.from(selectedFiles).filter(f=>f.size<=25*1024*1024 && f.type==='image/gif');
-  preview.innerHTML=''; status.textContent=''; bar.style.width='0%';
-  files.forEach(f=>{
-    const div=document.createElement('div'); div.className='preview-item';
-    const img=document.createElement('img'); img.src=URL.createObjectURL(f); img.alt=f.name;
-    const name=document.createElement('div'); name.textContent=f.name;
-    div.appendChild(img); div.appendChild(name); preview.appendChild(div);
-  });
-  if(!files.length) status.textContent='No valid GIF files selected (max 25MB each).';
-}
-
-convertBtn.onclick=async ()=>{
-  if(!files.length) return alert('Select GIF files first!');
-  convertBtn.disabled=true; clearBtn.disabled=true; status.textContent='Converting...';
-  bar.style.width='5%';
-
-  preview.innerHTML=''; 
-  for(let i=0;i<files.length;i++){
-    const f=files[i];
-    const imgEl=await loadGIFFirstFrame(f);
-    const canvas=document.createElement('canvas');
-    canvas.width=imgEl.width;
-    canvas.height=imgEl.height;
-    const ctx=canvas.getContext('2d');
-    ctx.fillStyle='#ffffff';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.drawImage(imgEl,0,0);
-    const jpgBlob=await new Promise(res=>canvas.toBlob(res,'image/jpeg',0.95));
-
-    const outURL=URL.createObjectURL(jpgBlob);
-    const div=document.createElement('div'); div.className='preview-item';
-    const img=document.createElement('img'); img.src=outURL; img.alt=f.name;
-    const name=document.createElement('div'); name.textContent=f.name.replace(/\.gif$/i,'.jpg');
-
-    const btn=document.createElement('button'); btn.className='btn btn-primary'; btn.style.marginTop='6px'; btn.style.fontSize='12px';
-    btn.innerHTML='<i class="fa fa-download"></i> Download';
-    btn.onclick=()=>downloadBlob(jpgBlob,f.name.replace(/\.gif$/i,'.jpg'));
-
-    div.appendChild(img); div.appendChild(name); div.appendChild(btn);
-    preview.appendChild(div);
-
-    bar.style.width=`${Math.round(((i+1)/files.length)*100)}%`;
-  }
-
-  status.textContent=`Conversion finished — ${files.length} file(s) processed.`;
-  convertBtn.disabled=false; clearBtn.disabled=false;
-  setTimeout(()=>bar.style.width='0%',1000);
-};
-
-clearBtn.onclick=()=>{
-  files=[]; preview.innerHTML=''; status.textContent=''; fileInput.value=''; bar.style.width='0%';
-};
-
-function loadGIFFirstFrame(file){
-  return new Promise((res,rej)=>{
-    const reader=new FileReader();
-    reader.onload=()=>{
-      const img=new Image();
-      img.onload=()=>res(img);
-      img.onerror=rej;
-      img.src=reader.result;
+            processedCount++;
+            const progress = Math.round((processedCount / totalFiles) * 100);
+            progressBar.style.width = `${progress}%`;
+            progressBar.setAttribute('aria-valuenow', progress);
+        }
+        
+        // Final updates
+        renderResults();
+        status.textContent = `Conversion finished — ${convertedFiles.length} file(s) processed.`;
+        convertBtn.disabled = false;
+        clearBtn.disabled = false;
+        
+        setTimeout(() => progressBar.style.width = '0%', 1000);
     };
-    reader.onerror=rej;
-    reader.readAsDataURL(file);
-  });
-}
 
-function downloadBlob(blob,filename){
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-}
-</script>
+    // Download All as ZIP Logic
+    downloadAllBtn.onclick = async () => {
+        if (convertedFiles.length === 0) return;
+        
+        status.textContent = 'Preparing ZIP file...';
+        const zip = new JSZip();
+        
+        convertedFiles.forEach(f => {
+            zip.file(f.name, f.blob);
+        });
+        
+        const zipBlob = await zip.generateAsync({type:"blob"});
+        downloadBlob(zipBlob, 'gif-to-jpg-topimgtools.zip');
+        status.textContent = 'ZIP file downloaded.';
+    };
+
+    // Clear All Logic
+    clearBtn.onclick = () => {
+        files.forEach(f => f.url && URL.revokeObjectURL(f.url));
+        convertedFiles.forEach(f => f.url && URL.revokeObjectURL(f.url));
+        files = [];
+        convertedFiles = [];
+        preview.innerHTML = '';
+        fileInput.value = '';
+        progressBar.style.width = '0%';
+        status.textContent = 'Waiting for files...';
+        updateUI();
+    };
+
+    // Input Handling
+    function handleFiles(selectedFiles) {
+        // Only allow new files that are GIF and not already in the list (simple check by name)
+        const newFiles = Array.from(selectedFiles).filter(f => 
+            f.type === 'image/gif' && !files.some(existing => existing.name === f.name && existing.size === f.size)
+        );
+        
+        if (newFiles.length > 0) {
+            files.push(...newFiles);
+            convertedFiles = []; // Clear results if new files are added
+            renderResults(); // Update results list (will be empty)
+        }
+        
+        if (files.length > 0) {
+            status.textContent = `${files.length} GIF file(s) ready. Click 'Convert to JPG'.`;
+        } else {
+             status.textContent = `No valid GIF files selected.`;
+        }
+        fileInput.value = '';
+        updateUI();
+    }
+    
+    // Event Listeners for Input/Drag-Drop
+    selectBtn.onclick = (e) => { e.stopPropagation(); fileInput.click(); };
+    uploadBox.onclick = () => fileInput.click();
+    fileInput.onchange = e => handleFiles(e.target.files);
+
+    // Accessibility: Keyboard Navigation for Upload
+    uploadBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fileInput.click();
+        }
+    });
+    
+    // Drag and Drop
+    ['dragenter','dragover'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.add('dragover'); }));
+    ['dragleave','drop'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.remove('dragover'); }));
+    uploadBox.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+
+    // Initialize UI
+    updateUI();
+  </script>
 </body>
 </html>

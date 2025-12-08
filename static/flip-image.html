@@ -1,223 +1,237 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Flip Image Online – Free Tool | TopImgTools</title>
-<meta name="description" content="Flip images online instantly. Free Flip Image tool by TopImgTools. Flip horizontally or vertically and download easily." />
-<meta name="keywords" content="flip image, flip photo online, online image flipper, free flip tool, TopImgTools" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/flip-image.html" />
-<meta property="og:title" content="Flip Image Online – Free Tool" />
-<meta property="og:description" content="Flip any image online instantly. Free, fast, and easy Flip Image tool by TopImgTools." />
-<meta property="og:image" content="https://topimgtools.com/assets/flip-image-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/flip-image.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Flip Image Online – Free Tool" />
-<meta name="twitter:description" content="Flip images online easily with TopImgTools. Free, fast, and simple tool." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/flip-image-banner.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flip Image Online – Flip Photo Horizontally or Vertically | TopImgTools</title>
+  <meta name="description" content="Flip images online instantly. Free Flip Image tool by TopImgTools. Flip horizontally (mirror image) or vertically and download easily. Supports PNG transparency." />
+  <meta name="keywords" content="flip image, flip photo online, online image flipper, mirror image online, free flip tool, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <meta name="theme-color" content="#3498db">
+  <link rel="canonical" href="https://topimgtools.com/flip-image.html" />
 
+  <meta property="og:title" content="Flip Image Online – Free Image Flipper Tool" />
+  <meta property="og:description" content="Flip any image online instantly. Free, fast, and easy Flip Image tool by TopImgTools." />
+  <meta property="og:image" content="https://topimgtools.com/assets/flip-image-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/flip-image.html" />
+  <meta property="og:type" content="website" />
 
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Flip Image Online – Free Tool" />
+  <meta name="twitter:description" content="Flip images online easily with TopImgTools. Free, fast, and simple tool." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/flip-image-banner.jpg" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
 
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
-  
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Flip Tool",
+    "operatingSystem": "All",
+    "applicationCategory": "PhotoEditor",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free online tool to flip images horizontally or vertically, supporting JPG, PNG, and WEBP.",
+    "author": {
+        "@type": "Organization",
+        "name": "TopImgTools",
+        "url": "https://topimgtools.com"
+    }
+  }
+  </script>
+
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280}
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#0f172a}
-    .wrap{max-width:980px;margin:36px auto;padding:20px}
-    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .logo{display:flex;gap:12px;align-items:center}
-    .logo img{height:36px}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 0}
-    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
-    .upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
-    .upload-actions{display:flex;gap:10px;align-items:center}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); margin:0; color:#0f172a; line-height:1.6;
+    }
+    a:focus, button:focus, .upload-box:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
+
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    h1{font-size:1.5rem;margin:0;font-weight:700}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
+
+    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:20px}
+
+    .upload-box{
+      border:2px dashed #cbd5e1;border-radius:10px;padding:32px;
+      display:flex;gap:16px;align-items:center;justify-content:center;flex-direction:column;
+      cursor:pointer;transition:all .2s ease;background-color:#f8fafc;
+    }
+    .upload-box:hover, .upload-box.dragover{background-color:#eff6ff;border-color:var(--accent)}
+    .upload-box h3{margin:0;font-size:1.25rem;color:#1e293b}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:background 0.2s;text-decoration:none}
     .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:#111827;color:#fff}
-    .muted{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    .preview-wrap{position:relative;display:flex;justify-content:center;align-items:center;background:#f3f4f6;border-radius:8px;padding:10px;overflow:hidden;min-height:260px}
-    .preview-img{max-width:100%;max-height:600px;border-radius:6px;object-fit:contain;display:block}
-    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .btn-primary:hover{background:var(--accent-dark)}
+    .btn-secondary{background:#1f2937;color:#fff}
+    .btn-secondary:hover{background:#111827}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:24px}
+
+    .preview-area{
+        display:flex;justify-content:center;align-items:center;
+        background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVQ4jWNgYGAQIYAJglEDxo0YQIgCxhG1AAAAAElFTSuQmCC') repeat; 
+        border-radius:8px;overflow:hidden;min-height:300px;padding:10px;
+    }
+    .preview-img{max-width:100%;max-height:600px;object-fit:contain;border-radius:6px;display:none; transition: transform 0.3s ease-out;}
+    
+    .download-btn{display:flex;justify-content:space-between;align-items:center;padding:16px;border-radius:10px;background:#1e293b;color:#fff;margin-top:10px}
+
+    /* Navigation Links */
+    .nav-links {
+        margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+        display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .nav-btn {
+        padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+        color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb; transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; }
+    
+    .seo-content { color: #334155; }
+    .seo-content h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
+    .sr-only {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);white-space: nowrap;border-width: 0;}
+
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="header">
-      <div class="logo">
-        <img src="/static/img/flip.png" alt="logo">
+  <main class="wrap">
+    <header class="header">
+      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+        <i class="fa fa-arrows-left-right" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
         <div>
           <h1>Flip Image</h1>
-          <p class="lead">Flip images horizontally or vertically</p>
+          <p class="lead">Mirror your photo horizontally or vertically</p>
         </div>
-      </div>
-      <div class="actions">
-        <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
-      </div>
-    </div>
+      </a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </header>
 
-
-<div class="card">
-  <div class="upload-box" id="uploadBox">
-    <div style="text-align:center">
-      <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)"></i>
-      <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
-      <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
-    </div>
-    <div class="upload-actions">
-      <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
-      <input id="fileInput" type="file" accept="image/*" style="display:none">
-      <button id="sampleBtn" class="btn" title="Use sample image">Sample</button>
-    </div>
-  </div>
-
-  <div class="grid" style="margin-top:18px">
-    <div class="card">
-      <div class="preview-wrap">
-        <img id="previewImg" class="preview-img" alt="preview" src="">
-        <div id="placeholder" style="text-align:center;color:var(--muted);padding:26px">Preview will appear here</div>
+    <section class="card" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" class="sr-only">Image Flip Tool</h2>
+      
+      <div class="upload-box" id="uploadBox" tabindex="0" role="button" aria-label="Upload area. Drag and drop image here or press enter to select.">
+        <div style="text-align:center">
+          <i class="fa fa-cloud-arrow-up" aria-hidden="true" style="font-size:40px;color:var(--accent);margin-bottom:10px;display:block"></i>
+          <h3>Drag & drop or select an image</h3>
+          <p class="muted" style="margin-top:5px;font-size:0.9rem">JPG, PNG, WebP — Max 25MB</p>
+        </div>
+        <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Image</button>
+        <input id="fileInput" type="file" accept="image/*" class="sr-only">
       </div>
 
-      <div style="display:flex;gap:10px;margin-top:14px;justify-content:center;flex-wrap:wrap">
-        <button id="flipHBtn" class="btn btn-primary"><i class="fa fa-arrows-left-right"></i> Flip Horizontal</button>
-        <button id="flipVBtn" class="btn btn-primary"><i class="fa fa-arrows-up-down"></i> Flip Vertical</button>
-        <button id="resetBtn" class="btn">Reset</button>
+      <div class="grid">
+        <div class="card">
+          <div class="preview-area" id="previewArea">
+            <img id="previewImg" class="preview-img" alt="Image preview for flipping" src="">
+            <div id="placeholder" style="text-align:center;color:var(--muted);padding:40px">Image preview will appear here</div>
+          </div>
+          <p id="status" style="margin-top:10px;text-align:center;color:var(--muted)">No image loaded.</p>
+        </div>
+
+        <aside>
+          <div class="card">
+            <h4>Flip Options</h4>
+            <div style="display:flex;gap:12px">
+              <button id="flipHBtn" class="btn btn-secondary" style="flex:1" title="Flip Horizontally"><i class="fa fa-arrows-left-right" aria-hidden="true"></i> Flip Horizontal</button>
+              <button id="flipVBtn" class="btn btn-secondary" style="flex:1" title="Flip Vertically"><i class="fa fa-arrows-up-down" aria-hidden="true"></i> Flip Vertical</button>
+            </div>
+            
+            <div style="margin-top:20px; text-align:center;">
+                <button id="resetBtn" class="btn btn-secondary" style="background:#6b7280"><i class="fa fa-rotate-right" aria-hidden="true"></i> Reset Image</button>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h4>Download Result</h4>
+            <div id="downloadWrap" style="display:none;">
+              <div class="download-btn">
+                <div style="overflow:hidden; margin-right:10px;">
+                  <div style="font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" id="outName">flipped.png</div>
+                  <div style="font-size:0.8rem; color:#94a3b8;" id="outInfo">PNG • —</div>
+                </div>
+                <a id="downloadLink" class="btn btn-primary" style="white-space:nowrap" download><i class="fa fa-download" aria-hidden="true"></i> Save</a>
+              </div>
+            </div>
+            <p id="privacyNote" style="margin:10px 0 0;font-size:0.85rem;color:var(--muted)">
+              <strong><i class="fa fa-shield-halved"></i> Privacy Note:</strong>
+              Processing is done in your browser. Your images are never uploaded.
+            </p>
+          </div>
+        </aside>
       </div>
+    </section>
 
-      <div id="downloadWrap" style="display:none;margin-top:14px;text-align:center">
-        <a id="downloadLink" class="btn btn-secondary" download><i class="fa fa-download"></i> Download Flipped</a>
-        <div class="meta" id="outInfo"></div>
-      </div>
-    </div>
+    <nav class="nav-links" aria-label="Related Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/heice-to-jpg.html" class="nav-btn">HEIC → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
 
-    <aside class="card" style="height:fit-content">
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div><strong>Status:</strong> <span id="status" class="muted">No file</span></div>
-        <div><strong>Original:</strong> <span id="origMeta" class="muted">—</span></div>
-      </div>
-    </aside>
-  </div>
-</div>
+    <article class="card seo-content">
+      <h2>Flip Image Online – Mirror Photos Instantly</h2>
+      <p>
+          Use the **Flip Image Tool** to easily create a mirror image of your photos. Whether you need to flip a selfie horizontally to fix its orientation or flip a photo vertically, our free online tool handles the job instantly while preserving image quality and transparency.
+      </p>
 
+      <h3>Why Use Our Image Flipper?</h3>
+      <ul>
+          <li>**Preserve Transparency:** Keeps PNG and WEBP image transparency intact upon saving.</li>
+          <li>**Client-Side Processing:** All flipping happens in your browser for maximum speed and privacy.</li>
+          <li>**Simple Controls:** Quick buttons for horizontal and vertical flipping.</li>
+          <li>**High Quality:** No loss of quality during the transformation.</li>
+      </ul>
 
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
+      <h3>How to Flip an Image?</h3>
+      <ol>
+          <li>Click **Select Image** to upload your photo (JPG, PNG, or WEBP).</li>
+          <li>Click **Flip Horizontal** to create a mirror image.</li>
+          <li>Click **Flip Vertical** to flip it upside down.</li>
+          <li>Click **Save** to download your new image.</li>
+      </ol>
+    </article>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
-
-    <a href="https://topimgtools.com/web-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       WEBP → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/heice-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       HEIC → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/png-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PNG → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
-
-<!-- seo content -->
-<section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333;">
-  <h1 style="font-size:28px; color:#222; margin-bottom:15px;">Flip Image – Online Image Flipping Tool</h1>
-  <p style="font-size:16px; margin-bottom:15px;">
-    <strong>Flip Image Online</strong> is a fast and easy tool that lets you flip any picture in just one click. Whether you need to <strong>flip an image horizontally</strong> (left-to-right) or <strong>vertically</strong> (top-to-bottom), this tool keeps your original quality intact. Perfect for photo editing, creative design, social media posts, and correcting mirrored selfies.
-  </p>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use an Image Flipping Tool?</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Fix mirrored or reversed photos</li>
-    <li>Create aesthetic reflection effects</li>
-    <li>Prepare pictures for printing or design layouts</li>
-    <li>Flip product photos and thumbnails for better visual balance</li>
-    <li>No software required — works directly in your browser</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Flip horizontally (mirror flip)</li>
-    <li>Flip vertically (upside-down)</li>
-    <li>Supports JPG, PNG, WEBP, and more</li>
-    <li>100% free and no login required</li>
-    <li>Works on mobile and desktop</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">How to Flip an Image Online</h2>
-  <ol style="margin-left:20px; margin-bottom:15px;">
-    <li>Upload your photo</li>
-    <li>Choose horizontal or vertical flip</li>
-    <li>Preview the flipped version</li>
-    <li>Download instantly</li>
-  </ol>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h2>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Bloggers, editors, designers, photographers, students, and anyone who wants a quick way to fix or enhance photos.
-  </p>
-
-  <!-- <p style="font-size:14px; color:#555;">
-    <strong>SEO Keywords:</strong> Flip image online, image flipper, horizontal flip photo, vertical flip picture, mirror photo tool, flip PNG, flip JPG, free online photo editor.
-  </p> -->
-</section>
-
-
-
-
-
-<footer>
-  <p>&copy; 2025 iLoveIMG Clone — Flip Image Tool (Demo)</p>
-</footer>
-```
-
-  </div>
+    <footer>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
+    </footer>
+  </main>
 
   <script>
+    // Elements
     const uploadBox = document.getElementById('uploadBox');
     const fileInput = document.getElementById('fileInput');
     const selectBtn = document.getElementById('selectBtn');
-    const sampleBtn = document.getElementById('sampleBtn');
     const previewImg = document.getElementById('previewImg');
     const placeholder = document.getElementById('placeholder');
     const flipHBtn = document.getElementById('flipHBtn');
@@ -225,61 +239,17 @@
     const resetBtn = document.getElementById('resetBtn');
     const downloadWrap = document.getElementById('downloadWrap');
     const downloadLink = document.getElementById('downloadLink');
+    const outName = document.getElementById('outName');
     const outInfo = document.getElementById('outInfo');
     const status = document.getElementById('status');
-    const origMeta = document.getElementById('origMeta');
+    
+    // State
+    let currentMimeType = 'image/jpeg';
+    let currentImageSrc = ''; // To store the original DataURL for reset
+    let originalDimensions = {w:0, h:0};
 
-    let currentFile = null;
-    let originalURL = null;
-
-    function humanSize(bytes){
-      if(bytes === 0) return '0 B';
-      const k = 1024; const sizes = ['B','KB','MB','GB'];
-      const i = Math.floor(Math.log(bytes)/Math.log(k));
-      return parseFloat((bytes/Math.pow(k,i)).toFixed(2)) + ' ' + sizes[i];
-    }
-
-    function resetUI(){
-      currentFile = null;
-      previewImg.src = '';
-      previewImg.style.display = 'none';
-      placeholder.style.display = 'block';
-      downloadWrap.style.display = 'none';
-      status.textContent = 'No file';
-      origMeta.textContent = '—';
-    }
-
-    selectBtn.addEventListener('click', ()=> fileInput.click());
-    fileInput.addEventListener('change', e => handleFiles(e.target.files));
-    sampleBtn.addEventListener('click', ()=> {
-      fetch('https://picsum.photos/1200/800').then(r=>r.blob()).then(blob=>{
-        const f = new File([blob],'sample.jpg',{type:blob.type});
-        handleFiles([f]);
-      }).catch(()=>alert('Failed to load sample'));
-    });
-
-    ['dragenter','dragover'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.add('highlight'); }));
-    ['dragleave','drop'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.remove('highlight'); }));
-    uploadBox.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
-
-    function handleFiles(files){
-      if(!files || files.length === 0) return;
-      const file = files[0];
-      if(!file.type.startsWith('image/')) { alert('Please select an image'); return; }
-      currentFile = file;
-      status.textContent = 'Loaded';
-      origMeta.textContent = `${humanSize(file.size)} • ${file.type}`;
-      const reader = new FileReader();
-      reader.onload = e => {
-        previewImg.src = e.target.result;
-        previewImg.style.display = 'block';
-        placeholder.style.display = 'none';
-        originalURL = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function loadImage(src){
+    // Utility: Loads image from dataURL
+    function loadImage(src) {
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = () => resolve(img);
@@ -288,50 +258,144 @@
       });
     }
 
-    flipHBtn.addEventListener('click', async ()=>{
+    // Utility: Loads file to DataURL
+    function fileToDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function resetUI(){
+      currentMimeType = 'image/jpeg';
+      currentImageSrc = '';
+      previewImg.src = '';
+      previewImg.style.display = 'none';
+      placeholder.style.display = 'block';
+      downloadWrap.style.display = 'none';
+      status.textContent = 'No image loaded.';
+      previewImg.style.transform = 'scale(1, 1)';
+    }
+
+    // Core Transformation Function
+    async function transformImage(flipX, flipY) {
       if(!previewImg.src) return;
+      
       const img = await loadImage(previewImg.src);
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
       canvas.height = img.height;
       const ctx = canvas.getContext('2d');
-      ctx.translate(canvas.width,0);
-      ctx.scale(-1,1);
-      ctx.drawImage(img,0,0);
-      const url = canvas.toDataURL('image/jpeg',0.92);
-      previewImg.src = url;
-      downloadLink.href = url;
-      downloadWrap.style.display = 'block';
-      outInfo.textContent = `${img.width}×${img.height} • flipped horizontal`;
+      
+      // Determine transformation
+      const scaleX = flipX ? -1 : 1;
+      const scaleY = flipY ? -1 : 1;
+      const translateX = flipX ? canvas.width : 0;
+      const translateY = flipY ? canvas.height : 0;
+      
+      // Apply transformation matrix
+      ctx.translate(translateX, translateY);
+      ctx.scale(scaleX, scaleY);
+      
+      // Draw the image
+      ctx.drawImage(img, 0, 0);
+
+      // Smart output format
+      let outputMimeType = currentMimeType;
+      let quality = 0.92;
+      let ext = 'jpg';
+      
+      if (currentMimeType.includes('png') || currentMimeType.includes('webp')) {
+          outputMimeType = 'image/png'; // Force PNG to preserve potential transparency
+          quality = 1.0;
+          ext = 'png';
+      }
+
+      // Convert Canvas to Blob
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+
+        const url = URL.createObjectURL(blob);
+        previewImg.src = url; // Update preview with flipped image
+        
+        // Update download UI
+        downloadLink.href = url;
+        const newName = 'flipped.' + ext;
+        downloadLink.download = newName;
+        
+        outName.textContent = newName;
+        outInfo.textContent = `${originalDimensions.w}×${originalDimensions.h} • ${ext.toUpperCase()}`;
+        downloadWrap.style.display = 'block';
+        
+        // Cleanup memory after a minute
+        setTimeout(()=>URL.revokeObjectURL(url), 60000);
+
+      }, outputMimeType, quality);
+      
+      status.textContent = `Image Flipped! (${ext.toUpperCase()})`;
+    }
+
+    // Input Handling
+    function handleFiles(files) {
+      if (!files || files.length === 0) return;
+      const file = files[0];
+      if (!file.type.startsWith('image/')) { alert('Please select a valid image file.'); return; }
+      
+      currentMimeType = file.type;
+      
+      fileToDataURL(file).then(dataURL => {
+        currentImageSrc = dataURL;
+        
+        loadImage(dataURL).then(img => {
+            originalDimensions = {w: img.width, h: img.height};
+            previewImg.src = dataURL;
+            previewImg.style.display = 'block';
+            placeholder.style.display = 'none';
+            downloadWrap.style.display = 'none';
+            status.textContent = `Image loaded (${img.width}×${img.height})`;
+        });
+      });
+    }
+
+    // Events
+    fileInput.onchange = e => handleFiles(e.target.files);
+    uploadBox.addEventListener('dragenter', e => { e.preventDefault(); uploadBox.classList.add('dragover'); });
+    uploadBox.addEventListener('dragleave', e => { e.preventDefault(); uploadBox.classList.remove('dragover'); });
+    uploadBox.addEventListener('drop', e => { e.preventDefault(); uploadBox.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+    
+    // Accessibility: Keyboard Navigation for Upload
+    uploadBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fileInput.click();
+        }
     });
 
-    flipVBtn.addEventListener('click', async ()=>{
-      if(!previewImg.src) return;
-      const img = await loadImage(previewImg.src);
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      ctx.translate(0,canvas.height);
-      ctx.scale(1,-1);
-      ctx.drawImage(img,0,0);
-      const url = canvas.toDataURL('image/jpeg',0.92);
-      previewImg.src = url;
-      downloadLink.href = url;
-      downloadWrap.style.display = 'block';
-      outInfo.textContent = `${img.width}×${img.height} • flipped vertical`;
+    // Flip Buttons
+    flipHBtn.addEventListener('click', () => { 
+        if (!currentImageSrc) return;
+        status.textContent = 'Flipping Horizontal...';
+        transformImage(true, false); 
+    });
+    
+    flipVBtn.addEventListener('click', () => { 
+        if (!currentImageSrc) return;
+        status.textContent = 'Flipping Vertical...';
+        transformImage(false, true); 
+    });
+    
+    // Reset Button
+    resetBtn.addEventListener('click', () => {
+        if (!currentImageSrc) return;
+        previewImg.src = currentImageSrc;
+        downloadWrap.style.display = 'none';
+        status.textContent = 'Image reset to original.';
     });
 
-    resetBtn.addEventListener('click', ()=>{
-      if(originalURL){
-        previewImg.src = originalURL;
-        previewImg.style.display = 'block';
-        placeholder.style.display = 'none';
-      } else resetUI();
-    });
-
+    // Initialize
     resetUI();
   </script>
-
 </body>
 </html>

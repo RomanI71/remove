@@ -2,230 +2,250 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Crop Image Online – Free Tool | TopImgTools</title>
-<meta name="description" content="Crop images online easily and quickly. Free Crop Image tool by TopImgTools. Adjust size, cut unwanted parts, and download instantly." />
-<meta name="keywords" content="crop image, crop photo online, online image cropper, free crop tool, TopImgTools" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/crop.html" />
-<meta property="og:title" content="Crop Image Online – Free Tool" />
-<meta property="og:description" content="Crop any image online easily with TopImgTools. Free, fast, and simple Crop Image tool." />
-<meta property="og:image" content="https://topimgtools.com/assets/crop-image-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/crop-image.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Crop Image Online – Free Tool" />
-<meta name="twitter:description" content="Crop images online quickly and easily with TopImgTools. Free, fast, and easy tool." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/crop-image-banner.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crop Image Online – Free Image Cropper Tool | TopImgTools</title>
+  <meta name="description" content="Crop images online easily and quickly. Free Crop Image tool by TopImgTools. Adjust size, cut unwanted parts, and download instantly. Supports JPG, PNG, WEBP." />
+  <meta name="keywords" content="crop image, crop photo online, online image cropper, free crop tool, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <meta name="theme-color" content="#3498db">
+  <link rel="canonical" href="https://topimgtools.com/crop-image.html" />
 
+  <meta property="og:title" content="Crop Image Online – Free Image Cropper Tool" />
+  <meta property="og:description" content="Crop any image online easily with TopImgTools. Free, fast, and simple Crop Image tool." />
+  <meta property="og:image" content="https://topimgtools.com/assets/crop-image-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/crop-image.html" />
+  <meta property="og:type" content="website" />
 
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Crop Image Online – Free Image Cropper Tool" />
+  <meta name="twitter:description" content="Crop images online quickly and easily with TopImgTools. Free, fast, and easy tool." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/crop-image-banner.jpg" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
 
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Crop Tool",
+    "operatingSystem": "All",
+    "applicationCategory": "PhotoEditor",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free online tool to crop images by manual selection or aspect ratio. Supports JPG, PNG, WEBP.",
+    "author": {
+        "@type": "Organization",
+        "name": "TopImgTools",
+        "url": "https://topimgtools.com"
+    }
+  }
+  </script>
+
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280}
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#0f172a}
-    .wrap{max-width:980px;margin:36px auto;padding:20px}
-    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .logo{display:flex;gap:12px;align-items:center}
-    .logo img{height:36px}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 0}
-    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
-    .upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
-    .upload-actions{display:flex;gap:10px;align-items:center}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); margin:0; color:#0f172a; line-height:1.6;
+    }
+    a:focus, button:focus, .upload-box:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
+
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    h1{font-size:1.5rem;margin:0;font-weight:700}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
+
+    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:20px}
+
+    .upload-box{
+      border:2px dashed #cbd5e1;border-radius:10px;padding:32px;
+      display:flex;gap:16px;align-items:center;justify-content:center;flex-direction:column;
+      cursor:pointer;transition:all .2s ease;background-color:#f8fafc;
+    }
+    .upload-box:hover, .upload-box.highlight{background-color:#eff6ff;border-color:var(--accent)}
+    .upload-box h3{margin:0;font-size:1.25rem;color:#1e293b}
+
+    .upload-actions{display:flex;gap:12px;align-items:center;margin-top:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:background 0.2s;text-decoration:none}
     .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:#111827;color:#fff}
-    .muted{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    .preview-wrap{position:relative;display:flex;justify-content:center;align-items:center;background:#f3f4f6;border-radius:8px;padding:10px;overflow:hidden;min-height:260px}
+    .btn-primary:hover{background:var(--accent-dark)}
+    .btn-secondary{background:#1f2937;color:#fff}
+    .btn-secondary:hover{background:#111827}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:24px}
+    
+    .preview-wrap{
+        position:relative;display:flex;justify-content:center;align-items:center;
+        background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVQ4jWNgYGAQIYAJglEDxo0YQIgCxhG1AAAAAElFTkSuQmCC') repeat; /* Checkered background for transparency */
+        border-radius:8px;padding:10px;overflow:hidden;min-height:300px;
+    }
     .preview-img{max-width:100%;max-height:600px;border-radius:6px;object-fit:contain;display:block;user-select:none;pointer-events:none}
+    
     /* Selection box relative to preview-wrap */
-    #selection{position:absolute;border:2px dashed var(--accent);background:rgba(52,152,219,0.14);display:none;touch-action:none}
+    #selection{
+        position:absolute;border:2px dashed var(--accent);background:rgba(52,152,219,0.14);
+        display:none;touch-action:none;box-sizing:border-box;cursor:move;
+    }
     /* small handle for resize (not full resizers; keeps interface simple) */
-    .handle{position:absolute;width:12px;height:12px;background:#fff;border:2px solid var(--accent);border-radius:2px;box-sizing:border-box}
+    .handle{position:absolute;width:16px;height:16px;background:#fff;border:3px solid var(--accent);border-radius:50%;box-sizing:border-box;z-index:10}
     .handle.ne{right:-8px;top:-8px;cursor:ne-resize}
     .handle.nw{left:-8px;top:-8px;cursor:nw-resize}
     .handle.se{right:-8px;bottom:-8px;cursor:se-resize}
     .handle.sw{left:-8px;bottom:-8px;cursor:sw-resize}
-    .meta{margin-top:8px;color:var(--muted);font-size:14px}
-    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+
+    .meta{margin-top:8px;color:var(--muted);font-size:0.9rem}
+
+    /* SEO Content Styling */
+    .seo-content { color: #334155; }
+    .seo-content h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 1.25rem; color: #1e293b; margin-top: 1.25rem; margin-bottom: 0.6rem; }
+    .seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+
+    /* Navigation Links */
+    .nav-links {
+        margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+        display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .nav-btn {
+        padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+        color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb; transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; }
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
+    .sr-only {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);white-space: nowrap;border-width: 0;}
+
     @media(max-width:900px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="header">
-      <div class="logo">
-        <img src="/static/img/crop.png" alt="logo">
+  <main class="wrap">
+    <header class="header">
+      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+        <i class="fa fa-crop-simple" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
         <div>
           <h1>Crop Image</h1>
-          <p class="lead">Crop images — fixed selection/drawer behavior</p>
+          <p class="lead">Select, cut, and download the perfect portion</p>
         </div>
-      </div>
-      <div class="actions">
-        <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
-      </div>
-    </div>
+      </a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </header>
 
-    <div class="card">
-      <div class="upload-box" id="uploadBox">
+    <section class="card" aria-labelledby="upload-heading">
+      <h2 id="upload-heading" class="sr-only">Upload Image</h2>
+      
+      <div class="upload-box" id="uploadBox" tabindex="0" role="button" aria-label="Upload area. Drag and drop image here or press enter to select.">
         <div style="text-align:center">
-          <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)"></i>
-          <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
-          <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
+          <i class="fa fa-cloud-arrow-up" aria-hidden="true" style="font-size:40px;color:var(--accent);margin-bottom:10px;display:block"></i>
+          <h3>Drag & drop or select an image</h3>
+          <p class="muted" style="margin-top:5px;font-size:0.9rem">JPG, PNG, WebP — Max 25MB</p>
         </div>
         <div class="upload-actions">
-          <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
-          <input id="fileInput" type="file" accept="image/*" style="display:none">
-          <button id="sampleBtn" class="btn" title="Use sample image">Sample</button>
+          <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Image</button>
+          <input id="fileInput" type="file" accept="image/*" class="sr-only">
+          <button id="sampleBtn" class="btn btn-secondary" title="Use sample image" style="background:#6b7280"><i class="fa fa-image" aria-hidden="true"></i> Sample</button>
         </div>
       </div>
 
-      <div class="grid" style="margin-top:18px">
+      <div class="grid" style="margin-top:24px">
         <div class="card">
-          <div class="preview-wrap" id="previewWrap">
-            <img id="previewImg" class="preview-img" alt="preview" src="">
+          <div class="preview-wrap" id="previewWrap" role="region" aria-label="Image cropping area">
+            <img id="previewImg" class="preview-img" alt="Image preview for cropping" src="">
             <div id="selection" aria-hidden="true">
-              <div class="handle ne"></div>
-              <div class="handle nw"></div>
-              <div class="handle se"></div>
-              <div class="handle sw"></div>
+              <div class="handle nw" role="slider" aria-label="North West resize handle"></div>
+              <div class="handle ne" role="slider" aria-label="North East resize handle"></div>
+              <div class="handle sw" role="slider" aria-label="South West resize handle"></div>
+              <div class="handle se" role="slider" aria-label="South East resize handle"></div>
             </div>
-            <div id="placeholder" style="text-align:center;color:var(--muted);padding:26px">Preview will appear here</div>
+            <div id="placeholder" style="text-align:center;color:var(--muted);padding:40px">Preview will appear here</div>
           </div>
 
-          <div style="display:flex;gap:10px;margin-top:14px;justify-content:center;flex-wrap:wrap">
-            <button id="cropBtn" class="btn btn-primary"><i class="fa fa-crop"></i> Crop</button>
-            <button id="resetBtn" class="btn">Reset</button>
-            <button id="fitBtn" class="btn" title="Select full image">Select full image</button>
+          <div style="display:flex;gap:12px;margin-top:16px;justify-content:center;flex-wrap:wrap">
+            <button id="cropBtn" class="btn btn-primary"><i class="fa fa-crop" aria-hidden="true"></i> Crop Image</button>
+            <button id="fitBtn" class="btn btn-secondary" style="background:#334155" title="Select full image"><i class="fa fa-maximize" aria-hidden="true"></i> Select All</button>
+            <button id="resetBtn" class="btn btn-secondary" style="background:#6b7280"><i class="fa fa-rotate-right" aria-hidden="true"></i> Reset</button>
           </div>
 
-          <div id="downloadWrap" style="display:none;margin-top:14px;text-align:center">
-            <a id="downloadLink" class="btn btn-secondary" download><i class="fa fa-download"></i> Download Cropped</a>
+          <div id="downloadWrap" style="display:none;margin-top:16px;text-align:center;border-top:1px solid #eee;padding-top:16px;">
+            <a id="downloadLink" class="btn btn-primary" download style="width:100%"><i class="fa fa-download" aria-hidden="true"></i> Download Cropped Image</a>
             <div class="meta" id="outInfo"></div>
           </div>
 
         </div>
 
-        <aside class="card" style="height:fit-content">
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div><strong>Status:</strong> <span id="status" class="muted">No file</span></div>
+        <aside class="card" style="height:fit-content" aria-labelledby="status-heading">
+          <h3 id="status-heading" class="sr-only">Current Status and Metadata</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div><strong>Status:</strong> <span id="status" class="muted">No file loaded</span></div>
             <div><strong>Original:</strong> <span id="origMeta" class="muted">—</span></div>
             <div><strong>Selection:</strong> <span id="selMeta" class="muted">—</span></div>
           </div>
+          <div style="margin-top:20px; font-size:0.9rem; color:var(--muted)">
+            <strong><i class="fa fa-shield-halved"></i> Privacy Note:</strong>
+            <p style="margin:4px 0 0;">Image processing happens securely in your browser. No files are uploaded.</p>
+          </div>
         </aside>
       </div>
-    </div>
+    </section>
 
-<div style="
-    max-width:980px;
-    margin:35px auto;
-">
-    <div style="
-        background:#ffffff;
-        padding:25px;
-        border-radius:14px;
-        box-shadow:0 6px 20px rgba(2,6,23,0.06);
-        line-height:1.7;
-    ">
-        <h2 style="
-            font-size:24px;
-            margin-bottom:14px;
-            color:#111827;
-            font-weight:700;
-        ">
-            Free Online Image Cropper – Crop Your Photos Instantly
-        </h2>
+    <nav class="nav-links" aria-label="Related Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/heice-to-jpg.html" class="nav-btn">HEIC → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
 
-        <p style="color:#374151; margin-bottom:16px; font-size:15px;">
-            Our <strong>Online Image Crop Tool</strong> makes it easy to crop any photo to the perfect
-            size. Whether you need a square crop, profile picture size, product image format,
-            or a custom dimension — you can do it instantly with no software required.
-        </p>
+    <article class="card seo-content">
+      <h2>Free Online Image Cropper – Crop Your Photos Instantly</h2>
+      <p>
+          Our <strong>Online Image Crop Tool</strong> makes it easy to crop any photo to the perfect
+          size. Whether you need a square crop, profile picture size, product image format,
+          or a custom dimension — you can do it instantly with no software required.
+      </p>
 
-        <h3 style="
-            font-size:20px;
-            margin:20px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            Why Use This Crop Tool?
-        </h3>
-        <ul style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">Crop images manually or using preset aspect ratios</li>
-            <li style="margin-bottom:6px;">Supports JPG, PNG, WebP files</li>
-            <li style="margin-bottom:6px;">Drag to adjust crop area with live preview</li>
-            <li style="margin-bottom:6px;">Create perfect profile photos and thumbnails</li>
-            <li style="margin-bottom:6px;">Fast, free, and no watermark</li>
-        </ul>
+      <h3>Why Use This Crop Tool?</h3>
+      <ul>
+          <li><strong>Quality Preservation:</strong> Supports JPG, PNG (with transparency), and WebP files.</li>
+          <li><strong>Client-Side Processing:</strong> Fast, private, and secure—your photos never leave your device.</li>
+          <li><strong>Easy Selection:</strong> Drag to adjust crop area with live preview and precise controls.</li>
+          <li><strong>Free & Accessible:</strong> Free to use on any device, no watermark.</li>
+      </ul>
 
-        <h3 style="
-            font-size:20px;
-            margin:22px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            How to Crop an Image
-        </h3>
-        <ol style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">Upload any JPG, PNG, or WebP image.</li>
-            <li style="margin-bottom:6px;">Resize or drag the crop box to select the area.</li>
-            <li style="margin-bottom:6px;">Choose aspect ratio (1:1, 4:5, 16:9, freeform, etc.).</li>
-            <li style="margin-bottom:6px;">Click “Crop Image” to process.</li>
-            <li style="margin-bottom:6px;">Download the cropped output instantly.</li>
-        </ol>
-
-        <h3 style="
-            font-size:20px;
-            margin:22px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            Best Use Cases
-        </h3>
-        <ul style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">Cropping profile photos for Facebook, Instagram, TikTok</li>
-            <li style="margin-bottom:6px;">Creating product images for e-commerce</li>
-            <li style="margin-bottom:6px;">Trimming unnecessary background parts</li>
-            <li style="margin-bottom:6px;">Cropping thumbnails for YouTube & social media</li>
-            <li style="margin-bottom:6px;">Making passport-size or ID-size photos</li>
-        </ul>
-
-        <h3 style="
-            font-size:20px;
-            margin:22px 0 10px;
-            color:#111827;
-            font-weight:600;
-        ">
-            Supported Formats
-        </h3>
-        <ul style="padding-left:20px; color:#374151; font-size:15px;">
-            <li style="margin-bottom:6px;">JPEG / JPG</li>
-            <li style="margin-bottom:6px;">PNG</li>
-            <li style="margin-bottom:6px;">WEBP</li>
-        </ul>
-    </div>
-</div>
-
-
+      <h3>How to Crop an Image</h3>
+      <ol>
+          <li>Upload any JPG, PNG, or WebP image by clicking "Select Image".</li>
+          <li>Drag the corners or edges of the crop box to select the desired area.</li>
+          <li>Click <strong>Crop Image</strong> to process the cut.</li>
+          <li>Download the cropped output instantly.</li>
+      </ol>
+    </article>
 
 
     <footer>
-      <p>&copy; 2025 LoveIMG Clone — Crop Image Tool</p>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
     </footer>
-  </div>
+  </main>
 
   <script>
     // Elements
@@ -272,17 +292,30 @@
       placeholder.style.display = 'block';
       selection.style.display = 'none';
       downloadWrap.style.display = 'none';
-      status.textContent = 'No file';
+      status.textContent = 'No file loaded';
       origMeta.textContent = '—';
       selMeta.textContent = '—';
       sel = {x:0,y:0,w:0,h:0};
     }
 
     // Upload handling
-    selectBtn.addEventListener('click', ()=> fileInput.click());
+    selectBtn.addEventListener('click', (e)=> { e.stopPropagation(); fileInput.click(); });
+    uploadBox.addEventListener('click', ()=> fileInput.click()); // Make uploadBox clickable
+    
+    // Accessibility: Keyboard Navigation for Upload
+    uploadBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fileInput.click();
+        }
+    });
+
     fileInput.addEventListener('change', e => handleFiles(e.target.files));
-    sampleBtn.addEventListener('click', ()=> {
-      // use picsum sample
+    
+    // Sample Button
+    sampleBtn.addEventListener('click', (e)=> {
+      e.preventDefault();
+      status.textContent = 'Loading sample...';
       fetch('https://picsum.photos/1200/800').then(r=>r.blob()).then(blob=>{
         const f = new File([blob],'sample.jpg',{type:blob.type});
         handleFiles([f]);
@@ -299,24 +332,26 @@
       if(!file.type.startsWith('image/')) { alert('Please select an image'); return; }
       currentFile = file;
       status.textContent = 'Loaded';
-      origMeta.textContent = `${humanSize(file.size)} • ${file.type}`;
       downloadWrap.style.display = 'none';
-      // load to image element
+      
       const reader = new FileReader();
       reader.onload = e => {
         previewImg.src = e.target.result;
         previewImg.style.display = 'block';
         placeholder.style.display = 'none';
+        
         // ensure image natural size is read
         const tmp = new Image();
         tmp.onload = () => {
           imgNatural.w = tmp.width; imgNatural.h = tmp.height;
-          origMeta.textContent = `${humanSize(file.size)} • ${imgNatural.w}×${imgNatural.h} • ${file.type}`;
+          origMeta.textContent = `${humanSize(file.size)} • ${imgNatural.w}×${imgNatural.h} • ${file.type.split('/')[1].toUpperCase()}`;
+          // Auto select full image on load for better UX
+          fitBtn.click();
         };
         tmp.src = e.target.result;
       };
       reader.readAsDataURL(file);
-      // clear previous selection
+      
       sel = {x:0,y:0,w:0,h:0}; updateSelectionUI();
     }
 
@@ -324,16 +359,34 @@
     function getDisplayedImageRect(){
       const wrapRect = previewWrap.getBoundingClientRect();
       if(!previewImg.naturalWidth) return null;
-      const containerW = wrapRect.width - 20; // account for padding in CSS (preview-wrap has 10px padding); coarse
-      const containerH = wrapRect.height - 20;
-      // Actually use computed client width/height of img element's displayed size
+      
+      // Use computed client width/height of img element's displayed size
       const imgRect = previewImg.getBoundingClientRect();
+      
       // Because previewImg has object-fit:contain, the actual displayed image (non-transparent) is centered inside previewWrap
-      // We'll compute its position relative to previewWrap's top-left
-      const left = imgRect.left - wrapRect.left;
-      const top = imgRect.top - wrapRect.top;
+      // We compute its position relative to previewWrap's content area (which starts after its padding)
+      // The CSS padding is 10px on preview-wrap
+      const padding = 10;
+      const left = imgRect.left - wrapRect.left - padding;
+      const top = imgRect.top - wrapRect.top - padding;
+      
+      // The image area within the padded preview-wrap
+      const imgArea = {
+          left: left, 
+          top: top, 
+          width: imgRect.width, 
+          height: imgRect.height
+      };
+      
+      // The image-relative coordinates need to be clamped from 0 to imgRect.width/height
+      // The selection UI is drawn relative to previewWrap's top-left, adjusted by padding
+      const selXOffset = imgRect.left - wrapRect.left;
+      const selYOffset = imgRect.top - wrapRect.top;
+
       return {
-        left, top, width: imgRect.width, height: imgRect.height, wrapRect
+        left: selXOffset, top: selYOffset, 
+        width: imgRect.width, height: imgRect.height, 
+        wrapRect
       };
     }
 
@@ -341,54 +394,67 @@
     function pointToImageCoords(clientX, clientY){
       const d = getDisplayedImageRect();
       if(!d) return null;
+      
+      // Calculate coordinates relative to the displayed image's top-left corner
       const x = clientX - (d.wrapRect.left + d.left);
       const y = clientY - (d.wrapRect.top + d.top);
-      // clamp
+      
+      // Clamp coordinates to stay within the displayed image boundaries
       const cx = Math.max(0, Math.min(d.width, x));
       const cy = Math.max(0, Math.min(d.height, y));
       return {x: cx, y: cy, d};
     }
 
-    // Update selection UI rectangle (in px relative to previewWrap)
+    // Update selection UI rectangle (in px relative to previewWrap's content area)
     function updateSelectionUI(){
-      if(sel.w <= 0 || sel.h <= 0){ selection.style.display = 'none'; selMeta.textContent = '—'; return; }
+      if(sel.w <= 0 || sel.h <= 0){ 
+        selection.style.display = 'none'; 
+        selMeta.textContent = '—'; 
+        return; 
+      }
+      
+      const d = getDisplayedImageRect();
+      if (!d) return;
+
+      // Selection box position is relative to previewWrap's top-left
       selection.style.display = 'block';
-      selection.style.left = (sel.x + getDisplayedImageRect().left) + 'px';
-      selection.style.top = (sel.y + getDisplayedImageRect().top) + 'px';
+      selection.style.left = (sel.x + d.left) + 'px';
+      selection.style.top = (sel.y + d.top) + 'px';
       selection.style.width = sel.w + 'px';
       selection.style.height = sel.h + 'px';
+      
       selMeta.textContent = `${Math.round(sel.w)}×${Math.round(sel.h)} (displayed)`;
     }
 
     // Pointer handling (works for mouse and touch)
     previewWrap.addEventListener('pointerdown', (e) => {
       if(!currentFile) return;
-      previewWrap.setPointerCapture(e.pointerId);
+      if (e.target.classList.contains('handle') && e.button !== 0) return; // Ignore right/middle click on handles
+
+      // Detect if click was on a handle
+      activeHandle = e.target.classList.contains('handle') ? e.target.classList[1] : null;
+
+      try { previewWrap.setPointerCapture(e.pointerId); } catch(err) {}
       isPointerDown = true;
       const p = pointToImageCoords(e.clientX, e.clientY);
       if(!p) return;
       pointerStart = {x: p.x, y: p.y};
       lastMouse = {x: p.x, y: p.y};
-      // detect if pointer is inside existing selection (for moving) or on handle (for resizing)
+
       const rect = sel;
-      const inside = rect.w > 0 && rect.h > 0 && p.x >= rect.x && p.x <= rect.x + rect.w && p.y >= rect.y && p.y <= rect.y + rect.h;
-      // handle detection (within 12px of corners)
-      const cornerSize = 12;
-      activeHandle = null;
-      if(inside){
-        // check corners: nw, ne, sw, se
-        const near = (cx,cy) => Math.hypot(p.x - cx, p.y - cy) <= cornerSize;
-        if(near(rect.x, rect.y)) activeHandle = 'nw';
-        else if(near(rect.x + rect.w, rect.y)) activeHandle = 'ne';
-        else if(near(rect.x, rect.y + rect.h)) activeHandle = 'sw';
-        else if(near(rect.x + rect.w, rect.y + rect.h)) activeHandle = 'se';
-      }
+      const inside = rect.w > 0 && rect.h > 0 && 
+                     p.x >= rect.x && p.x <= rect.x + rect.w && 
+                     p.y >= rect.y && p.y <= rect.y + rect.h;
+      
       if(activeHandle) {
         mode = 'resize';
+        // Prevent drawing/moving if we are actively resizing
       } else if (inside) {
         mode = 'move';
+        selection.style.cursor = 'grabbing';
       } else {
         mode = 'draw';
+        selection.style.cursor = 'crosshair';
         // start a new selection
         sel = {x: pointerStart.x, y: pointerStart.y, w: 0, h: 0};
         updateSelectionUI();
@@ -399,8 +465,10 @@
       if(!isPointerDown) return;
       const p = pointToImageCoords(e.clientX, e.clientY);
       if(!p) return;
-      const dx = p.x - pointerStart.x;
-      const dy = p.y - pointerStart.y;
+      
+      const d = getDisplayedImageRect();
+      if(!d) return;
+
       if(mode === 'draw'){
         // draw new selection from pointerStart to current
         const x = Math.min(pointerStart.x, p.x);
@@ -413,18 +481,22 @@
         // move selection by delta from lastMouse
         const mx = p.x - lastMouse.x;
         const my = p.y - lastMouse.y;
-        sel.x += mx; sel.y += my;
+        
+        let newX = sel.x + mx;
+        let newY = sel.y + my;
+        
         // clamp inside displayed image
-        const d = getDisplayedImageRect();
-        sel.x = Math.max(0, Math.min(d.width - sel.w, sel.x));
-        sel.y = Math.max(0, Math.min(d.height - sel.h, sel.y));
+        newX = Math.max(0, Math.min(d.width - sel.w, newX));
+        newY = Math.max(0, Math.min(d.height - sel.h, newY));
+        
+        sel.x = newX; sel.y = newY;
         updateSelectionUI();
-        lastMouse = {x: p.x, y: p.y};
+        lastMouse = {x: p.x, y: p.y}; // Update lastMouse to current clamped position
       } else if (mode === 'resize' && activeHandle){
         // resize from corner
-        const d = getDisplayedImageRect();
-        // compute new rect based on which handle
         let nx = sel.x, ny = sel.y, nw = sel.w, nh = sel.h;
+        
+        // Calculate potential new dimensions/position
         if(activeHandle === 'nw'){
           nx = Math.min(p.x, sel.x + sel.w - 1);
           ny = Math.min(p.y, sel.y + sel.h - 1);
@@ -442,11 +514,13 @@
           nw = Math.max(1, p.x - sel.x);
           nh = Math.max(1, p.y - sel.y);
         }
-        // clamp to image
-        nx = Math.max(0, Math.min(d.width - 1, nx));
-        ny = Math.max(0, Math.min(d.height - 1, ny));
+        
+        // Clamp to image boundaries (essential for preventing selection overflow)
+        nx = Math.max(0, nx);
+        ny = Math.max(0, ny);
         nw = Math.max(1, Math.min(d.width - nx, nw));
         nh = Math.max(1, Math.min(d.height - ny, nh));
+        
         sel = {x: nx, y: ny, w: nw, h: nh};
         updateSelectionUI();
       }
@@ -455,14 +529,15 @@
     // end pointer
     previewWrap.addEventListener('pointerup', (e) => {
       if(!isPointerDown) return;
-      try { previewWrap.releasePointerCapture(e.pointerId); } catch(e) {}
+      try { previewWrap.releasePointerCapture(e.pointerId); } catch(err) {}
       isPointerDown = false;
       mode = null;
       activeHandle = null;
+      selection.style.cursor = 'move';
     });
 
     // handle leaving pointer (safety)
-    previewWrap.addEventListener('pointercancel', ()=>{ isPointerDown=false; mode=null; activeHandle=null; });
+    previewWrap.addEventListener('pointercancel', ()=>{ isPointerDown=false; mode=null; activeHandle=null; selection.style.cursor = 'move'; });
 
     // Select full image
     fitBtn.addEventListener('click', ()=>{
@@ -476,41 +551,70 @@
     // Crop button
     cropBtn.addEventListener('click', async ()=>{
       if(!currentFile) { alert('No image loaded'); return; }
-      if(sel.w <= 0 || sel.h <= 0) { alert('Draw a selection first'); return; }
-      // map selection from displayed-image pixels to original image pixels
+      if(sel.w < 5 || sel.h < 5) { alert('Draw a valid selection (min 5x5 pixels)'); return; }
+      
+      cropBtn.disabled = true;
+      status.textContent = 'Cropping...';
+
+      // 1. Map selection from displayed-image pixels to original image pixels
       const d = getDisplayedImageRect();
-      if(!d) { alert('Image not ready'); return; }
+      if(!d) { alert('Image not ready'); cropBtn.disabled = false; return; }
+      
       const scaleX = previewImg.naturalWidth / d.width;
       const scaleY = previewImg.naturalHeight / d.height;
+      
       const sx = Math.round(sel.x * scaleX);
       const sy = Math.round(sel.y * scaleY);
       const sw = Math.round(sel.w * scaleX);
       const sh = Math.round(sel.h * scaleY);
-      // safety clamp
+      
+      // 2. Safety clamp (ensure dimensions are at least 1 and within original image bounds)
       const sx2 = Math.max(0, Math.min(previewImg.naturalWidth-1, sx));
       const sy2 = Math.max(0, Math.min(previewImg.naturalHeight-1, sy));
       const sw2 = Math.max(1, Math.min(previewImg.naturalWidth - sx2, sw));
       const sh2 = Math.max(1, Math.min(previewImg.naturalHeight - sy2, sh));
-      // draw on canvas
+
+      // 3. Draw on canvas
       const canvas = document.createElement('canvas');
       canvas.width = sw2; canvas.height = sh2;
       const ctx = canvas.getContext('2d');
-
-      // load a fresh Image object to avoid any taint issues (we used dataURL so it's safe)
+      
+      // Load a fresh Image object to avoid any issues
       const tmp = await loadImage(previewImg.src);
       ctx.drawImage(tmp, sx2, sy2, sw2, sh2, 0, 0, sw2, sh2);
 
-      const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.92));
+      // 4. Smart output format detection
+      let mimeType = 'image/jpeg';
+      let quality = 0.92;
+      let ext = 'jpg';
+
+      if (currentFile.type === 'image/png' || currentFile.type === 'image/webp') {
+          mimeType = currentFile.type;
+          quality = 1.0; 
+          ext = mimeType.split('/')[1];
+      }
+      if (ext === 'jpeg') ext = 'jpg';
+
+      const blob = await new Promise(res => canvas.toBlob(res, mimeType, quality));
       const url = URL.createObjectURL(blob);
+      
+      // 5. Update UI
       downloadLink.href = url;
-      downloadLink.download = 'cropped.jpg';
-      outInfo.textContent = `${sw2} × ${sh2} • ${humanSize(blob.size)}`;
+      downloadLink.download = 'cropped.' + ext;
+      outInfo.textContent = `${sw2} × ${sh2} • ${humanSize(blob.size)} • ${ext.toUpperCase()}`;
       downloadWrap.style.display = 'block';
-      // show result in preview
+      
+      // Show result in preview (optional but good for UX)
       previewImg.src = url;
-      // clear selection (optional)
+      
+      // Clear selection
       selection.style.display = 'none';
       selMeta.textContent = `${sw2}×${sh2} (result)`;
+      status.textContent = 'Cropping Complete!';
+      cropBtn.disabled = false;
+      
+      // Cleanup memory after a minute
+      setTimeout(()=>URL.revokeObjectURL(url),60000);
     });
 
     resetBtn.addEventListener('click', resetUI);
@@ -526,7 +630,13 @@
     }
 
     // When window resizes, selection position must be re-rendered
-    window.addEventListener('resize', () => { if(selection.style.display !== 'none') updateSelectionUI(); });
+    window.addEventListener('resize', () => { 
+        if(currentFile && previewImg.naturalWidth) {
+            updateSelectionUI(); 
+            // Also re-calculate selection to fit the *new* displayed dimensions if it was full-screen
+            // fitBtn.click(); // Too aggressive, just reposition
+        }
+    });
 
     // Initialize
     resetUI();

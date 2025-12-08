@@ -1,271 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mosaic Image Maker – Free Online Tool | TopImgTools</title>
-<meta name="description" content="Create mosaic images online instantly. Free and easy Mosaic Image Maker by TopImgTools. Combine photos into beautiful mosaic patterns." />
-<meta name="keywords" content="mosaic image, mosaic maker online, create mosaic, photo mosaic tool, TopImgTools" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/mosaic.html" />
-<meta property="og:title" content="Mosaic Image Maker – Free Online Tool" />
-<meta property="og:description" content="Create stunning mosaic images online. Free, fast, and easy Mosaic Image Maker tool by TopImgTools." />
-<meta property="og:image" content="https://topimgtools.com/assets/mosaic-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/mosaic.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Mosaic Image Maker – Free Online Tool" />
-<meta name="twitter:description" content="Create mosaic images online easily with TopImgTools. Free, fast, and simple tool." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/mosaic-banner.jpg" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mosaic Image Maker – Free Online Photo Collage Tool | TopImgTools</title>
+  <meta name="description" content="Create mosaic images online instantly. Free and easy Mosaic Image Maker by TopImgTools. Combine multiple photos into beautiful, high-quality mosaic patterns. Supports PNG output." />
+  <meta name="keywords" content="mosaic image, mosaic maker online, create mosaic, photo mosaic tool, image collage maker, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <meta name="theme-color" content="#3498db">
+  <link rel="canonical" href="https://topimgtools.com/mosaic.html" />
 
+  <meta property="og:title" content="Mosaic Image Maker – Free Online Tool" />
+  <meta property="og:description" content="Create stunning mosaic images online. Free, fast, and easy Mosaic Image Maker tool by TopImgTools." />
+  <meta property="og:image" content="https://topimgtools.com/assets/mosaic-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/mosaic.html" />
+  <meta property="og:type" content="website" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mosaic Image Maker – Free Online Tool" />
+  <meta name="twitter:description" content="Create mosaic images online easily with TopImgTools. Free, fast, and simple tool." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/mosaic-banner.jpg" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
 
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
-<style>
-:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280;--border:#e5e7eb;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#0f172a;line-height:1.5;}
-.wrap{max-width:900px;margin:36px auto;padding:18px;}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
-.logo{display:flex;gap:12px;align-items:center;}
-h1{font-size:20px;margin:0;}
-p.lead{color:var(--muted);margin-top:6px;}
-.card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,0.06);}
-.upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:all .2s;}
-.upload-box:hover{background:linear-gradient(90deg, rgba(52,152,219,0.04), rgba(0,0,0,0.01));}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:14px;}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:#111827;color:#fff;}
-.preview-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px;}
-.preview-item{background:#fafafa;padding:10px;border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-.preview-item img{width:100%;border-radius:8px;}
-.status{font-size:13px;color:var(--muted);margin-top:8px;text-align:center;}
-canvas{max-width:100%;border-radius:10px;}
-</style>
-</head>
-<body>
-<div class="wrap">
-<div class="header">
-  <div class="logo">
-    <i class="fa fa-image" style="font-size:28px;color:var(--accent)"></i>
-    <div>
-      <h1>Image Mosaic</h1>
-      <p class="lead">Create mosaic from multiple images easily</p>
-    </div>
-  </div>
-  <!-- Back button -->
-  <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
-</div>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-<div class="card">
-  <div class="upload-box" id="uploadBox">
-    <i class="fa fa-cloud-arrow-up" style="font-size:34px;color:var(--accent)"></i>
-    <h3>Drag & drop or select images</h3>
-    <p class="status">Max 20 images, each ≤ 5MB</p>
-    <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Files</button>
-    <input id="fileInput" type="file" accept="image/*" multiple style="display:none">
-  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
 
-  <div class="preview-grid" id="preview"></div>
-
-  <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-    <button id="generateBtn" class="btn btn-primary" style="flex:1; min-width:140px;"><i class="fa fa-th-large"></i> Generate Mosaic</button>
-    <button id="clearBtn" class="btn btn-secondary" style="flex:1; min-width:140px;"><i class="fa fa-trash"></i> Clear</button>
-  </div>
-
-  <div class="status" id="status"></div>
-</div>
-
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
-
-    <a href="https://topimgtools.com/web-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       WEBP → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/heice-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       HEIC → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/png-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PNG → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
-
-<div class="card">
-<section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333;">
-  <h1 style="font-size:28px; color:#222; margin-bottom:15px;">Mosaic – Create Mosaic Images Online</h1>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Easily <strong>create mosaic images</strong> with our free online tool. Transform your photos into stunning mosaics by combining multiple images or tiles. Perfect for creative projects, social media, collages, and personalized artworks.
-  </p>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use a Mosaic Tool?</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Create artistic mosaic effects from your images</li>
-    <li>Combine multiple photos into one mosaic design</li>
-    <li>Perfect for personal, marketing, or social media projects</li>
-    <li>No software installation required – works online</li>
-    <li>Fast and easy for both beginners and professionals</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Supports JPG, PNG, and WEBP formats</li>
-    <li>Create mosaics from single or multiple images</li>
-    <li>Customizable tile size and layout options</li>
-    <li>Free to use and instant download</li>
-    <li>Works on mobile and desktop devices</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">How to Create a Mosaic Online</h2>
-  <ol style="margin-left:20px; margin-bottom:15px;">
-    <li>Upload your images from your device</li>
-    <li>Adjust mosaic layout and tile size</li>
-    <li>Click “Generate Mosaic” to start the process</li>
-    <li>Download your mosaic image instantly</li>
-  </ol>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h2>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Photographers, designers, marketers, social media creators, and anyone who wants to turn ordinary images into artistic mosaics for creative or professional purposes.
-  </p>
-
-  <p style="font-size:14px; color:#555;">
-    <strong>SEO Keywords:</strong> mosaic, create mosaic online, photo mosaic, mosaic maker, image mosaic tool, free mosaic generator.
-  </p>
-</section>
-</div>
-
-</div>
-
-<script>
-const fileInput=document.getElementById('fileInput');
-const selectBtn=document.getElementById('selectBtn');
-const uploadBox=document.getElementById('uploadBox');
-const preview=document.getElementById('preview');
-const generateBtn=document.getElementById('generateBtn');
-const clearBtn=document.getElementById('clearBtn');
-const status=document.getElementById('status');
-
-let files=[];
-
-selectBtn.onclick=()=>fileInput.click();
-uploadBox.addEventListener('dragover',e=>{e.preventDefault();});
-uploadBox.addEventListener('drop',e=>{e.preventDefault();handleFiles(e.dataTransfer.files);});
-fileInput.onchange=e=>handleFiles(e.target.files);
-
-function handleFiles(selectedFiles){
-  files=Array.from(selectedFiles).slice(0,20);
-  preview.innerHTML=''; status.textContent='';
-  files.forEach(f=>{
-    const div=document.createElement('div'); div.className='preview-item';
-    const img=document.createElement('img'); img.src=URL.createObjectURL(f);
-    img.alt=f.name;
-    div.appendChild(img);
-    preview.appendChild(div);
-  });
-}
-
-generateBtn.onclick=async()=>{
-  if(!files.length) return alert('Select images first!');
-  status.textContent='Generating mosaic...';
-  const imgs=[];
-  for(let f of files){
-    imgs.push(await loadImage(f));
-  }
-  const tileSize=50;
-  const cols=Math.ceil(Math.sqrt(imgs.length));
-  const rows=Math.ceil(imgs.length/cols);
-  const canvas=document.createElement('canvas');
-  canvas.width=cols*tileSize;
-  canvas.height=rows*tileSize;
-  const ctx=canvas.getContext('2d');
-
-  let index=0;
-  for(let y=0;y<rows;y++){
-    for(let x=0;x<cols;x++){
-      if(index>=imgs.length) break;
-      ctx.drawImage(imgs[index],0,0,imgs[index].width,imgs[index].height,
-                    x*tileSize,y*tileSize,tileSize,tileSize);
-      index++;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Mosaic Maker",
+    "operatingSystem": "All",
+    "applicationCategory": "PhotoEditor",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free online tool to create mosaics or collages from multiple images, supporting high-quality PNG output.",
+    "author": {
+        "@type": "Organization",
+        "name": "TopImgTools",
+        "url": "https://topimgtools.com"
     }
   }
+  </script>
 
-  preview.innerHTML='';
-  const div=document.createElement('div'); div.className='preview-item';
-  div.appendChild(canvas);
+  <style>
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); color:#0f172a; line-height:1.6;
+    }
+    a:focus, button:focus, input:focus, .upload-box:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
 
-  const dlBtn=document.createElement('button'); dlBtn.className='btn btn-primary'; dlBtn.style.marginTop='6px';
-  dlBtn.innerHTML='<i class="fa fa-download"></i> Download Mosaic';
-  dlBtn.onclick=()=>downloadCanvas(canvas,'mosaic.jpg');
-  div.appendChild(dlBtn);
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    h1{font-size:1.5rem;margin:0;font-weight:700}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
 
-  preview.appendChild(div);
-  status.textContent='Mosaic generated!';
-};
+    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:20px}
 
-clearBtn.onclick=()=>{ files=[]; preview.innerHTML=''; status.textContent=''; fileInput.value=''; };
+    .upload-box{
+      border:2px dashed #cbd5e1;border-radius:10px;padding:32px;
+      display:flex;gap:16px;align-items:center;justify-content:center;flex-direction:column;
+      cursor:pointer;transition:all .2s ease;background-color:#f8fafc;
+    }
+    .upload-box:hover, .upload-box.dragover{background-color:#eff6ff;border-color:var(--accent)}
+    .upload-box h3{margin:0;font-size:1.25rem;color:#1e293b}
 
-function loadImage(file){
-  return new Promise((res,rej)=>{
-    const reader=new FileReader();
-    reader.onload=()=>{
-      const img=new Image();
-      img.onload=()=>res(img);
-      img.onerror=rej;
-      img.src=reader.result;
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:background 0.2s;text-decoration:none}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-dark)}
+    .btn-secondary{background:#1f2937;color:#fff}
+    .btn-secondary:hover{background:#111827}
+
+    .grid{display:grid;grid-template-columns:1fr 1.5fr;gap:24px;margin-top:24px}
+
+    /* Controls & Preview Area */
+    .controls-group{border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:20px}
+    .controls-group h4{margin-top:0;font-size:1rem;color:#1e293b}
+    
+    .preview-area{
+        display:flex;justify-content:center;align-items:center;
+        background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVQ4jWNgYGAQIYAJglEDxo0YQIgCxhG1AAAAAElFTSuQmCC') repeat; /* Checkered background for transparency */
+        border-radius:8px;overflow:hidden;min-height:200px;
+    }
+    canvas{max-width:100%;object-fit:contain;border-radius:6px;display:none; transition: all 0.3s;}
+    
+    /* Image List */
+    .preview-grid{
+        display:grid;grid-template-columns:repeat(auto-fill, minmax(80px, 1fr));
+        gap:10px;padding:10px; max-height: 400px; overflow-y: auto;
+        border: 1px solid var(--border); border-radius: 8px;
+    }
+    .preview-item{background:#fff;border-radius:6px;overflow:hidden; position: relative;}
+    .preview-item img{width:100%;height:100%;object-fit:cover;display:block;}
+    .remove-btn{
+        position: absolute; top: 2px; right: 2px; background: rgba(255, 0, 0, 0.7); 
+        color: white; border: none; border-radius: 4px; width: 18px; height: 18px; 
+        font-size: 10px; cursor: pointer; line-height: 10px; padding: 0;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+        margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+        display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .nav-btn {
+        padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+        color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb; transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; }
+    
+    .seo-content { color: #334155; }
+    .seo-content h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
+    .sr-only {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);white-space: nowrap;border-width: 0;}
+
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="header">
+      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+        <i class="fa fa-th-large" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
+        <div>
+          <h1>Image Mosaic</h1>
+          <p class="lead">Create a mosaic or collage from multiple images</p>
+        </div>
+      </a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </header>
+
+    <section class="card" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" class="sr-only">Image Mosaic Generator Tool</h2>
+      
+      <div class="upload-box" id="uploadBox" tabindex="0" role="button" aria-label="Upload area. Drag and drop up to 20 images here or press enter to select.">
+        <div style="text-align:center">
+          <i class="fa fa-cloud-arrow-up" aria-hidden="true" style="font-size:40px;color:var(--accent);margin-bottom:10px;display:block"></i>
+          <h3>Drag & drop or select images</h3>
+          <p class="muted" style="margin-top:5px;font-size:0.9rem">Max 20 images — JPG, PNG, WebP</p>
+        </div>
+        <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Files</button>
+        <input id="fileInput" type="file" accept="image/*" multiple class="sr-only">
+      </div>
+
+      <div class="grid">
+        <div>
+          <div class="controls-group">
+            <h4>Mosaic Settings</h4>
+            <div style="margin-bottom:15px;">
+                <label for="tileSize" style="font-weight:600; display:block; margin-bottom:5px;">Tile Size (px): <span id="tileSizeVal">50</span></label>
+                <input type="range" id="tileSize" min="20" max="100" value="50" step="5" aria-label="Mosaic tile size slider" style="width:100%;">
+            </div>
+            
+            <button id="generateBtn" class="btn btn-primary" style="width:100%;"><i class="fa fa-th-large" aria-hidden="true"></i> Generate Mosaic</button>
+          </div>
+          
+          <div class="controls-group" id="downloadArea" style="display:none;">
+            <h4>Generated Result</h4>
+            <div class="preview-area">
+                <canvas id="canvas" role="img" aria-label="Generated image mosaic"></canvas>
+            </div>
+            <button id="downloadBtn" class="btn btn-primary" style="width:100%; margin-top:15px;"><i class="fa fa-download" aria-hidden="true"></i> Download PNG</button>
+            <button id="clearBtn" class="btn btn-secondary" style="width:100%; margin-top:8px; background:#e0e0e0; color:#333;"><i class="fa fa-trash" aria-hidden="true"></i> Clear All</button>
+          </div>
+
+          <p id="status" style="margin-top:10px;text-align:center;color:var(--muted)">Waiting for images...</p>
+        </div>
+
+        <div>
+            <h4 style="margin-top:0;">Selected Images (<span id="fileCount">0</span>/20)</h4>
+            <div class="preview-grid" id="preview">
+              <div id="listPlaceholder" style="grid-column: 1 / -1; text-align: center; padding: 30px; color: var(--muted);">
+                Images will be listed here.
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="nav-links" aria-label="Related Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/heice-to-jpg.html" class="nav-btn">HEIC → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
+
+    <article class="card seo-content">
+      <h2>Mosaic – Create Mosaic Images Online</h2>
+      <p>
+          Easily **create mosaic images** with our free online tool. Transform your photos into stunning mosaics by combining multiple images or tiles. Perfect for creative projects, social media, collages, and personalized artworks.
+      </p>
+
+      <h3>Why Use a Mosaic Tool?</h3>
+      <ul>
+          <li>Create artistic mosaic effects from your images.</li>
+          <li>Combine multiple photos into one mosaic design.</li>
+          <li>Perfect for personal, marketing, or social media projects.</li>
+          <li>No software installation required – works online.</li>
+          <li>Fast and easy for both beginners and professionals.</li>
+      </ul>
+      
+      <h3>Features</h3>
+      <ul>
+          <li>Supports JPG, PNG, and WEBP formats.</li>
+          <li>Create mosaics from single or multiple images.</li>
+          <li>Customizable tile size and layout options.</li>
+          <li>Free to use and instant download.</li>
+          <li>Works on mobile and desktop devices.</li>
+      </ul>
+
+      <h3>How to Create a Mosaic Online</h3>
+      <ol>
+          <li>Upload your images from your device.</li>
+          <li>Adjust mosaic layout and tile size.</li>
+          <li>Click “Generate Mosaic” to start the process.</li>
+          <li>Download your mosaic image instantly.</li>
+      </ol>
+      
+      <h3>Who Needs This Tool?</h3>
+      <p>
+          Photographers, designers, marketers, social media creators, and anyone who wants to turn ordinary images into artistic mosaics for creative or professional purposes.
+      </p>
+    </article>
+
+    <footer>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const selectBtn = document.getElementById('selectBtn');
+    const uploadBox = document.getElementById('uploadBox');
+    const preview = document.getElementById('preview');
+    const listPlaceholder = document.getElementById('listPlaceholder');
+    const generateBtn = document.getElementById('generateBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadArea = document.getElementById('downloadArea');
+    const status = document.getElementById('status');
+    const canvas = document.getElementById('canvas');
+    const tileSizeRange = document.getElementById('tileSize');
+    const tileSizeVal = document.getElementById('tileSizeVal');
+    const fileCount = document.getElementById('fileCount');
+
+    let files = [];
+    const maxFiles = 20;
+
+    // Utility: Loads Image object from File
+    function loadImage(file) {
+      return new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => res(img);
+          img.onerror = rej;
+          img.src = reader.result;
+        };
+        reader.onerror = rej;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Helper: Renders the list of files in the preview grid
+    function renderFileList() {
+      preview.innerHTML = '';
+      if (files.length === 0) {
+        listPlaceholder.style.display = 'block';
+        fileCount.textContent = '0';
+        downloadArea.style.display = 'none';
+        return;
+      }
+      listPlaceholder.style.display = 'none';
+      fileCount.textContent = files.length;
+      
+      files.forEach((f, index) => {
+        const div = document.createElement('div');
+        div.className = 'preview-item';
+        div.style.aspectRatio = '1 / 1'; // Ensure square tiles in the list
+        
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(f.file);
+        img.alt = f.file.name;
+        img.title = f.file.name;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-btn';
+        removeBtn.innerHTML = '&times;';
+        removeBtn.setAttribute('aria-label', `Remove ${f.file.name}`);
+        removeBtn.onclick = (e) => {
+            e.stopPropagation();
+            removeFile(index);
+        };
+        
+        div.appendChild(img);
+        div.appendChild(removeBtn);
+        preview.appendChild(div);
+      });
+      // Revoke old URLs after DOM is updated and images loaded
+      files.forEach(f => {
+          if(f.url) URL.revokeObjectURL(f.url);
+          f.url = Array.from(preview.querySelectorAll('img'))[files.indexOf(f)].src; // Keep track of the last created URL
+      });
+    }
+
+    // Input Handling
+    function handleFiles(selectedFiles) {
+      const newFiles = Array.from(selectedFiles).filter(f => f.type.startsWith('image/'));
+      let addedCount = 0;
+
+      newFiles.forEach(file => {
+        if (files.length < maxFiles) {
+          files.push({ file: file });
+          addedCount++;
+        }
+      });
+
+      if (addedCount > 0) {
+        renderFileList();
+        status.textContent = `${addedCount} image(s) added. Total: ${files.length}.`;
+      }
+      if (files.length >= maxFiles) {
+        status.textContent = `Maximum ${maxFiles} images selected.`;
+      }
+      // Reset input value to allow selecting the same files again
+      fileInput.value = ''; 
+    }
+    
+    // Remove individual file
+    function removeFile(index) {
+        if (files[index].url) URL.revokeObjectURL(files[index].url);
+        files.splice(index, 1);
+        renderFileList();
+        status.textContent = `Image removed. Total: ${files.length}.`;
+        // Clear canvas if file count drops below 2
+        if (files.length < 2) {
+            clearAll();
+        }
+    }
+
+    // Event Listeners for Input/Drag-Drop
+    selectBtn.onclick = (e) => { e.stopPropagation(); fileInput.click(); };
+    uploadBox.onclick = () => fileInput.click();
+    fileInput.onchange = e => handleFiles(e.target.files);
+
+    // Accessibility: Keyboard Navigation for Upload
+    uploadBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fileInput.click();
+        }
+    });
+    
+    // Drag and Drop
+    ['dragenter','dragover'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.add('dragover'); }));
+    ['dragleave','drop'].forEach(evt => uploadBox.addEventListener(evt, e => { e.preventDefault(); uploadBox.classList.remove('dragover'); }));
+    uploadBox.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+
+    // Tile Size Slider Update
+    tileSizeRange.oninput = () => {
+        tileSizeVal.textContent = tileSizeRange.value;
     };
-    reader.onerror=rej;
-    reader.readAsDataURL(file);
-  });
-}
 
-function downloadCanvas(canvas,filename){
-  canvas.toBlob(blob=>{
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download=filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  },'image/jpeg',0.95);
-}
-</script>
+
+    // Core Mosaic Generation
+    generateBtn.onclick = async () => {
+      if (files.length < 2) return alert('Please select at least 2 images to create a mosaic!');
+      
+      status.textContent = 'Generating mosaic... this may take a moment.';
+      
+      const imgs = [];
+      for (let i = 0; i < files.length; i++) {
+          try {
+              const img = await loadImage(files[i].file);
+              imgs.push(img);
+          } catch (e) {
+              console.error('Error loading image:', files[i].file.name, e);
+              status.textContent = `Error loading image: ${files[i].file.name}. Generation failed.`;
+              return;
+          }
+      }
+
+      const tileSize = parseInt(tileSizeRange.value);
+      const cols = Math.ceil(Math.sqrt(imgs.length));
+      const rows = Math.ceil(imgs.length / cols);
+      
+      // Set canvas dimensions
+      canvas.width = cols * tileSize;
+      canvas.height = rows * tileSize;
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas (important for PNG transparency)
+      ctx.clearRect(0, 0, canvas.width, canvas.height); 
+
+      let index = 0;
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (index >= imgs.length) break;
+          const img = imgs[index];
+          // Draw image to fit the tile, stretching/cropping to fill the tile size.
+          ctx.drawImage(img, 0, 0, img.width, img.height,
+                        x * tileSize, y * tileSize, tileSize, tileSize);
+          index++;
+        }
+      }
+
+      // Update UI
+      canvas.style.display = 'block';
+      downloadArea.style.display = 'block';
+      status.textContent = `Mosaic generated! Size: ${canvas.width}x${canvas.height}px.`;
+    };
+
+    // Clear All (Reset)
+    function clearAll() {
+        // Revoke all created object URLs
+        for (const f of files) {
+            if (f.url) URL.revokeObjectURL(f.url);
+        }
+        files = [];
+        renderFileList();
+        
+        canvas.style.display = 'none';
+        downloadArea.style.display = 'none';
+        status.textContent = 'Waiting for images...';
+        fileInput.value = '';
+    };
+    clearBtn.onclick = clearAll;
+
+
+    // Download Button
+    downloadBtn.onclick = () => {
+      if (!files.length || canvas.style.display === 'none') return alert('Please generate the mosaic first.');
+      
+      // Force PNG output for best quality and sharp edges
+      canvas.toBlob((blob) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'mosaic-topimgtools.png'; // Updated filename
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+        status.textContent = 'Downloaded mosaic-topimgtools.png';
+      }, 'image/png'); // Using image/png
+    };
+    
+    // Initial State Setup
+    renderFileList(); 
+
+  </script>
 </body>
 </html>

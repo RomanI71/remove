@@ -3,93 +3,169 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Image to Text Converter – Free Online OCR Tool | TopImgTools</title>
-<meta name="description" content="Extract text from images online instantly. Free Image to Text (OCR) converter tool by TopImgTools. Supports JPG, PNG, and PDF images." />
-<meta name="keywords" content="image to text, OCR online, extract text from image, online OCR tool, TopImgTools" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/image-to-text.html" />
-<meta property="og:title" content="Image to Text Converter – Free Online OCR Tool" />
-<meta property="og:description" content="Extract text from images online instantly. Free OCR tool by TopImgTools. Fast and easy to use." />
-<meta property="og:image" content="https://topimgtools.com/assets/image-to-text-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/image-to-text.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Image to Text Converter – Free Online OCR Tool" />
-<meta name="twitter:description" content="Convert images to text online instantly with TopImgTools. Free, fast, and easy OCR tool." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/image-to-text-banner.jpg" />
+  <title>Image to Text Converter – Free Online OCR Tool | TopImgTools</title>
+  <meta name="description" content="Extract text from images (JPG, PNG, PDF) online instantly. Free Image to Text (OCR) converter with multi-language support. Fast, accurate, and secure." />
+  <meta name="keywords" content="image to text, OCR online, extract text from image, online OCR tool, jpg to text, png to text, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <meta name="theme-color" content="#3498db">
+  <link rel="canonical" href="https://topimgtools.com/image-to-text.html" />
 
+  <meta property="og:title" content="Image to Text Converter – Free Online OCR Tool" />
+  <meta property="og:description" content="Extract text from images online instantly. Supports 100+ languages. Free, fast, and secure tool." />
+  <meta property="og:image" content="https://topimgtools.com/assets/image-to-text-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/image-to-text.html" />
+  <meta property="og:type" content="website" />
 
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Image to Text Converter – Free Online OCR Tool" />
+  <meta name="twitter:description" content="Convert images to text online instantly. Free OCR tool for documents and photos." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/image-to-text-banner.jpg" />
 
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
 
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js" defer></script>
 
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image to Text OCR Converter",
+    "operatingSystem": "All",
+    "applicationCategory": "ProductivityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free online OCR tool to extract text from images and scanned documents instantly.",
+    "author": {
+        "@type": "Organization",
+        "name": "TopImgTools",
+        "url": "https://topimgtools.com"
+    }
+  }
+  </script>
+
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280}
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#0f172a}
-    .wrap{max-width:980px;margin:36px auto;padding:20px}
-    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .logo{display:flex;gap:12px;align-items:center}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 0}
-    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); margin:0; color:#0f172a; line-height:1.6;
+    }
+    a:focus, button:focus, select:focus, textarea:focus, .upload-box:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
+    
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    h1{font-size:1.5rem;margin:0;font-weight:700}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
+    
+    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px;}
+    
+    .upload-box{
+      border:2px dashed #cbd5e1;border-radius:10px;padding:32px;
+      display:flex;gap:16px;align-items:center;justify-content:center;flex-direction:column;
+      cursor:pointer;transition:all .2s ease;background-color:#f8fafc;
+    }
+    .upload-box:hover, .upload-box.dragover{background-color:#eff6ff;border-color:var(--accent)}
+    .upload-box h3{margin:0;font-size:1.25rem;color:#1e293b}
+    
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:background 0.2s;text-decoration:none}
     .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:#111827;color:#fff}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    textarea{width:100%;min-height:240px;padding:12px;border-radius:8px;border:1px solid #e6edf3;resize:vertical;font-family:inherit}
-    .progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden}
-    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f39c12)}
-    footer{text-align:center;margin-top:20px;color:var(--muted);font-size:13px}
-    select{padding:8px;border-radius:8px;border:1px solid #e6edf3;width:100%}
+    .btn-primary:hover{background:var(--accent-dark)}
+    .btn-secondary{background:#1f2937;color:#fff}
+    .btn-secondary:hover{background:#111827}
+    
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:24px}
+    
+    textarea{
+      width:100%;min-height:300px;padding:12px;border-radius:8px;border:1px solid var(--border);
+      resize:vertical;font-family:inherit;font-size:1rem;line-height:1.5;
+    }
+    
+    .progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden;margin-top:10px;margin-bottom:10px}
+    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#2ecc71);transition:width 0.3s ease}
+    
+    select, input[type="text"] {padding:10px;border-radius:8px;border:1px solid var(--border);width:100%;font-size:1rem;background:#fff}
+    
+    /* Navigation Links */
+    .nav-links {
+        margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+        display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .nav-btn {
+        padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+        color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb; transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; }
+    
+    .seo-content { font-family: inherit; color: #334155; }
+    .seo-content h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+
+    footer{text-align:center;margin-top:30px;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
+    .sr-only {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);white-space: nowrap;border-width: 0;}
+
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="header">
-      <div class="logo">
-        <i class="fa fa-globe" style="font-size:28px;color:var(--accent)"></i>
+  <main class="wrap">
+    <header class="header">
+      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+        <i class="fa fa-globe" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
         <div>
-          <h1>Image to Text (All Languages OCR)</h1>
-          <p class="lead">Extract text and download as TXT, DOCX, or PDF</p>
+          <h1>Image to Text (OCR)</h1>
+          <p class="lead">Extract text from images using AI</p>
         </div>
-      </div>
-      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
-    </div>
+      </a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </header>
 
-    <div class="card">
-      <div class="upload-box" id="uploadBox">
+    <section class="card" aria-labelledby="upload-heading">
+      <h2 id="upload-heading" class="sr-only">Upload Image</h2>
+      
+      <div class="upload-box" id="uploadBox" tabindex="0" role="button" aria-label="Upload image area. Drag and drop file or press enter to select.">
         <div style="text-align:center">
-          <i class="fa fa-image" style="font-size:36px;color:var(--accent)"></i>
+          <i class="fa fa-image" aria-hidden="true" style="font-size:48px;color:var(--accent);margin-bottom:10px;display:block"></i>
           <h3>Drag & drop or select an image</h3>
           <p class="muted">Supported: JPG, PNG, WebP — Max 25MB</p>
         </div>
-        <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select Image</button>
-        <input id="fileInput" type="file" accept="image/*" style="display:none">
+        <button id="selectBtn" class="btn btn-primary" tabindex="-1">
+            <i class="fa fa-folder-open" aria-hidden="true"></i> Select Image
+        </button>
+        <input id="fileInput" type="file" accept="image/*" class="sr-only">
       </div>
 
       <div class="grid">
         <div>
           <div class="card">
-            <div style="text-align:center">
-              <img id="previewImg" src="" style="max-width:100%;max-height:360px;display:none;border-radius:8px;background:#f3f4f6;padding:8px">
-              <div id="placeholder" style="color:#6b7280">Preview will appear here</div>
+            <div style="text-align:center; min-height:200px; display:flex; align-items:center; justify-content:center; background:#f8fafc; border-radius:8px;">
+              <img id="previewImg" src="" alt="Image Preview" style="max-width:100%;max-height:360px;display:none;border-radius:8px;">
+              <div id="placeholder" style="color:#6b7280">Image preview will appear here</div>
             </div>
           </div>
 
           <div class="card">
-            <label><b>Select OCR Language:</b></label>
+            <label for="langSelect" style="display:block; margin-bottom:8px; font-weight:600;">Select OCR Language:</label>
             <select id="langSelect">
               <option value="eng" selected>English</option>
               <option value="ben">Bengali (বাংলা)</option>
@@ -140,215 +216,271 @@
               <option value="other">Other (Manual Code)</option>
             </select>
 
-            <input id="customLang" type="text" placeholder="Enter language code manually (e.g. amh)" style="display:none;margin-top:10px;padding:8px;border-radius:8px;border:1px solid #e6edf3;width:100%">
-            <button id="ocrBtn" class="btn btn-primary" style="margin-top:10px"><i class="fa fa-file-alt"></i> Extract Text</button>
-            <button id="clearBtn" class="btn" style="margin-top:8px">Reset</button>
+            <label for="customLang" class="sr-only">Custom Language Code</label>
+            <input id="customLang" type="text" placeholder="Enter language code (e.g. amh)" style="display:none;margin-top:10px;">
+            
+            <div style="display:flex; gap:10px; margin-top:15px;">
+                <button id="ocrBtn" class="btn btn-primary" style="flex:1;"><i class="fa fa-file-alt" aria-hidden="true"></i> Extract Text</button>
+                <button id="clearBtn" class="btn btn-secondary"><i class="fa fa-rotate-right" aria-hidden="true"></i> Reset</button>
+            </div>
           </div>
         </div>
 
-        <aside class="card">
-          <strong>OCR Result</strong>
-          <div class="progress"><i id="bar"></i></div>
+        <aside class="card" aria-labelledby="result-heading">
+          <strong id="result-heading" style="font-size:1.1rem;">OCR Result</strong>
+          <div class="progress" role="progressbar" aria-label="Processing progress"><i id="bar"></i></div>
+          <label for="outText" class="sr-only">Extracted Text</label>
           <textarea id="outText" placeholder="Extracted text will appear here..." readonly></textarea>
-          <button id="copyBtn" class="btn btn-secondary" style="margin-top:10px;width:100%"><i class="fa fa-copy"></i> Copy Text</button>
+          
+          <button id="copyBtn" class="btn btn-secondary" style="margin-top:15px;width:100%"><i class="fa fa-copy" aria-hidden="true"></i> Copy to Clipboard</button>
 
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:15px">
-            <label for="fileType" style="font-weight:600;">Download as:</label>
-            <select id="fileType">
-              <option value="txt">.txt</option>
-              <option value="docx">.docx (Word)</option>
-              <option value="pdf">.pdf</option>
-            </select>
-            <button id="downloadBtn" class="btn btn-primary"><i class="fa fa-download"></i> Download</button>
+          <div style="margin-top:20px; border-top:1px solid #eee; padding-top:20px;">
+            <label for="fileType" style="font-weight:600; display:block; margin-bottom:8px;">Download format:</label>
+            <div style="display:flex;gap:10px;">
+                <select id="fileType" style="flex:1;">
+                <option value="txt">Text File (.txt)</option>
+                <option value="docx">Word Document (.docx)</option>
+                <option value="pdf">PDF Document (.pdf)</option>
+                </select>
+                <button id="downloadBtn" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Save</button>
+            </div>
           </div>
         </aside>
       </div>
-    </div>
+    </section>
 
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
+    <nav class="nav-links" aria-label="Related Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/heice-to-jpg.html" class="nav-btn">HEIC → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
+    <article class="card seo-content">
+      <section>
+        <h2>Image to Text – Extract Text from Images Online</h2>
+        <p>
+            Easily <strong>convert images to text</strong> with TopImgTools. Our free online OCR tool uses advanced AI to extract text from JPG, PNG, or scanned documents quickly and accurately. Perfect for students, researchers, and professionals who need to digitize printed text without manual typing.
+        </p>
 
-    <a href="https://topimgtools.com/web-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       WEBP → JPG
-    </a>
+        <h3>Why Use Our Image to Text Converter?</h3>
+        <ul>
+            <li><strong>Accuracy:</strong> Powered by Tesseract OCR engine for high precision.</li>
+            <li><strong>Multi-language:</strong> Supports over 100 languages including English, Spanish, Hindi, Bengali, Arabic, and more.</li>
+            <li><strong>Privacy Focused:</strong> Processing happens securely in your browser or via secure connection.</li>
+            <li><strong>Versatile Output:</strong> Download your text as a .txt file, Microsoft Word (.docx), or PDF.</li>
+        </ul>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
+        <h3>How to Convert Image to Text?</h3>
+        <ol>
+            <li>Upload your image (JPG, PNG, GIF, BMP) by clicking "Select Image".</li>
+            <li>Select the language of the text in the image.</li>
+            <li>Click <strong>Extract Text</strong> and wait for the AI to process.</li>
+            <li>Copy the result or download it in your preferred format.</li>
+        </ol>
+      </section>
+    </article>
 
-    <a href="https://topimgtools.com/heice-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       HEIC → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
-
-    <a href="https://topimgtools.com/png-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PNG → JPG
-    </a>
-
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
-
-<div class="card">
-<section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333;">
-  <h1 style="font-size:28px; color:#222; margin-bottom:15px;">Image to Text – Extract Text from Images Online</h1>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Easily <strong>convert images to text</strong> with our free online tool. Extract text from JPG, PNG, or scanned documents quickly and accurately. Perfect for copying content from photos, receipts, screenshots, or scanned files without typing manually.
-  </p>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use an Image to Text Converter?</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Extract text from scanned documents and photos</li>
-    <li>Save time by avoiding manual typing</li>
-    <li>Supports multiple languages for OCR extraction</li>
-    <li>No software installation required – works online</li>
-    <li>Accurate results with high-quality images</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Supports JPG, PNG, WEBP, and other image formats</li>
-    <li>Quick and easy text extraction</li>
-    <li>Free to use with instant results</li>
-    <li>Works on mobile and desktop devices</li>
-    <li>Copy or download extracted text</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">How to Convert Image to Text Online</h2>
-  <ol style="margin-left:20px; margin-bottom:15px;">
-    <li>Upload your image from your device</li>
-    <li>Click “Extract Text” to start</li>
-    <li>Preview the extracted text</li>
-    <li>Copy or download the text instantly</li>
-  </ol>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h2>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Students, professionals, writers, bloggers, and anyone who wants to quickly convert images into editable text for convenience, documentation, or sharing.
-  </p>
-
-  <!-- <p style="font-size:14px; color:#555;">
-    <strong>SEO Keywords:</strong> image to text, convert image to text, extract text from image, OCR online, image text extractor, free image to text converter.
-  </p> -->
-</section>
-</div>
-
-
-
-    <footer>&copy; 2025 iLoveIMG Clone — All Language OCR</footer>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
+    <footer>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</footer>
+  </main>
 
   <script>
-    const fileInput=document.getElementById('fileInput');
-    const selectBtn=document.getElementById('selectBtn');
-    const previewImg=document.getElementById('previewImg');
-    const placeholder=document.getElementById('placeholder');
-    const langSelect=document.getElementById('langSelect');
-    const customLang=document.getElementById('customLang');
-    const ocrBtn=document.getElementById('ocrBtn');
-    const bar=document.getElementById('bar');
-    const outText=document.getElementById('outText');
-    const clearBtn=document.getElementById('clearBtn');
-    const copyBtn=document.getElementById('copyBtn');
-    const fileType=document.getElementById('fileType');
-    const downloadBtn=document.getElementById('downloadBtn');
-    let currentFile=null;
+    document.addEventListener('DOMContentLoaded', () => {
+        const fileInput = document.getElementById('fileInput');
+        const selectBtn = document.getElementById('selectBtn');
+        const uploadBox = document.getElementById('uploadBox');
+        const previewImg = document.getElementById('previewImg');
+        const placeholder = document.getElementById('placeholder');
+        const langSelect = document.getElementById('langSelect');
+        const customLang = document.getElementById('customLang');
+        const ocrBtn = document.getElementById('ocrBtn');
+        const bar = document.getElementById('bar');
+        const outText = document.getElementById('outText');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const fileType = document.getElementById('fileType');
+        const downloadBtn = document.getElementById('downloadBtn');
+        let currentFile = null;
 
-    langSelect.addEventListener('change',()=>{customLang.style.display=(langSelect.value==='other')?'block':'none';});
-    selectBtn.onclick=()=>fileInput.click();
-    fileInput.onchange=e=>handleFiles(e.target.files);
+        // Custom Language Toggle
+        langSelect.addEventListener('change', () => {
+            customLang.style.display = (langSelect.value === 'other') ? 'block' : 'none';
+        });
 
-    function handleFiles(files){
-      const file=files[0];
-      if(!file||!file.type.startsWith('image/'))return alert('Please select an image.');
-      currentFile=file;
-      const r=new FileReader();
-      r.onload=e=>{
-        previewImg.src=e.target.result;
-        previewImg.style.display='block';
-        placeholder.style.display='none';
-      };
-      r.readAsDataURL(file);
-    }
+        // Accessibility: Keyboard Navigation for Upload
+        uploadBox.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                fileInput.click();
+            }
+        });
 
-    ocrBtn.onclick=async()=>{
-      if(!currentFile)return alert('No image selected.');
-      let lang=langSelect.value;
-      if(lang==='other')lang=customLang.value.trim()||'eng';
-      bar.style.width='5%';outText.value='Processing...';
-      const worker=await Tesseract.createWorker({
-        langPath:'https://tessdata.projectnaptha.com/4.0.0_best',
-        logger:m=>{if(m.progress)bar.style.width=Math.min(100,Math.round(m.progress*100))+'%';}
-      });
-      await worker.load();await worker.loadLanguage(lang);await worker.initialize(lang);
-      const dataURL=await fileToDataURL(currentFile);
-      const {data}=await worker.recognize(dataURL);
-      outText.value=data.text.trim()||'(No text detected)';
-      bar.style.width='100%';
-      await worker.terminate();
-    };
+        // Upload Box Interaction
+        selectBtn.onclick = (e) => { e.stopPropagation(); fileInput.click(); };
+        uploadBox.onclick = () => fileInput.click();
+        
+        uploadBox.addEventListener('dragover', e => {
+            e.preventDefault();
+            uploadBox.classList.add('dragover');
+        });
+        
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.classList.remove('dragover');
+        });
 
-    clearBtn.onclick=()=>{previewImg.style.display='none';placeholder.style.display='block';outText.value='';bar.style.width='0%';};
-    copyBtn.onclick=async()=>{if(!outText.value)return;await navigator.clipboard.writeText(outText.value);alert('Copied!');};
+        uploadBox.addEventListener('drop', e => {
+            e.preventDefault();
+            uploadBox.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
 
-    downloadBtn.onclick=()=>{
-      if(!outText.value)return alert('No text to download.');
-      const type=fileType.value;
-      if(type==='txt'){
-        const blob=new Blob([outText.value],{type:'text/plain'});
-        downloadBlob(blob,'ocr_output.txt');
-      }else if(type==='pdf'){
-        const docDef={content:[{text:outText.value,fontSize:12}]};
-        pdfMake.createPdf(docDef).download('ocr_output.pdf');
-      }else if(type==='docx'){
-        const header=`<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:r><w:t>`;
-        const footer=`</w:t></w:r></w:p></w:body></w:document>`;
-        const content=outText.value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-        const xml=header+content+footer;
-        const blob=new Blob([xml],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
-        downloadBlob(blob,'ocr_output.docx');
-      }
-    };
+        fileInput.onchange = e => handleFiles(e.target.files);
 
-    function downloadBlob(blob,filename){
-      const a=document.createElement('a');
-      a.href=URL.createObjectURL(blob);
-      a.download=filename;
-      a.click();
-      setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-    }
+        function handleFiles(files) {
+            const file = files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) return alert('Please select a valid image file (JPG, PNG, WEBP).');
+            if (file.size > 25 * 1024 * 1024) return alert('File size exceeds 25MB limit.');
 
-    function fileToDataURL(file){
-      return new Promise((res,rej)=>{
-        const r=new FileReader();
-        r.onload=e=>res(e.target.result);
-        r.onerror=rej;
-        r.readAsDataURL(file);
-      });
-    }
+            currentFile = file;
+            const r = new FileReader();
+            r.onload = e => {
+                previewImg.src = e.target.result;
+                previewImg.style.display = 'block';
+                placeholder.style.display = 'none';
+            };
+            r.readAsDataURL(file);
+            outText.value = ''; // Clear previous result
+            bar.style.width = '0%';
+        }
+
+        ocrBtn.onclick = async () => {
+            if (!currentFile) return alert('Please select an image first.');
+            
+            // Check if Tesseract is loaded (since we deferred it)
+            if (typeof Tesseract === 'undefined') {
+                alert('OCR Library is still loading. Please wait a moment and try again.');
+                return;
+            }
+
+            let lang = langSelect.value;
+            if (lang === 'other') lang = customLang.value.trim() || 'eng';
+
+            ocrBtn.disabled = true;
+            outText.value = 'Initializing OCR engine...';
+            bar.style.width = '10%';
+
+            try {
+                const worker = await Tesseract.createWorker({
+                    logger: m => {
+                        if (m.status === 'recognizing text') {
+                            bar.style.width = Math.min(100, Math.round(m.progress * 100)) + '%';
+                            outText.value = `Processing: ${Math.round(m.progress * 100)}%`;
+                        }
+                    }
+                });
+
+                await worker.loadLanguage(lang);
+                await worker.initialize(lang);
+                
+                const dataURL = await fileToDataURL(currentFile);
+                const { data } = await worker.recognize(dataURL);
+                
+                outText.value = data.text.trim() || '(No text detected. Try a clearer image.)';
+                bar.style.width = '100%';
+                
+                await worker.terminate();
+            } catch (err) {
+                console.error(err);
+                alert('Error processing image. Please try again or check your internet connection.');
+                outText.value = 'Error occurred during processing.';
+                bar.style.width = '0%';
+            } finally {
+                ocrBtn.disabled = false;
+            }
+        };
+
+        clearBtn.onclick = () => {
+            currentFile = null;
+            previewImg.style.display = 'none';
+            previewImg.src = '';
+            placeholder.style.display = 'block';
+            outText.value = '';
+            bar.style.width = '0%';
+            fileInput.value = '';
+        };
+
+        copyBtn.onclick = async () => {
+            if (!outText.value) return;
+            try {
+                await navigator.clipboard.writeText(outText.value);
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fa fa-check"></i> Copied!';
+                setTimeout(() => copyBtn.innerHTML = originalText, 2000);
+            } catch (err) {
+                alert('Failed to copy text.');
+            }
+        };
+
+        downloadBtn.onclick = () => {
+            if (!outText.value || outText.value === 'Processing...' || outText.value === 'Initializing OCR engine...') {
+                return alert('No text to download.');
+            }
+            
+            const type = fileType.value;
+            
+            if (type === 'txt') {
+                const blob = new Blob([outText.value], { type: 'text/plain' });
+                downloadBlob(blob, 'ocr_output.txt');
+            } else if (type === 'pdf') {
+                if (typeof pdfMake === 'undefined') return alert('PDF Generator is still loading...');
+                const docDef = { content: [{ text: outText.value, fontSize: 12 }] };
+                pdfMake.createPdf(docDef).download('ocr_output.pdf');
+            } else if (type === 'docx') {
+                // Simple DOCX structure
+                const header = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <?mso-application progid="Word.Document"?>
+                <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                <w:body><w:p><w:r><w:t>`;
+                const footer = `</w:t></w:r></w:p></w:body></w:document>`;
+                
+                // Escape XML characters
+                const content = outText.value
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/\n/g, "</w:t></w:r></w:p><w:p><w:r><w:t>");
+
+                const xml = header + content + footer;
+                const blob = new Blob([xml], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+                downloadBlob(blob, 'ocr_output.docx');
+            }
+        };
+
+        function downloadBlob(blob, filename) {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(a.href);
+            }, 100);
+        }
+
+        function fileToDataURL(file) {
+            return new Promise((res, rej) => {
+                const r = new FileReader();
+                r.onload = e => res(e.target.result);
+                r.onerror = rej;
+                r.readAsDataURL(file);
+            });
+        }
+    });
   </script>
 </body>
 </html>
