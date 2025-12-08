@@ -3,251 +3,313 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JPG to PNG Converter – Convert JPG to PNG Online Free</title>
-<meta name="description" content="Convert JPG to PNG online instantly. Free, fast, and high-quality JPG to PNG converter with no signup needed. Works on mobile & PC." />
-<meta name="keywords" content="jpg to png, convert jpg to png, image converter, online jpg to png, free jpg to png tool" />
-<meta name="author" content="TopImgTools" />
-<link rel="canonical" href="https://topimgtools.com/jpg-to-png.html" />
-<meta property="og:title" content="JPG to PNG Converter – Free Online Image Converter" />
-<meta property="og:description" content="Convert JPG to PNG instantly with high quality. No signup required. Fast & free tool powered by TopImgTools." />
-<meta property="og:image" content="https://topimgtools.com/assets/jpg-to-png-banner.jpg" />
-<meta property="og:url" content="https://topimgtools.com/jpg-to-png.html" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="JPG to PNG Converter – Convert JPG to PNG Online" />
-<meta name="twitter:description" content="Free and fast JPG to PNG converter. Convert images instantly with high quality." />
-<meta name="twitter:image" content="https://topimgtools.com/assets/jpg-to-png-banner.jpg" />
-
-
-
-
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="theme-color" content="#3498db">
   
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <title>JPG to PNG Converter – Convert JPG to PNG Online Free</title>
+  <meta name="description" content="Convert JPG to PNG online instantly. Free, fast, and high-quality JPG to PNG converter with no signup needed. Works on mobile & PC." />
+  <meta name="keywords" content="jpg to png, convert jpg to png, image converter, online jpg to png, free jpg to png tool" />
+  <meta name="author" content="TopImgTools" />
+  <link rel="canonical" href="https://topimgtools.com/jpg-to-png.html" />
+  
+  <meta property="og:title" content="JPG to PNG Converter – Free Online Image Converter" />
+  <meta property="og:description" content="Convert JPG to PNG instantly with high quality. No signup required. Fast & free tool powered by TopImgTools." />
+  <meta property="og:image" content="https://topimgtools.com/assets/jpg-to-png-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/jpg-to-png.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JPG to PNG Converter – Convert JPG to PNG Online" />
+  <meta name="twitter:description" content="Free and fast JPG to PNG converter. Convert images instantly with high quality." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/jpg-to-png-banner.jpg" />
 
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
+
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#6b7280}
+    /* Critical CSS */
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-hover:#2980b9;--muted:#6b7280;--text:#0f172a}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#0f172a}
-    .wrap{max-width:980px;margin:36px auto;padding:20px}
-    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .logo{display:flex;gap:12px;align-items:center}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 0}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background:var(--bg); margin:0; color:var(--text); line-height:1.5}
+    
+    /* Layout */
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
+    header.main-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+    .logo{display:flex;gap:12px;align-items:center; text-decoration:none; color:inherit;}
+    h1{font-size:20px;margin:0;line-height:1.2}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:14px}
+    
+    /* Components */
     .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-    .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
-    .upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    
+    /* Accessibility Friendly Upload Box */
+    .upload-box{border:2px dashed rgba(15,23,42,0.15);border-radius:10px;padding:30px;display:flex;gap:15px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;transition:background 0.3s, border-color 0.3s}
+    .upload-box:hover, .upload-box.highlight, .upload-box:focus-within{background:#f0f9ff;border-color:var(--accent);outline:none}
+    
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:15px;transition:background 0.2s;text-decoration:none}
     .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-hover)}
     .btn-secondary{background:#111827;color:#fff}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    footer{text-align:center;margin-top:20px;color:var(--muted);font-size:13px}
-    img{max-width:100%;border-radius:10px}
-    .progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden}
-    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f39c12)}
+    .btn-secondary:hover{background:#374151}
+    
+    /* Grid */
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:20px}
+    
+    /* Images & Progress */
+    img{max-width:100%;height:auto;border-radius:8px}
+    .preview-box { min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .progress{height:8px;background:#eef2f7;border-radius:8px;overflow:hidden;margin-bottom:10px}
+    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#2ecc71);transition:width 0.3s ease}
+    
+    /* Navigation Links */
+    .nav-links {
+        margin-top:35px; padding:15px; background:#f3f4f6; border-radius:14px;
+        box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
+        align-items:center; gap:14px; flex-wrap:wrap; font-size:15px; list-style:none;
+    }
+    .nav-btn {
+        padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+        border-radius:30px; text-decoration:none; color:#1f2937;
+        font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+        -3px -3px 8px #ffffff; transition:transform 0.2s, box-shadow 0.2s; display:inline-block;
+    }
+    .nav-btn:hover { transform:translateY(-3px); box-shadow:4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff; }
+
+    /* Accessibility Helpers */
+    .visually-hidden {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    footer{text-align:center;margin-top:40px;color:var(--muted);font-size:14px;padding-bottom:20px}
+
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
+  
   <div class="wrap">
-    <div class="header">
-      <div class="logo">
-        <i class="fa fa-image" style="font-size:28px;color:var(--accent)"></i>
+    
+    <header class="main-header">
+      <a href="/" class="logo" aria-label="TopImgTools Homepage">
+        <i class="fa fa-image" style="font-size:28px;color:var(--accent)" aria-hidden="true"></i>
         <div>
           <h1>JPG to PNG Converter</h1>
           <p class="lead">Convert your JPG images to high-quality PNG format instantly.</p>
         </div>
-      </div>
-      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
-    </div>
+      </a>
+      <a class="btn btn-secondary" href="index.html" aria-label="Go back to home"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </header>
 
-    <div class="card">
-      <div class="upload-box" id="uploadBox">
-        <div style="text-align:center">
-          <i class="fa fa-file-image" style="font-size:36px;color:var(--accent)"></i>
-          <h3>Drag & drop or select a JPG image</h3>
-          <p class="muted">Supported: JPG, JPEG — Max 25MB</p>
-        </div>
-        <button id="selectBtn" class="btn btn-primary"><i class="fa fa-folder-open"></i> Select JPG</button>
-        <input id="fileInput" type="file" accept="image/jpeg" style="display:none">
-      </div>
-
-      <div class="grid" style="margin-top:18px">
-        <div>
-          <div class="card">
-            <h3>Original Image</h3>
-            <img id="inputPreview" src="" style="display:none" />
-            <div id="inputPlaceholder" style="color:#6b7280;text-align:center;">No image selected yet</div>
+    <main>
+      <div class="card">
+        <label class="upload-box" id="uploadBox" for="fileInput">
+          <div style="text-align:center">
+            <i class="fa fa-file-image" style="font-size:36px;color:var(--accent);margin-bottom:10px;" aria-hidden="true"></i>
+            <h3>Drag & drop or select a JPG image</h3>
+            <p style="color:var(--muted);font-size:13px;margin-top:5px">Supported: JPG, JPEG — Max 25MB</p>
           </div>
+          <span class="btn btn-primary"><i class="fa fa-folder-open" aria-hidden="true"></i> Select JPG</span>
+          <input id="fileInput" type="file" accept="image/jpeg" class="visually-hidden">
+        </label>
+
+        <div class="grid">
+          <div>
+            <div class="card preview-box">
+              <h3>Original Image</h3>
+              <img id="inputPreview" src="" alt="Preview of uploaded JPG" style="display:none" />
+              <div id="inputPlaceholder" style="color:#6b7280;text-align:center;">No image selected yet</div>
+            </div>
+          </div>
+
+          <aside class="card preview-box">
+            <h3>Converted Image (PNG)</h3>
+            <div class="progress" role="progressbar" aria-label="Conversion progress"><i id="bar"></i></div>
+            
+            <img id="outputPreview" src="" alt="Converted PNG result" style="display:none;margin-top:10px;" />
+            <div id="outputPlaceholder" style="color:#6b7280;text-align:center;">No conversion yet</div>
+            
+            <button id="convertBtn" class="btn btn-primary" style="margin-top:12px;width:100%;"><i class="fa fa-sync" aria-hidden="true"></i> Convert to PNG</button>
+            <button id="downloadBtn" class="btn btn-secondary" style="margin-top:8px;width:100%;display:none;"><i class="fa fa-download" aria-hidden="true"></i> Download PNG</button>
+          </aside>
         </div>
-
-        <aside class="card">
-          <h3>Converted Image (PNG)</h3>
-          <div class="progress"><i id="bar"></i></div>
-          <img id="outputPreview" src="" style="display:none;margin-top:10px;" />
-          <div id="outputPlaceholder" style="color:#6b7280;text-align:center;">No conversion yet</div>
-          <button id="convertBtn" class="btn btn-primary" style="margin-top:12px;width:100%;"><i class="fa fa-sync"></i> Convert to PNG</button>
-          <button id="downloadBtn" class="btn btn-secondary" style="margin-top:8px;width:100%;display:none;"><i class="fa fa-download"></i> Download PNG</button>
-        </aside>
       </div>
-    </div>
 
-<div style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-            box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-            align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;">
+      <nav aria-label="Related Tools">
+        <div class="nav-links">
+            <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟵</span>
+            <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn" title="Convert WebP to JPG">WEBP → JPG</a>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟵</span>
+            <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+            <a href="https://topimgtools.com/heice-to-jpg.html" class="nav-btn" title="Convert HEIC to JPG">HEIC → JPG</a>
 
-    <a href="https://topimgtools.com/web-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       WEBP → JPG
-    </a>
+            <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+            <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn" title="Convert PNG to JPG">PNG → JPG</a>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
+            <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
+        </div>
+      </nav>
 
-    <a href="https://topimgtools.com/heice-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       HEIC → JPG
-    </a>
+      <article class="card" style="margin-top: 30px;">
+        <section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333; border-radius:8px;">
+          <h1 style="font-size:28px; color:#222; margin-bottom:15px;">JPG to PNG – Convert JPG Images to PNG Online</h1>
+          <p style="font-size:16px; margin-bottom:15px;">
+            Easily <strong>convert JPG to PNG</strong> with our free online tool. Turn your JPG images into high-quality PNG files quickly. Perfect for transparent backgrounds, web design, social media, presentations, and creative projects.
+          </p>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">›</span>
+          <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use a JPG to PNG Converter?</h2>
+          <ul style="margin-left:20px; margin-bottom:15px;">
+            <li>Convert JPG images to PNG with high quality</li>
+            <li>Preserve transparency for design projects</li>
+            <li>Prepare images for web, blogs, or social media</li>
+            <li>No software installation required – works online</li>
+            <li>Fast and easy for both personal and professional use</li>
+          </ul>
 
-    <a href="https://topimgtools.com/png-to-jpg.html"
-       style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-              border-radius:30px; text-decoration:none; color:#1f2937;
-              font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-              -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-       onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-       PNG → JPG
-    </a>
+          <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h2>
+          <ul style="margin-left:20px; margin-bottom:15px;">
+            <li>Supports JPG, PNG, WEBP, and other image formats</li>
+            <li>Fast, free, and user-friendly</li>
+            <li>High-quality output with no compression</li>
+            <li>Works on mobile and desktop devices</li>
+            <li>Instant download after conversion</li>
+          </ul>
 
-    <span style="color:#9ca3af; font-weight:bold; font-size:20px;">⟶</span>
-</div>
+          <h2 style="font-size:22px; color:#222; margin-bottom:10px;">How to Convert JPG to PNG Online</h2>
+          <ol style="margin-left:20px; margin-bottom:15px;">
+            <li>Upload your JPG image from your device</li>
+            <li>Select PNG as the output format</li>
+            <li>Click “Convert” to start the process</li>
+            <li>Download your PNG image instantly</li>
+          </ol>
 
+          <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h2>
+          <p style="font-size:16px; margin-bottom:15px;">
+            Designers, photographers, bloggers, marketers, and anyone who wants a simple way to convert JPG images into high-quality PNG files for professional or personal use.
+          </p>
+        </section>
+      </article>
 
-<div class="card">
-<section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333;">
-  <h1 style="font-size:28px; color:#222; margin-bottom:15px;">JPG to PNG – Convert JPG Images to PNG Online</h1>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Easily <strong>convert JPG to PNG</strong> with our free online tool. Turn your JPG images into high-quality PNG files quickly. Perfect for transparent backgrounds, web design, social media, presentations, and creative projects.
-  </p>
+    </main>
 
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use a JPG to PNG Converter?</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Convert JPG images to PNG with high quality</li>
-    <li>Preserve transparency for design projects</li>
-    <li>Prepare images for web, blogs, or social media</li>
-    <li>No software installation required – works online</li>
-    <li>Fast and easy for both personal and professional use</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Features</h2>
-  <ul style="margin-left:20px; margin-bottom:15px;">
-    <li>Supports JPG, PNG, WEBP, and other image formats</li>
-    <li>Fast, free, and user-friendly</li>
-    <li>High-quality output with no compression</li>
-    <li>Works on mobile and desktop devices</li>
-    <li>Instant download after conversion</li>
-  </ul>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">How to Convert JPG to PNG Online</h2>
-  <ol style="margin-left:20px; margin-bottom:15px;">
-    <li>Upload your JPG image from your device</li>
-    <li>Select PNG as the output format</li>
-    <li>Click “Convert” to start the process</li>
-    <li>Download your PNG image instantly</li>
-  </ol>
-
-  <h2 style="font-size:22px; color:#222; margin-bottom:10px;">Who Needs This Tool?</h2>
-  <p style="font-size:16px; margin-bottom:15px;">
-    Designers, photographers, bloggers, marketers, and anyone who wants a simple way to convert JPG images into high-quality PNG files for professional or personal use.
-  </p>
-
-  <p style="font-size:14px; color:#555;">
-    <strong>SEO Keywords:</strong> JPG to PNG, convert JPG to PNG, JPG to PNG online, free JPG to PNG converter, JPG image to PNG, image format converter.
-  </p>
-</section>
-</div>
-
-
-    
-    <footer>&copy; 2025 iLoveIMG Clone — JPG to PNG Converter</footer>
+    <footer>&copy; 2025 TopImgTools — JPG to PNG Converter</footer>
   </div>
 
   <script>
-    const fileInput=document.getElementById('fileInput');
-    const selectBtn=document.getElementById('selectBtn');
-    const inputPreview=document.getElementById('inputPreview');
-    const inputPlaceholder=document.getElementById('inputPlaceholder');
-    const outputPreview=document.getElementById('outputPreview');
-    const outputPlaceholder=document.getElementById('outputPlaceholder');
-    const convertBtn=document.getElementById('convertBtn');
-    const downloadBtn=document.getElementById('downloadBtn');
-    const bar=document.getElementById('bar');
-    let currentFile=null, pngData=null;
+    const fileInput = document.getElementById('fileInput');
+    const uploadBox = document.getElementById('uploadBox');
+    const inputPreview = document.getElementById('inputPreview');
+    const inputPlaceholder = document.getElementById('inputPlaceholder');
+    const outputPreview = document.getElementById('outputPreview');
+    const outputPlaceholder = document.getElementById('outputPlaceholder');
+    const convertBtn = document.getElementById('convertBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const bar = document.getElementById('bar');
+    let currentFile = null, pngData = null;
 
-    selectBtn.onclick=()=>fileInput.click();
-    fileInput.onchange=e=>{
-      const file=e.target.files[0];
-      if(!file||!file.type.includes('jpeg'))return alert('Please select a JPG image.');
-      currentFile=file;
-      const r=new FileReader();
-      r.onload=ev=>{
-        inputPreview.src=ev.target.result;
-        inputPreview.style.display='block';
-        inputPlaceholder.style.display='none';
-      };
-      r.readAsDataURL(file);
+    // Handle Drag and Drop Visuals
+    ['dragenter', 'dragover'].forEach(eventName => {
+      uploadBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        uploadBox.classList.add('highlight');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      uploadBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        uploadBox.classList.remove('highlight');
+      }, false);
+    });
+
+    uploadBox.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      handleFiles(files);
+    });
+
+    fileInput.onchange = (e) => {
+      handleFiles(e.target.files);
     };
 
-    convertBtn.onclick=()=>{
-      if(!currentFile)return alert('Select a JPG first!');
-      bar.style.width='20%';
-      const img=new Image();
-      img.onload=()=>{
-        bar.style.width='60%';
-        const canvas=document.createElement('canvas');
-        canvas.width=img.width;
-        canvas.height=img.height;
-        const ctx=canvas.getContext('2d');
-        ctx.drawImage(img,0,0);
-        pngData=canvas.toDataURL('image/png');
-        outputPreview.src=pngData;
-        outputPreview.style.display='block';
-        outputPlaceholder.style.display='none';
-        downloadBtn.style.display='block';
-        bar.style.width='100%';
+    function handleFiles(files) {
+      const file = files[0];
+      if (!file || !file.type.includes('image')) {
+        alert('Please select a valid image file (JPG/JPEG).');
+        return;
+      }
+      currentFile = file;
+      const r = new FileReader();
+      r.onload = ev => {
+        inputPreview.src = ev.target.result;
+        inputPreview.style.display = 'block';
+        inputPreview.alt = "Uploaded image: " + file.name; // Accessible Alt Text
+        inputPlaceholder.style.display = 'none';
+        
+        // Reset Output
+        outputPreview.style.display = 'none';
+        outputPlaceholder.style.display = 'block';
+        downloadBtn.style.display = 'none';
+        bar.style.width = '0';
       };
-      const reader=new FileReader();
-      reader.onload=e=>{img.src=e.target.result};
+      r.readAsDataURL(file);
+    }
+
+    convertBtn.onclick = () => {
+      if (!currentFile) return alert('Select a JPG first!');
+      bar.style.width = '20%';
+      
+      const img = new Image();
+      img.onload = () => {
+        bar.style.width = '60%';
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        
+        try {
+          pngData = canvas.toDataURL('image/png');
+          outputPreview.src = pngData;
+          outputPreview.style.display = 'block';
+          outputPreview.alt = "Converted PNG image";
+          outputPlaceholder.style.display = 'none';
+          downloadBtn.style.display = 'inline-flex';
+          bar.style.width = '100%';
+        } catch (err) {
+          alert('Error converting image. It might be too large or corrupted.');
+          bar.style.width = '0';
+        }
+      };
+      
+      const reader = new FileReader();
+      reader.onload = e => { img.src = e.target.result };
       reader.readAsDataURL(currentFile);
     };
 
-    downloadBtn.onclick=()=>{
-      if(!pngData)return alert('No PNG to download.');
-      const a=document.createElement('a');
-      a.href=pngData;
-      a.download='converted.png';
+    downloadBtn.onclick = () => {
+      if (!pngData) return alert('No PNG to download.');
+      const a = document.createElement('a');
+      a.href = pngData;
+      a.download = currentFile.name.replace(/\.[^/.]+$/, "") + '-converted.png'; // Better file naming
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
     };
   </script>
 </body>
