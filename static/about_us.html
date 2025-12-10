@@ -61,48 +61,55 @@
         .btn-signup:hover { background: #3b78c8; }
 
         /* --- HEADER --- */
-        .header-flex { display: flex; align-items: center; justify-content: space-between; }
-        #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; }
+   /* --- HEADER --- */
+        #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
-        .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #343a40; white-space: nowrap; }
-        .logo span { color: #eb4040; margin-right: 3px; }
         
-        nav { display: flex; align-items: center; width: 100%; justify-content: flex-end; }
-        .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
-        .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 0; white-space: nowrap; text-transform: uppercase; }
-        .main-nav li a:hover { color: #3498db; }
-        a.dropbtn { margin-top: 3px; cursor: pointer;}
+        .header-flex { display: flex; align-items: center; justify-content: space-between; }
+        .nav { display: flex; align-items: center; gap: 25px; }
         .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
         
-        /* Dropdown */
-        .dropdown { position: relative; }
-        .dropbtn { display: flex; align-items: center; }
-        .dropbtn i { margin-left: 5px; font-size: 10px; transition: transform 0.3s ease; }
-        .dropdown:hover .dropbtn i { transform: rotate(180deg); }
-        .dropdown-content { position: absolute; top: 110%; right: 0; left: auto; display: none; opacity: 0; visibility: hidden; transition: 0.2s ease; margin-top: 5px; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 5px; min-width: 800px; padding: 20px; z-index: 9999; border-top: 2px solid #4a90e2; margin: 26px -160px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
-        .dropdown:hover .dropdown-content { display: grid; opacity: 1; visibility: visible; }
-        .dropdown-column { display: flex; flex-direction: column; gap: 5px; }
-        .dropdown-category-title { font-size: 14px; font-weight: 700; color: #343a40; margin-bottom: 10px; padding: 0 10px 5px 10px; text-transform: uppercase; border-bottom: 1px solid #eee; margin-top: 0; white-space: nowrap; }
-        .dropdown-content a { padding: 8px 10px; font-size: 14px; display: flex; align-items: center; color: #343a40; text-transform: none; font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; }
-        .dropdown-content a i { font-size: 16px; margin-right: 12px; width: 20px; text-align: center; }
-        .dropdown-column:nth-child(1) a i { color: #4CAF50; } 
-        .dropdown-column:nth-child(2) a i { color: #E91E63; } 
-        .dropdown-column:nth-child(3) a i { color: #00BCD4; } 
-        .dropdown-column:nth-child(4) a i { color: #FF9800; } 
-        .dropdown-column:nth-child(5) a i { color: #3F51B5; } 
-        .dropdown-content a:hover { background: #f1f1f1; color: #4a90e2; }
+        .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text-dark); white-space: nowrap; }
+        .logo img { display: block; } /* Fix image spacing */
 
-        /* Mobile Menu */
-        .mobile-menu-toggle { display: none; cursor: pointer; font-size: 24px; padding: 10px 15px; color: #343a40; z-index: 100001; border-radius: 6px; transition: background 0.2s; }
-        .mobile-menu-toggle:hover { color: #4a90e2; background: #f1f1f1; }
-        .mobile-menu-toggle i { pointer-events: none; }
-        #mobileSidebar { position: fixed; top: 0; right: 0; width: 80%; max-width: 300px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 100000; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; padding: 20px; }
-        #mobileSidebar.open { transform: translateX(0); }
+        .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
+        .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
+        .main-nav li a:hover { color: #3498db; }
+
+        /* --- DROPDOWN --- */
+        .dropdown { position: relative; }
+        .dropbtn { display: flex; align-items: center; background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; color: #555; text-transform: uppercase; font-family: inherit; padding: 4px 0; }
+        .dropbtn:hover, .dropdown:focus-within .dropbtn { color: #3498db; }
+        .dropbtn i { margin-left: 5px; font-size: 10px; transition: transform 0.3s ease; }
+        .dropdown:hover .dropbtn i, .dropdown:focus-within .dropbtn i { transform: rotate(180deg); }
+
+        .dropdown-content { position: absolute; top: 100%; right: 0; left: auto; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 5px; min-width: 800px; padding: 20px; z-index: 9999; border-top: 2px solid var(--primary-color); margin: 15px -160px 0; display: none; opacity: 0; visibility: hidden; grid-template-columns: repeat(5, 1fr); gap: 20px; transition: 0.2s ease; }
+        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content { display: grid; opacity: 1; visibility: visible; }
+        
+        .dropdown-column { display: flex; flex-direction: column; gap: 0px; }
+        .dropdown-category-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; padding: 0 10px 5px 10px; text-transform: uppercase; border-bottom: 1px solid #eee; white-space: nowrap; }
+        .dropdown-content a { padding: 8px 10px; font-size: 14px; display: flex; align-items: center; color: var(--text-dark); font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; border-radius: 4px; }
+        .dropdown-content a:hover, .dropdown-content a:focus { background: #f1f1f1; color: var(--primary-color); }
+        .dropdown-content a i { font-size: 16px; margin-right: 12px; width: 20px; text-align: center; }
+
+        /* Static Icon Colors */
+        .dropdown-column:nth-child(1) a i { color: #2e7d32; }
+        .dropdown-column:nth-child(2) a i { color: #c2185b; }
+        .dropdown-column:nth-child(3) a i { color: #0097a7; }
+        .dropdown-column:nth-child(4) a i { color: #e65100; }
+        .dropdown-column:nth-child(5) a i { color: #283593; }
+
+        /* --- MOBILE SIDEBAR --- */
+        .mobile-menu-toggle { display: none; cursor: pointer; font-size: 24px; padding: 8px 12px; color: var(--text-dark); z-index: 100001; background: transparent; border: none; border-radius: 6px; }
+        .mobile-menu-toggle:hover { color: var(--primary-color); background: #f1f1f1; }
+
+        #mobileSidebar { position: fixed; top: 0; right: 0; width: 80%; max-width: 300px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 100000; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; padding: 20px; visibility: hidden; }
+        #mobileSidebar.open { transform: translateX(0); visibility: visible; }
+        
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; }
-        .sidebar-close { font-size: 24px; cursor: pointer; color: #343a40; }
+        .sidebar-close { font-size: 24px; cursor: pointer; color: var(--text-dark); background: none; border: none; }
         .sidebar-nav ul { display: flex; flex-direction: column; gap: 15px; }
-        .sidebar-nav a { font-size: 16px; font-weight: 600; color: #343a40; padding: 10px 0; display: block; border-bottom: 1px dashed #eee; }
-        .sidebar-nav a:hover { color: #4a90e2; }
+        .sidebar-nav a, .dropbtn-mobile { font-size: 16px; font-weight: 600; color: var(--text-dark); padding: 10px 0; display: block; border-bottom: 1px dashed #eee; cursor: pointer; width: 100%; text-align: left; background: none; border: none; border-bottom: 1px dashed #eee; }
         .sidebar-auth-actions { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 10px; }
         .sidebar-auth-actions .btn { width: 100%; }
         .sidebar-auth-actions .btn-login { border: 1px solid #ccc; }
@@ -157,110 +164,123 @@
 </head>
 <body>
 
-<header id="mainHeader">
+<header id="mainHeader" role="banner">
     <div class="container header-flex">
-        <a href="index.html" class="logo" aria-label="ImageEdit Home">
-            <span><i class="fas fa-heart"></i></span> IMG
+        <a href="index.html" class="logo" aria-label="TopImgTools Home">
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" style="width:150px; height:auto;">
         </a>
-        <nav aria-label="Main Navigation">
+
+        <nav class="nav" aria-label="Main Navigation">
             <ul class="main-nav">
-                <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
-                <li><a href="resize.html">RESIZE IMAGE</a></li>
-                <li><a href="crop.html">CROP IMAGE</a></li>
-                <li><a href="gif-to-jpg.html">GIF TO JPG</a></li>
-                <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
+                <li><a href="compress_tool.html" title="Compress Images Online">Compress Image</a></li>
+                <li><a href="resize.html" title="Resize Images Online">Resize Image</a></li>
+                <li><a href="crop.html" title="Crop Images Online">Crop Image</a></li>
+                <li><a href="gif-to-jpg.html" title="Convert GIF to JPG">GIF to JPG</a></li>
+                <li><a href="photoEdit.html" title="Online Photo Editor">Photo Editor</a></li>
+
                 <li class="dropdown">
-                    <a class="dropbtn" tabindex="0" role="button" aria-haspopup="true">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content" aria-label="More Tools Submenu">
+                    <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="desktopDropdown">
+                        More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div id="desktopDropdown" class="dropdown-content">
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">OPTIMIZE</div>
-                            <a href="compress_tool.html"><i class="fas fa-compress"></i> Compress IMAGE</a>
-                            <a href="bg_remove.html"><i class="fas fa-eraser"></i> Remove background</a>
-                            <a href="color-picker.html"><i class="fas fa-palette"></i> Image Color Picker</a>
+                            <div class="dropdown-category-title">Optimize</div>
+                            <a href="compress_tool.html"><i class="fas fa-compress" aria-hidden="true"></i> Compress Image</a>
+                            <a href="bg_remove.html"><i class="fas fa-eraser" aria-hidden="true"></i> Remove background</a>
+                            <a href="color-picker.html"><i class="fas fa-palette" aria-hidden="true"></i> Image Color Picker</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">CREATE</div>
-                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
-                            <a href="photoEdit.html"><i class="fas fa-paint-brush"></i> Photo editor</a>
-                            <a href="join-image.html"><i class="fas fa-object-group"></i> Join IMAGE</a>
-                            <a href="collage-maker.html"><i class="fas fa-images"></i> Collage Maker</a>
-                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
-                            <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
+                            <div class="dropdown-category-title">Create</div>
+                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint" aria-hidden="true"></i> Meme generator</a>
+                            <a href="photoEdit.html"><i class="fas fa-paint-brush" aria-hidden="true"></i> Photo editor</a>
+                            <a href="join-image.html"><i class="fas fa-object-group" aria-hidden="true"></i> Join Image</a>
+                            <a href="collage-maker.html"><i class="fas fa-images" aria-hidden="true"></i> Collage Maker</a>
+                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf" aria-hidden="true"></i> Image to PDF</a>
+                            <a href="image-to-text.html"><i class="fas fa-font" aria-hidden="true"></i> Image to Text (OCR)</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">MODIFY</div>
-                            <a href="resize.html"><i class="fas fa-ruler-combined"></i> Resize IMAGE</a>
-                            <a href="crop.html"><i class="fas fa-crop-alt"></i> Crop IMAGE</a>
-                            <a href="rotate-image.html"><i class="fas fa-redo-alt"></i> Rotate IMAGE</a>
-                            <a href="flip-image.html"><i class="fas fa-sync-alt"></i> Flip Image</a>
-                            <a href="mosaic.html"><i class="fas fa-braille"></i> Mosaic</a>
+                            <div class="dropdown-category-title">Modify</div>
+                            <a href="resize.html"><i class="fas fa-ruler-combined" aria-hidden="true"></i> Resize Image</a>
+                            <a href="crop.html"><i class="fas fa-crop-alt" aria-hidden="true"></i> Crop Image</a>
+                            <a href="rotate-image.html"><i class="fas fa-redo-alt" aria-hidden="true"></i> Rotate Image</a>
+                            <a href="flip-image.html"><i class="fas fa-sync-alt" aria-hidden="true"></i> Flip Image</a>
+                            <a href="mosaic.html"><i class="fas fa-braille" aria-hidden="true"></i> Mosaic</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">CONVERT</div>
-                            <a href="gif-to-jpg.html"><i class="fas fa-file-image"></i> GIF to JPG</a>
-                            <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt"></i> HEIC to JPG</a>
-                            <a href="jpg-to-png.html"><i class="fas fa-file-export"></i> JPG to PNG</a>
-                            <a href="png-to-jpg.html"><i class="fas fa-file-export"></i> PNG to JPG</a>
-                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
-                            <a href="all-convert.html"><i class="fas fa-globe"></i> All Convert</a>
+                            <div class="dropdown-category-title">Convert</div>
+                            <a href="gif-to-jpg.html"><i class="fas fa-file-image" aria-hidden="true"></i> GIF to JPG</a>
+                            <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt" aria-hidden="true"></i> HEIC to JPG</a>
+                            <a href="jpg-to-png.html"><i class="fas fa-file-export" aria-hidden="true"></i> JPG to PNG</a>
+                            <a href="image-to-gif.html"><i class="fas fa-file-video" aria-hidden="true"></i> Image to GIF</a>
+                            <a href="all-convert.html"><i class="fas fa-globe" aria-hidden="true"></i> All Convert</a>
+                            <a href="image-to-vector.html"><i class="fas fa-bezier-curve" aria-hidden="true"></i> Image to Vector</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">SECURITY</div>
-                            <a href="watermark.html"><i class="fas fa-copyright"></i> Watermark IMAGE</a>
-                            <a href="blur-face.html"><i class="fas fa-face-frown-open"></i> Blur face</a>
-                            <a href="password-protect.html"><i class="fas fa-lock"></i> Password Protect</a>
-                            <a href="metadata-remover.html"><i class="fas fa-trash-alt"></i> Metadata Remover</a>
+                            <div class="dropdown-category-title">Security</div>
+                            <a href="watermark.html"><i class="fas fa-tint" aria-hidden="true"></i> Watermark Image</a>
+                            <a href="blur-face.html"><i class="fas fa-mask" aria-hidden="true"></i> Blur face</a>
                         </div>
                     </div>
                 </li>
             </ul>
+
             <div class="auth-actions">
-                <a href="#" class="btn btn-login">Login</a>
-                <a href="#" class="btn btn-signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+                <a href="/static/login.html" class="btn btn-login" rel="nofollow">Login</a>
+                <a href="/static/signup.html" class="btn btn-signup" rel="nofollow"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
             </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobileSidebar">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
         </nav>
-        <div class="mobile-menu-toggle" aria-label="Open Mobile Menu"><i class="fas fa-bars"></i></div>
     </div>
 </header>
 
-<div id="mobileSidebar" role="dialog" aria-modal="true" aria-label="Mobile Navigation" aria-hidden="true" tabindex="-1">
+<div id="mobileSidebar" aria-hidden="true">
     <div class="sidebar-header">
         <a href="index.html" class="logo">
-            <span><i class="fas fa-heart"></i></span> IMG
+            <span><i class="fas fa-heart" aria-hidden="true"></i></span> IMG
         </a>
-        <span class="sidebar-close" aria-label="Close Menu"><i class="fas fa-times"></i></span>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close Mobile Menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
     </div>
-    <div class="sidebar-nav">
+    
+    <nav class="sidebar-nav" aria-label="Mobile Navigation">
         <ul>
             <li><a href="compress_tool.html">Compress Image</a></li>
             <li><a href="resize.html">Resize Image</a></li>
             <li><a href="crop.html">Crop Image</a></li>
             <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
             <li><a href="photoEdit.html">Photo Editor</a></li>
-            <li>
-                <a href="#" id="mobileDropdownToggle" aria-haspopup="true" aria-expanded="false">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
+            
+            <li class="dropdown-mobile">
+                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false" aria-controls="mobileDropdownContent">
+                    More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </button>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
-                    <li><div class="dropdown-category-title">OPTIMIZE</div></li>
-                    <li><a href="compress_tool.html">Compress IMAGE</a></li>
+                    <li><div class="dropdown-category-title">Optimize</div></li>
+                    <li><a href="compress_tool.html">Compress Image</a></li>
                     <li><a href="bg_remove.html">Remove background</a></li>
-                    <li><div class="dropdown-category-title">CREATE</div></li>
+                    <li><div class="dropdown-category-title">Create</div></li>
                     <li><a href="meme-generator.html">Meme generator</a></li>
                     <li><a href="photoEdit.html">Photo editor</a></li>
                     <li><a href="image-to-pdf.html">Image to PDF</a></li>
-                    <li><div class="dropdown-category-title">CONVERT</div></li>
+                    <li><div class="dropdown-category-title">Convert</div></li>
                     <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
                     <li><a href="heice-to-jpg.html">HEIC to JPG</a></li>
                     <li><a href="jpg-to-png.html">JPG to PNG</a></li>
-                    <li><div class="dropdown-category-title">SECURITY</div></li>
-                    <li><a href="watermark.html">Watermark IMAGE</a></li>
+                    <li><div class="dropdown-category-title">Security</div></li>
+                    <li><a href="watermark.html">Watermark Image</a></li>
                     <li><a href="blur-face.html">Blur face</a></li>
                 </ul>
             </li>
         </ul>
-    </div>
+    </nav>
+    
     <div class="sidebar-auth-actions">
-        <a href="#" class="btn btn-login">Login</a>
-        <a href="#" class="btn btn-signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        <a href="#" class="btn btn-login" rel="nofollow">Login</a>
+        <a href="#" class="btn btn-signup" rel="nofollow"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
     </div>
 </div>
 
@@ -326,47 +346,52 @@
 </main>
 
 
-<footer>
+<footer role="contentinfo">
     <div class="container">
         <div class="footer-content">
             <div class="footer-logo-col">
                 <div class="footer-logo">
-                    <span><i class="fas fa-heart"></i></span> IMG
+                    <span>
+                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;">
+                    </span>
                 </div>
                 <p>
                     The easiest and fastest way to edit images online. Our platform offers a free suite of tools for compression, resizing, and conversion, all while maintaining high quality.
                 </p>
-                <div class="social-links" aria-label="Social Media Links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61584758792978" aria-label="Follow us on Facebook" rel="nofollow noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://x.com/TTools65743" aria-label="Follow us on Twitter" rel="nofollow noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/topimgtools/" aria-label="Follow us on Instagram" rel="nofollow noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/topimg-tools-1ab5553a0/" aria-label="Connect on LinkedIn" rel="nofollow noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                 </div>
             </div>
+            
             <div class="footer-links-col">
                 <div>
                     <h4>Quick Links</h4>
-                    <ul>
+                    <ul role="list">
                         <li><a href="about_us.html">About Us</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="contact_us.html">Contact</a></li>
                         <li><a href="privacy_policy.html">Privacy Policy</a></li>
                         <li><a href="terms_and_conditions.html">Terms & Conditions</a></li>
-
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4>Tools</h4>
-                    <ul>
+                    <h4>Popular Tools</h4>
+                    <ul role="list">
                         <li><a href="compress_tool.html">Compress Image</a></li>
                         <li><a href="resize.html">Resize Image</a></li>
-                        <li><a href="web-to-jpg.html">Webp to JPG</a></li>
+                        <li><a href="web-to-jpg.html">WebP to JPG</a></li>
                         <li><a href="bg_remove.html">Remove Background</a></li>
                     </ul>
                 </div>
+
                 <div>
                     <h4>Support</h4>
-                    <ul>
+                    <ul role="list">
                         <li><a href="help_center.html">Help Center</a></li>
                         <li><a href="tutorial.html">Tutorials</a></li>
                         <li><a href="report_bug.html">Report Bug</a></li>
@@ -374,8 +399,9 @@
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom">
-            &copy; 2025 IMG Editor (topimgtools.com). All rights reserved.
+            &copy; 2025 TopImgTools. All rights reserved.
         </div>
     </div>
 </footer>
