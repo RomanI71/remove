@@ -1,717 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GIF to JPG Tutorial - ImageEdit</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F5XBT7MCBM');
-</script>
-<style>
-    /* --- GLOBAL STYLES (from about_us.html) --- */
-    /* Basic Resets & Global Styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        background-color: #f8f9fa; 
-        color: #343a40;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    body.menu-open {
-        overflow: hidden;
-    }
+    <title>GIF to JPG Converter Guide - TopImgTools</title>
+    <meta name="description" content="Learn how to convert animated GIF files to static JPG images easily. Step-by-step tutorial for using the GIF to JPG converter tool.">
+    <meta name="keywords" content="gif to jpg tutorial, convert gif to jpg guide, save gif frame as jpg, online image converter guide">
+    <meta name="author" content="TopImgTools">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#ffffff">
 
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #3498db;
-        transition: 0.3s ease;
-    }
-
-    a:hover {
-        color: #2980b9;
-    }
-
-    ul {
-        list-style: none;
-    }
-
-    /* --- BUTTONS --- */
-    .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-weight: 600;
-        text-align: center;
-        cursor: pointer;
-        font-size: 16px;
-        border: none;
-    }
-
-    /* Header Buttons */
-    .btn-login {
-        background: transparent;
-        color: #343a40;
-        padding: 12px 15px;
-        font-weight: 500;
-    }
-
-    .btn-login:hover {
-        color: #3498db;
-    }
-
-    .btn-signup {
-        background: #4a90e2;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-weight: 600;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .btn-signup:hover {
-        background: #3b78c8;
-    }
-
-    /* --- HEADER --- */
-    .header-flex {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+    <link rel="canonical" href="https://topimgtools.com/gif-to-jpg-guide.html" />
     
-    #mainHeader {
-        background: #fff;
-        position: fixed;
-        width: 100%;
-        z-index: 99999;
-        transition: 0.3s;
-        padding: 12px 0;
-    }
-    #mainHeader.scrolled {
-        padding: 5px 0;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.12);
-    }
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://topimgtools.com/gif-to-jpg-guide.html" />
+    <meta property="og:title" content="GIF to JPG Converter Guide - TopImgTools" />
+    <meta property="og:description" content="Learn how to convert animated GIF files to static JPG images easily." />
+    <meta property="og:image" content="https://topimgtools.com/assets/og-banner.jpg" />
 
-    /* Logo */
-    .logo {
-        font-size: 24px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        color: #343a40;
-        white-space: nowrap;
-    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GIF to JPG Converter Guide - TopImgTools" />
+    <meta name="twitter:description" content="Learn how to convert animated GIF files to static JPG images easily." />
+    <meta name="twitter:image" content="https://topimgtools.com/assets/og-banner.jpg" />
 
-    .logo span {
-        color: #eb4040;
-        margin-right: 3px;
-    }
+    <link rel="icon" type="image/png" href="assets/favicon.png">
 
-    nav {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: flex-end;
-    }
-    
-    .main-nav {
-        display: flex;
-        gap: 20px;
-        margin-left: 76px;
-        margin-right: auto;
-    }
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 
-    .main-nav li a {
-        color: #555;
-        font-size: 14px;
-        font-weight: 500;
-        padding: 0px 0;
-        white-space: nowrap;
-        text-transform: uppercase;
-    }
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F5XBT7MCBM');
+    </script>
 
-    .main-nav li a:hover {
-        color: #3498db;
-    }
-    a.dropbtn {
-        margin-top: 3px;
-    }
-    
-    /* Auth Actions */
-    .auth-actions {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-left: 20px;
-    }
-    
-    /* Dropdown */
-    .dropdown {
-        position: relative;
-    }
+    <style>
+        /* --- GLOBAL STYLES & VARIABLES (Standardized) --- */
+        :root {
+            --primary-color: #4a90e2;
+            --primary-hover: #3b78c8;
+            --text-dark: #343a40;
+            --text-light: #555;
+            --bg-light: #f8f9fa;
+            --accent-red: #eb4040;
+            --focus-ring: 2px solid #3498db;
+            --card-bg: #ffffff; 
+            --border: #e5e7eb;
+        }
 
-    .dropbtn {
-        display: flex;
-        align-items: center;
-    }
-    .dropbtn i {
-        margin-left: 5px;
-        font-size: 10px;
-        transition: transform 0.3s ease;
-    }
-    .dropdown:hover .dropbtn i {
-        transform: rotate(180deg);
-    }
-    
-    .dropdown-content {
-        position: absolute;
-        top: 110%;
-        right: 0;
-        left: auto;
-        display: none;
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.2s ease;
-        margin-top: 5px;
+        /* Basic Resets */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        background: white;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        border-radius: 5px;
-        min-width: 800px;
-        padding: 20px;
-        z-index: 9999;
-        border-top: 2px solid #4a90e2; 
-        margin: 26px -160px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
         
-        display: grid; 
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-    }
-    
-    .dropdown:hover .dropdown-content {
-        display: grid;
-        opacity: 1;
-        visibility: visible;
-    }
+        /* A11y: Skip Link */
+        .skip-link {
+            position: absolute; top: -40px; left: 0; background: var(--primary-color);
+            color: white; padding: 8px; z-index: 100002; transition: top 0.3s; text-decoration: none; font-weight: bold;
+        }
+        .skip-link:focus { top: 0; }
 
-    .dropdown-column {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
+        body.menu-open { overflow: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Links & Buttons */
+        a { text-decoration: none; color: #3498db; transition: 0.3s ease; }
+        a:hover { color: #2980b9; }
+        ul { list-style: none; }
+        button { font-family: inherit; }
+        
+        a:focus-visible, button:focus-visible {
+            outline: var(--focus-ring); outline-offset: 2px;
+        }
 
-    .dropdown-category-title {
-        font-size: 14px;
-        font-weight: 700;
-        color: #343a40;
-        margin-bottom: 10px;
-        padding: 0 10px 5px 10px;
-        text-transform: uppercase;
-        border-bottom: 1px solid #eee;
-        margin-top: 0; 
-        white-space: nowrap;
-    }
+        .btn { display: inline-block; padding: 10px 20px; border-radius: 5px; font-weight: 600; text-align: center; cursor: pointer; font-size: 16px; border: none; }
+        .btn-login { background: transparent; color: var(--text-dark); padding: 12px 15px; font-weight: 500; }
+        .btn-login:hover { color: var(--primary-color); }
+        .btn-signup { background: var(--primary-color); color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; height: 40px; display: flex; align-items: center; gap: 8px; }
+        .btn-signup:hover { background: var(--primary-hover); }
 
-    .dropdown-content a {
-        padding: 8px 10px;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        color: #343a40; 
-        text-transform: none;
-        font-weight: 500;
-        white-space: nowrap;
-        transition: background 0.2s, color 0.2s;
-    }
-    
-    .dropdown-content a i {
-        font-size: 16px;
-        margin-right: 12px;
-        width: 20px; 
-        text-align: center;
-    }
-    
-    /* Icon Colors */
-    .dropdown-column:nth-child(1) a i { color: #4CAF50; } 
-    .dropdown-column:nth-child(2) a i { color: #E91E63; } 
-    .dropdown-column:nth-child(3) a i { color: #00BCD4; } 
-    .dropdown-column:nth-child(4) a i { color: #FF9800; } 
-    .dropdown-column:nth-child(5) a i { color: #3F51B5; } 
+        /* --- HEADER --- */
+        #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
+        
+        .header-flex { display: flex; align-items: center; justify-content: space-between; }
+        .nav { display: flex; align-items: center; gap: 25px; }
+        .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
+        
+        .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text-dark); white-space: nowrap; }
+        .logo img { display: block; }
 
-    .dropdown-content a:hover {
-        background: #f1f1f1;
-        color: #4a90e2;
-    }
-    
-    /* Mobile Menu Toggle Button */
-    .mobile-menu-toggle {
-        display: none; 
-        cursor: pointer;
-        font-size: 24px;
-        padding: 10px 15px; 
-        color: #343a40;
-        z-index: 100001; 
-        border-radius: 6px; 
-        transition: background 0.2s;
-    }
-    /* Mobile Sidebar Styling */
-    #mobileSidebar {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 80%;
-        max-width: 300px;
-        height: 100%;
-        background: #fff;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-        z-index: 100000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        overflow-y: auto;
-        padding: 20px;
-    }
+        .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
+        .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
+        .main-nav li a:hover { color: #3498db; }
 
-    #mobileSidebar.open {
-        transform: translateX(0);
-    }
-    
-    .sidebar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 15px;
-        margin-bottom: 20px;
-        border-bottom: 1px solid #eee;
-    }
+        /* --- DROPDOWN --- */
+        .dropdown { position: relative; }
+        .dropbtn { display: flex; align-items: center; background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; color: #555; text-transform: uppercase; font-family: inherit; padding: 4px 0; }
+        .dropbtn:hover, .dropdown:focus-within .dropbtn { color: #3498db; }
+        .dropbtn i { margin-left: 5px; font-size: 10px; transition: transform 0.3s ease; }
+        .dropdown:hover .dropbtn i, .dropdown:focus-within .dropbtn i { transform: rotate(180deg); }
 
-    .sidebar-close {
-        font-size: 24px;
-        cursor: pointer;
-        color: #343a40;
-    }
+        .dropdown-content { position: absolute; top: 100%; right: 0; left: auto; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 5px; min-width: 800px; padding: 20px; z-index: 9999; border-top: 2px solid var(--primary-color); margin: 15px -160px 0; display: none; opacity: 0; visibility: hidden; grid-template-columns: repeat(5, 1fr); gap: 20px; transition: 0.2s ease; }
+        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content { display: grid; opacity: 1; visibility: visible; }
+        
+        .dropdown-column { display: flex; flex-direction: column; gap: 0px; }
+        .dropdown-category-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; padding: 0 10px 5px 10px; text-transform: uppercase; border-bottom: 1px solid #eee; white-space: nowrap; }
+        .dropdown-content a { padding: 8px 10px; font-size: 14px; display: flex; align-items: center; color: var(--text-dark); font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; border-radius: 4px; }
+        .dropdown-content a:hover, .dropdown-content a:focus { background: #f1f1f1; color: var(--primary-color); }
+        .dropdown-content a i { font-size: 16px; margin-right: 12px; width: 20px; text-align: center; }
 
-    .sidebar-nav ul {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+        /* Static Icon Colors */
+        .dropdown-column:nth-child(1) a i { color: #2e7d32; }
+        .dropdown-column:nth-child(2) a i { color: #c2185b; }
+        .dropdown-column:nth-child(3) a i { color: #0097a7; }
+        .dropdown-column:nth-child(4) a i { color: #e65100; }
+        .dropdown-column:nth-child(5) a i { color: #283593; }
 
-    .sidebar-nav a {
-        font-size: 16px;
-        font-weight: 600;
-        color: #343a40;
-        padding: 10px 0;
-        display: block;
-        border-bottom: 1px dashed #eee;
-    }
+        /* --- MOBILE SIDEBAR --- */
+        .mobile-menu-toggle { display: none; cursor: pointer; font-size: 24px; padding: 8px 12px; color: var(--text-dark); z-index: 100001; background: transparent; border: none; border-radius: 6px; }
+        .mobile-menu-toggle:hover { color: var(--primary-color); background: #f1f1f1; }
 
-    .sidebar-nav a:hover {
-        color: #4a90e2;
-    }
-    
-    .sidebar-auth-actions {
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .sidebar-auth-actions .btn {
-        width: 100%;
-    }
-    .sidebar-auth-actions .btn-login {
-        border: 1px solid #ccc;
-    }
+        #mobileSidebar { position: fixed; top: 0; right: 0; width: 80%; max-width: 300px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 100000; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; padding: 20px; visibility: hidden; }
+        #mobileSidebar.open { transform: translateX(0); visibility: visible; }
+        
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; }
+        .sidebar-close { font-size: 24px; cursor: pointer; color: var(--text-dark); background: none; border: none; }
+        .sidebar-nav ul { display: flex; flex-direction: column; gap: 15px; }
+        .sidebar-nav a, .dropbtn-mobile { font-size: 16px; font-weight: 600; color: var(--text-dark); padding: 10px 0; display: block; border-bottom: 1px dashed #eee; cursor: pointer; width: 100%; text-align: left; background: none; border: none; }
+        .sidebar-auth-actions { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 10px; }
 
-    /* --- FOOTER STYLING (from about_us.html) --- */
-    footer {
-        background-color: #2c3e50;
-        padding: 50px 0 20px;
-        color: #ecf0f1;
-    }
+        /* --- FOOTER --- */
+        footer { background-color: #2c3e50; color: #ecf0f1; padding: 60px 0 20px 0; font-size: 14px; }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid #455a64; gap: 30px; }
+        .footer-logo-col { flex-basis: 300px; max-width: 100%; }
+        .footer-logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #ecf0f1; margin-bottom: 15px; }
+        .footer-logo img { display: block; }
+        .footer-logo-col p { color: #e0e0e0; line-height: 1.8; }
+        .footer-links-col { flex-grow: 1; display: flex; gap: 50px; justify-content: space-around; }
+        .footer-links-col h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
+        .footer-links-col ul li a { color: #d0d3d4; transition: color 0.2s; }
+        .footer-links-col ul li a:hover { color: var(--primary-color); }
+        .footer-bottom { margin-top: 20px; text-align: center; color: #bdc3c7; }
+        .social-links a { color: #ecf0f1; margin: 0 10px; font-size: 18px; transition: color 0.2s; }
+        .social-links a:hover { color: var(--primary-color); }
 
-    .footer-content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 30px;
-    }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 991px) {
+            .main-nav, .auth-actions { display: none; }
+            .mobile-menu-toggle { display: block; }
+            .header-flex { justify-content: space-between; }
+            .dropdown-content { display: none !important; }
+        }
+        @media (max-width: 767px) {
+            .container { padding: 0 15px; }
+            .footer-content, .footer-links-col { flex-direction: column; text-align: center; gap: 20px; }
+        }
 
-    .footer-logo-col {
-        flex-basis: 300px;
-        max-width: 100%;
-    }
+        /* ========================================= */
+        /* --- GUIDE/TUTORIAL PAGE SPECIFIC CSS --- */
+        /* ========================================= */
+        main { padding-top: 100px; padding-bottom: 60px; }
 
-    .footer-logo {
-        font-size: 24px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        color: #ecf0f1;
-        margin-bottom: 15px;
-    }
-
-    .footer-logo span {
-        color: #eb4040;
-        margin-right: 3px;
-    }
-
-    .footer-logo-col p {
-        color: #bdc3c7;
-        line-height: 1.8;
-        font-size: 14px;
-    }
-
-    .footer-links-col {
-        flex-grow: 1;
-        display: flex;
-        gap: 50px;
-        justify-content: space-around;
-    }
-
-    .footer-links-col h4 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #fff;
-        text-transform: uppercase;
-    }
-
-    .footer-links-col ul li {
-        margin-bottom: 8px;
-    }
-
-    .footer-links-col ul li a {
-        color: #bdc3c7;
-        transition: color 0.2s;
-        font-weight: 400;
-    }
-
-    .footer-links-col ul li a:hover {
-        color: #4a90e2;
-    }
-
-    .footer-bottom {
-        margin-top: 20px;
-        text-align: center;
-        color: #bdc3c7;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .social-links {
-        margin-top: 20px;
-    }
-
-    .social-links a {
-        color: #ecf0f1;
-        margin: 0 10px;
-        font-size: 18px;
-        transition: color 0.2s;
-    }
-
-    .social-links a:hover {
-        color: #4a90e2;
-    }
-
-    /* --- TUTORIAL PAGE SPECIFIC STYLES --- */
-    main {
-        padding-top: 80px; 
-        padding-bottom: 40px;
-    }
-
-    /* Wrapper for the Two-Column Layout */
-    .tutorial-wrapper {
-        margin: 20px auto 40px auto; 
-        display: grid;
-        grid-template-columns: 2fr 1fr; /* 2/3 for content, 1/3 for sidebar */
-        gap: 30px;
-        align-items: start;
-    }
-
-    /* Article Styles (Main Content) */
-    article {
-        background-color: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e5e7eb;
-        padding: 30px;
-        font-family: 'Inter', sans-serif;
-    }
-
-    article h1 {
-        font-size: 28px;
-        font-weight: 800;
-        color: #4a90e2;
-        margin-bottom: 10px;
-        border-bottom: 3px solid #4a90e2;
-        padding-bottom: 10px;
-    }
-
-    article h2 {
-        font-size: 22px;
-        font-weight: 700;
-        color: #343a40;
-        margin-top: 30px;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    article h3 {
-        font-size: 18px;
-        font-weight: 600;
-        color: #343a40;
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-    
-    article strong {
-        font-weight: 700;
-        color: #4a90e2;
-    }
-
-    article hr {
-        border: none;
-        border-top: 1px dashed #e5e7eb;
-        margin: 30px 0;
-    }
-    
-    article ul {
-        list-style: none;
-        padding: 0;
-        margin-top: 15px;
-    }
-    
-    article ul li {
-        background-color: #f9fafb;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 12px 15px;
-        margin-bottom: 10px;
-        transition: all 0.2s;
-    }
-    
-    article ul li:hover {
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        border-color: #4a90e2;
-    }
-
-    /* Sidebar Styles (Tutorial List) */
-    /* --- UPDATED SIDEBAR STYLES (SCROLLABLE) --- */
-.sidebar-list { 
-    background-color: #ffffff; 
-    border-radius: 12px; 
-    padding: 20px 10px 20px 20px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
-    border: 1px solid #e5e7eb; 
-    height: fit-content; 
-    position: sticky; 
-    top: 80px; 
-}
-
-.sidebar-list h3 { 
-    color: #4a90e2; 
-    border-bottom: 2px solid #e5e7eb; 
-    padding-bottom: 10px; 
-    margin-bottom: 10px; 
-    font-size: 18px; 
-    font-weight: 700; 
-    margin-right: 10px;
-}
-
-.sidebar-list ul { 
-    list-style-type: none; 
-    padding: 0; 
-    
-    /* SCROLLABLE SETTINGS */
-    max-height: 450px; /* Limits height */
-    overflow-y: auto;  /* Enables vertical scrolling */
-    padding-right: 10px; /* Space for scrollbar */
-}
-
-/* Custom Scrollbar for Sidebar */
-.sidebar-list ul::-webkit-scrollbar { width: 5px; }
-.sidebar-list ul::-webkit-scrollbar-track { background: #f8f9fa; border-radius: 10px; }
-.sidebar-list ul::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-.sidebar-list ul::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-.sidebar-list li a { display: block; padding: 10px 5px; color: #343a40; text-decoration: none; border-bottom: 1px dashed #e5e7eb; transition: all 0.2s; font-size: 14px; display: flex; align-items: center; gap: 8px;}
-.sidebar-list li a i { width: 20px; text-align: center; color: #a0aec0; transition: 0.2s; }
-.sidebar-list li:last-child a { border-bottom: none; }
-.sidebar-list li a:hover { color: #4a90e2; background-color: #f8f9fa; padding-left: 10px; }
-.sidebar-list li a:hover i { color: #4a90e2; }
-.sidebar-list li.active a { color: #4a90e2; font-weight: 600; background-color: #f0f4ff; border-radius: 6px; border-bottom: none; }
-.sidebar-list li.active a i { color: #4a90e2; }
-    /* --- RESPONSIVE MEDIA QUERIES --- */
-    @media (max-width: 991px) { 
-        .main-nav, .auth-actions { display: none; }
-        .mobile-menu-toggle { display: block; }
-        .footer-content { flex-direction: column; text-align: center; }
-        .footer-links-col { gap: 30px; justify-content: space-between; }
-        .footer-logo-col { margin-bottom: 20px; }
-        .footer-logo { justify-content: center; }
-        .dropdown-content { display: none !important; }
-
+        /* Two-Column Layout Wrapper */
         .tutorial-wrapper {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2/3 Content, 1/3 Sidebar */
+            gap: 40px;
+            align-items: start;
         }
-        .sidebar-list {
-            position: static;
-            order: -1;
+
+        /* Left Column: Article */
+        article {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            padding: 40px;
         }
-    }
-    @media (max-width: 600px) {
-        .footer-links-col { flex-direction: column; gap: 20px; }
-        .footer-links-col div { text-align: center; }
-        .footer-links-col h4 { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-bottom: 10px; }
-    }
-</style>
+
+        article h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        article h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        article h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        article p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        article ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        article ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        article ul li::before {
+            content: "\f058"; /* FontAwesome check icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        article hr {
+            border: 0;
+            border-top: 1px dashed #ddd;
+            margin: 30px 0;
+        }
+
+        /* Right Column: Sidebar List */
+        .sidebar-list { 
+            background-color: var(--card-bg); 
+            border-radius: 12px; 
+            padding: 25px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+            border: 1px solid var(--border); 
+            position: sticky; 
+            top: 100px; /* Sticks when scrolling */
+        }
+
+        .sidebar-list h3 { 
+            color: var(--text-dark); 
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 15px; 
+            margin-bottom: 20px; 
+            font-size: 20px; 
+            font-weight: 700; 
+        }
+
+        .sidebar-list ul { 
+            list-style: none; 
+            max-height: 500px;
+            overflow-y: auto; /* Scrollable internal list */
+            padding-right: 10px;
+        }
+
+        /* Custom Scrollbar */
+        .sidebar-list ul::-webkit-scrollbar { width: 6px; }
+        .sidebar-list ul::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .sidebar-list ul::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        .sidebar-list ul::-webkit-scrollbar-thumb:hover { background: #bbb; }
+
+        .sidebar-list li a { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            padding: 12px 10px; 
+            color: var(--text-light); 
+            text-decoration: none; 
+            border-bottom: 1px solid #f5f5f5; 
+            transition: all 0.2s; 
+            font-size: 15px; 
+            border-radius: 6px;
+        }
+
+        .sidebar-list li:last-child a { border-bottom: none; }
+        
+        .sidebar-list li a:hover { 
+            background-color: #f0f7ff; 
+            color: var(--primary-color); 
+            padding-left: 15px; 
+        }
+
+        .sidebar-list li.active a { 
+            background-color: var(--primary-color); 
+            color: white; 
+            font-weight: 600; 
+            border-color: transparent; 
+        }
+        
+        /* Responsive adjustments for the grid */
+        @media (max-width: 991px) {
+            .tutorial-wrapper { grid-template-columns: 1fr; }
+            .sidebar-list { position: static; margin-top: 40px; }
+        }
+    </style>
 </head>
+
 <body>
 
-<header id="mainHeader">
+<a href="#mainContent" class="skip-link">Skip to main content</a>
+
+<header id="mainHeader" role="banner">
     <div class="container header-flex">
-        <a href="/static/index.html" class="logo">
-            <span><i class="fas fa-heart"></i></span> IMG
+        <a href="index.html" class="logo" aria-label="TopImgTools Home">
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" style="width:150px; height:auto;">
         </a>
-        <nav class="nav">
+
+        <nav class="nav" aria-label="Main Navigation">
             <ul class="main-nav">
-                <li><a href="compress_tool.html">COMPRESS IMAGE</a></li>
-                <li><a href="resize.html">RESIZE IMAGE</a></li>
-                <li><a href="crop.html">CROP IMAGE</a></li>
-                <li><a href="gif-to-jpg.html">GIF TO JPG</a></li>
-                <li><a href="photoEdit.html">PHOTO EDITOR</a></li>
+                <li><a href="compress_tool.html" title="Compress Images Online">Compress Image</a></li>
+                <li><a href="resize.html" title="Resize Images Online">Resize Image</a></li>
+                <li><a href="crop.html" title="Crop Images Online">Crop Image</a></li>
+                <li><a href="gif-to-jpg.html" title="Convert GIF to JPG">GIF to JPG</a></li>
+                <li><a href="photoEdit.html" title="Online Photo Editor">Photo Editor</a></li>
+
                 <li class="dropdown">
-                    <a class="dropbtn">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
+                    <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="desktopDropdown">
+                        More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div id="desktopDropdown" class="dropdown-content">
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">OPTIMIZE</div>
-                            <a href="compress_tool.html"><i class="fas fa-compress"></i> Compress IMAGE</a>
-                            <a href="bg_remove.html"><i class="fas fa-eraser"></i> Remove background</a>
-                            <a href="color-picker.html"><i class="fas fa-palette"></i> Image Color Picker</a>
+                            <div class="dropdown-category-title">Optimize</div>
+                            <a href="compress_tool.html"><i class="fas fa-compress" aria-hidden="true"></i> Compress Image</a>
+                            <a href="bg_remove.html"><i class="fas fa-eraser" aria-hidden="true"></i> Remove background</a>
+                            <a href="color-picker.html"><i class="fas fa-palette" aria-hidden="true"></i> Image Color Picker</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">CREATE</div>
-                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint"></i> Meme generator</a>
-                            <a href="photoEdit.html"><i class="fas fa-paint-brush"></i> Photo editor</a>
-                            <a href="join-image.html"><i class="fas fa-object-group"></i> Join IMAGE</a>
-                            <a href="collage-maker.html"><i class="fas fa-images"></i> Collage Maker</a>
-                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf"></i> Image to PDF</a>
-                            <a href="image-to-text.html"><i class="fas fa-font"></i> Image to Text (OCR)</a>
+                            <div class="dropdown-category-title">Create</div>
+                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint" aria-hidden="true"></i> Meme generator</a>
+                            <a href="photoEdit.html"><i class="fas fa-paint-brush" aria-hidden="true"></i> Photo editor</a>
+                            <a href="join-image.html"><i class="fas fa-object-group" aria-hidden="true"></i> Join Image</a>
+                            <a href="collage-maker.html"><i class="fas fa-images" aria-hidden="true"></i> Collage Maker</a>
+                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf" aria-hidden="true"></i> Image to PDF</a>
+                            <a href="image-to-text.html"><i class="fas fa-font" aria-hidden="true"></i> Image to Text (OCR)</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">MODIFY</div>
-                            <a href="resize.html"><i class="fas fa-ruler-combined"></i> Resize IMAGE</a>
-                            <a href="crop.html"><i class="fas fa-crop-alt"></i> Crop IMAGE</a>
-                            <a href="rotate-image.html"><i class="fas fa-redo-alt"></i> Rotate IMAGE</a>
-                            <a href="flip-image.html"><i class="fas fa-sync-alt"></i> Flip Image</a>
-                            <a href="mosaic.html"><i class="fas fa-braille"></i> Mosaic</a>
+                            <div class="dropdown-category-title">Modify</div>
+                            <a href="resize.html"><i class="fas fa-ruler-combined" aria-hidden="true"></i> Resize Image</a>
+                            <a href="crop.html"><i class="fas fa-crop-alt" aria-hidden="true"></i> Crop Image</a>
+                            <a href="rotate-image.html"><i class="fas fa-redo-alt" aria-hidden="true"></i> Rotate Image</a>
+                            <a href="flip-image.html"><i class="fas fa-sync-alt" aria-hidden="true"></i> Flip Image</a>
+                            <a href="mosaic.html"><i class="fas fa-braille" aria-hidden="true"></i> Mosaic</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">CONVERT</div>
-                            <a href="gif-to-jpg.html"><i class="fas fa-file-image"></i> GIF to JPG</a>
-                            <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt"></i> HEIC to JPG</a>
-                            <a href="jpg-to-png.html"><i class="fas fa-file-export"></i> JPG to PNG</a>
-                            <a href="png-to-jpg.html"><i class="fas fa-file-export"></i> PNG to JPG</a>
-                            <a href="image-to-gif.html"><i class="fas fa-file-video"></i> Image to GIF</a>
-                            <a href="all-convert.html"><i class="fas fa-globe"></i> All Convert</a>
+                            <div class="dropdown-category-title">Convert</div>
+                            <a href="gif-to-jpg.html"><i class="fas fa-file-image" aria-hidden="true"></i> GIF to JPG</a>
+                            <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt" aria-hidden="true"></i> HEIC to JPG</a>
+                            <a href="jpg-to-png.html"><i class="fas fa-file-export" aria-hidden="true"></i> JPG to PNG</a>
+                            <a href="image-to-gif.html"><i class="fas fa-file-video" aria-hidden="true"></i> Image to GIF</a>
+                            <a href="all-convert.html"><i class="fas fa-globe" aria-hidden="true"></i> All Convert</a>
+                            <a href="image-to-vector.html"><i class="fas fa-bezier-curve" aria-hidden="true"></i> Image to Vector</a>
                         </div>
                         <div class="dropdown-column">
-                            <div class="dropdown-category-title">SECURITY</div>
-                            <a href="watermark.html"><i class="fas fa-copyright"></i> Watermark IMAGE</a>
-                            <a href="blur-face.html"><i class="fas fa-face-frown-open"></i> Blur face</a>
-                            <a href="password-protect.html"><i class="fas fa-lock"></i> Password Protect</a>
-                            <a href="metadata-remover.html"><i class="fas fa-trash-alt"></i> Metadata Remover</a>
+                            <div class="dropdown-category-title">Security</div>
+                            <a href="watermark.html"><i class="fas fa-tint" aria-hidden="true"></i> Watermark Image</a>
+                            <a href="blur-face.html"><i class="fas fa-mask" aria-hidden="true"></i> Blur face</a>
                         </div>
                     </div>
                 </li>
             </ul>
+
             <div class="auth-actions">
-                <a href="#" class="btn btn-login">Login</a>
-                <a href="#" class="btn btn-signup"><i class="fas fa-user-plus"></i> Sign Up</a>
-                <a href="#" class="menu-dots"><i class="fas fa-ellipsis-v"></i></a>
+                <a href="/static/login.html" class="btn btn-login" rel="nofollow">Login</a>
+                <a href="/static/signup.html" class="btn btn-signup" rel="nofollow"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
             </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobileSidebar">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
         </nav>
-        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
     </div>
 </header>
 
-<div id="mobileSidebar">
+<div id="mobileSidebar" aria-hidden="true">
     <div class="sidebar-header">
         <a href="index.html" class="logo">
-            <span><i class="fas fa-heart"></i></span> IMG
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="100" height="30" style="width:100px; height:auto;">
         </a>
-        <span class="sidebar-close"><i class="fas fa-times"></i></span>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close Mobile Menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
     </div>
-    <div class="sidebar-nav">
+    
+    <nav class="sidebar-nav" aria-label="Mobile Navigation">
         <ul>
             <li><a href="compress_tool.html">Compress Image</a></li>
             <li><a href="resize.html">Resize Image</a></li>
             <li><a href="crop.html">Crop Image</a></li>
             <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
             <li><a href="photoEdit.html">Photo Editor</a></li>
-            <li>
-                <a href="#" id="mobileDropdownToggle">MORE TOOLS <i class="fas fa-chevron-down"></i></a>
+            
+            <li class="dropdown-mobile">
+                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false" aria-controls="mobileDropdownContent">
+                    More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </button>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
-                    <li><div class="dropdown-category-title">OPTIMIZE</div></li>
-                    <li><a href="compress_tool.html">Compress IMAGE</a></li>
+                    <li><div class="dropdown-category-title">Optimize</div></li>
+                    <li><a href="compress_tool.html">Compress Image</a></li>
                     <li><a href="bg_remove.html">Remove background</a></li>
-                    <li><div class="dropdown-category-title">CREATE</div></li>
+                    <li><div class="dropdown-category-title">Create</div></li>
                     <li><a href="meme-generator.html">Meme generator</a></li>
                     <li><a href="photoEdit.html">Photo editor</a></li>
                     <li><a href="image-to-pdf.html">Image to PDF</a></li>
-                    <li><div class="dropdown-category-title">CONVERT</div></li>
+                    <li><div class="dropdown-category-title">Convert</div></li>
                     <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
                     <li><a href="heice-to-jpg.html">HEIC to JPG</a></li>
                     <li><a href="jpg-to-png.html">JPG to PNG</a></li>
-                    <li><div class="dropdown-category-title">SECURITY</div></li>
-                    <li><a href="watermark.html">Watermark IMAGE</a></li>
+                    <li><div class="dropdown-category-title">Security</div></li>
+                    <li><a href="watermark.html">Watermark Image</a></li>
                     <li><a href="blur-face.html">Blur face</a></li>
                 </ul>
             </li>
         </ul>
-    </div>
+    </nav>
+    
     <div class="sidebar-auth-actions">
-        <a href="#" class="btn btn-login">Login</a>
-        <a href="#" class="btn btn-signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        <a href="/static/login.html" class="btn btn-login" rel="nofollow">Login</a>
+        <a href="/static/signup.html" class="btn btn-signup" rel="nofollow"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
     </div>
 </div>
 
-<main>
+<main id="mainContent" role="main">
     <div class="container">
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-file-image"></i> GIF to JPG Converter Tutorial</h1>
-                <p>The **GIF to JPG** tool allows you to convert animated GIF files into static JPG images. The tool intelligently captures the **first frame** of the GIF and converts it to a high-quality JPG, making it perfect for thumbnails, previews, or static representations.</p>
+                <h1>GIF to JPG Converter Tutorial</h1>
+                <p>The <strong>GIF to JPG</strong> tool allows you to convert animated GIF files into static JPG images. The tool intelligently captures the <strong>first frame</strong> of the GIF and converts it to a high-quality JPG, making it perfect for thumbnails, previews, or static representations.</p>
 
                 <hr>
 
-                <h2>1. Upload Your GIF File(s) <i class="fa fa-upload"></i></h2>
+                <h2>1. Upload Your GIF File(s)</h2>
                 <div class="step-content">
                     <p>Select one or more GIF files from your device to begin the conversion process. The tool supports batch processing.</p>
                     
@@ -725,12 +468,12 @@
 
                 <hr>
 
-                <h2>2. Start the Conversion <i class="fa fa-bolt"></i></h2>
+                <h2>2. Start the Conversion</h2>
                 <p>The tool automatically processes each GIF to extract the first frame and save it as a JPG.</p>
 
                 <h3>Conversion Details:</h3>
                 <ul>
-                    <li>Click the **"Convert to JPG"** button (or similar action button).</li>
+                    <li>Click the <strong>"Convert to JPG"</strong> button (or similar action button).</li>
                     <li>The system isolates the first frame of the animation.</li>
                     <li>The isolated frame is compressed and converted to the high-quality JPG format.</li>
                 </ul>
@@ -738,14 +481,14 @@
 
                 <hr>
 
-                <h2>3. Preview and Download <i class="fa fa-download"></i></h2>
+                <h2>3. Preview and Download</h2>
                 <p>Once conversion is complete, you will see a preview of the resulting JPG images.</p>
 
                 <h3>Saving Your Files:</h3>
                 <ul>
                     <li>Each converted JPG image will be displayed with a separate download button.</li>
-                    <li>Click the **"Download"** button under each preview to save individual JPG files to your device.</li>
-                    <li>If you uploaded multiple files, look for a **"Download All"** or **"Download ZIP"** option to get all converted images in one compressed folder.</li>
+                    <li>Click the <strong>"Download"</strong> button under each preview to save individual JPG files to your device.</li>
+                    <li>If you uploaded multiple files, look for a <strong>"Download All"</strong> or <strong>"Download ZIP"</strong> option to get all converted images in one compressed folder.</li>
                 </ul>
                 <p>The original animation (GIF) is replaced by a single static image (JPG).</p>
 
@@ -764,151 +507,154 @@
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
                 <ul>
-                    <li><a href="img-composser-guide.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
-                    <li><a href="all-convert-guide.html"><i class="fa fa-compress"></i> Universal Image Converter</a></li>
-                    <li><a href="blur-face-guide.html"><i class="fa fa-compress"></i> Blur Face</a></li>
-                    <li><a href="resize-guide.html"><i class="fa fa-expand"></i> Image Resizer Tutorial</a></li>
-                    <li><a href="crop-guide.html"><i class="fa fa-crop"></i> Image Cropper Instructions</a></li>
-                    <li><a href="rotate-image-guide.html"><i class="fa fa-redo"></i> Rotate Image Tutorial</a></li>
-                    <li class="active"><a href="gif-to-jpg-guide.html"><i class="fa fa-file-image"></i> GIF to JPG Converter Guide</a></li>
-                    <li><a href="png-to-jpg-guide.html"><i class="fa fa-file-export"></i> PNG to JPG Converter Guide</a></li>
-                    <li><a href="image-to-pdf-guide.html"><i class="fa fa-file-pdf"></i> Image to PDF Converter</a></li>
-                    <li><a href="watermark-guide.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
-                    <li><a href="bg-remove-guide.html"><i class="fa fa-eraser"></i> Remove Background Guide</a></li>
-                    <li><a href="photoEdit-guide.html"><i class="fa fa-file-pdf"></i> Photo Editor Tutorial</a></li>
-                    <li><a href="flip-image-guide.html"><i class="fa fa-sync-alt"></i> Flip Image Tutorial</a></li>
-                    <li><a href="heice-to-jpg-guide.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
-                    <li><a href="jpg-to-png-guide.html"><i class="fa fa-exchange-alt"></i> JPG to PNG Conversion</a></li>
-                    <li><a href="color-picker-guide.html"><i class="fa fa-palette"></i> Image Color Picker</a></li>
-                    <li><a href="img-to-gif-guide.html"><i class="fa fa-video"></i> Image to GIF Tutorial</a></li>
-                    <li><a href="img-to-text-guide.html"><i class="fa fa-font"></i> Image to Text Guide</a></li>
-                    <li><a href="join-image-guide.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
-                    <li><a href="meme-generat-guide.html"><i class="fa fa-face-grin-squint"></i> Meme Generator Guide</a></li>
-                    <li><a href="mosaic-guide.html"><i class="fa fa-border-all"></i> Image Mosaic Guide</a></li>
-                    <li><a href="image-to-vector-guide.html"><i class="fa fa-bezier-curve"></i> Image to SVG Guide</a></li>
-                    <li><a href="web-to-jpg-guide.html"><i class="fa fa-file-code"></i> WEBP to JPG Converter</a></li>
-                    <li><a href="collage-maker-guide.html"><i class="fa fa-columns"></i> Image Collage Maker</a></li>
+                    <li><a href="img-composser-guide.html"><i class="fas fa-compress"></i> Image Compressor Guide</a></li>
+                    <li><a href="all-convert-guide.html"><i class="fas fa-globe"></i> Universal Image Converter</a></li>
+                    <li><a href="blur-face-guide.html"><i class="fas fa-mask"></i> Blur Face</a></li>
+                    <li><a href="resize-guide.html"><i class="fas fa-ruler-combined"></i> Image Resizer Tutorial</a></li>
+                    <li><a href="crop-guide.html"><i class="fas fa-crop-alt"></i> Image Cropper Instructions</a></li>
+                    <li><a href="rotate-image-guide.html"><i class="fas fa-redo-alt"></i> Rotate Image Tutorial</a></li>
+                    <li class="active"><a href="gif-to-jpg-guide.html"><i class="fas fa-file-image"></i> GIF to JPG Converter Guide</a></li>
+                    <li><a href="png-to-jpg-guide.html"><i class="fas fa-file-export"></i> PNG to JPG Converter Guide</a></li>
+                    <li><a href="image-to-pdf-guide.html"><i class="fas fa-file-pdf"></i> Image to PDF Converter</a></li>
+                    <li><a href="watermark-guide.html"><i class="fas fa-tint"></i> Watermark Adder Tutorial</a></li>
+                    <li><a href="bg-remove-guide.html"><i class="fas fa-eraser"></i> Remove Background Guide</a></li>
+                    <li><a href="photoEdit-guide.html"><i class="fas fa-paint-brush"></i> Photo Editor Tutorial</a></li>
+                    <li><a href="flip-image-guide.html"><i class="fas fa-sync-alt"></i> Flip Image Tutorial</a></li>
+                    <li><a href="heice-to-jpg-guide.html"><i class="fas fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
+                    <li><a href="jpg-to-png-guide.html"><i class="fas fa-file-export"></i> JPG to PNG Conversion</a></li>
+                    <li><a href="color-picker-guide.html"><i class="fas fa-palette"></i> Image Color Picker</a></li>
+                    <li><a href="img-to-gif-guide.html"><i class="fas fa-file-video"></i> Image to GIF Tutorial</a></li>
+                    <li><a href="img-to-text-guide.html"><i class="fas fa-font"></i> Image to Text Guide</a></li>
+                    <li><a href="join-image-guide.html"><i class="fas fa-object-group"></i> Join Images Guide</a></li>
+                    <li><a href="meme-generat-guide.html"><i class="fas fa-face-grin-squint"></i> Meme Generator Guide</a></li>
+                    <li><a href="mosaic-guide.html"><i class="fas fa-braille"></i> Image Mosaic Guide</a></li>
+                    <li><a href="image-to-vector-guide.html"><i class="fas fa-bezier-curve"></i> Image to SVG Guide</a></li>
+                    <li><a href="web-to-jpg-guide.html"><i class="fas fa-file-code"></i> WEBP to JPG Converter</a></li>
+                    <li><a href="collage-maker-guide.html"><i class="fas fa-columns"></i> Image Collage Maker</a></li>
                 </ul>
             </aside>
         </div>
     </div>
 </main>
 
-<footer>
+<footer role="contentinfo">
     <div class="container">
         <div class="footer-content">
-            
             <div class="footer-logo-col">
                 <div class="footer-logo">
-                    <span><i class="fas fa-heart"></i></span> IMG
+                    <span>
+                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;">
+                    </span>
                 </div>
                 <p>
                     The easiest and fastest way to edit images online. Our platform offers a free suite of tools for compression, resizing, and conversion, all while maintaining high quality.
                 </p>
                 <div class="social-links">
-                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61584758792978" aria-label="Follow us on Facebook" rel="nofollow noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://x.com/TTools65743" aria-label="Follow us on Twitter" rel="nofollow noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/topimgtools/" aria-label="Follow us on Instagram" rel="nofollow noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/topimg-tools-1ab5553a0/" aria-label="Connect on LinkedIn" rel="nofollow noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                 </div>
             </div>
             
             <div class="footer-links-col">
                 <div>
                     <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/static/about_us.html">About Us</a></li>
-                        <li><a href="/static/pricing.html">Pricing</a></li>
-                        <li><a href="/static/contact_us.html">Contact</a></li>
-                        <li><a href="/static/privacy_policy.html">Privacy Policy</a></li>
-                        <li><a href="/static/terms_and_conditions.html">Terms & Conditions</a></li>
+                    <ul role="list">
+                        <li><a href="about_us.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact_us.html">Contact</a></li>
+                        <li><a href="privacy_policy.html">Privacy Policy</a></li>
+                        <li><a href="terms_and_conditions.html">Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4>Tools</h4>
-                    <ul>
-                        <li><a href="/static/compress_tool.html">Compress Image</a></li>
-                        <li><a href="/static/resize.html">Resize Image</a></li>
-                        <li><a href="/static/web-to-jpg.html">Webp to JPG</a></li>
-                        <li><a href="/static/bg_remove.html">Remove Background</a></li>
+                    <h4>Popular Tools</h4>
+                    <ul role="list">
+                        <li><a href="compress_tool.html">Compress Image</a></li>
+                        <li><a href="resize.html">Resize Image</a></li>
+                        <li><a href="web-to-jpg.html">WebP to JPG</a></li>
+                        <li><a href="bg_remove.html">Remove Background</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4>Support</h4>
-                    <ul>
-                        <li><a href="/static/help_center.html">Help Center</a></li>
-                        <li><a href="/static/tutorial.html">Tutorials</a></li>
-                        <li><a href="/static/report_bug.html">Report Bug</a></li>
+                    <ul role="list">
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="tutorial.html">Tutorials</a></li>
+                        <li><a href="report_bug.html">Report Bug</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            &copy; 2025 IMG Editor. All rights reserved.
+            &copy; 2025 TopImgTools. All rights reserved.
         </div>
     </div>
 </footer>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const header = document.querySelector("header");
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 0) {
+        // Scroll Performance: Passive Listener
+        window.addEventListener("scroll", function () {
+            const header = document.getElementById("mainHeader");
+            if (window.scrollY > 30) {
                 header.classList.add("scrolled");
             } else {
                 header.classList.remove("scrolled");
             }
-        });
+        }, { passive: true });
 
         // Mobile Sidebar Logic
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const sidebar = document.getElementById('mobileSidebar');
-        const sidebarClose = document.querySelector('.sidebar-close');
-
-        const openSidebar = () => {
-            sidebar.classList.add('open');
-            document.body.classList.add('menu-open');
-        };
-
-        const closeSidebar = () => {
-            sidebar.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        };
-
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', openSidebar);
-        }
-
-        if (sidebarClose) {
-            sidebarClose.addEventListener('click', closeSidebar);
-        }
+        const sidebarClose = document.getElementById('sidebarClose');
+        const body = document.body;
         
-        // Close sidebar if user clicks outside
+        function openSidebar() {
+            if (sidebar) {
+                sidebar.classList.add('open');
+                sidebar.setAttribute('aria-hidden', 'false');
+                mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                body.classList.add('menu-open');
+                sidebarClose.focus(); 
+            }
+        }
+
+        function closeSidebar() {
+            if (sidebar) {
+                sidebar.classList.remove('open');
+                sidebar.setAttribute('aria-hidden', 'true');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.focus(); 
+            }
+        }
+
+        if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openSidebar);
+        if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+        
+        // Close sidebar on outside click
         document.addEventListener('click', (e) => {
-            if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== mobileMenuToggle) {
+            if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                 closeSidebar();
             }
         });
-        
-        // Mobile Dropdown Logic (for 'MORE TOOLS' inside the sidebar)
+
+        // Mobile Dropdown Toggle
         const mobileDropdownToggle = document.getElementById('mobileDropdownToggle');
         const mobileDropdownContent = document.getElementById('mobileDropdownContent');
         
         if (mobileDropdownToggle && mobileDropdownContent) {
             mobileDropdownToggle.addEventListener('click', (e) => {
-                e.preventDefault(); 
                 const isExpanded = mobileDropdownContent.style.display === 'block';
-                
-                if (isExpanded) {
-                    mobileDropdownContent.style.display = 'none';
-                    mobileDropdownToggle.querySelector('i').style.transform = 'rotate(0deg)';
-                } else {
-                    mobileDropdownContent.style.display = 'block';
-                    mobileDropdownToggle.querySelector('i').style.transform = 'rotate(180deg)';
-                }
+                mobileDropdownContent.style.display = isExpanded ? 'none' : 'block';
+                mobileDropdownToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileDropdownToggle.querySelector('i').style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
             });
         }
     });
