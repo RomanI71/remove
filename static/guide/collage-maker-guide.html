@@ -3,23 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collage Maker Tutorial - TopImgTools</title>
-<meta name="description" content="Learn how to use the online Collage Maker tool to combine multiple photos into beautiful, customizable layouts, choosing from various grids and styles.">
+<title>Collage Maker Tutorial: How to Create Photo Collages Online - TopImgTools</title>
+<meta name="description" content="Learn step-by-step how to use the TopImgTools Collage Maker. Combine photos, customize grids, and download beautiful collages for free.">
+<link rel="canonical" href="https://topimgtools.com/collage-maker-guide.html">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://topimgtools.com/collage-maker-guide.html">
+<meta property="og:title" content="Collage Maker Tutorial - TopImgTools">
+<meta property="og:description" content="Create stunning photo collages easily. Follow our guide to combine images with custom layouts.">
+<meta property="og:image" content="https://topimgtools.com/assets/collage-maker-preview.jpg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://topimgtools.com/collage-maker-guide.html">
+<meta property="twitter:title" content="Collage Maker Tutorial - TopImgTools">
+<meta property="twitter:description" content="Create stunning photo collages easily. Follow our guide to combine images with custom layouts.">
+<meta property="twitter:image" content="https://topimgtools.com/assets/collage-maker-preview.jpg">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+
 <link rel="icon" type="image/png" href="assets/favicon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Create a Photo Collage Online",
+  "description": "A step-by-step guide to using TopImgTools Collage Maker to combine multiple photos into a single layout.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://topimgtools.com/assets/collage-maker-preview.jpg",
+    "height": "406",
+    "width": "696"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/collage-maker-guide.html#step1",
+      "name": "Upload Your Photos",
+      "text": "Click the Upload Images button and select multiple files or drag and drop them into the upload zone."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/collage-maker-guide.html#step2",
+      "name": "Select Layout",
+      "text": "Choose a grid template that fits the number of photos you uploaded."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/collage-maker-guide.html#step3",
+      "name": "Customize Design",
+      "text": "Adjust borders, padding, background colors, and rounded corners to style your collage."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/collage-maker-guide.html#step4",
+      "name": "Download",
+      "text": "Preview your work and click the Download button to save the final image."
+    }
+  ]
+}
+</script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-F5XBT7MCBM');
 </script>
+
 <style>
     /* ========================================================== */
-    /* --- GLOBAL STYLES FROM INDEX.HTML --- */
+    /* --- GLOBAL STYLES --- */
     /* ========================================================== */
     :root {
         --primary-color: #4a90e2;
@@ -41,6 +100,21 @@
         color: var(--text-dark);
     }
     
+    /* Accessibility: Skip Link */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px;
+        z-index: 100000;
+        transition: top 0.3s;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
+
     body.menu-open { overflow: hidden; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
@@ -57,7 +131,7 @@
     .btn-signup:hover { background: var(--primary-hover); }
 
     /* --- HEADER --- */
-    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); will-change: padding, box-shadow; }
     #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
     
     .header-flex { display: flex; align-items: center; justify-content: space-between; }
@@ -65,7 +139,7 @@
     .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
     
     .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text-dark); white-space: nowrap; }
-    .logo img { display: block; }
+    .logo img { display: block; width: 150px; height: auto; }
 
     .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
     .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
@@ -113,7 +187,7 @@
     .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid #455a64; gap: 30px; }
     .footer-logo-col { flex-basis: 300px; max-width: 100%; }
     .footer-logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #ecf0f1; margin-bottom: 15px; }
-    .footer-logo img { display: block; }
+    .footer-logo img { display: block; width: 150px; height: auto; }
     .footer-logo-col p { color: #e0e0e0; line-height: 1.8; }
     .footer-links-col { flex-grow: 1; display: flex; gap: 50px; justify-content: space-around; }
     .footer-links-col h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
@@ -272,10 +346,12 @@
 
 <body>
 
+<a href="#mainContent" class="skip-link">Skip to content</a>
+
 <header id="mainHeader" role="banner">
     <div class="container header-flex">
         <a href="index.html" class="logo" aria-label="TopImgTools Home">
-            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" style="width:150px; height:auto;">
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" fetchpriority="high">
         </a>
 
         <nav class="nav" aria-label="Main Navigation">
@@ -337,7 +413,7 @@
                 <a href="/static/signup.html" class="btn btn-signup"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
             </div>
             
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-controls="mobileSidebar">
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
         </nav>
@@ -363,7 +439,7 @@
             <li><a href="photoEdit.html">Photo Editor</a></li>
             
             <li class="dropdown-mobile">
-                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false">
+                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false" aria-controls="mobileDropdownContent">
                     More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
                 </button>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
@@ -402,61 +478,69 @@
 
                 <hr>
 
-                <h2>1. Upload Your Photos <i class="fa fa-upload" aria-hidden="true"></i></h2>
-                <div class="step-content">
-                    <p>You can upload all the images you want to include in your collage at once:</p>
-                    
-                    <h3>Upload Methods:</h3>
+                <section id="step1">
+                    <h2>1. Upload Your Photos <i class="fa fa-upload" aria-hidden="true"></i></h2>
+                    <div class="step-content">
+                        <p>You can upload all the images you want to include in your collage at once:</p>
+                        
+                        <h3>Upload Methods:</h3>
+                        <ul>
+                            <li><strong>Click Upload:</strong> Click the <strong>"Upload Images"</strong> button and select multiple files from your computer or mobile device.</li>
+                            <li><strong>Drag and Drop:</strong> Drag all selected images directly into the designated upload zone.</li>
+                        </ul>
+                        <p>The tool will process all uploaded images and prepare them for arrangement.</p>
+                    </div>
+                </section>
+
+                <hr>
+
+                <section id="step2">
+                    <h2>2. Select Your Collage Layout <i class="fa fa-th-large" aria-hidden="true"></i></h2>
+                    <p>The first step in building your collage is selecting the grid structure:</p>
+    
+                    <h3>Layout Options:</h3>
                     <ul>
-                        <li><strong>Click Upload:</strong> Click the <strong>"Upload Images"</strong> button and select multiple files from your computer or mobile device.</li>
-                        <li><strong>Drag and Drop:</strong> Drag all selected images directly into the designated upload zone.</li>
+                        <li>The tool will usually show various <strong>grid templates</strong> based on the number of images you uploaded (e.g., 2-photo, 3-photo, 4-photo square grids). </li>
+                        <li><strong>Choose a Template:</strong> Click on the template that best fits your needs. Your uploaded photos will automatically be placed into the grid cells.</li>
+                        <li><strong>Re-arrange:</strong> You can usually click and drag the photos within the grid to swap their positions.</li>
                     </ul>
-                    <p>The tool will process all uploaded images and prepare them for arrangement.</p>
-                </div>
+                </section>
 
                 <hr>
 
-                <h2>2. Select Your Collage Layout <i class="fa fa-th-large" aria-hidden="true"></i></h2>
-                <p>The first step in building your collage is selecting the grid structure:</p>
-
-                <h3>Layout Options:</h3>
-                <ul>
-                    <li>The tool will usually show various **grid templates** based on the number of images you uploaded (e.g., 2-photo, 3-photo, 4-photo square grids). </li>
-                    <li><strong>Choose a Template:</strong> Click on the template that best fits your needs. Your uploaded photos will automatically be placed into the grid cells.</li>
-                    <li>**Re-arrange:** You can usually click and drag the photos within the grid to swap their positions.</li>
-                </ul>
-
-                <hr>
-
-                <h2>3. Customize the Collage Design <i class="fa fa-sliders-h" aria-hidden="true"></i></h2>
-                <p>Refine the appearance of your collage using the customization options:</p>
-
-                <h3>Customization Settings:</h3>
-                <ul>
-                    <li><strong>Border/Padding:</strong> Adjust the **thickness** of the lines separating the images.</li>
-                    <li><strong>Background Color:</strong> Change the color of the space between the images. You can select a solid color or sometimes a textured background.</li>
-                    <li><strong>Round Corners (Optional):</strong> Apply a radius to the corners of the individual photos within the collage for a softer look.</li>
-                    <li><strong>Zoom & Crop:</strong> For each individual image in the grid, you may be able to zoom in or move the photo to perfectly fit the frame.</li>
-                </ul>
+                <section id="step3">
+                    <h2>3. Customize the Collage Design <i class="fa fa-sliders-h" aria-hidden="true"></i></h2>
+                    <p>Refine the appearance of your collage using the customization options:</p>
+    
+                    <h3>Customization Settings:</h3>
+                    <ul>
+                        <li><strong>Border/Padding:</strong> Adjust the <strong>thickness</strong> of the lines separating the images.</li>
+                        <li><strong>Background Color:</strong> Change the color of the space between the images. You can select a solid color or sometimes a textured background.</li>
+                        <li><strong>Round Corners (Optional):</strong> Apply a radius to the corners of the individual photos within the collage for a softer look.</li>
+                        <li><strong>Zoom & Crop:</strong> For each individual image in the grid, you may be able to zoom in or move the photo to perfectly fit the frame.</li>
+                    </ul>
+                </section>
 
                 <hr>
 
-                <h2>4. Finalize and Download <i class="fa fa-download" aria-hidden="true"></i></h2>
-                <p>Once your collage looks perfect, download it as a single image file:</p>
-
-                <ul>
-                    <li>Review the final collage in the preview window.</li>
-                    <li>Click the <strong>"Download Collage"</strong> or <strong>"Save"</strong> button.</li>
-                    <li>The tool will generate and save the final image (usually in JPG or PNG format) to your device.</li>
-                </ul>
-
-                <p>Congratulations, your personalized photo collage is ready to share!</p>
+                <section id="step4">
+                    <h2>4. Finalize and Download <i class="fa fa-download" aria-hidden="true"></i></h2>
+                    <p>Once your collage looks perfect, download it as a single image file:</p>
+    
+                    <ul>
+                        <li>Review the final collage in the preview window.</li>
+                        <li>Click the <strong>"Download Collage"</strong> or <strong>"Save"</strong> button.</li>
+                        <li>The tool will generate and save the final image (usually in JPG or PNG format) to your device.</li>
+                    </ul>
+    
+                    <p>Congratulations, your personalized photo collage is ready to share!</p>
+                </section>
 
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
-                <ul>
+                <ul role="list">
                     <li><a href="img-composser-guide.html"><i class="fa fa-compress" aria-hidden="true"></i> Image Compressor Guide</a></li>
                     <li><a href="all-convert-guide.html"><i class="fa fa-globe" aria-hidden="true"></i> Universal Image Converter</a></li>
                     <li><a href="bg-remove-guide.html"><i class="fa fa-eraser" aria-hidden="true"></i> Remove Background Guide</a></li>
@@ -493,7 +577,7 @@
             <div class="footer-logo-col">
                 <div class="footer-logo">
                     <span>
-                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;">
+                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" loading="lazy">
                     </span>
                 </div>
                 <p>

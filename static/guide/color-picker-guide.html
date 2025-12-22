@@ -3,24 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Color Picker Tutorial - TopImgTools</title>
-<meta name="description" content="Learn how to use the Image Color Picker tool to easily extract precise color codes (HEX, RGB) from any pixel in your image."/>
+<title>Image Color Picker Tutorial: Extract HEX & RGB Codes - TopImgTools</title>
+<meta name="description" content="Learn step-by-step how to use the Image Color Picker to extract precise HEX, RGB, and HSL color codes from any image online for free.">
+<link rel="canonical" href="https://topimgtools.com/color-picker-guide.html">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://topimgtools.com/color-picker-guide.html">
+<meta property="og:title" content="Image Color Picker Tutorial - TopImgTools">
+<meta property="og:description" content="Extract precise color codes from images easily. Follow our guide to pick colors online.">
+<meta property="og:image" content="https://topimgtools.com/assets/color-picker-preview.jpg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://topimgtools.com/color-picker-guide.html">
+<meta property="twitter:title" content="Image Color Picker Tutorial - TopImgTools">
+<meta property="twitter:description" content="Extract precise color codes from images easily. Follow our guide to pick colors online.">
+<meta property="twitter:image" content="https://topimgtools.com/assets/color-picker-preview.jpg">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+
 <link rel="icon" type="image/png" href="assets/favicon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Pick a Color from an Image Online",
+  "description": "A step-by-step guide to using TopImgTools Image Color Picker to extract HEX, RGB, and HSL codes from uploaded photos.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://topimgtools.com/assets/color-picker-preview.jpg",
+    "height": "406",
+    "width": "696"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/color-picker-guide.html#step1",
+      "name": "Upload Your Image",
+      "text": "Click the Upload Image button and select your file or drag and drop it onto the tool interface."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/color-picker-guide.html#step2",
+      "name": "Select Color Location",
+      "text": "Hover over the image and click on the specific pixel you want to analyze to lock the color."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/color-picker-guide.html#step3",
+      "name": "Copy Color Codes",
+      "text": "View the extracted HEX, RGB, or HSL codes and click the Copy button to save them to your clipboard."
+    }
+  ]
+}
+</script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-F5XBT7MCBM');
 </script>
 
 <style>
     /* ========================================================== */
-    /* --- GLOBAL STYLES FROM INDEX.HTML --- */
+    /* --- GLOBAL STYLES --- */
     /* ========================================================== */
     :root {
         --primary-color: #4a90e2;
@@ -42,6 +94,21 @@
         color: var(--text-dark);
     }
     
+    /* Accessibility: Skip Link */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px;
+        z-index: 100000;
+        transition: top 0.3s;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
+
     body.menu-open { overflow: hidden; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
@@ -58,7 +125,7 @@
     .btn-signup:hover { background: var(--primary-hover); }
 
     /* --- HEADER --- */
-    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); will-change: padding, box-shadow; }
     #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
     
     .header-flex { display: flex; align-items: center; justify-content: space-between; }
@@ -66,7 +133,7 @@
     .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
     
     .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text-dark); white-space: nowrap; }
-    .logo img { display: block; }
+    .logo img { display: block; width: 150px; height: auto; }
 
     .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
     .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
@@ -114,7 +181,7 @@
     .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid #455a64; gap: 30px; }
     .footer-logo-col { flex-basis: 300px; max-width: 100%; }
     .footer-logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #ecf0f1; margin-bottom: 15px; }
-    .footer-logo img { display: block; }
+    .footer-logo img { display: block; width: 150px; height: auto; }
     .footer-logo-col p { color: #e0e0e0; line-height: 1.8; }
     .footer-links-col { flex-grow: 1; display: flex; gap: 50px; justify-content: space-around; }
     .footer-links-col h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
@@ -273,10 +340,12 @@
 
 <body>
 
+<a href="#mainContent" class="skip-link">Skip to content</a>
+
 <header id="mainHeader" role="banner">
     <div class="container header-flex">
         <a href="index.html" class="logo" aria-label="TopImgTools Home">
-            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" style="width:150px; height:auto;">
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" fetchpriority="high">
         </a>
 
         <nav class="nav" aria-label="Main Navigation">
@@ -338,7 +407,7 @@
                 <a href="/static/signup.html" class="btn btn-signup"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
             </div>
             
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-controls="mobileSidebar">
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
         </nav>
@@ -364,7 +433,7 @@
             <li><a href="photoEdit.html">Photo Editor</a></li>
             
             <li class="dropdown-mobile">
-                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false">
+                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false" aria-controls="mobileDropdownContent">
                     More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
                 </button>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
@@ -403,57 +472,65 @@
 
                 <hr>
 
-                <h2>1. Upload Your Image <i class="fa fa-image" aria-hidden="true"></i></h2>
-                <div class="step-content">
-                    <p>Start by bringing your image into the tool:</p>
-                    
-                    <h3>Upload Options:</h3>
+                <section id="step1">
+                    <h2>1. Upload Your Image <i class="fa fa-image" aria-hidden="true"></i></h2>
+                    <div class="step-content">
+                        <p>Start by bringing your image into the tool:</p>
+                        
+                        <h3>Upload Options:</h3>
+                        <ul>
+                            <li><strong>Click Upload:</strong> Click the <strong>"Upload Image"</strong> button and select your file.</li>
+                            <li><strong>Drag and Drop:</strong> Drag your image directly onto the tool interface.</li>
+                        </ul>
+                        <p>Your image will be displayed prominently in the tool's workspace.</p>
+                    </div>
+                </section>
+
+                <hr>
+
+                <section id="step2">
+                    <h2>2. Select the Color Location <i class="fa fa-mouse-pointer" aria-hidden="true"></i></h2>
+                    <p>Once the image is loaded, you can start picking colors:</p>
+    
+                    <h3>How to Pick a Color:</h3>
                     <ul>
-                        <li><strong>Click Upload:</strong> Click the <strong>"Upload Image"</strong> button and select your file.</li>
-                        <li><strong>Drag and Drop:</strong> Drag your image directly onto the tool interface.</li>
+                        <li><strong>Mouse Interaction:</strong> Move your mouse cursor over the image. As you move it, a small magnified view (or a color display box) should appear near the cursor.</li>
+                        <li><strong>Click to Lock:</strong> Click on the exact spot where the desired color is located.</li>
+                        <li>This click action usually locks the color value, and the corresponding color codes will be displayed in an output panel.</li>
                     </ul>
-                    <p>Your image will be displayed prominently in the tool's workspace.</p>
-                </div>
+                </section>
 
                 <hr>
 
-                <h2>2. Select the Color Location <i class="fa fa-mouse-pointer" aria-hidden="true"></i></h2>
-                <p>Once the image is loaded, you can start picking colors:</p>
-
-                <h3>How to Pick a Color:</h3>
-                <ul>
-                    <li><strong>Mouse Interaction:</strong> Move your mouse cursor over the image. As you move it, a small magnified view (or a color display box) should appear near the cursor.</li>
-                    <li><strong>Click to Lock:</strong> Click on the exact spot where the desired color is located. [Image illustrating a cursor hovering over an image, showing a color sample]</li>
-                    <li>This click action usually locks the color value, and the corresponding color codes will be displayed in an output panel.</li>
-                </ul>
-
-                <hr>
-
-                <h2>3. Read and Copy the Color Codes <i class="fa fa-copy" aria-hidden="true"></i></h2>
-                <p>The tool instantly provides the color information in standard formats:</p>
-
-                <h3>Color Output Formats:</h3>
-                <ul>
-                    <li><strong>HEX Code (e.g., #4a90e2):</strong> The most common code for web design.</li>
-                    <li><strong>RGB Code (e.g., RGB(74, 144, 226)):</strong> Essential for digital displays.</li>
-                    <li>**HSL Code (e.g., HSL(213, 67%, 59%)):** Useful for adjusting hue, saturation, and lightness.</li>
-                </ul>
-                <p>Click the <strong>"Copy"</strong> button next to the desired format (HEX, RGB, etc.) to quickly save the value to your clipboard for use in other applications.</p>
+                <section id="step3">
+                    <h2>3. Read and Copy the Color Codes <i class="fa fa-copy" aria-hidden="true"></i></h2>
+                    <p>The tool instantly provides the color information in standard formats:</p>
+    
+                    <h3>Color Output Formats:</h3>
+                    <ul>
+                        <li><strong>HEX Code (e.g., #4a90e2):</strong> The most common code for web design.</li>
+                        <li><strong>RGB Code (e.g., RGB(74, 144, 226)):</strong> Essential for digital displays.</li>
+                        <li><strong>HSL Code (e.g., HSL(213, 67%, 59%)):</strong> Useful for adjusting hue, saturation, and lightness.</li>
+                    </ul>
+                    <p>Click the <strong>"Copy"</strong> button next to the desired format (HEX, RGB, etc.) to quickly save the value to your clipboard for use in other applications.</p>
+                </section>
 
                 <hr>
 
-                <h2>4. Tips for Accurate Picking <i class="fa fa-lightbulb" aria-hidden="true"></i></h2>
-                <p>Ensure you get the right color every time with these tips:</p>
-                <ul>
-                    <li><strong>Use Zoom:</strong> If the tool offers a zoom feature, use it to ensure precise pixel selection in detailed areas.</li>
-                    <li><strong>Check Surrounding Pixels:</strong> Colors often blend on edges; if you need a pure color, try clicking slightly away from shadows or highlights.</li>
-                </ul>
+                <section id="tips">
+                    <h2>4. Tips for Accurate Picking <i class="fa fa-lightbulb" aria-hidden="true"></i></h2>
+                    <p>Ensure you get the right color every time with these tips:</p>
+                    <ul>
+                        <li><strong>Use Zoom:</strong> If the tool offers a zoom feature, use it to ensure precise pixel selection in detailed areas.</li>
+                        <li><strong>Check Surrounding Pixels:</strong> Colors often blend on edges; if you need a pure color, try clicking slightly away from shadows or highlights.</li>
+                    </ul>
+                </section>
 
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
-                <ul>
+                <ul role="list">
                     <li><a href="img-composser-guide.html"><i class="fa fa-compress" aria-hidden="true"></i> Image Compressor Guide</a></li>
                     <li><a href="all-convert-guide.html"><i class="fa fa-globe" aria-hidden="true"></i> Universal Image Converter</a></li>
                     <li><a href="bg-remove-guide.html"><i class="fa fa-eraser" aria-hidden="true"></i> Remove Background Guide</a></li>
@@ -490,7 +567,7 @@
             <div class="footer-logo-col">
                 <div class="footer-logo">
                     <span>
-                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;">
+                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" loading="lazy">
                     </span>
                 </div>
                 <p>

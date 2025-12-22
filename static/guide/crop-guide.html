@@ -3,24 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crop Image Tutorial - TopImgTools</title>
-<meta name="description" content="Learn how to use the online Crop Image tool to remove unwanted edges and precisely frame your image, using custom or preset aspect ratios."/>
+<title>Crop Image Tutorial: Resize & Trim Photos Online - TopImgTools</title>
+<meta name="description" content="Learn step-by-step how to use the Crop Image tool. Trim unwanted edges, adjust aspect ratios, and frame your photos perfectly online for free.">
+<link rel="canonical" href="https://topimgtools.com/crop-guide.html">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://topimgtools.com/crop-guide.html">
+<meta property="og:title" content="Crop Image Tutorial - TopImgTools">
+<meta property="og:description" content="Trim unwanted edges and frame your photos perfectly. Follow our guide to crop images online.">
+<meta property="og:image" content="https://topimgtools.com/assets/crop-tool-preview.jpg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://topimgtools.com/crop-guide.html">
+<meta property="twitter:title" content="Crop Image Tutorial - TopImgTools">
+<meta property="twitter:description" content="Trim unwanted edges and frame your photos perfectly. Follow our guide to crop images online.">
+<meta property="twitter:image" content="https://topimgtools.com/assets/crop-tool-preview.jpg">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+
 <link rel="icon" type="image/png" href="assets/favicon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Crop an Image Online",
+  "description": "A step-by-step guide to using TopImgTools Crop Image tool to remove unwanted areas and adjust aspect ratios.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://topimgtools.com/assets/crop-tool-preview.jpg",
+    "height": "406",
+    "width": "696"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/crop-guide.html#step1",
+      "name": "Upload Image",
+      "text": "Click the Upload Image button to select your file or drag and drop it onto the canvas."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/crop-guide.html#step2",
+      "name": "Select Crop Area",
+      "text": "Drag the corners of the selection box to define the area you want to keep, or choose a preset aspect ratio."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/crop-guide.html#step3",
+      "name": "Apply Crop",
+      "text": "Review your selection and click the Crop button to trim the image."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/crop-guide.html#step4",
+      "name": "Download",
+      "text": "Save the newly cropped image to your device in your preferred format."
+    }
+  ]
+}
+</script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-F5XBT7MCBM');
 </script>
 
 <style>
     /* ========================================================== */
-    /* --- GLOBAL STYLES FROM INDEX.HTML --- */
+    /* --- GLOBAL STYLES --- */
     /* ========================================================== */
     :root {
         --primary-color: #4a90e2;
@@ -42,6 +100,21 @@
         color: var(--text-dark);
     }
     
+    /* Accessibility: Skip Link */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px;
+        z-index: 100000;
+        transition: top 0.3s;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
+
     body.menu-open { overflow: hidden; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
@@ -58,7 +131,7 @@
     .btn-signup:hover { background: var(--primary-hover); }
 
     /* --- HEADER --- */
-    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); will-change: padding, box-shadow; }
     #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
     
     .header-flex { display: flex; align-items: center; justify-content: space-between; }
@@ -66,7 +139,7 @@
     .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
     
     .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text-dark); white-space: nowrap; }
-    .logo img { display: block; }
+    .logo img { display: block; width: 150px; height: auto; }
 
     .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
     .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
@@ -114,7 +187,7 @@
     .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid #455a64; gap: 30px; }
     .footer-logo-col { flex-basis: 300px; max-width: 100%; }
     .footer-logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #ecf0f1; margin-bottom: 15px; }
-    .footer-logo img { display: block; }
+    .footer-logo img { display: block; width: 150px; height: auto; }
     .footer-logo-col p { color: #e0e0e0; line-height: 1.8; }
     .footer-links-col { flex-grow: 1; display: flex; gap: 50px; justify-content: space-around; }
     .footer-links-col h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
@@ -273,10 +346,12 @@
 
 <body>
 
+<a href="#mainContent" class="skip-link">Skip to content</a>
+
 <header id="mainHeader" role="banner">
     <div class="container header-flex">
         <a href="index.html" class="logo" aria-label="TopImgTools Home">
-            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" style="width:150px; height:auto;">
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" fetchpriority="high">
         </a>
 
         <nav class="nav" aria-label="Main Navigation">
@@ -338,7 +413,7 @@
                 <a href="/static/signup.html" class="btn btn-signup"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
             </div>
             
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-controls="mobileSidebar">
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
         </nav>
@@ -364,7 +439,7 @@
             <li><a href="photoEdit.html">Photo Editor</a></li>
             
             <li class="dropdown-mobile">
-                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false">
+                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false" aria-controls="mobileDropdownContent">
                     More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
                 </button>
                 <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
@@ -398,69 +473,66 @@
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-crop-alt" aria-hidden="true"></i> Crop Image Tutorial: Trim and Frame Your Photos</h1>
-                <p>Our <strong>Crop Image</strong> tool allows you to easily remove unwanted parts of your image and focus on the main subject. You can crop freely or use predefined aspect ratios for perfect social media or print compatibility.</p>
+                <h1><i class="fa fa-crop" aria-hidden="true"></i> Crop Image Tutorial: Trim & Frame Photos</h1>
+                <p>The <strong>Crop Image</strong> tool is designed to help you remove unwanted edges and focus on the most important parts of your photo. Whether you need a specific aspect ratio for social media or just want to improve the composition, this tool makes it easy.</p>
 
                 <hr>
 
-                <h2>1. Upload Your Image <i class="fa fa-upload" aria-hidden="true"></i></h2>
-                <div class="step-content">
-                    <p>Begin by uploading the image you wish to crop:</p>
-                    
-                    <h3>Upload Methods:</h3>
+                <section id="step1">
+                    <h2>1. Upload Your Image <i class="fa fa-upload" aria-hidden="true"></i></h2>
+                    <div class="step-content">
+                        <p>Begin by loading the image you wish to edit:</p>
+                        
+                        <h3>Upload Options:</h3>
+                        <ul>
+                            <li><strong>Click Upload:</strong> Use the <strong>"Upload Image"</strong> button to browse your device for files.</li>
+                            <li><strong>Drag and Drop:</strong> Simply drag the image file from your folder and drop it onto the tool's workspace.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <hr>
+
+                <section id="step2">
+                    <h2>2. Select the Crop Area <i class="fa fa-compress-arrows-alt" aria-hidden="true"></i></h2>
+                    <p>Define the new boundaries for your image:</p>
+    
+                    <h3>How to Adjust:</h3>
                     <ul>
-                        <li><strong>Click Upload:</strong> Click the <strong>"Upload Image"</strong> button and select your file.</li>
-                        <li><strong>Drag and Drop:</strong> Drag your image directly into the designated upload zone.</li>
+                        <li><strong>Manual Selection:</strong> A selection box will appear over your image. Click and drag the handles on the corners or sides to resize the box freely.</li>
+                        <li><strong>Move Selection:</strong> Click inside the box and drag it to position the crop area over the subject.</li>
+                        <li><strong>Aspect Ratios:</strong> If available, choose a preset ratio (like 1:1 for Square, 16:9 for Widescreen) to ensure standard dimensions.</li>
                     </ul>
-                    <p>The image will appear in the editing canvas with an initial cropping frame.</p>
-                </div>
+                </section>
 
                 <hr>
 
-                <h2>2. Define the Cropping Area <i class="fa fa-ruler-combined" aria-hidden="true"></i></h2>
-                <p>The core of cropping is defining which part of the image you want to keep. This is done using the cropping frame:</p>
+                <section id="step3">
+                    <h2>3. Apply and Download <i class="fa fa-check-circle" aria-hidden="true"></i></h2>
+                    <p>Once you are satisfied with the frame:</p>
+    
+                    <ul>
+                        <li>Click the <strong>"Crop Image"</strong> button to apply the changes. The tool will trim away everything outside your selection.</li>
+                        <li>Preview the result.</li>
+                        <li>Click <strong>"Download"</strong> to save the cropped image to your computer or phone.</li>
+                    </ul>
+                </section>
+
+                <hr>
                 
-                
-
-                <h3>Adjusting the Crop Frame:</h3>
-                <ul>
-                    <li><strong>Drag Handles:</strong> Click and drag the corner or edge **handles** of the bounding box to adjust the size and shape of the area you want to keep.</li>
-                    <li><strong>Move Selection:</strong> Click and drag inside the selection box to move the entire cropping area to perfectly center your subject.</li>
-                    <li><strong>Free Crop:</strong> By default, you can usually crop to any size and aspect ratio (free crop).</li>
-                </ul>
-
-                <hr>
-
-                <h2>3. Use Aspect Ratios (Optional) <i class="fa fa-square" aria-hidden="true"></i></h2>
-                <p>To ensure your image fits specific platform requirements (like social media profiles or printing), use predefined aspect ratios:</p>
-
-                <h3>Aspect Ratio Presets:</h3>
-                <ul>
-                    <li><strong>Square (1:1):</strong> Ideal for social media profile pictures and Instagram posts.</li>
-                    <li><strong>Portrait (2:3 or 4:5):</strong> Common for printing photos or tall social media content.</li>
-                    <li><strong>Landscape (16:9):</strong> Standard for video thumbnails or desktop wallpapers.</li>
-                    <li>**Custom Ratio:** Some tools allow you to input specific Width:Height values (e.g., 3:4) to lock the ratio.</li>
-                </ul>
-                <p>Selecting an aspect ratio locks the frame's proportions, making it easier to maintain visual consistency when resizing the frame.</p>
-
-                <hr>
-
-                <h2>4. Apply and Download <i class="fa fa-check-circle" aria-hidden="true"></i></h2>
-                <p>Once the cropping area is perfectly framed, finalize the process:</p>
-
-                <ul>
-                    <li>Click the <strong>"Apply Crop"</strong> or <strong>"Crop Image"</strong> button. The tool will instantly trim the image to the selected area.</li>
-                    <li>Review the final cropped image in the preview window.</li>
-                    <li>Click the <strong>"Download"</strong> or <strong>"Save"</strong> button to save the new image file (typically as a JPG or PNG) to your device.</li>
-                </ul>
-
-                <p>The remaining, cropped image is now perfectly framed and ready for use!</p>
+                <section id="tips">
+                   <h2>Tips for Better Cropping <i class="fa fa-lightbulb" aria-hidden="true"></i></h2>
+                   <ul>
+                       <li><strong>Rule of Thirds:</strong> Try to place the main subject along the grid lines or at their intersections for a more professional look.</li>
+                       <li><strong>High Quality:</strong> Always start with a high-resolution image so the cropped version remains sharp.</li>
+                   </ul>
+                </section>
 
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
-                <ul>
+                <ul role="list">
                     <li><a href="img-composser-guide.html"><i class="fa fa-compress" aria-hidden="true"></i> Image Compressor Guide</a></li>
                     <li><a href="all-convert-guide.html"><i class="fa fa-globe" aria-hidden="true"></i> Universal Image Converter</a></li>
                     <li><a href="bg-remove-guide.html"><i class="fa fa-eraser" aria-hidden="true"></i> Remove Background Guide</a></li>
@@ -497,7 +569,7 @@
             <div class="footer-logo-col">
                 <div class="footer-logo">
                     <span>
-                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;">
+                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" loading="lazy">
                     </span>
                 </div>
                 <p>
