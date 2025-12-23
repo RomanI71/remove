@@ -3,20 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPG to PNG Converter Tutorial - ImageEdit</title>
-<meta name="description" content="A simple guide on how to convert JPG images to high-quality PNG format, preserving transparency, using our free online converter tool.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>JPG to PNG Converter Tutorial: High Quality & Free - TopImgTools</title>
+<meta name="description" content="Learn step-by-step how to convert JPG images to PNG format online for free. Preserve image quality and download your converted files instantly.">
+<link rel="canonical" href="https://topimgtools.com/jpg-to-png-guide.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://topimgtools.com/jpg-to-png-guide.html">
+<meta property="og:title" content="JPG to PNG Converter Tutorial - TopImgTools">
+<meta property="og:description" content="Convert JPG to PNG easily. Follow our guide to change image formats online without quality loss.">
+<meta property="og:image" content="https://topimgtools.com/assets/jpg-png-preview.jpg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://topimgtools.com/jpg-to-png-guide.html">
+<meta property="twitter:title" content="JPG to PNG Converter Tutorial - TopImgTools">
+<meta property="twitter:description" content="Convert JPG to PNG easily. Follow our guide to change image formats online without quality loss.">
+<meta property="twitter:image" content="https://topimgtools.com/assets/jpg-png-preview.jpg">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Convert JPG to PNG Online",
+  "description": "A step-by-step guide to using TopImgTools to convert JPG images to PNG format efficiently.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://topimgtools.com/assets/jpg-png-preview.jpg",
+    "height": "406",
+    "width": "696"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/jpg-to-png-guide.html#step1",
+      "name": "Upload JPG Image",
+      "text": "Click the Upload button and select the JPG file you want to convert from your device."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/jpg-to-png-guide.html#step2",
+      "name": "Convert to PNG",
+      "text": "Click the 'Convert to PNG' button. The tool will process the image and change the format."
+    },
+    {
+      "@type": "HowToStep",
+      "url": "https://topimgtools.com/jpg-to-png-guide.html#step3",
+      "name": "Download Image",
+      "text": "Once the conversion is complete, click the Download button to save the new PNG file."
+    }
+  ]
+}
+</script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-F5XBT7MCBM');
 </script>
 
 <style>
-    /* --- GLOBAL STYLES FROM INDEX (Consistent) --- */
+    /* ========================================================== */
+    /* --- GLOBAL STYLES --- */
+    /* ========================================================== */
     :root {
         --primary-color: #4a90e2;
         --primary-hover: #3b78c8;
@@ -27,6 +84,7 @@
         --focus-ring: 2px solid #3498db;
     }
 
+    /* Basic Resets */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
@@ -36,6 +94,21 @@
         color: var(--text-dark);
     }
     
+    /* Accessibility: Skip Link */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px;
+        z-index: 100000;
+        transition: top 0.3s;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
+
     body.menu-open { overflow: hidden; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
@@ -51,8 +124,8 @@
     .btn-signup { background: var(--primary-color); color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; height: 40px; display: flex; align-items: center; gap: 8px; }
     .btn-signup:hover { background: var(--primary-hover); }
 
-    /* --- HEADER STYLES (FROM INDEX) --- */
-    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    /* --- HEADER --- */
+    #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); will-change: padding, box-shadow; }
     #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
     
     .header-flex { display: flex; align-items: center; justify-content: space-between; }
@@ -60,13 +133,13 @@
     .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
     
     .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text-dark); white-space: nowrap; }
-    .logo img { display: block; }
+    .logo img { display: block; width: 150px; height: auto; }
 
     .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
     .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
     .main-nav li a:hover { color: #3498db; }
 
-    /* --- DROPDOWN (FROM INDEX) --- */
+    /* --- DROPDOWN --- */
     .dropdown { position: relative; }
     .dropbtn { display: flex; align-items: center; background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; color: #555; text-transform: uppercase; font-family: inherit; padding: 4px 0; }
     .dropbtn:hover, .dropdown:focus-within .dropbtn { color: #3498db; }
@@ -88,7 +161,7 @@
     .dropdown-column:nth-child(4) a i { color: #e65100; }
     .dropdown-column:nth-child(5) a i { color: #283593; }
 
-    /* --- MOBILE SIDEBAR (FROM INDEX) --- */
+    /* --- MOBILE SIDEBAR --- */
     .mobile-menu-toggle { display: none; cursor: pointer; font-size: 24px; padding: 8px 12px; color: var(--text-dark); z-index: 100001; background: transparent; border: none; border-radius: 6px; }
     .mobile-menu-toggle:hover { color: var(--primary-color); background: #f1f1f1; }
 
@@ -103,36 +176,117 @@
     .sidebar-auth-actions .btn { width: 100%; }
     .sidebar-auth-actions .btn-login { border: 1px solid #ccc; }
 
-    /* --- FOOTER STYLING (FROM INDEX) --- */
+    /* --- FOOTER --- */
     footer { background-color: #2c3e50; color: #ecf0f1; padding: 60px 0 20px 0; font-size: 14px; margin-top: auto; }
     .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid #455a64; gap: 30px; }
     .footer-logo-col { flex-basis: 300px; max-width: 100%; }
     .footer-logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #ecf0f1; margin-bottom: 15px; }
-    .footer-logo img { display: block; }
+    .footer-logo img { display: block; width: 150px; height: auto; }
     .footer-logo-col p { color: #e0e0e0; line-height: 1.8; }
     .footer-links-col { flex-grow: 1; display: flex; gap: 50px; justify-content: space-around; }
     .footer-links-col h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
-    .footer-links-col ul li { margin-bottom: 8px; }
     .footer-links-col ul li a { color: #d0d3d4; transition: color 0.2s; }
     .footer-links-col ul li a:hover { color: var(--primary-color); }
     .footer-bottom { margin-top: 20px; text-align: center; color: #bdc3c7; }
     .social-links a { color: #ecf0f1; margin: 0 10px; font-size: 18px; transition: color 0.2s; }
     .social-links a:hover { color: var(--primary-color); }
 
-    /* --- TUTORIAL PAGE SPECIFIC STYLES --- */
-    main { padding-top: 100px; padding-bottom: 40px; min-height: 80vh; }
-    .tutorial-wrapper { margin: 20px auto 40px auto; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; align-items: start; }
-    article { background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid #e5e7eb; padding: 30px; font-family: 'Inter', sans-serif; }
-    article h1 { font-size: 28px; font-weight: 800; color: #4a90e2; margin-bottom: 10px; border-bottom: 3px solid #4a90e2; padding-bottom: 10px; }
-    article h2 { font-size: 22px; font-weight: 700; color: #343a40; margin-top: 30px; padding-bottom: 5px; border-bottom: 1px solid #e5e7eb; }
-    article h3 { font-size: 18px; font-weight: 600; color: #343a40; margin-top: 20px; margin-bottom: 10px; }
-    article strong { font-weight: 700; color: #4a90e2; }
-    article hr { border: none; border-top: 1px dashed #e5e7eb; margin: 30px 0; }
-    article ul { list-style: none; padding: 0; margin-top: 15px; }
-    article ul li { background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 15px; margin-bottom: 10px; transition: all 0.2s; }
-    article ul li:hover { box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); border-color: #4a90e2; }
+    /* --- RESPONSIVE HEADER --- */
+    @media (max-width: 991px) {
+        .main-nav, .auth-actions { display: none; }
+        .mobile-menu-toggle { display: block; }
+        .header-flex { justify-content: space-between; }
+        .dropdown-content { display: none !important; }
+    }
+    @media (max-width: 767px) {
+        .footer-content, .footer-links-col { flex-direction: column; text-align: center; gap: 20px; }
+    }
 
-    /* Right Sidebar (Tutorials) */
+    /* ========================================================== */
+    /* --- GUIDE PAGE SPECIFIC STYLES --- */
+    /* ========================================================== */
+    main {
+        padding-top: 100px; /* Adjusted for fixed header */
+        padding-bottom: 40px;
+        min-height: 80vh;
+    }
+
+    /* Wrapper for the Two-Column Layout */
+    .tutorial-wrapper {
+        margin: 20px auto 40px auto; 
+        display: grid;
+        grid-template-columns: 2fr 1fr; /* 2/3 for content, 1/3 for sidebar */
+        gap: 30px;
+        align-items: start;
+    }
+
+    /* Article Styles (Main Content) */
+    article {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e7eb;
+        padding: 30px;
+    }
+
+    article h1 {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        border-bottom: 3px solid var(--primary-color);
+        padding-bottom: 10px;
+    }
+
+    article h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-top: 30px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    article h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    article strong {
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+    article hr {
+        border: none;
+        border-top: 1px dashed #e5e7eb;
+        margin: 30px 0;
+    }
+    
+    article ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+    }
+    
+    article ul li {
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        transition: all 0.2s;
+    }
+    
+    article ul li:hover {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        border-color: var(--primary-color);
+    }
+
+    /* --- SIDEBAR LIST STYLES --- */
     .sidebar-list { 
         background-color: #ffffff; 
         border-radius: 12px; 
@@ -141,10 +295,11 @@
         border: 1px solid #e5e7eb; 
         height: fit-content; 
         position: sticky; 
-        top: 90px; 
+        top: 100px; /* Offset for fixed header */
     }
+
     .sidebar-list h3 { 
-        color: #4a90e2; 
+        color: var(--primary-color); 
         border-bottom: 2px solid #e5e7eb; 
         padding-bottom: 10px; 
         margin-bottom: 10px; 
@@ -152,63 +307,57 @@
         font-weight: 700; 
         margin-right: 10px;
     }
+
     .sidebar-list ul { 
         list-style-type: none; 
         padding: 0; 
         max-height: 450px; 
-        overflow-y: auto; 
+        overflow-y: auto;  
         padding-right: 10px; 
     }
+
+    /* Custom Scrollbar */
     .sidebar-list ul::-webkit-scrollbar { width: 5px; }
     .sidebar-list ul::-webkit-scrollbar-track { background: #f8f9fa; border-radius: 10px; }
     .sidebar-list ul::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     .sidebar-list ul::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-    .sidebar-list li a { display: block; padding: 10px 5px; color: #343a40; text-decoration: none; border-bottom: 1px dashed #e5e7eb; transition: all 0.2s; font-size: 14px; display: flex; align-items: center; gap: 8px;}
+    .sidebar-list li a { display: block; padding: 10px 5px; color: var(--text-dark); text-decoration: none; border-bottom: 1px dashed #e5e7eb; transition: all 0.2s; font-size: 14px; display: flex; align-items: center; gap: 8px;}
     .sidebar-list li a i { width: 20px; text-align: center; color: #a0aec0; transition: 0.2s; }
     .sidebar-list li:last-child a { border-bottom: none; }
-    .sidebar-list li a:hover { color: #4a90e2; background-color: #f8f9fa; padding-left: 10px; }
-    .sidebar-list li a:hover i { color: #4a90e2; }
-    .sidebar-list li.active a { color: #4a90e2; font-weight: 600; background-color: #f0f4ff; border-radius: 6px; border-bottom: none; }
-    .sidebar-list li.active a i { color: #4a90e2; }
+    .sidebar-list li a:hover { color: var(--primary-color); background-color: #f8f9fa; padding-left: 10px; }
+    .sidebar-list li a:hover i { color: var(--primary-color); }
+    .sidebar-list li.active a { color: var(--primary-color); font-weight: 600; background-color: #f0f4ff; border-radius: 6px; border-bottom: none; }
+    .sidebar-list li.active a i { color: var(--primary-color); }
 
-    /* --- RESPONSIVE MEDIA QUERIES --- */
-    @media (max-width: 991px) {
-        .main-nav, .auth-actions { display: none; }
-        .mobile-menu-toggle { display: block; }
-        .header-flex { justify-content: space-between; }
-        .dropdown-content { display: none !important; }
-        
-        /* Tutorial Specific Mobile */
+    /* Responsive Layout for Guide */
+    @media (max-width: 991px) { 
         .tutorial-wrapper { grid-template-columns: 1fr; }
-        .sidebar-list { position: static; order: -1; max-height: none; margin-bottom: 20px; }
-        .sidebar-list ul { max-height: 300px; }
-    }
-    @media (max-width: 767px) {
-        .container { padding: 0 15px; }
-        .footer-content, .footer-links-col { flex-direction: column; text-align: center; gap: 20px; }
+        .sidebar-list { position: static; order: 2; margin-top: 30px; }
     }
 </style>
 </head>
 
 <body>
 
+<a href="#mainContent" class="skip-link">Skip to content</a>
+
 <header id="mainHeader" role="banner">
     <div class="container header-flex">
         <a href="index.html" class="logo" aria-label="TopImgTools Home">
-            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" style="width:150px; height:auto;">
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" fetchpriority="high">
         </a>
 
         <nav class="nav" aria-label="Main Navigation">
             <ul class="main-nav">
-                <li><a href="compress_tool.html" title="Compress Images Online">Compress Image</a></li>
-                <li><a href="resize.html" title="Resize Images Online">Resize Image</a></li>
-                <li><a href="crop.html" title="Crop Images Online">Crop Image</a></li>
-                <li><a href="gif-to-jpg.html" title="Convert GIF to JPG">GIF to JPG</a></li>
-                <li><a href="photoEdit.html" title="Online Photo Editor">Photo Editor</a></li>
+                <li><a href="compress_tool.html">Compress Image</a></li>
+                <li><a href="resize.html">Resize Image</a></li>
+                <li><a href="crop.html">Crop Image</a></li>
+                <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
+                <li><a href="photoEdit.html">Photo Editor</a></li>
 
                 <li class="dropdown">
-                    <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="desktopDropdown">
+                    <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
                         More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </button>
                     <div id="desktopDropdown" class="dropdown-content">
@@ -254,11 +403,11 @@
             </ul>
 
             <div class="auth-actions">
-                <a href="/static/login.html" class="btn btn-login" rel="nofollow">Login</a>
-                <a href="/static/signup.html" class="btn btn-signup" rel="nofollow"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                <a href="/static/login.html" class="btn btn-login">Login</a>
+                <a href="/static/signup.html" class="btn btn-signup"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
             </div>
             
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobileSidebar">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-controls="mobileSidebar">
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
         </nav>
@@ -268,7 +417,7 @@
 <div id="mobileSidebar" aria-hidden="true">
     <div class="sidebar-header">
         <a href="index.html" class="logo">
-            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="auto" style="width:120px; height:auto;">
+            <span><i class="fas fa-heart" aria-hidden="true"></i></span> IMG
         </a>
         <button class="sidebar-close" id="sidebarClose" aria-label="Close Mobile Menu">
             <i class="fas fa-times" aria-hidden="true"></i>
@@ -308,96 +457,101 @@
     </nav>
     
     <div class="sidebar-auth-actions">
-        <a href="#" class="btn btn-login" rel="nofollow">Login</a>
-        <a href="#" class="btn btn-signup" rel="nofollow"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+        <a href="#" class="btn btn-login">Login</a>
+        <a href="#" class="btn btn-signup"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
     </div>
 </div>
-<main>
+
+<main id="mainContent" role="main">
     <div class="container">
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-file-export"></i> JPG to PNG Converter Tutorial Guide</h1>
-                <p>The **JPG to PNG Converter** tool is essential for converting compressed JPEGs into high-quality PNGs, especially when you need an image with a transparent background. Follow this simple guide to convert your files efficiently.</p>
+                <h1><i class="fa fa-file-export" aria-hidden="true"></i> JPG to PNG Tutorial: Convert & Download</h1>
+                <p>The <strong>JPG to PNG Converter</strong> tool allows you to change your image format effortlessly. PNG files are excellent for higher quality and support transparency, making them ideal for graphics and web design.</p>
 
                 <hr>
 
-                <h2>1. Upload Your JPG Image(s) <i class="fa fa-upload"></i></h2>
-                <div class="step-content">
-                    <p>Begin by loading the JPG file(s) you wish to convert to PNG format. The tool supports both single and multiple file uploads.</p>
-                    
-                    <h3>Upload Methods:</h3>
+                <section id="step1">
+                    <h2>1. Upload JPG Image <i class="fa fa-upload" aria-hidden="true"></i></h2>
+                    <div class="step-content">
+                        <p>To begin the conversion, select the JPG file you wish to process:</p>
+                        
+                        <h3>Upload Options:</h3>
+                        <ul>
+                            <li><strong>Click Upload:</strong> Click the <strong>"Upload Image"</strong> button to browse your computer or phone.</li>
+                            <li><strong>Drag and Drop:</strong> Drag your JPG file directly into the tool's upload area.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <hr>
+
+                <section id="step2">
+                    <h2>2. Convert to PNG <i class="fa fa-cogs" aria-hidden="true"></i></h2>
+                    <p>Once your file is uploaded:</p>
+    
                     <ul>
-                        <li><strong>Select Image:</strong> Click the upload button to choose one or more JPG files from your computer or cloud service.</li>
-                        <li><strong>Drag & Drop:</strong> Simply drag the files from your folder directly onto the conversion area.</li>
+                        <li>Click the <strong>"Convert to PNG"</strong> button.</li>
+                        <li>The tool will process the JPG file and convert it into the PNG format.</li>
+                        <li>This process is usually instant for standard images.</li>
                     </ul>
-                </div>
+                </section>
 
                 <hr>
 
-                <h2>2. Configure Conversion Settings (Optional) <i class="fa fa-cog"></i></h2>
-                <p>While JPG to PNG is often a direct conversion, some advanced converters offer configuration options, particularly related to quality and file size optimization.</p>
-
-                <h3>Important Settings:</h3>
-                <ul>
-                    <li><strong>Transparency:</strong> If your JPG already has an invisible background (often displayed as white or black since JPGs don't support true transparency), the PNG output will be lossless and might include an alpha channel if specifically created that way prior. PNG is the standard for images requiring transparency.</li>
-                    <li><strong>Compression:</strong> Some tools allow you to choose a level of PNG compression (Lossless or Lossy), but generally, PNG conversion focuses on quality over size.</li>
-                </ul>
-
-                <hr>
-
-                <h2>3. Initiate the Conversion <i class="fa fa-sync-alt"></i></h2>
-                <p>Once your file(s) are uploaded, initiate the conversion process.</p>
-
-                <h3>Starting Conversion:</h3>
-                <ul>
-                    <li>Click the **"Convert to PNG"** button.</li>
-                    <li>The tool processes the file, converting the lossy JPG data into the lossless PNG format.</li>
-                    <li>This process is usually quick and will prepare the PNG file for download.</li>
-                </ul>
+                <section id="step3">
+                    <h2>3. Download Image <i class="fa fa-download" aria-hidden="true"></i></h2>
+                    <p>After the conversion is finished:</p>
+    
+                    <ul>
+                        <li><strong>Preview:</strong> You will see a preview of your new PNG image.</li>
+                        <li><strong>Download:</strong> Click the <strong>"Download"</strong> button to save the file to your device.</li>
+                    </ul>
+                </section>
 
                 <hr>
 
-                <h2>4. Download Your New PNG File(s) <i class="fa fa-download"></i></h2>
-                <p>After the conversion is complete, your new PNG file(s) are ready to be saved.</p>
+                <section id="tips">
+                    <h2>Why Convert JPG to PNG? <i class="fa fa-lightbulb" aria-hidden="true"></i></h2>
+                    <ul>
+                        <li><strong>Quality:</strong> PNG is a lossless format, meaning it retains all image detail without compression artifacts.</li>
+                        <li><strong>Transparency:</strong> If you plan to remove the background later, converting to PNG is the first step, as JPG does not support transparency.</li>
+                        <li><strong>Text Clarity:</strong> Images with text (like screenshots or logos) look sharper in PNG format.</li>
+                    </ul>
+                </section>
 
-                <h3>Saving the Output:</h3>
-                <ul>
-                    <li>Click the **"Download"** button next to the converted image or a **"Download All"** button for batch conversions.</li>
-                    <li>The PNG files are typically saved to your device's default downloads folder, retaining the original filename with the new <code>.png</code> extension.</li>
-                </ul>
             </article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
-                <ul>
-                    <li><a href="img-composser-guide.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
-                    <li><a href="all-convert-guide.html"><i class="fa fa-compress"></i> Universal Image Converter</a></li>
-                    <li><a href="blur-face-guide.html"><i class="fa fa-compress"></i> Blur Face</a></li>
-                    <li><a href="resize-guide.html"><i class="fa fa-expand"></i> Image Resizer Tutorial</a></li>
-                    <li><a href="crop-guide.html"><i class="fa fa-crop"></i> Image Cropper Instructions</a></li>
-                    <li><a href="rotate-image-guide.html"><i class="fa fa-redo"></i> Rotate Image Tutorial</a></li>
-                    <li><a href="gif-to-jpg-guide.html"><i class="fa fa-file-image"></i> GIF to JPG Converter Guide</a></li>
-                    <li><a href="png-to-jpg-guide.html"><i class="fa fa-file-export"></i> PNG to JPG Converter Guide</a></li>
-                    <li><a href="image-to-pdf-guide.html"><i class="fa fa-file-pdf"></i> Image to PDF Converter</a></li>
-                    <li><a href="watermark-guide.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
-                    <li><a href="bg-remove-guide.html"><i class="fa fa-eraser"></i> Remove Background Guide</a></li>
-                    <li><a href="photoEdit-guide.html"><i class="fa fa-file-pdf"></i> Photo Editor Tutorial</a></li>
-                    <li><a href="flip-image-guide.html"><i class="fa fa-sync-alt"></i> Flip Image Tutorial</a></li>
-                    <li><a href="heice-to-jpg-guide.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
-                    <li class="active"><a href="jpg-to-png-guide.html"><i class="fa fa-exchange-alt"></i> JPG to PNG Conversion</a></li>
-                    <li><a href="color-picker-guide.html"><i class="fa fa-palette"></i> Image Color Picker</a></li>
-                    <li><a href="img-to-gif-guide.html"><i class="fa fa-video"></i> Image to GIF Tutorial</a></li>
-                    <li><a href="img-to-text-guide.html"><i class="fa fa-font"></i> Image to Text Guide</a></li>
-                    <li><a href="join-image-guide.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
-                    <li><a href="meme-generat-guide.html"><i class="fa fa-face-grin-squint"></i> Meme Generator Guide</a></li>
-                    <li><a href="mosaic-guide.html"><i class="fa fa-border-all"></i> Image Mosaic Guide</a></li>
-                    <li><a href="image-to-vector-guide.html"><i class="fa fa-bezier-curve"></i> Image to SVG Guide</a></li>
-                    <li><a href="web-to-jpg-guide.html"><i class="fa fa-file-code"></i> WEBP to JPG Converter</a></li>
-                    <li><a href="collage-maker-guide.html"><i class="fa fa-columns"></i> Image Collage Maker</a></li>
+                <ul role="list">
+                    <li><a href="img-composser-guide.html"><i class="fa fa-compress" aria-hidden="true"></i> Image Compressor Guide</a></li>
+                    <li><a href="all-convert-guide.html"><i class="fa fa-globe" aria-hidden="true"></i> Universal Image Converter</a></li>
+                    <li><a href="bg-remove-guide.html"><i class="fa fa-eraser" aria-hidden="true"></i> Remove Background Guide</a></li>
+                    <li><a href="resize-guide.html"><i class="fa fa-expand" aria-hidden="true"></i> Image Resizer Tutorial</a></li>
+                    <li><a href="crop-guide.html"><i class="fa fa-crop" aria-hidden="true"></i> Image Cropper Instructions</a></li>
+                    <li><a href="rotate-image-guide.html"><i class="fa fa-redo" aria-hidden="true"></i> Rotate Image Tutorial</a></li>
+                    <li><a href="gif-to-jpg-guide.html"><i class="fa fa-file-image" aria-hidden="true"></i> GIF to JPG Converter Guide</a></li>
+                    <li><a href="png-to-jpg-guide.html"><i class="fa fa-file-export" aria-hidden="true"></i> PNG to JPG Converter Guide</a></li>
+                    <li><a href="image-to-pdf-guide.html"><i class="fa fa-file-pdf" aria-hidden="true"></i> Image to PDF Converter</a></li>
+                    <li><a href="watermark-guide.html"><i class="fa fa-layer-group" aria-hidden="true"></i> Watermark Adder Tutorial</a></li>
+                    <li><a href="blur-face-guide.html"><i class="fa fa-mask" aria-hidden="true"></i> Blur Face</a></li>
+                    <li><a href="photoEdit-guide.html"><i class="fa fa-paint-brush" aria-hidden="true"></i> Photo Editor Tutorial</a></li>
+                    <li><a href="flip-image-guide.html"><i class="fa fa-sync-alt" aria-hidden="true"></i> Flip Image Tutorial</a></li>
+                    <li><a href="heice-to-jpg-guide.html"><i class="fa fa-mobile-alt" aria-hidden="true"></i> HEIC to JPG Converter</a></li>
+                    <li class="active"><a href="jpg-to-png-guide.html"><i class="fa fa-exchange-alt" aria-hidden="true"></i> JPG to PNG Conversion</a></li>
+                    <li><a href="color-picker-guide.html"><i class="fa fa-palette" aria-hidden="true"></i> Image Color Picker</a></li>
+                    <li><a href="img-to-gif-guide.html"><i class="fa fa-video" aria-hidden="true"></i> Image to GIF Tutorial</a></li>
+                    <li><a href="img-to-text-guide.html"><i class="fa fa-font" aria-hidden="true"></i> Image to Text Guide</a></li>
+                    <li><a href="join-image-guide.html"><i class="fa fa-object-group" aria-hidden="true"></i> Join Images Guide</a></li>
+                    <li><a href="meme-generat-guide.html"><i class="fa fa-face-grin-squint" aria-hidden="true"></i> Meme Generator Guide</a></li>
+                    <li><a href="mosaic-guide.html"><i class="fa fa-border-all" aria-hidden="true"></i> Image Mosaic Guide</a></li>
+                    <li><a href="image-to-vector-guide.html"><i class="fa fa-bezier-curve" aria-hidden="true"></i> Image to SVG Guide</a></li>
+                    <li><a href="web-to-jpg-guide.html"><i class="fa fa-file-code" aria-hidden="true"></i> WEBP to JPG Converter</a></li>
+                    <li><a href="collage-maker-guide.html"><i class="fa fa-columns" aria-hidden="true"></i> Image Collage Maker</a></li>
                 </ul>
             </aside>
-
         </div>
     </div>
 </main>
@@ -408,17 +562,17 @@
             <div class="footer-logo-col">
                 <div class="footer-logo">
                     <span>
-                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;">
+                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" loading="lazy">
                     </span>
                 </div>
                 <p>
                     The easiest and fastest way to edit images online. Our platform offers a free suite of tools for compression, resizing, and conversion, all while maintaining high quality.
                 </p>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61584758792978" aria-label="Follow us on Facebook" rel="nofollow noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                    <a href="https://x.com/TTools65743" aria-label="Follow us on Twitter" rel="nofollow noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/topimgtools/" aria-label="Follow us on Instagram" rel="nofollow noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/topimg-tools-1ab5553a0/" aria-label="Connect on LinkedIn" rel="nofollow noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61584758792978" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://x.com/TTools65743" aria-label="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/topimgtools/" aria-label="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/topimg-tools-1ab5553a0/" aria-label="Connect on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                 </div>
             </div>
             
@@ -461,6 +615,7 @@
         </div>
     </div>
 </footer>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Scroll Performance: Passive Listener
@@ -472,7 +627,7 @@
                 header.classList.remove("scrolled");
             }
         }, { passive: true });
-        
+
         // Mobile Sidebar Logic
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const sidebar = document.getElementById('mobileSidebar');
@@ -515,16 +670,10 @@
         
         if (mobileDropdownToggle && mobileDropdownContent) {
             mobileDropdownToggle.addEventListener('click', (e) => {
-                e.preventDefault(); 
                 const isExpanded = mobileDropdownContent.style.display === 'block';
-                
-                if (isExpanded) {
-                    mobileDropdownContent.style.display = 'none';
-                    mobileDropdownToggle.querySelector('i').style.transform = 'rotate(0deg)';
-                } else {
-                    mobileDropdownContent.style.display = 'block';
-                    mobileDropdownToggle.querySelector('i').style.transform = 'rotate(180deg)';
-                }
+                mobileDropdownContent.style.display = isExpanded ? 'none' : 'block';
+                mobileDropdownToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileDropdownToggle.querySelector('i').style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
             });
         }
     });
