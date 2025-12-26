@@ -188,4 +188,231 @@
     <priority>0.1</priority>
   </url>
 
+  <url>
+    <loc>https://topimgtools.com/image-compressor.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/bg-remove.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/crop-image.html</loc>
+    <lastmod>2025-12-22</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/heic-to-jpg.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/webp-to-jpg.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/blur-face-guide.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/color-picker-guide.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/all-convert-guide.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/static/guide/tutorial.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/static/guide/help_center.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/static/guide/about_us.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/disclaimer.html</loc>
+    <lastmod>2025-12-23</lastmod>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/privacy-policy.html</loc>
+    <lastmod>2025-12-02</lastmod>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/contact.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/contact.html</loc>
+    <priority>0.60</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/index.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/watermark.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/blur-face.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/image-to-text.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/password-protect.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/password-protect.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/color-picker.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/flip-image.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/metadata-remover.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/meme-generator.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/image-to-pdf.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/gif-to-jpg.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/vector.html</loc>
+    <priority>0.85</priority>
+  </url>
+<url>
+    <loc>https://topimgtools.com/background-remover.html</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Auth Pages -->
+  <url>
+    <loc>https://topimgtools.com/forgot-password</loc>
+    <priority>0.40</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/signup.html</loc>
+    <priority>0.40</priority>
+  </url>
+
+  <!-- Guides -->
+  <url>
+    <loc>https://topimgtools.com/static/guide/all-convert.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/png-to-jpg.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/image-to-vector.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/bg_remove.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/image-to-gif.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/heice-to-jpg.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/photoEdit.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/mosaic.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/resize.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/web-to-jpg.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://topimgtools.com/static/guide/metadata-remover.html</loc>
+    <priority>0.80</priority>
+  </url>
+    <url>
+    <loc>https://topimgtools.com/static/guide/collage-maker.html</loc>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/static/metadata-remover.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/static/guide/disclaimer.html</loc>
+    <priority>0.30</priority>
+  </url>
+
+
 </urlset>
