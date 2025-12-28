@@ -3,9 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meme Generator Tutorial - ImageEdit</title>
-<meta name="description" content="A step-by-step guide on how to create viral memes quickly and easily using the free online Meme Generator tool.">
+<title>Meme Generator Tutorial - Create Viral Memes Online | TopImgTools</title>
+<meta name="description" content="Step-by-step guide to create viral memes using the free online Meme Generator by TopImgTools. Add text, stickers, and download instantly.">
+<meta name="keywords" content="meme generator, create memes online, free meme maker, image editor tutorial, topimgtools">
+<meta name="author" content="TopImgTools">
+<link rel="canonical" href="https://topimgtools.com/meme-generat-guide.html">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -15,8 +23,40 @@
   gtag('config', 'G-F5XBT7MCBM');
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Use TopImgTools Meme Generator",
+  "description": "A complete guide on creating memes using the TopImgTools online generator.",
+  "image": {
+     "@type": "ImageObject",
+     "url": "https://topimgtools.com/static/img/BOLD.jpg",
+     "height": "150",
+     "width": "150"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Choose Image",
+      "text": "Select a template or upload your own image."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add Text",
+      "text": "Add top and bottom text with custom fonts and colors."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Generate",
+      "text": "Click the generate button and share your meme."
+    }
+  ]
+}
+</script>
+
 <style>
-    /* --- GLOBAL STYLES FROM INDEX (Consistent) --- */
+    /* --- GLOBAL STYLES FROM INDEX (Original) --- */
     :root {
         --primary-color: #4a90e2;
         --primary-hover: #3b78c8;
@@ -51,7 +91,7 @@
     .btn-signup { background: var(--primary-color); color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; height: 40px; display: flex; align-items: center; gap: 8px; }
     .btn-signup:hover { background: var(--primary-hover); }
 
-    /* --- HEADER STYLES (FROM INDEX) --- */
+    /* --- HEADER STYLES --- */
     #mainHeader { background: #fff; position: fixed; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
     #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
     
@@ -66,7 +106,7 @@
     .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
     .main-nav li a:hover { color: #3498db; }
 
-    /* --- DROPDOWN (FROM INDEX) --- */
+    /* --- DROPDOWN --- */
     .dropdown { position: relative; }
     .dropbtn { display: flex; align-items: center; background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; color: #555; text-transform: uppercase; font-family: inherit; padding: 4px 0; }
     .dropbtn:hover, .dropdown:focus-within .dropbtn { color: #3498db; }
@@ -88,7 +128,7 @@
     .dropdown-column:nth-child(4) a i { color: #e65100; }
     .dropdown-column:nth-child(5) a i { color: #283593; }
 
-    /* --- MOBILE SIDEBAR (FROM INDEX) --- */
+    /* --- MOBILE SIDEBAR --- */
     .mobile-menu-toggle { display: none; cursor: pointer; font-size: 24px; padding: 8px 12px; color: var(--text-dark); z-index: 100001; background: transparent; border: none; border-radius: 6px; }
     .mobile-menu-toggle:hover { color: var(--primary-color); background: #f1f1f1; }
 
@@ -103,7 +143,7 @@
     .sidebar-auth-actions .btn { width: 100%; }
     .sidebar-auth-actions .btn-login { border: 1px solid #ccc; }
 
-    /* --- FOOTER STYLING (FROM INDEX) --- */
+    /* --- FOOTER STYLING --- */
     footer { background-color: #2c3e50; color: #ecf0f1; padding: 60px 0 20px 0; font-size: 14px; margin-top: auto; }
     .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid #455a64; gap: 30px; }
     .footer-logo-col { flex-basis: 300px; max-width: 100%; }
@@ -268,7 +308,7 @@
 <div id="mobileSidebar" aria-hidden="true">
     <div class="sidebar-header">
         <a href="index.html" class="logo">
-            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="auto" style="width:120px; height:auto;">
+            <img src="/static/img/BOLD.jpg" alt="TopImgTools Logo" width="150" height="50" style="width:120px; height:auto;">
         </a>
         <button class="sidebar-close" id="sidebarClose" aria-label="Close Mobile Menu">
             <i class="fas fa-times" aria-hidden="true"></i>
@@ -317,12 +357,12 @@
         <div class="tutorial-wrapper">
             
             <article>
-                <h1><i class="fa fa-face-grin-squint"></i> Meme Generator Tutorial Guide</h1>
+                <h1><i class="fa fa-face-grin-squint" aria-hidden="true"></i> Meme Generator Tutorial Guide</h1>
                 <p>Creating funny and trending memes is simple with our **Meme Generator** tool. This guide will walk you through the steps to quickly generate your next viral sensation, whether you use a popular template or upload your own image.</p>
 
                 <hr>
 
-                <h2>1. Choose or Upload Your Image <i class="fa fa-upload"></i></h2>
+                <h2>1. Choose or Upload Your Image <i class="fa fa-upload" aria-hidden="true"></i></h2>
                 <div class="step-content">
                     <p>You have two main options for selecting the base image for your meme:</p>
                     
@@ -335,7 +375,7 @@
 
                 <hr>
 
-                <h2>2. Add and Style Your Text <i class="fa fa-text-width"></i></h2>
+                <h2>2. Add and Style Your Text <i class="fa fa-text-width" aria-hidden="true"></i></h2>
                 <p>The text is the core of any great meme. Use the text editing panel to add your captions.</p>
 
                 <h3>Text Features:</h3>
@@ -348,7 +388,7 @@
 
                 <hr>
 
-                <h2>3. Customize and Enhance (Optional) <i class="fa fa-paint-brush"></i></h2>
+                <h2>3. Customize and Enhance (Optional) <i class="fa fa-paint-brush" aria-hidden="true"></i></h2>
                 <p>For more creative memes, you can add extra elements:</p>
 
                 <h3>Advanced Editing:</h3>
@@ -360,7 +400,7 @@
 
                 <hr>
 
-                <h2>4. Generate and Share <i class="fa fa-share-alt"></i></h2>
+                <h2>4. Generate and Share <i class="fa fa-share-alt" aria-hidden="true"></i></h2>
                 <p>Once your meme is perfect, it's time to generate the final image and share it with the world!</p>
 
                 <h3>Final Steps:</h3>
@@ -374,30 +414,30 @@
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
                 <ul>
-                    <li><a href="img-composser-guide.html"><i class="fa fa-compress"></i> Image Compressor Guide</a></li>
-                    <li><a href="all-convert-guide.html"><i class="fa fa-compress"></i> Universal Image Converter</a></li>
-                    <li><a href="blur-face-guide.html"><i class="fa fa-compress"></i> Blur Face</a></li>
-                    <li><a href="resize-guide.html"><i class="fa fa-expand"></i> Image Resizer Tutorial</a></li>
-                    <li><a href="crop-guide.html"><i class="fa fa-crop"></i> Image Cropper Instructions</a></li>
-                    <li><a href="rotate-image-guide.html"><i class="fa fa-redo"></i> Rotate Image Tutorial</a></li>
-                    <li><a href="gif-to-jpg-guide.html"><i class="fa fa-file-image"></i> GIF to JPG Converter Guide</a></li>
-                    <li><a href="png-to-jpg-guide.html"><i class="fa fa-file-export"></i> PNG to JPG Converter Guide</a></li>
-                    <li><a href="image-to-pdf-guide.html"><i class="fa fa-file-pdf"></i> Image to PDF Converter</a></li>
-                    <li><a href="watermark-guide.html"><i class="fa fa-layer-group"></i> Watermark Adder Tutorial</a></li>
-                    <li><a href="bg-remove-guide.html"><i class="fa fa-eraser"></i> Remove Background Guide</a></li>
-                    <li><a href="photoEdit-guide.html"><i class="fa fa-file-pdf"></i> Photo Editor Tutorial</a></li>
-                    <li><a href="flip-image-guide.html"><i class="fa fa-sync-alt"></i> Flip Image Tutorial</a></li>
-                    <li><a href="heice-to-jpg-guide.html"><i class="fa fa-mobile-alt"></i> HEIC to JPG Converter</a></li>
-                    <li><a href="jpg-to-png-guide.html"><i class="fa fa-exchange-alt"></i> JPG to PNG Conversion</a></li>
-                    <li><a href="color-picker-guide.html"><i class="fa fa-palette"></i> Image Color Picker</a></li>
-                    <li><a href="img-to-gif-guide.html"><i class="fa fa-video"></i> Image to GIF Tutorial</a></li>
-                    <li><a href="img-to-text-guide.html"><i class="fa fa-font"></i> Image to Text Guide</a></li>
-                    <li><a href="join-image-guide.html"><i class="fa fa-object-group"></i> Join Images Guide</a></li>
-                    <li class="active"><a href="meme-generat-guide.html"><i class="fa fa-face-grin-squint"></i> Meme Generator Guide</a></li>
-                    <li><a href="mosaic-guide.html"><i class="fa fa-border-all"></i> Image Mosaic Guide</a></li>
-                    <li><a href="image-to-vector-guide.html"><i class="fa fa-bezier-curve"></i> Image to SVG Guide</a></li>
-                    <li><a href="web-to-jpg-guide.html"><i class="fa fa-file-code"></i> WEBP to JPG Converter</a></li>
-                    <li><a href="collage-maker-guide.html"><i class="fa fa-columns"></i> Image Collage Maker</a></li>
+                    <li><a href="img-composser-guide.html"><i class="fa fa-compress" aria-hidden="true"></i> Image Compressor Guide</a></li>
+                    <li><a href="all-convert-guide.html"><i class="fa fa-compress" aria-hidden="true"></i> Universal Image Converter</a></li>
+                    <li><a href="blur-face-guide.html"><i class="fa fa-compress" aria-hidden="true"></i> Blur Face</a></li>
+                    <li><a href="resize-guide.html"><i class="fa fa-expand" aria-hidden="true"></i> Image Resizer Tutorial</a></li>
+                    <li><a href="crop-guide.html"><i class="fa fa-crop" aria-hidden="true"></i> Image Cropper Instructions</a></li>
+                    <li><a href="rotate-image-guide.html"><i class="fa fa-redo" aria-hidden="true"></i> Rotate Image Tutorial</a></li>
+                    <li><a href="gif-to-jpg-guide.html"><i class="fa fa-file-image" aria-hidden="true"></i> GIF to JPG Converter Guide</a></li>
+                    <li><a href="png-to-jpg-guide.html"><i class="fa fa-file-export" aria-hidden="true"></i> PNG to JPG Converter Guide</a></li>
+                    <li><a href="image-to-pdf-guide.html"><i class="fa fa-file-pdf" aria-hidden="true"></i> Image to PDF Converter</a></li>
+                    <li><a href="watermark-guide.html"><i class="fa fa-layer-group" aria-hidden="true"></i> Watermark Adder Tutorial</a></li>
+                    <li><a href="bg-remove-guide.html"><i class="fa fa-eraser" aria-hidden="true"></i> Remove Background Guide</a></li>
+                    <li><a href="photoEdit-guide.html"><i class="fa fa-file-pdf" aria-hidden="true"></i> Photo Editor Tutorial</a></li>
+                    <li><a href="flip-image-guide.html"><i class="fa fa-sync-alt" aria-hidden="true"></i> Flip Image Tutorial</a></li>
+                    <li><a href="heice-to-jpg-guide.html"><i class="fa fa-mobile-alt" aria-hidden="true"></i> HEIC to JPG Converter</a></li>
+                    <li><a href="jpg-to-png-guide.html"><i class="fa fa-exchange-alt" aria-hidden="true"></i> JPG to PNG Conversion</a></li>
+                    <li><a href="color-picker-guide.html"><i class="fa fa-palette" aria-hidden="true"></i> Image Color Picker</a></li>
+                    <li><a href="img-to-gif-guide.html"><i class="fa fa-video" aria-hidden="true"></i> Image to GIF Tutorial</a></li>
+                    <li><a href="img-to-text-guide.html"><i class="fa fa-font" aria-hidden="true"></i> Image to Text Guide</a></li>
+                    <li><a href="join-image-guide.html"><i class="fa fa-object-group" aria-hidden="true"></i> Join Images Guide</a></li>
+                    <li class="active"><a href="meme-generat-guide.html"><i class="fa fa-face-grin-squint" aria-hidden="true"></i> Meme Generator Guide</a></li>
+                    <li><a href="mosaic-guide.html"><i class="fa fa-border-all" aria-hidden="true"></i> Image Mosaic Guide</a></li>
+                    <li><a href="image-to-vector-guide.html"><i class="fa fa-bezier-curve" aria-hidden="true"></i> Image to SVG Guide</a></li>
+                    <li><a href="web-to-jpg-guide.html"><i class="fa fa-file-code" aria-hidden="true"></i> WEBP to JPG Converter</a></li>
+                    <li><a href="collage-maker-guide.html"><i class="fa fa-columns" aria-hidden="true"></i> Image Collage Maker</a></li>
                 </ul>
             </aside>
 
@@ -411,7 +451,7 @@
             <div class="footer-logo-col">
                 <div class="footer-logo">
                     <span>
-                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;">
+                        <img src="/static/img/web_logo.jpg" alt="TopImgTools Footer Logo" width="150" height="50" style="width:150px; height:auto;" loading="lazy">
                     </span>
                 </div>
                 <p>
