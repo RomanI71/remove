@@ -26,7 +26,6 @@ import gc
 import asyncio
 import uvicorn
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import RedirectResponse
 from pathlib import Path
@@ -467,6 +466,7 @@ static_dir = os.path.join(current_dir, "static")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
+
 @app.get("/sitemap.xml", include_in_schema=False)
 async def sitemap():
     return FileResponse("static/sitemap.xml", media_type="application/xml")
@@ -490,7 +490,7 @@ async def read_root():
 async def index_page():
     return FileResponse("static/index.html")
 
-@app.get("/static/guide/index.html")
+@app.get("/guide")
 async def guide_index():
     return FileResponse("static/guide/index.html")
 
