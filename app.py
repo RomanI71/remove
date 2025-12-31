@@ -486,13 +486,15 @@ async def health():
 async def read_root():
     return FileResponse("static/index.html")
 
+@app.get("/index.html")
+async def index_page():
+    return FileResponse("static/index.html")
+
 @app.get("/static/guide/index.html")
 async def guide_index():
     return FileResponse("static/guide/index.html")
 
-@app.get("/index.html")
-async def index_page():
-    return FileResponse("static/index.html")
+
 
 # All HTML page routes
 # @app.get("/compress_tool")
