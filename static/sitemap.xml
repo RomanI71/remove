@@ -7,7 +7,6 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
     <loc>https://topimgtools.com/all-convert.html</loc>
     <changefreq>weekly</changefreq>
@@ -128,8 +127,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-
   <url>
     <loc>https://topimgtools.com/about_us.html</loc>
     <changefreq>monthly</changefreq>
@@ -143,11 +140,6 @@
   <url>
     <loc>https://topimgtools.com/help_center.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://topimgtools.com/pricing.html</loc>
-    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -175,19 +167,11 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
-
-
   <url>
     <loc>https://topimgtools.com/report_bug.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
-  <url>
-    <loc>https://topimgtools.com/success.html</loc>
-    <changefreq>never</changefreq>
-    <priority>0.1</priority>
-  </url>
-
   <url>
     <loc>https://topimgtools.com/image-compressor.html</loc>
     <lastmod>2025-12-23</lastmod>
