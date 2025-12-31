@@ -215,17 +215,17 @@
   </url>
 
   <url>
-    <loc>https://topimgtools.com/blur-face-guide.html</loc>
+    <loc>https://topimgtools.com/static/guide/blur-face-guide.html</loc>
     <lastmod>2025-12-23</lastmod>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://topimgtools.com/color-picker-guide.html</loc>
+    <loc>https://topimgtools.com/static/guide/color-picker-guide.html</loc>
     <lastmod>2025-12-23</lastmod>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://topimgtools.com/all-convert-guide.html</loc>
+    <loc>https://topimgtools.com/static/guide/all-convert-guide.html</loc>
     <lastmod>2025-12-23</lastmod>
     <priority>0.85</priority>
   </url>
@@ -293,11 +293,6 @@
 
   <url>
     <loc>https://topimgtools.com/static/guide/password-protect.html</loc>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://topimgtools.com/static/guide/color-picker.html</loc>
     <priority>0.70</priority>
   </url>
 
@@ -413,6 +408,4 @@
     <loc>https://topimgtools.com/static/guide/disclaimer.html</loc>
     <priority>0.30</priority>
   </url>
-
-
 </urlset>

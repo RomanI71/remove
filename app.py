@@ -486,6 +486,10 @@ async def health():
 async def read_root():
     return FileResponse("static/index.html")
 
+@app.get("/guide")
+async def guide_index():
+    return FileResponse("static/guide/index.html")
+
 @app.get("/index.html")
 async def index_page():
     return FileResponse("static/index.html")
