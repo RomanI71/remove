@@ -197,6 +197,58 @@
     .social-links a { color: #ecf0f1; margin: 0 10px; font-size: 18px; transition: color 0.2s; }
     .social-links a:hover { color: var(--primary-color); }
 
+    /* --- NEW FREE FOREVER BUTTON (SMALLER & PULSING) --- */
+      .btn-free-forever {
+          background: linear-gradient(135deg, #ff6a00, #ff9f00); /* Green Gradient */
+          color: #ffffff;
+          padding: 8px 18px; /* Size ছোট করা হয়েছে */
+          border-radius: 50px;
+          font-weight: 700;
+          font-size: 12px; /* Font ছোট করা হয়েছে */
+          border: none;
+          cursor: default;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          
+          /* Pulse Animation যোগ করা হয়েছে */
+          animation: pulse-green 2s infinite;
+      }
+
+      /* Pulse Animation Keyframes */
+      @keyframes pulse-green {
+          0% {
+              box-shadow: 0 0 0 0 rgba(255, 159, 0, 0.6);
+              /* box-shadow: 0 14px 35px rgba(255, 159, 0, 0.6); */
+                        transform: scale(1);
+                    }
+                    70% {
+                        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); /* শ্যাডো ছড়িয়ে যাবে */
+                        transform: scale(1);
+                    }
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+                        transform: scale(1);
+                    }
+                }
+
+                /* Hover Effect (Optional: মাউস নিলে একটু বড় হবে) */
+                .btn-free-forever:hover {
+                    transform: scale(1.05);
+                    animation: none; /* হোভার করলে পালস বন্ধ হয়ে স্থির থাকবে */
+                }
+
+                /* Sidebar Specific Adjustment */
+                .sidebar-auth-actions .btn-free-forever {
+                    width: auto; /* মোবাইলে পুরোটা না জুড়ে মাঝখানে থাকবে */
+                    display: inline-flex;
+                    margin: 0 auto;
+                    justify-content: center;
+                }
+    
+
     /* --- RESPONSIVE HEADER --- */
     @media (max-width: 991px) {
         .main-nav, .auth-actions { display: none; }
@@ -409,8 +461,9 @@
             </ul>
 
             <div class="auth-actions">
-                <a href="/static/login.html" class="btn btn-login">Login</a>
-                <a href="/static/signup.html" class="btn btn-signup"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                <button class="btn-free-forever">
+                    <i class="fas fa-check" aria-hidden="true"></i> 100% Free Forever
+                </button>
             </div>
             
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-controls="mobileSidebar" aria-expanded="false">
@@ -462,10 +515,11 @@
         </ul>
     </nav>
     
-    <div class="sidebar-auth-actions">
-        <a href="#" class="btn btn-login">Login</a>
-        <a href="#" class="btn btn-signup"><i class="fas fa-user-plus" aria-hidden="true"></i> Sign Up</a>
-    </div>
+        <div class="sidebar-auth-actions">
+            <button class="btn-free-forever">
+                <i class="fas fa-check" aria-hidden="true"></i> 100% Free Forever
+            </button>
+        </div>
 </div>
 
 <main id="mainContent" role="main">
