@@ -51,7 +51,8 @@ p.lead{color:var(--muted);margin:4px 0 0;font-size:14px}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-secondary{background:#1e293b;color:#fff}
 .grid{display:grid;grid-template-columns:1fr 240px;gap:24px;margin-top:24px}
-canvas{max-width:100%;max-height:500px;border-radius:8px;background:#f1f5f9;box-shadow:inset 0 2px 4px rgba(0,0,0,0.05)}
+/* Added touch-action: none to prevent scrolling while dragging on mobile */
+canvas{max-width:100%;max-height:500px;border-radius:8px;background:#f1f5f9;box-shadow:inset 0 2px 4px rgba(0,0,0,0.05); touch-action: none;}
 label{font-weight:600;font-size:14px;margin-top:12px;display:block;margin-bottom:6px;color:#334155}
 input[type="range"]{width:100%;cursor:pointer;accent-color:var(--accent);height:20px}
 input[type="text"]{width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px}
@@ -80,7 +81,7 @@ footer{text-align:center;color:var(--muted);font-size:14px;margin:40px 0 20px}
         <p class="lead">Drag and resize your watermark</p>
       </div>
     </div>
-    <a href="#" onclick="history.back();" class="btn btn-secondary" aria-label="Go Back">
+    <a href="index.html" onclick="history.back();" class="btn btn-secondary" aria-label="Go Back">
       <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
     </a>
   </header>
@@ -121,7 +122,7 @@ footer{text-align:center;color:var(--muted);font-size:14px;margin:40px 0 20px}
             <input id="watermarkText" type="text" placeholder="Enter text..." aria-label="Enter Watermark Text">
 
             <label for="textSize">Text Size</label>
-            <input type="range" id="textSize" min="10" max="100" value="28" aria-label="Adjust Text Size">
+            <input type="range" id="textSize" min="10" max="500" value="40" aria-label="Adjust Text Size">
 
             <label for="textColor">Text Color</label>
             <input type="color" id="textColor" value="#000000" aria-label="Select Text Color">
@@ -214,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let baseImg = null;
     let wmImg = null;
-    let textObj = { x: 100, y: 100, size: 28, text: '' };
+    let textObj = { x: 100, y: 100, size: 40, text: '' };
     let imgObj = { x: 150, y: 150, scale: 0.3, img: null };
     let dragging = false, dragTarget = null, resizing = false;
     let dragOffsetX = 0, dragOffsetY = 0;
@@ -311,24 +312,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Mouse events
-    canvas.addEventListener('mousedown', e => {
+    // Helper: Get coordinates for both Mouse and Touch
+    function getCoords(e) {
       const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
-      const x = (e.clientX - rect.left) * scaleX;
-      const y = (e.clientY - rect.top) * scaleY;
+      
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
+    }
 
+    // --- Unified Start Handler (MouseDown / TouchStart) ---
+    function handleStart(e) {
+      const pos = getCoords(e);
+      const x = pos.x;
+      const y = pos.y;
+
+      // Check Image Resize
       if (imgObj.img) {
         const w = imgObj.img.width * imgObj.scale;
         const h = imgObj.img.height * imgObj.scale;
-        if (x > imgObj.x + w - 15 && x < imgObj.x + w + 5 && y > imgObj.y + h - 15 && y < imgObj.y + h + 5) {
+        if (x > imgObj.x + w - 15 && x < imgObj.x + w + 15 && y > imgObj.y + h - 15 && y < imgObj.y + h + 15) {
           resizing = true;
           dragTarget = 'image-resize';
           return;
         }
       }
 
+      // Check Image Drag
       if (imgObj.img) {
         const w = imgObj.img.width * imgObj.scale;
         const h = imgObj.img.height * imgObj.scale;
@@ -342,6 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      // Check Text Drag
       if (textObj.text && textObj.text.trim() !== '') {
         ctx.font = `bold ${textObj.size}px Arial`;
         const metrics = ctx.measureText(textObj.text);
@@ -357,78 +373,84 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
       }
-    });
+    }
 
-    canvas.addEventListener('mousemove', e => {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
-      const x = (e.clientX - rect.left) * scaleX;
-      const y = (e.clientY - rect.top) * scaleY;
-
-      if (!dragging && !resizing) {
-        let cursor = 'default';
-        
-        if (imgObj.img) {
-          const w = imgObj.img.width * imgObj.scale;
-          const h = imgObj.img.height * imgObj.scale;
-          
-          if (x > imgObj.x + w - 15 && x < imgObj.x + w + 5 && y > imgObj.y + h - 15 && y < imgObj.y + h + 5) {
-            cursor = 'nw-resize';
-          }
-          else if (x > imgObj.x && x < imgObj.x + w && y > imgObj.y && y < imgObj.y + h) {
-            cursor = 'grab';
-          }
+    // --- Unified Move Handler (MouseMove / TouchMove) ---
+    function handleMove(e) {
+        // Only prevent default on touch to stop scrolling while editing
+        if(e.touches && (dragging || resizing)) {
+            e.preventDefault();
         }
-        
-        if (textObj.text && textObj.text.trim() !== '') {
-          ctx.font = `bold ${textObj.size}px Arial`;
-          const metrics = ctx.measureText(textObj.text);
-          const textWidth = metrics.width;
-          const textHeight = textObj.size;
-          
-          if (x > textObj.x && x < textObj.x + textWidth && y > textObj.y - textHeight && y < textObj.y) {
-            cursor = 'grab';
-          }
-        }
-        
-        canvas.style.cursor = cursor;
-      }
 
-      if (dragging) {
-        if (dragTarget === 'text') {
-          textObj.x = x - dragOffsetX;
-          textObj.y = y - dragOffsetY;
-        }
-        if (dragTarget === 'image') {
-          imgObj.x = x - dragOffsetX;
-          imgObj.y = y - dragOffsetY;
-        }
-        draw();
-      }
+        const pos = getCoords(e);
+        const x = pos.x;
+        const y = pos.y;
 
-      if (resizing && imgObj.img) {
-        const newWidth = x - imgObj.x;
-        const newScale = Math.max(0.05, Math.min(newWidth / imgObj.img.width, 2));
-        imgObj.scale = newScale;
-        imageSize.value = Math.round(newScale * 100);
-        draw();
-      }
-    });
+        if (!dragging && !resizing) {
+            let cursor = 'default';
+            // Hover logic (cursor change) mainly for desktop
+            if (imgObj.img) {
+                const w = imgObj.img.width * imgObj.scale;
+                const h = imgObj.img.height * imgObj.scale;
+                if (x > imgObj.x + w - 15 && x < imgObj.x + w + 5 && y > imgObj.y + h - 15 && y < imgObj.y + h + 5) {
+                    cursor = 'nw-resize';
+                } else if (x > imgObj.x && x < imgObj.x + w && y > imgObj.y && y < imgObj.y + h) {
+                    cursor = 'grab';
+                }
+            }
+            if (textObj.text && textObj.text.trim() !== '') {
+                ctx.font = `bold ${textObj.size}px Arial`;
+                const metrics = ctx.measureText(textObj.text);
+                const textWidth = metrics.width;
+                const textHeight = textObj.size;
+                if (x > textObj.x && x < textObj.x + textWidth && y > textObj.y - textHeight && y < textObj.y) {
+                    cursor = 'grab';
+                }
+            }
+            canvas.style.cursor = cursor;
+        }
 
-    canvas.addEventListener('mouseup', () => {
+        if (dragging) {
+            if (dragTarget === 'text') {
+                textObj.x = x - dragOffsetX;
+                textObj.y = y - dragOffsetY;
+            }
+            if (dragTarget === 'image') {
+                imgObj.x = x - dragOffsetX;
+                imgObj.y = y - dragOffsetY;
+            }
+            draw();
+        }
+
+        if (resizing && imgObj.img) {
+            const newWidth = x - imgObj.x;
+            const newScale = Math.max(0.05, Math.min(newWidth / imgObj.img.width, 2));
+            imgObj.scale = newScale;
+            imageSize.value = Math.round(newScale * 100);
+            draw();
+        }
+    }
+
+    // --- Unified End Handler ---
+    function handleEnd() {
       dragging = false;
       resizing = false;
       dragTarget = null;
       canvas.style.cursor = 'default';
-    });
+    }
 
-    canvas.addEventListener('mouseleave', () => {
-      dragging = false;
-      resizing = false;
-      dragTarget = null;
-      canvas.style.cursor = 'default';
-    });
+    // Listeners for Mouse
+    canvas.addEventListener('mousedown', handleStart);
+    canvas.addEventListener('mousemove', handleMove);
+    canvas.addEventListener('mouseup', handleEnd);
+    canvas.addEventListener('mouseleave', handleEnd);
+
+    // Listeners for Touch (Mobile Fix)
+    // passive: false is required to use preventDefault() to stop scrolling
+    canvas.addEventListener('touchstart', handleStart, { passive: false });
+    canvas.addEventListener('touchmove', handleMove, { passive: false });
+    canvas.addEventListener('touchend', handleEnd);
+
 
     // Controls
     watermarkText.addEventListener('input', () => {
@@ -460,10 +482,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset & Download
     resetBtn.onclick = () => {
-      textObj = { x: 100, y: 100, size: 28, text: '' };
+      textObj = { x: 100, y: 100, size: 40, text: '' }; // Reset size to 40
       imgObj = { x: 150, y: 150, scale: 0.3, img: wmImg };
       watermarkText.value = '';
-      textSize.value = 28;
+      textSize.value = 40; // Reset slider to 40
       imageSize.value = 30;
       textOpacity.value = 1;
       imgOpacity.value = 1;
