@@ -62,7 +62,7 @@
 </script>
 <style>
 /* Original CSS with A11y contrast fix for --muted */
-:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#4b5563;--text:#0f172a;} /* --muted adjusted from #6b7280 to #4b5563 for A11y */
+:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#4b5563;--text:#0f172a;}
 *{box-sizing:border-box}
 body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:var(--bg);margin:0;color:var(--text);}
 .wrap{max-width:980px;margin:36px auto;padding:20px}
@@ -72,7 +72,6 @@ body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial
 h1{font-size:20px;margin:0}
 p.lead{color:var(--muted);margin:6px 0 0}
 .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
-/* Added A11y Focus Ring */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
 .upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
@@ -245,64 +244,88 @@ const downloadBtn=document.getElementById('downloadBtn');
 
 let images=[];
 
-// A11y & UX: Handle click/enter on the upload box
-selectBtn.onclick=()=>fileInput.click();
-fileInput.onchange=e=>handleFiles(e.target.files);
+// Fix 1: Stop propagation to prevent bubbling (double click issue)
+selectBtn.onclick = (e) => {
+    e.stopPropagation(); 
+    fileInput.click();
+};
 
-uploadBox.addEventListener('click', () => fileInput.click()); // For accessibility
-uploadBox.addEventListener('keydown', (e) => { // For keyboard accessibility
+fileInput.onchange = (e) => handleFiles(e.target.files);
+
+// Accessibility and Drag & Drop
+uploadBox.addEventListener('click', () => fileInput.click()); 
+uploadBox.addEventListener('keydown', (e) => { 
     if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         fileInput.click();
     }
 });
 
-
-// Drag and Drop with passive listeners (PageSpeed)
 ['dragenter','dragover'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.add('highlight');},{passive: true}));
 ['dragleave','drop'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.remove('highlight');},{passive: true}));
 uploadBox.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
 
-function handleFiles(files){
-  images=[];
-  if(!files || files.length===0) return;
-  // Disable download button until a valid preview is generated
-  downloadBtn.disabled = true; 
-  Array.from(files).forEach(file=>{
-    if(!file.type.startsWith('image/')) return;
-    const reader=new FileReader();
-    reader.onload=e=>{
-      const img=new Image();
-      img.onload=()=>{
-        drawPlaceholder();
-        // Optional: Auto-preview after all images load (simple UX improvement)
-        if(images.filter(i => i.complete).length === files.length) { 
-             combineImages(); 
-        }
+function handleFiles(files) {
+  if (!files || files.length === 0) return;
+  
+  images = []; 
+  downloadBtn.disabled = true;
+  placeholder.style.display = 'none';
+
+  // Fix 2: Use Promise.all to ensure all images are loaded before combining
+  const fileReaders = Array.from(files).filter(f => f.type.startsWith('image/')).map(file => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = e.target.result;
       };
-      img.src=e.target.result;
-      images.push(img);
-    };
-    reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+    });
   });
+
+  Promise.all(fileReaders).then(loadedImages => {
+    images = loadedImages;
+    combineImages(); // Automatically join after loading
+  }).catch(err => {
+    console.error("Error loading images", err);
+    alert("Error loading images. Please try again.");
+  });
+  
+  // Reset input so same files can be selected again
+  fileInput.value = '';
 }
 
-function drawPlaceholder(){ if(images.length>0) placeholder.style.display='none'; }
-
 function combineImages(){
-  if(images.length===0){ alert('No images selected'); return; }
+  if(images.length===0){ return; }
   const layout=layoutSelect.value;
   let totalWidth=0, totalHeight=0;
 
+  // Fix 3: Uniform Resizing Logic
   if(layout==='horizontal'){
-    totalWidth=images.reduce((sum,i)=>sum+i.width,0);
-    totalHeight=Math.max(...images.map(i=>i.height));
+    // Scale everything to match the tallest image
+    const targetHeight = Math.max(...images.map(i => i.height));
+    
+    totalWidth = images.reduce((sum, i) => {
+       const scale = targetHeight / i.height;
+       return sum + (i.width * scale);
+    }, 0);
+    totalHeight = targetHeight;
+
   } else {
-    totalWidth=Math.max(...images.map(i=>i.width));
-    totalHeight=images.reduce((sum,i)=>sum+i.height,0);
+    // Scale everything to match the widest image
+    const targetWidth = Math.max(...images.map(i => i.width));
+
+    totalHeight = images.reduce((sum, i) => {
+        const scale = targetWidth / i.width;
+        return sum + (i.height * scale);
+    }, 0);
+    totalWidth = targetWidth;
   }
 
-  // Safety check for excessively large canvas (PageSpeed/Performance)
+  // Safety check for large images
   const MAX_DIMENSION = 10000;
   if (totalWidth > MAX_DIMENSION || totalHeight > MAX_DIMENSION) {
      alert('Resulting image is too large. Max dimension is ' + MAX_DIMENSION + 'px.');
@@ -314,13 +337,23 @@ function combineImages(){
   ctx.clearRect(0,0,totalWidth,totalHeight);
 
   let x=0, y=0;
-  images.forEach(img=>{
-    ctx.drawImage(img,x,y);
-    if(layout==='horizontal') x+=img.width;
-    else y+=img.height;
+  images.forEach(img => {
+    if(layout === 'horizontal') {
+        const scale = totalHeight / img.height;
+        const drawWidth = img.width * scale;
+        // Draw with calculated width and FIXED height
+        ctx.drawImage(img, x, 0, drawWidth, totalHeight);
+        x += drawWidth;
+    } else {
+        const scale = totalWidth / img.width;
+        const drawHeight = img.height * scale;
+        // Draw with FIXED width and calculated height
+        ctx.drawImage(img, 0, y, totalWidth, drawHeight);
+        y += drawHeight;
+    }
   });
 
-  downloadBtn.disabled = false; // Enable download button after successful combination
+  downloadBtn.disabled = false;
 }
 
 document.getElementById('previewBtn').onclick=combineImages;
@@ -336,7 +369,7 @@ document.getElementById('resetBtn').onclick=()=>{
   canvas.width=canvas.height=0; 
   ctx.clearRect(0,0,canvas.width,canvas.height); 
   placeholder.style.display='block';
-  downloadBtn.disabled = true; // Disable download button
+  downloadBtn.disabled = true;
 };
 </script>
 </body>
