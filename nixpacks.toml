@@ -1,6 +1,19 @@
 [phases.setup]
 nixPkgs = ["python311"]
 
+aptPkgs = [
+  "libxcb1",
+  "libx11-6",
+  "libxrender1",
+  "libxext6",
+  "libxi6",
+  "libxrandr2",
+  "libxfixes3",
+  "libxinerama1",
+  "libgl1",
+  "libglib2.0-0"
+]
+
 [phases.install]
 cmds = [
   "python -m venv /opt/venv",
