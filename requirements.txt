@@ -1,15 +1,14 @@
 fastapi
 uvicorn
-pillow>=10.0.0
+pillow
 numpy
 opencv-python-headless
+rembg==2.0.50
 python-multipart
 aiofiles
 scikit-image==0.21.0
 psutil
-rembg==2.0.50
 anyio
 starlette
-
 
 
