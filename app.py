@@ -644,7 +644,9 @@ async def terms_and_conditions():
     return FileResponse("static/terms_and_conditions.html")
 
 
-
+@app.get("/disclaimer.html")
+async def disclaimer():
+    return FileResponse("static/disclaimer.html")
 
 # API Status
 @app.get("/api-status")

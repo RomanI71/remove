@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Online Image Compressor – Reduce Image Size | TopImgTools</title>
-  <meta name="description" content="Compress images online instantly. Reduce JPG, PNG, and WebP image file size without losing quality. Free and fast image compression tool by TopImgTools." />
-  <meta name="keywords" content="image compressor, compress image online, reduce image size, jpg compressor, png compressor, webp compressor, TopImgTools" />
-  <meta name="author" content="TopImgTools" />
-  <link rel="canonical" href="https://topimgtools.com/image-compressor.html" />
-  
-  <meta property="og:title" content="Online Image Compressor – Reduce Image Size Fast" />
-  <meta property="og:description" content="Compress JPG, PNG, and WebP images online without losing quality. Free, fast, and secure image compression tool by TopImgTools." />
-  <meta property="og:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
-  <meta property="og:url" content="https://topimgtools.com/image-compressor.html" />
-  <meta property="og:type" content="website" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Online Image Compressor – Reduce Image Size Fast" />
-  <meta name="twitter:description" content="Compress JPG, PNG, and WebP images online instantly. Free and fast image compression tool by TopImgTools." />
-  <meta name="twitter:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://picsum.photos">
+<title>Free Online Image Compressor – Compress Images Without Losing Quality | TopImgTools</title>
+
+<meta name="description" content="Compress images online for free with TopImgTools. Reduce JPG, PNG, and WebP image file size without losing quality. Fast, secure, and easy image compression tool." />
+
+<meta name="author" content="TopImgTools" />
+
+<link rel="canonical" href="https://topimgtools.com/compress.html" />
+
+<meta property="og:title" content="Free Online Image Compressor – Reduce Image Size Without Losing Quality" />
+<meta property="og:description" content="Compress JPG, PNG, and WebP images online without losing quality. Free, fast, and secure image compression tool by TopImgTools." />
+<meta property="og:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
+<meta property="og:url" content="https://topimgtools.com/compress.html" />
+<meta property="og:type" content="website" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Free Online Image Compressor – Reduce Image Size Without Losing Quality" />
+<meta name="twitter:description" content="Compress JPG, PNG, and WebP images online instantly. Free and fast image compression tool by TopImgTools." />
+<meta name="twitter:image" content="https://topimgtools.com/assets/image-compressor-banner.jpg" />
+
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://picsum.photos" />
+
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
   <script>
@@ -51,8 +55,9 @@
     .upload-box { border: 2px dashed rgba(15,23,42,0.08); border-radius: 10px; padding: 28px; display: flex; gap: 20px; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
     .upload-box.highlight { background: linear-gradient(90deg, rgba(231,76,60,0.06), rgba(52,152,219,0.03)); border-color: var(--accent); }
     
-    .upload-actions { display: flex; gap: 10px; align-items: center; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; text-decoration: none; font-size: 14px; font-family: inherit; }
+    .upload-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; text-decoration: none; font-size: 14px; font-family: inherit; transition: opacity 0.2s; }
+    .btn:hover { opacity: 0.9; }
     .btn-primary { background: var(--accent); color: #fff; }
     .btn-secondary { background: #111827; color: #fff; }
     .muted { color: var(--muted); }
@@ -89,7 +94,7 @@
     .progress { height: 8px; background: #eef2f7; border-radius: 8px; overflow: hidden; margin: 8px 0; }
     .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #f39c12); transition: width 0.3s ease; }
 
-    .download-btn { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 10px; background: #0f172a; color: #fff; margin-top: 10px; }
+    .download-btn { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 10px; background: #0f172a; color: #fff; margin-top: 10px; flex-wrap: wrap; gap: 10px; }
     .download-link { color: #fff; text-decoration: none; display: flex; align-items: center; gap: 6px; font-weight: 600; }
 
     /* Content Section */
@@ -100,7 +105,37 @@
 
     footer { margin-top: 20px; text-align: center; color: var(--muted); font-size: 13px; padding-bottom: 20px; }
 
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .preview img { max-height: 300px; } }
+    /* TABLET RESPONSIVENESS */
+    @media (max-width: 900px) { 
+        .grid { grid-template-columns: 1fr; } 
+        .preview img { max-height: 300px; } 
+    }
+
+    /* MOBILE RESPONSIVENESS (ADDED) */
+    @media (max-width: 600px) {
+        .wrap { margin: 10px auto; padding: 15px; }
+        .header { flex-direction: column; text-align: center; gap: 15px; }
+        .header .actions { width: 100%; }
+        .header .actions .btn { width: 100%; } /* Full width back button */
+        .logo { flex-direction: column; }
+        
+        .upload-box { padding: 20px 10px; }
+        .upload-actions { flex-direction: column; width: 100%; }
+        .upload-actions .btn, .upload-actions input { width: 100%; }
+
+        .form-row { flex-wrap: wrap; }
+        .form-row .field { min-width: 100%; margin-bottom: 5px; }
+        .form-row div[style*="text-align:right"] { text-align: left !important; width: 100%; margin-bottom: 5px; }
+        
+        /* Stack nav links and rotate arrows */
+        .nav-links { flex-direction: column; gap: 10px; }
+        .nav-links span { transform: rotate(90deg); display: inline-block; }
+        .nav-btn { width: 100%; text-align: center; }
+
+        .download-btn { flex-direction: column; align-items: flex-start; }
+        .download-btn > div { width: 100%; }
+        .download-btn .btn { width: 100%; margin-top: 8px; }
+    }
   </style>
 </head>
 <body>
@@ -307,9 +342,8 @@
       </section>
     </main>
 
-    <footer>
-      <p>&copy; 2025 TopImgTools — Compress & Resize Tool</p>
-    </footer>
+    <footer>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</footer>
+
   </div>
 
   <script>
