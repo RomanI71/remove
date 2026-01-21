@@ -29,6 +29,9 @@ from fastapi import FastAPI
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import RedirectResponse
 from pathlib import Path
+from pdf2docx import Converter
+import shutil
+from fastapi import BackgroundTasks
 
 
 
@@ -64,6 +67,17 @@ for folder in [UPLOAD_FOLDER, REMOVEBG_FOLDER, VECTOR_FOLDER]:
     os.makedirs(folder, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp', 'webp', 'gif'}
+
+#pdf to word
+
+UPLOAD_DIR = "temp_files"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+def remove_file(path: str):
+    """ফাইল ডাউনলোড হওয়ার পর সার্ভার থেকে মুছে ফেলার জন্য"""
+    if os.path.exists(path):
+        os.remove(path)
+
 
 # ----------------- Memory Management System ----------------- #
 class MemoryManager:
@@ -909,6 +923,44 @@ def cleanup_files():
         time.sleep(1800)
 
 threading.Thread(target=cleanup_files, daemon=True).start()
+
+
+
+# --- PDF to Word Conversion Route ---
+@app.post("/convert-pdf-to-word")
+async def convert_pdf_to_word(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
+    # ১. পাথ সেটআপ
+    pdf_path = os.path.join(UPLOAD_DIR, file.filename)
+    word_filename = file.filename.rsplit('.', 1)[0] + ".docx"
+    word_path = os.path.join(UPLOAD_DIR, word_filename)
+
+    # ২. ফাইল সেভ করা
+    with open(pdf_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    try:
+        # ৩. কনভার্ট করা
+        cv = Converter(pdf_path)
+        cv.convert(word_path, start=0, end=None)
+        cv.close()
+    except Exception as e:
+        logger.error(f"Conversion error: {e}")
+        return {"error": "Conversion failed"}
+    finally:
+        # ৪. অরিজিনাল PDF প্রসেস শেষে ডিলিট করা
+        if os.path.exists(pdf_path):
+            os.remove(pdf_path)
+
+    # ৫. ডাউনলোড শেষে Word ফাইল ডিলিট করার টাস্ক শিডিউল করা
+    background_tasks.add_task(remove_file, word_path)
+
+    # ৬. ফাইল রেসপন্স পাঠানো
+    return FileResponse(
+        path=word_path, 
+        filename=word_filename, 
+        media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+
 
 # ----------------- Run ----------------- #
 if __name__ == "__main__":
