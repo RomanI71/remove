@@ -570,6 +570,17 @@ async def gif_tool():
 async def split_pdf():
     return FileResponse("static/split-pdf.html")
 
+# PDF to Image Route
+@app.get("/pdf-to-image.html")
+async def pdf_to_image():
+    return FileResponse("static/pdf-to-image.html")
+
+# PDF to Word Route
+@app.get("/pdf-to-word.html")
+async def pdf_to_word():
+    # Note: Ensure you have a 'pdf-to-word.html' file in static folder
+    # Even if it's just a placeholder or UI for now.
+    return FileResponse("static/pdf-to-word.html")
 
 @app.get("/color-picker.html")
 def color_picker():

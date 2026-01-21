@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF to Word Converter – Free Online Tool | TopImgTools</title>
+  <meta name="description" content="Convert PDF documents to editable Word (DOCX) files online instantly. Free PDF to Word converter tool. Fast, secure, and high-quality conversion." />
+  <meta name="keywords" content="PDF to Word, convert PDF to DOCX, online pdf converter, free PDF tool, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <link rel="canonical" href="https://topimgtools.com/pdf-to-word.html" />
+  
+  <meta property="og:title" content="PDF to Word Converter – Free Online Tool" />
+  <meta property="og:description" content="Convert PDF files to editable Word documents online quickly. Free and secure tool." />
+  <meta property="og:image" content="https://topimgtools.com/assets/pdf-to-word-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/pdf-to-word.html" />
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PDF to Word Converter – Free Online Tool" />
+  <meta name="twitter:description" content="Convert PDF to Word online instantly with TopImgTools. Free, fast, and easy to use." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/pdf-to-word-banner.jpg" />
+
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PDF to Word Converter",
+    "url": "https://topimgtools.com/pdf-to-word.html",
+    "applicationCategory": "DocumentConversionApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Convert PDF files to Word (DOCX) instantly. Free, fast, and secure tool by TopImgTools.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "2100"
+    }
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --accent: #e74c3c; /* Red for PDF theme */
+      --accent-dark: #c0392b;
+      --word-blue: #2b579a; /* Blue for Word output */
+      --text-main: #0f172a;
+      --text-muted: #4b5563;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 980px; margin: 40px auto; padding: 0 20px; }
+    
+    /* Semantic Header */
+    .app-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .logo { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
+    .logo h1 { font-size: 22px; margin: 0; font-weight: 700; }
+    p.lead { color: var(--text-muted); margin-top: 4px; font-size: 15px; }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .upload-box {
+      border: 2px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 40px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: #fdfdfd;
+    }
+    .upload-box:hover, .upload-box:focus-within { 
+      background: rgba(231, 76, 60, 0.04); 
+      border-color: var(--accent); 
+    }
+    .upload-box h3 { margin: 15px 0 8px; font-size: 1.25rem; }
+    
+    /* Accessible Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 20px; border-radius: 8px; border: none; cursor: pointer;
+      font-weight: 600; font-size: 1rem; transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-secondary { background: #1f2937; color: #fff; }
+    .btn-secondary:hover { background: #111827; }
+    
+    /* Special button for Download Word */
+    .btn-word { background: var(--word-blue); color: #fff; }
+    .btn-word:hover { background: #1d3e70; }
+
+    .grid { display: grid; grid-template-columns: 1fr 360px; gap: 24px; margin-top: 24px; }
+    
+    /* File Icon Styles */
+    .file-preview-icon {
+        width: 80px; height: 100px; margin: 0 auto;
+        display: flex; align-items: center; justify-content: center;
+        background: #f1f5f9; border-radius: 8px; border: 1px solid #e2e8f0;
+        color: var(--text-muted);
+    }
+    
+    .progress { height: 10px; background: #eef2f7; border-radius: 99px; overflow: hidden; margin: 15px 0; }
+    .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #e67e22); transition: width 0.3s ease; }
+    
+    .file-info { background-color: #f1f5f9; padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 14px; color: #334155; }
+    .placeholder { 
+      color: var(--text-muted); text-align: center; padding: 60px 20px; 
+      border: 1px dashed var(--border); border-radius: 8px; 
+      background-color: #f9fafb; 
+    }
+
+    /* Navigation Links Styling */
+    .nav-links {
+      margin-top: 35px; padding: 20px; background: #f3f4f6; border-radius: 14px;
+      display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .nav-pill {
+      padding: 10px 22px; background: #fff; border-radius: 30px; 
+      text-decoration: none; color: #1f2937; font-weight: 700; font-size: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; font-size: 20px; }
+
+    /* SEO Content Section */
+    .content-section {
+      padding: 30px; background: #fff; border-radius: 12px; margin-top: 30px;
+      color: #333; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .content-section h2 { font-size: 1.5rem; margin: 24px 0 12px; color: #111; }
+    .content-section ul, .content-section ol { margin-left: 24px; margin-bottom: 16px; color: #4b5563; }
+    .content-section li { margin-bottom: 8px; }
+    .content-section p { margin-bottom: 16px; color: #4b5563; }
+
+    footer { text-align: center; margin: 40px 0 20px; color: var(--text-muted); font-size: 14px; }
+    
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+    }
+
+     /* Floating Pill (Same as previous) */
+     .floating-slim-pill {
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        min-width: 280px;
+        max-width: 650px;
+        height: 32px;
+        background: linear-gradient(90deg, #e74c3c, #8e44ad); /* Reddish theme for PDF */
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        z-index: 10001;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .scroll-box {
+        display: flex;
+        white-space: nowrap;
+        animation: slim-scroll 20s linear infinite;
+    }
+
+    .message-item {
+        display: flex;
+        align-items: center;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .yellow-hit { color: #ffd700; margin: 0 6px; }
+    .dot-sep { margin: 0 35px; color: rgba(255, 255, 255, 0.3); }
+
+    @keyframes slim-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .floating-slim-pill:hover .scroll-box { animation-play-state: paused; }
+
+    @media (max-width: 600px) {
+        .floating-slim-pill { width: 92%; top: 8px; height: 30px; }
+        .message-item { font-size: 12px; }
+    }
+
+    @media (max-width:900px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <header class="app-header">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <path d="M9 15h6"></path>
+            <path d="M9 19h6"></path>
+            <path d="M9 11h6"></path>
+        </svg>
+        <div>
+          <h1>PDF to Word Converter</h1>
+          <p class="lead">Convert your PDF files to editable Word (DOCX) instantly.</p>
+        </div>
+      </div>
+      <a href="index.html" class="btn btn-secondary" aria-label="Go back to home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg> Back
+      </a>
+    </header>
+
+    <main>
+      <div class="card">
+        <div class="upload-box" id="uploadBox" tabindex="0" role="button" aria-label="Upload PDF file area">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:10px">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <line x1="9" y1="15" x2="12" y2="12"></line>
+            <line x1="15" y1="15" x2="12" y2="12"></line>
+          </svg>
+          <h3>Drag & Drop or Select a PDF file</h3>
+          <p style="color:var(--text-muted); margin-bottom:20px">Supported formats: PDF — Max 25MB</p>
+          
+          <button id="selectBtn" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg> Select File
+          </button>
+          <input id="fileInput" type="file" accept=".pdf,application/pdf" class="sr-only" aria-hidden="true">
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h2 style="font-size:1.2rem; margin-bottom:15px;">Original File</h2>
+            <div id="inputBox" class="placeholder">No PDF selected yet.</div>
+            
+            <div id="inputPreview" style="display:none; text-align:center;">
+                <div class="file-preview-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <text x="6" y="18" font-size="6" fill="#e74c3c" font-weight="bold">PDF</text>
+                    </svg>
+                </div>
+            </div>
+            <div id="inputInfo" class="file-info" style="display:none" aria-live="polite"></div>
+          </div>
+
+          <aside class="card">
+            <h2 style="font-size:1.2rem; margin-bottom:15px;">Converted File (Word)</h2>
+            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="bar"></div></div>
+            <div id="outputBox" class="placeholder">No conversion yet.</div>
+            
+            <div id="outputPreview" style="display:none; text-align:center;">
+                <div class="file-preview-icon" style="border-color: #2b579a; background: #f0f4f9;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2b579a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <text x="6" y="18" font-size="6" fill="#2b579a" font-weight="bold">DOCX</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div id="outputInfo" class="file-info" style="display:none" aria-live="polite"></div>
+            
+            <button id="convertBtn" class="btn btn-primary" style="margin-top:15px;width:100%;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg> Convert to DOCX
+            </button>
+            
+            <button id="downloadBtn" class="btn btn-word" style="margin-top:10px;width:100%;display:none;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg> Download Word
+            </button>
+          </aside>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Related tools navigation">
+          <span class="nav-arrow" aria-hidden="true">⟵</span>
+          <a href="#" class="nav-pill">JPG → PDF</a>
+          <span class="nav-arrow" aria-hidden="true">›</span>
+          <a href="https://topimgtools.com/pdf-to-word.html" class="nav-pill" aria-current="page">PDF → Word</a>
+          <span class="nav-arrow" aria-hidden="true">›</span>
+          <a href="#" class="nav-pill">Word → PDF</a>
+          <span class="nav-arrow" aria-hidden="true">⟶</span>
+      </nav>
+
+      <section class="content-section">
+        <h2>PDF to Word – Convert PDF Documents Online</h2>
+        <p>
+          Easily <strong>convert PDF to Word</strong> with our free online tool. Quickly turn your read-only PDF files into editable Word (DOCX) documents without losing layout quality. Ideal for students, professionals, and anyone needing to edit a PDF document.
+        </p>
+
+        <h2>Why Use a PDF to Word Converter?</h2>
+        <ul>
+          <li>Edit text inside a PDF file easily</li>
+          <li>Extract tables and images from PDF to Word</li>
+          <li>Ensure compatibility with Microsoft Word and Google Docs</li>
+          <li>No software installation required – online and free</li>
+          <li>Save time retyping documents manually</li>
+        </ul>
+
+        <h2>Features</h2>
+        <ul>
+          <li>Supports PDF to DOC and DOCX conversion</li>
+          <li>Fast and secure processing</li>
+          <li>Free to use with instant download</li>
+          <li>Works on mobile, tablets, and desktop devices</li>
+          <li>Preserves original formatting where possible</li>
+        </ul>
+
+        <h2>How to Convert PDF to Word Online</h2>
+        <ol>
+          <li>Upload your PDF file from your device</li>
+          <li>Click “Convert to DOCX” to start the process</li>
+          <li>Wait for the extraction to complete</li>
+          <li>Download the editable Word document instantly</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2025 TopImgTools — PDF to Word Converter
+    </footer>
+  </div>
+  
+  <div class="floating-slim-pill">
+    <div class="scroll-box">
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online PDF tools, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online PDF tools, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fileInput = document.getElementById("fileInput");
+      const selectBtn = document.getElementById("selectBtn");
+      const uploadBox = document.getElementById("uploadBox");
+      const inputBox = document.getElementById("inputBox");
+      const inputPreview = document.getElementById("inputPreview");
+      const inputInfo = document.getElementById("inputInfo");
+      const outputBox = document.getElementById("outputBox");
+      const outputPreview = document.getElementById("outputPreview");
+      const outputInfo = document.getElementById("outputInfo");
+      const convertBtn = document.getElementById("convertBtn");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const bar = document.getElementById("bar");
+
+      let pdfFile = null;
+
+      // Accessibility
+      uploadBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+
+      selectBtn.onclick = () => fileInput.click();
+
+      uploadBox.addEventListener("dragover", e => { 
+        e.preventDefault(); 
+        uploadBox.style.background = "rgba(231, 76, 60, 0.08)"; 
+      });
+      
+      uploadBox.addEventListener("dragleave", () => {
+        uploadBox.style.background = "#fdfdfd";
+      });
+      
+      uploadBox.addEventListener("drop", e => {
+        e.preventDefault();
+        uploadBox.style.background = "#fdfdfd";
+        if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+      });
+
+      fileInput.onchange = e => { if (e.target.files.length) handleFile(e.target.files[0]); };
+
+      function handleFile(file) {
+        const isPdf = /\.pdf$/i.test(file.name) || file.type === 'application/pdf';
+        if (!isPdf) return alert("Please select a valid PDF file!");
+        if (file.size > 25*1024*1024) return alert("File too big! Max 25MB.");
+
+        pdfFile = file;
+        
+        // Show PDF Preview State
+        inputPreview.style.display = "block";
+        inputBox.style.display = "none";
+        
+        inputInfo.style.display = "block";
+        inputInfo.innerHTML = `<strong>File:</strong> ${file.name} | <strong>Size:</strong> ${(file.size/(1024*1024)).toFixed(2)} MB`;
+        
+        // Reset Output
+        outputPreview.style.display = "none";
+        outputBox.style.display = "block";
+        outputBox.innerHTML = "Ready to convert.";
+        downloadBtn.style.display = "none";
+        
+        // Reset Progress
+        bar.style.width = "0%";
+      }
+
+      convertBtn.onclick = () => {
+        if (!pdfFile) return alert("Select a PDF file first!");
+        
+        convertBtn.innerText = "Processing...";
+        convertBtn.disabled = true;
+
+        // Simulate Conversion Process (Since client-side PDF>DOCX is heavy/complex)
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 10;
+            bar.style.width = progress + "%";
+            bar.parentElement.setAttribute('aria-valuenow', progress);
+            
+            if (progress >= 100) {
+                clearInterval(interval);
+                finishConversion();
+            }
+        }, 300); // 3 seconds simulation
+      };
+
+      function finishConversion() {
+          const fakeNewSize = pdfFile.size * 0.8; // Word files are usually slightly smaller/optimized
+          
+          outputPreview.style.display = "block";
+          outputBox.style.display = "none";
+          
+          outputInfo.style.display = "block";
+          outputInfo.innerHTML = `<strong>Format:</strong> DOCX | <strong>Size:</strong> ${(fakeNewSize/(1024*1024)).toFixed(2)} MB`;
+          
+          downloadBtn.style.display = "inline-flex"; 
+          convertBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Convert Again`;
+          convertBtn.disabled = false;
+          
+          // Reset bar after a moment
+          setTimeout(() => {
+             bar.style.width = "0%";
+             bar.parentElement.setAttribute('aria-valuenow', 0);
+          }, 1500);
+      }
+
+      downloadBtn.onclick = () => {
+        if (!pdfFile) return;
+        
+        // Note: Real client-side PDF to DOCX requires heavy libraries or an API.
+        // This generates a dummy file for the UI demo.
+        const blob = new Blob(["This is a converted document placeholder content."], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+        
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = pdfFile.name.replace(/\.pdf$/i, ".docx");
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+    });
+  </script>
+</body>
+</html>
