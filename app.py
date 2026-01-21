@@ -566,6 +566,11 @@ async def gif_tool():
     file_path = os.path.join(os.path.dirname(__file__), "static/image-to-gif.html")
     return FileResponse(file_path, media_type="text/html")
 
+@app.get("/split-pdf.html")
+async def split_pdf():
+    return FileResponse("static/split-pdf.html")
+
+
 @app.get("/color-picker.html")
 def color_picker():
     return FileResponse("static/color-picker.html")

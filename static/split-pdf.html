@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="#3498db">
+
+<title>Split PDF Online – Extract Pages Free | TopImgTools</title>
+<meta name="description" content="Split PDF files online for free. Extract specific pages or separate documents instantly. Secure client-side processing with TopImgTools." />
+<meta name="keywords" content="split pdf, extract pdf pages, separate pdf, free pdf splitter, online pdf tool, TopImgTools, cut pdf" />
+<meta name="author" content="TopImgTools" />
+<meta name="robots" content="index, follow"> <meta name="revisit-after" content="7 days"> <link rel="canonical" href="https://topimgtools.com/split-pdf.html" />
+
+<meta property="og:title" content="Split PDF Online – Extract Pages Free" />
+<meta property="og:description" content="Split PDF documents and extract specific pages easily online. Free and fast tool by TopImgTools." />
+<meta property="og:image" content="https://topimgtools.com/assets/split-pdf-banner.jpg" />
+<meta property="og:url" content="https://topimgtools.com/split-pdf.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TopImgTools" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Split PDF Online – Extract Pages Free" />
+<meta name="twitter:description" content="Extract pages from PDF files easily with TopImgTools. Secure and free." />
+<meta name="twitter:image" content="https://topimgtools.com/assets/split-pdf-banner.jpg" />
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Split PDF Online",
+  "url": "https://topimgtools.com/split-pdf.html",
+  "description": "A free online tool to split PDF files and extract specific pages.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "category": "Free"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "TopImgTools"
+  }
+}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F5XBT7MCBM');
+</script>
+
+<style>
+/* Same CSS as provided */
+:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#4b5563;--text:#0f172a;}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:var(--bg);margin:0;color:var(--text);}
+.wrap{max-width:980px;margin:36px auto;padding:20px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.logo{display:flex;gap:12px;align-items:center; text-decoration: none; color: inherit;}
+.logo img{height:36px}
+h1{font-size:20px;margin:0}
+p.lead{color:var(--muted);margin:6px 0 0}
+.card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.upload-box{border:2px dashed rgba(15,23,42,0.08);border-radius:10px;padding:28px;display:flex;gap:20px;align-items:center;justify-content:center;flex-direction:column;cursor:pointer}
+.upload-box.highlight{background:linear-gradient(90deg,rgba(52,152,219,0.06),rgba(231,76,60,0.03));border-color:var(--accent)}
+.upload-actions{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600; text-decoration: none;}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-secondary{background:#111827;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+.preview{display:flex;flex-direction:column;gap:8px;align-items:center; justify-content: center; min-height: 200px;}
+.file-info{text-align:center; padding: 20px; background: #f3f4f6; border-radius: 8px; width: 100%;}
+.small{font-size:13px;color:var(--muted)}
+footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+ 
+ /* Floating Pill CSS */
+ .floating-slim-pill {
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        min-width: 280px;
+        max-width: 650px;
+        height: 32px; 
+        background: linear-gradient(90deg, #001f3f, #8e44ad); 
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        z-index: 10001;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .scroll-box {
+        display: flex;
+        white-space: nowrap;
+        animation: slim-scroll 20s linear infinite;
+    }
+
+    .message-item {
+        display: flex;
+        align-items: center;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .yellow-hit {
+        color: #ffd700; 
+        margin: 0 6px;
+    }
+
+    .dot-sep {
+        margin: 0 35px;
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes slim-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .floating-slim-pill:hover .scroll-box {
+        animation-play-state: paused;
+    }
+
+    @media (max-width: 600px) {
+        .floating-slim-pill {
+            width: 92%;
+            top: 8px;
+            height: 30px;
+        }
+        .message-item { font-size: 12px; }
+    }
+</style>
+</head>
+<body>
+
+<a href="#mainContent" class="skip-link" style="position: absolute; top: -40px; left: 0; background: var(--accent); color: white; padding: 8px; z-index: 100; transition: top 0.3s;">Skip to main content</a>
+<style>
+.skip-link:focus { top: 0 !important; }
+</style>
+
+<div class="wrap">
+  <header class="header">
+    <a href="index.html" class="logo" aria-label="TopImgTools Home">
+      <img src="/static/img/pdf-logo.png" onerror="this.src='/static/img/composite.png'" alt="TopImgTools Logo" width="36" height="36"> 
+      <div>
+        <h1>Split PDF</h1>
+        <p class="lead">Extract pages from PDF documents easily.</p>
+      </div>
+    </a>
+    <div class="actions">
+      <a class="btn btn-secondary" href="index.html" aria-label="Back to Tools"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <div class="card">
+      <div class="upload-box" id="uploadBox" role="button" tabindex="0" aria-label="Drag and drop PDF or click to select"> 
+        <div style="text-align:center">
+          <i class="fa fa-file-pdf" style="font-size:36px;color:var(--accent)" aria-hidden="true"></i>
+          <h3 style="margin:8px 0 6px">Drag & drop or select PDF</h3>
+          <p class="small muted">PDF files only — Select one file to split</p>
+        </div>
+        <div class="upload-actions">
+          <button id="selectBtn" class="btn btn-primary" aria-label="Select PDF from device"><i class="fa fa-folder-open" aria-hidden="true"></i> Select PDF</button>
+          <input id="fileInput" type="file" accept="application/pdf" style="display:none" aria-hidden="true">
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="preview" id="previewContainer">
+            <div id="fileInfoDisplay" class="file-info" style="display:none;">
+                <i class="fa fa-file-circle-check" style="font-size:40px; color:#2ecc71; margin-bottom:10px;"></i>
+                <h4 id="fileName" style="margin:5px 0;">Filename.pdf</h4>
+                <p id="pageCount" style="margin:0; color:var(--muted);">0 Pages</p>
+            </div>
+            <div id="placeholder" style="padding:26px;text-align:center;color:var(--muted)">
+                PDF Info will appear here after upload
+            </div>
+          </div>
+        </div>
+
+        <aside class="card panel">
+          <label class="small" for="pageRange">Pages to Extract</label>
+          <input type="text" id="pageRange" placeholder="e.g. 1-5, 8, 10-12" 
+                 style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6edf3;margin-bottom:6px; margin-top:5px;" 
+                 aria-label="Enter page numbers to extract">
+          <p class="small" style="margin-bottom:15px; color:#666;">Enter page numbers separated by commas or ranges.</p>
+          
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button id="splitBtn" class="btn btn-primary" disabled aria-label="Split and Download PDF"><i class="fa fa-cut" aria-hidden="true"></i> Split PDF</button>
+            <button id="resetBtn" class="btn" aria-label="Reset tool"><i class="fa fa-undo" aria-hidden="true"></i> Reset</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <nav style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
+                box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
+                align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;" aria-label="Related Tools">
+
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟵</span>
+
+        <a href="https://topimgtools.com/merge-pdf.html"
+          style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+          onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+          onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+          MERGE PDF
+        </a>
+
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
+
+        <a href="https://topimgtools.com/jpg-to-pdf.html"
+          style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
+                  border-radius:30px; text-decoration:none; color:#1f2937;
+                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
+                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
+          onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
+          onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
+          JPG → PDF
+        </a>
+
+        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
+    </nav>
+
+    <div class="card">
+    <section style="padding:20px; background:#f9f9f9; font-family:Arial, sans-serif; line-height:1.6; color:#333;">
+      <h2 style="font-size:28px; color:#222; margin-bottom:15px;">Split PDF – Extract Pages Online</h2> 
+      <p style="font-size:16px; margin-bottom:15px;">
+        Easily <strong>split PDF files</strong> with our free online tool. Extract specific pages or separate documents from a large PDF file quickly. No software installation needed.
+      </p>
+
+      <h3 style="font-size:22px; color:#222; margin-bottom:10px;">Why Use This PDF Splitter?</h3> 
+      <ul style="margin-left:20px; margin-bottom:15px;">
+        <li>Extract specific pages (e.g., 1, 3, 5-10)</li>
+        <li>Reduce PDF file size by removing unwanted pages</li>
+        <li>Secure processing – files stay on your device</li>
+        <li>Fast and easy to use on Mobile and Desktop</li>
+      </ul>
+
+      <h3 style="font-size:22px; color:#222; margin-bottom:10px;">How to Split PDF Online</h3> 
+      <ol style="margin-left:20px; margin-bottom:15px;">
+        <li>Upload your PDF file from your device</li>
+        <li>Enter the page numbers you want to keep (e.g., 1-5)</li>
+        <li>Click “Split PDF” to process the file</li>
+        <li>Download the new PDF instantly</li>
+      </ol>
+    </section>
+    </div>
+  </main>
+
+    <footer>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</footer>
+
+</div>
+   <div class="floating-slim-pill">
+    <div class="scroll-box">
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+    </div>
+    </div>
+
+<script>
+const { PDFDocument } = PDFLib;
+const fileInput = document.getElementById('fileInput');
+const selectBtn = document.getElementById('selectBtn');
+const uploadBox = document.getElementById('uploadBox');
+const fileInfoDisplay = document.getElementById('fileInfoDisplay');
+const placeholder = document.getElementById('placeholder');
+const fileNameDisplay = document.getElementById('fileName');
+const pageCountDisplay = document.getElementById('pageCount');
+const splitBtn = document.getElementById('splitBtn');
+const resetBtn = document.getElementById('resetBtn');
+const pageRangeInput = document.getElementById('pageRange');
+
+let currentPdfBytes = null;
+let currentPdfDoc = null;
+let totalPages = 0;
+
+// Button Events
+selectBtn.onclick = (e) => {
+    e.stopPropagation(); 
+    fileInput.click();
+};
+
+fileInput.onchange = (e) => handleFiles(e.target.files);
+
+// Drag & Drop
+uploadBox.addEventListener('click', () => fileInput.click()); 
+uploadBox.addEventListener('keydown', (e) => { 
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        fileInput.click();
+    }
+});
+
+['dragenter','dragover'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.add('highlight');},{passive: true}));
+['dragleave','drop'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.remove('highlight');},{passive: true}));
+uploadBox.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
+
+async function handleFiles(files) {
+    if (!files || files.length === 0) return;
+    const file = files[0];
+
+    if (file.type !== 'application/pdf') {
+        alert("Please upload a PDF file.");
+        return;
+    }
+
+    // Read File
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            currentPdfBytes = e.target.result;
+            currentPdfDoc = await PDFDocument.load(currentPdfBytes);
+            totalPages = currentPdfDoc.getPageCount();
+
+            // UI Update
+            fileNameDisplay.textContent = file.name;
+            pageCountDisplay.textContent = `${totalPages} Pages found`;
+            
+            placeholder.style.display = 'none';
+            fileInfoDisplay.style.display = 'block';
+            splitBtn.disabled = false;
+            pageRangeInput.value = `1-${totalPages}`; // Default select all
+
+        } catch (err) {
+            console.error(err);
+            alert("Error reading PDF. Is it password protected?");
+        }
+    };
+    reader.readAsArrayBuffer(file);
+    fileInput.value = ''; // Reset input
+}
+
+// Helper to parse "1, 3-5, 8" into array of indices [0, 2, 3, 4, 7]
+function parsePageRange(rangeStr, maxPages) {
+    const pages = new Set();
+    const parts = rangeStr.split(',');
+    
+    parts.forEach(part => {
+        part = part.trim();
+        if (part.includes('-')) {
+            const [start, end] = part.split('-').map(num => parseInt(num));
+            if (!isNaN(start) && !isNaN(end)) {
+                for (let i = start; i <= end; i++) {
+                    if (i >= 1 && i <= maxPages) pages.add(i - 1); // 0-based index
+                }
+            }
+        } else {
+            const num = parseInt(part);
+            if (!isNaN(num) && num >= 1 && num <= maxPages) {
+                pages.add(num - 1);
+            }
+        }
+    });
+    return Array.from(pages).sort((a, b) => a - b);
+}
+
+splitBtn.onclick = async () => {
+    if (!currentPdfDoc) return;
+
+    const rangeStr = pageRangeInput.value;
+    const pageIndices = parsePageRange(rangeStr, totalPages);
+
+    if (pageIndices.length === 0) {
+        alert("Please enter a valid page range.");
+        return;
+    }
+
+    try {
+        const newPdf = await PDFDocument.create();
+        const copiedPages = await newPdf.copyPages(currentPdfDoc, pageIndices);
+        
+        copiedPages.forEach(page => newPdf.addPage(page));
+
+        const pdfBytes = await newPdf.save();
+        downloadBlob(pdfBytes, 'split_document.pdf', 'application/pdf');
+    } catch (err) {
+        console.error(err);
+        alert("An error occurred while splitting the PDF.");
+    }
+};
+
+function downloadBlob(data, fileName, mimeType) {
+    const blob = new Blob([data], { type: mimeType });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 100);
+}
+
+resetBtn.onclick = () => {
+    currentPdfDoc = null;
+    currentPdfBytes = null;
+    fileInfoDisplay.style.display = 'none';
+    placeholder.style.display = 'block';
+    splitBtn.disabled = true;
+    pageRangeInput.value = '';
+    fileInput.value = '';
+};
+</script>
+</body>
+</html>
