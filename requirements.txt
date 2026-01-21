@@ -10,5 +10,5 @@ scikit-image==0.21.0
 psutil
 anyio
 starlette
-
+pdf2docx
 

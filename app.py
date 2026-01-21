@@ -29,7 +29,8 @@ from fastapi import FastAPI
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import RedirectResponse
 from pathlib import Path
-
+from pdf2docx import Converter
+from fastapi import BackgroundTasks
 
 
 
@@ -899,6 +900,68 @@ async def alias_remove_background(
     Redirects /api/remove-background to /remove-bg internally.
     """
     return await remove_bg(image=image, background_color=background_color, quality=quality)
+
+# ----------------- PDF to Word Endpoint ----------------- #
+
+@app.post("/api/convert/pdf-to-word")
+async def convert_pdf_to_word(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...)
+):
+    """
+    Actual PDF to Word conversion logic using pdf2docx
+    """
+    # Validate file type
+    if not file.filename.lower().endswith('.pdf'):
+        raise HTTPException(status_code=400, detail="Invalid file type. Only PDF allowed.")
+
+    # Create unique filenames to avoid collisions
+    unique_id = uuid.uuid4().hex
+    input_filename = f"{unique_id}.pdf"
+    output_filename = f"{unique_id}.docx"
+    
+    # Define paths
+    temp_dir = "temp_files"
+    os.makedirs(temp_dir, exist_ok=True)
+    
+    input_path = os.path.join(temp_dir, input_filename)
+    output_path = os.path.join(temp_dir, output_filename)
+
+    try:
+        # 1. Save uploaded PDF
+        with open(input_path, "wb") as buffer:
+            buffer.write(await file.read())
+
+        # 2. Convert PDF to DOCX
+        # We run this in a separate thread to prevent blocking the async event loop
+        await asyncio.to_thread(perform_pdf_conversion, input_path, output_path)
+
+        # 3. Schedule cleanup (deletes files AFTER response is sent)
+        background_tasks.add_task(remove_file, input_path)
+        background_tasks.add_task(remove_file, output_path)
+
+        # 4. Return the file
+        return FileResponse(
+            output_path, 
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
+            filename=file.filename.replace(".pdf", ".docx")
+        )
+
+    except Exception as e:
+        # Cleanup if error occurs
+        if os.path.exists(input_path): os.remove(input_path)
+        if os.path.exists(output_path): os.remove(output_path)
+        logger.error(f"PDF Conversion failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Conversion failed: {str(e)}")
+
+def perform_pdf_conversion(input_path, output_path):
+    """Helper function to run the conversion (CPU bound)"""
+    cv = Converter(input_path)
+    cv.convert(output_path, start=0, end=None)
+    cv.close()
+
+
+
 
 # ----------------- Background Cleanup ----------------- #
 def cleanup_files():

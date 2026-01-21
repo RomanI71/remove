@@ -387,7 +387,7 @@
     </div>
   </div>
 
-  <script>
+<script>
     document.addEventListener('DOMContentLoaded', () => {
       const fileInput = document.getElementById("fileInput");
       const selectBtn = document.getElementById("selectBtn");
@@ -403,6 +403,8 @@
       const bar = document.getElementById("bar");
 
       let pdfFile = null;
+      let convertedBlob = null; 
+      let convertedFileName = "";
 
       // Accessibility
       uploadBox.addEventListener('keydown', (e) => {
@@ -437,79 +439,87 @@
         if (file.size > 25*1024*1024) return alert("File too big! Max 25MB.");
 
         pdfFile = file;
+        convertedBlob = null; // Clear previous result
         
-        // Show PDF Preview State
         inputPreview.style.display = "block";
         inputBox.style.display = "none";
-        
         inputInfo.style.display = "block";
         inputInfo.innerHTML = `<strong>File:</strong> ${file.name} | <strong>Size:</strong> ${(file.size/(1024*1024)).toFixed(2)} MB`;
         
-        // Reset Output
         outputPreview.style.display = "none";
         outputBox.style.display = "block";
         outputBox.innerHTML = "Ready to convert.";
         downloadBtn.style.display = "none";
-        
-        // Reset Progress
         bar.style.width = "0%";
       }
 
-      convertBtn.onclick = () => {
+      // --- আসল কনভারশন লজিক ---
+      convertBtn.onclick = async () => {
         if (!pdfFile) return alert("Select a PDF file first!");
         
-        convertBtn.innerText = "Processing...";
+        convertBtn.innerText = "Converting... Please wait";
         convertBtn.disabled = true;
+        bar.style.width = "40%"; // প্রাথমিক প্রগ্রেস
 
-        // Simulate Conversion Process (Since client-side PDF>DOCX is heavy/complex)
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += 10;
-            bar.style.width = progress + "%";
-            bar.parentElement.setAttribute('aria-valuenow', progress);
-            
-            if (progress >= 100) {
-                clearInterval(interval);
-                finishConversion();
+        const formData = new FormData();
+        formData.append("file", pdfFile);
+
+        try {
+            // সার্ভারে ফাইল পাঠানো হচ্ছে
+            const response = await fetch('/api/convert/pdf-to-word', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || "Conversion failed");
             }
-        }, 300); // 3 seconds simulation
+
+            // সার্ভার থেকে আসা ওয়ার্ড ফাইলটি রিসিভ করা হচ্ছে
+            convertedBlob = await response.blob();
+            convertedFileName = pdfFile.name.replace(/\.pdf$/i, ".docx");
+            
+            bar.style.width = "100%";
+            finishConversion(convertedBlob.size);
+
+        } catch (error) {
+            console.error(error);
+            alert("Error: " + error.message);
+            convertBtn.innerText = "Try Again";
+            convertBtn.disabled = false;
+            bar.style.width = "0%";
+        }
       };
 
-      function finishConversion() {
-          const fakeNewSize = pdfFile.size * 0.8; // Word files are usually slightly smaller/optimized
-          
+      function finishConversion(size) {
           outputPreview.style.display = "block";
           outputBox.style.display = "none";
           
           outputInfo.style.display = "block";
-          outputInfo.innerHTML = `<strong>Format:</strong> DOCX | <strong>Size:</strong> ${(fakeNewSize/(1024*1024)).toFixed(2)} MB`;
+          outputInfo.innerHTML = `<strong>Format:</strong> DOCX | <strong>Size:</strong> ${(size/(1024*1024)).toFixed(2)} MB`;
           
           downloadBtn.style.display = "inline-flex"; 
-          convertBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Convert Again`;
+          convertBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Convert Another`;
           convertBtn.disabled = false;
-          
-          // Reset bar after a moment
-          setTimeout(() => {
-             bar.style.width = "0%";
-             bar.parentElement.setAttribute('aria-valuenow', 0);
-          }, 1500);
       }
 
       downloadBtn.onclick = () => {
-        if (!pdfFile) return;
+        if (!convertedBlob) return;
         
-        // Note: Real client-side PDF to DOCX requires heavy libraries or an API.
-        // This generates a dummy file for the UI demo.
-        const blob = new Blob(["This is a converted document placeholder content."], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
-        
+        const url = window.URL.createObjectURL(convertedBlob);
         const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = pdfFile.name.replace(/\.pdf$/i, ".docx");
+        a.style.display = "none";
+        a.href = url;
+        a.download = convertedFileName;
         document.body.appendChild(a);
         a.click();
+        
+        // ক্লিনআপ
+        window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       };
     });
-  </script>
+</script>
 </body>
 </html>
