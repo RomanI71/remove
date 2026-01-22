@@ -93,6 +93,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://topimgtools.com/pdf-to-word.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/split-pdf.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://topimgtools.com/pdf-to-image.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://topimgtools.com/collage-maker.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
