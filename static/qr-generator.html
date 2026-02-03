@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR Code Generator Online – Custom Frames & Colors | TopImgTools</title>
+  <meta name="description" content="Create custom QR codes instantly. Free online QR Generator with modern frames (Scan Me, Circular, Gradient), colors, and high-quality download (PNG, JPG, PDF)." />
+  <meta name="keywords" content="qr code generator, custom qr code, qr code with logo, free qr tool, online qr maker, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <meta name="theme-color" content="#3498db">
+  <link rel="canonical" href="https://topimgtools.com/qr-generator-final.html" />
+
+  <meta property="og:title" content="QR Code Generator – Free Custom Frames" />
+  <meta property="og:description" content="Create unique QR codes with modern frames like QRFY templates. Free and instant download." />
+  <meta property="og:image" content="https://topimgtools.com/assets/qr-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/qr-generator-final.html" />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+  <style>
+    /* === BASE THEME (From Flip Image) === */
+    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
+    *{box-sizing:border-box}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); margin:0; color:#0f172a; line-height:1.6;
+    }
+    a:focus, button:focus, input:focus, select:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
+
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    h1{font-size:1.5rem;margin:0;font-weight:700}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
+
+    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:20px}
+
+    /* === INPUT AREA === */
+    .input-box {
+      background-color:#f8fafc; border:2px solid #cbd5e1; border-radius:10px; padding:24px;
+      display:flex; gap:16px; flex-direction:column; margin-bottom: 24px;
+    }
+    .input-box label { font-weight: 700; color: #1e293b; margin-bottom: 5px; display: block; }
+    .form-control {
+        width: 100%; padding: 12px 16px; font-size: 1rem; border: 1px solid #cbd5e1;
+        border-radius: 8px; transition: border-color 0.2s;
+    }
+    .form-control:focus { border-color: var(--accent); }
+
+    /* === BUTTONS === */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:background 0.2s;text-decoration:none}
+    .btn-primary{background:var(--accent);color:#fff; width: 100%;}
+    .btn-primary:hover{background:var(--accent-dark)}
+    .btn-secondary{background:#1f2937;color:#fff; text-decoration:none;}
+    .btn-secondary:hover{background:#111827}
+    .btn-outline { background: #fff; border: 1px solid #cbd5e1; color: #333; width: 100%; margin-top: 10px; }
+    .btn-outline:hover { background: #f1f5f9; }
+
+    /* === LAYOUT GRID === */
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;}
+
+    /* === PREVIEW AREA === */
+    .preview-area{
+        display:flex;justify-content:center;align-items:center;
+        background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVQ4jWNgYGAQIYAJglEDxo0YQIgCxhG1AAAAAElFTSuQmCC') repeat; 
+        border-radius:8px;overflow:hidden;min-height:450px;padding:20px;
+        border: 1px solid var(--border);
+    }
+    
+    /* === QR FRAMES CSS (QRFY Style Replicas) === */
+    #captureArea {
+      padding: 0; background: transparent; transition: all 0.3s;
+      display: inline-flex; justify-content: center; align-items: center;
+      position: relative; box-sizing: border-box;
+    }
+    #qrcode { background: white; flex-shrink: 0; }
+    #qrcode img { display: block; }
+
+    /* 1. CLEAN (Default) */
+    .style-clean #qrcode { padding: 10px; border-radius: 8px; }
+
+    /* 2. MODERN BORDER (QRFY Classic) */
+    .style-modern-border {
+      background: white; padding: 15px !important; 
+      border: 8px solid #000; border-radius: 20px; 
+    }
+    .style-modern-border #qrcode { border-radius: 4px; }
+
+    /* 3. CIRCULAR (QRFY Round) */
+    .style-circle {
+      background: white; padding: 30px !important;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    /* 4. SCAN ME TOP (Pill Frame) */
+    .style-scan-top {
+      background: #000; padding: 45px 15px 15px 15px !important;
+      border-radius: 16px; position: relative;
+    }
+    .style-scan-top::before {
+      content: 'SCAN ME'; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      color: white; font-weight: 800; font-family: sans-serif; letter-spacing: 1px; font-size: 14px;
+    }
+    .style-scan-top #qrcode { border-radius: 8px; border: 4px solid white; }
+
+    /* 5. SCAN ME BOTTOM (Pill Frame) */
+    .style-scan-bottom {
+      background: #000; padding: 15px 15px 45px 15px !important;
+      border-radius: 16px; position: relative;
+    }
+    .style-scan-bottom::after {
+      content: 'SCAN ME'; position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      color: white; font-weight: 800; font-family: sans-serif; letter-spacing: 1px; font-size: 14px;
+    }
+    .style-scan-bottom #qrcode { border-radius: 8px; border: 4px solid white; }
+
+    /* 6. SPEECH BUBBLE (Modern) */
+    .style-bubble {
+      background: #3498db; padding: 15px 15px 50px 15px !important;
+      border-radius: 16px; position: relative;
+    }
+    .style-bubble::after {
+      content: 'Scan to View'; position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      color: white; font-weight: 700; font-family: sans-serif; font-size: 13px;
+    }
+    .style-bubble::before {
+      content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+      border-width: 10px 10px 0; border-style: solid; border-color: #3498db transparent;
+    }
+    .style-bubble #qrcode { border-radius: 6px; }
+
+    /* 7. OUTLINE TAG (QRFY Outline) */
+    .style-outline-tag {
+        border: 3px solid #000; border-radius: 15px; padding: 40px 15px 15px 15px !important;
+        background: white; position: relative;
+    }
+    .style-outline-tag::before {
+        content: 'SCAN ME'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+        background: #000; color: white; padding: 4px 16px; border-radius: 20px;
+        font-weight: bold; font-size: 12px; letter-spacing: 0.5px;
+    }
+
+    /* 8. GRADIENT CARD */
+    .style-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 20px !important; border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(118, 75, 162, 0.4);
+    }
+    .style-gradient #qrcode { border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+    /* 9. POLAROID (Classic) */
+    .style-polaroid {
+      background: white; padding: 15px 15px 50px 15px !important;
+      border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .style-polaroid::after {
+      content: 'Scan Me'; position: absolute; bottom: 15px; left: 0; right: 0;
+      color: #333; font-family: cursive; text-align: center; font-size: 18px;
+    }
+    .style-polaroid #qrcode { border: 1px solid #eee; }
+
+    /* === CONTROLS SIDEBAR === */
+    .frame-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;
+    }
+    .frame-btn {
+        border: 2px solid var(--border); background: #fff; padding: 8px;
+        border-radius: 8px; cursor: pointer; text-align: center; font-size: 11px;
+        transition: all 0.2s; height: 65px; display: flex; flex-direction:column; align-items: center; justify-content: center;
+        color: #475569;
+    }
+    .frame-btn i { font-size: 18px; margin-bottom: 6px; color: var(--muted); }
+    .frame-btn:hover { border-color: var(--accent); background: #eff6ff; }
+    .frame-btn.active { border-color: var(--accent); background: var(--accent); color: white; font-weight: bold; }
+    .frame-btn.active i { color: white; }
+
+    .control-group { margin-bottom: 20px; }
+    .control-group h4 { font-size: 0.95rem; margin: 0 0 10px 0; color: #1e293b; }
+
+    .download-section { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 15px; }
+    .form-select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border); margin-bottom: 10px; }
+
+    /* === NAV & SEO (From Flip Image) === */
+    .nav-links {
+        margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+        display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .nav-btn {
+        padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+        color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb; transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; }
+
+    .seo-content { color: #334155; }
+    .seo-content h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
+    .sr-only {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);white-space: nowrap;border-width: 0;}
+
+    /* === FLOATING PILL === */
+    .floating-slim-pill {
+        position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+        width: auto; min-width: 280px; max-width: 650px; height: 32px;
+        background: linear-gradient(90deg, #001f3f, #8e44ad);
+        border-radius: 20px; display: flex; align-items: center; overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); z-index: 10001;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .scroll-box { display: flex; white-space: nowrap; animation: slim-scroll 20s linear infinite; }
+    .message-item { display: flex; align-items: center; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #ffffff; }
+    .yellow-hit { color: #ffd700; margin: 0 6px; }
+    .dot-sep { margin: 0 35px; color: rgba(255, 255, 255, 0.3); }
+    @keyframes slim-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .floating-slim-pill:hover .scroll-box { animation-play-state: paused; }
+
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    
+    <header class="header">
+      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+        <i class="fa fa-qrcode" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
+        <div>
+          <h1>QR Generator</h1>
+          <p class="lead">Create custom QR codes with styled frames</p>
+        </div>
+      </a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    </header>
+
+    <section class="card" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" class="sr-only">QR Code Tool</h2>
+      
+      <div class="input-box">
+          <label for="qrText"><i class="fa fa-link" style="color:var(--accent); margin-right:5px;"></i> Enter Content (URL, Text, Email)</label>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <input type="text" id="qrText" class="form-control" value="https://topimgtools.com" placeholder="https://..." style="flex:1;">
+            <button id="generateBtn" class="btn btn-secondary" style="min-width:120px;"><i class="fa fa-rotate"></i> Update</button>
+          </div>
+      </div>
+
+      <div class="grid">
+        
+        <div class="card" style="margin-bottom:0; display:flex; flex-direction:column; justify-content:center;">
+          <h4 style="margin:0 0 15px 0; color:var(--muted); text-align:center; font-size:0.9rem;">Live Preview</h4>
+          <div class="preview-area" id="previewArea">
+             <div id="captureArea" class="style-clean">
+                 <div id="qrcode"></div>
+             </div>
+          </div>
+          <p style="margin-top:10px; text-align:center; color:var(--muted); font-size:0.85rem;">
+            <i class="fa fa-eye"></i> Design renders automatically
+          </p>
+        </div>
+
+        <aside>
+          
+          <div class="card" style="margin-bottom:20px">
+            <div class="control-group">
+                <h4><i class="fa fa-crop-simple"></i> Choose Frame Style</h4>
+                <div class="frame-grid">
+                    <div class="frame-btn active" onclick="setFrame('clean')">
+                        <i class="fa fa-ban"></i> No Frame
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('modern-border')">
+                        <i class="fa fa-square"></i> Classic
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('outline-tag')">
+                        <i class="fa fa-tag"></i> Tag Top
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('scan-top')">
+                        <i class="fa fa-arrow-up-from-bracket"></i> Black Top
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('scan-bottom')">
+                        <i class="fa fa-arrow-down"></i> Black Bot
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('circle')">
+                        <i class="fa fa-circle-notch"></i> Circle
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('bubble')">
+                        <i class="fa fa-comment-dots"></i> Balloon
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('gradient')">
+                        <i class="fa fa-wand-magic-sparkles"></i> Gradient
+                    </div>
+                    <div class="frame-btn" onclick="setFrame('polaroid')">
+                        <i class="fa fa-camera"></i> Retro
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group" style="margin-top:20px;">
+                <h4><i class="fa fa-palette"></i> QR Dots Color</h4>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <input type="color" id="colorDark" value="#000000" style="width:100%; height:40px; border:1px solid #ddd; border-radius:6px; cursor:pointer; padding:2px;">
+                </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h4><i class="fa fa-download"></i> Download Result</h4>
+            <div class="download-section">
+              <select id="downloadFormat" class="form-select">
+                 <option value="png">PNG Image (Recommended)</option>
+                 <option value="jpg">JPG Image</option>
+                 <option value="pdf">PDF Document</option>
+              </select>
+              
+              <button id="downloadBtn" class="btn btn-primary">
+                <i class="fa fa-file-export" aria-hidden="true"></i> Download File
+              </button>
+              
+              <p style="margin:12px 0 0;font-size:0.8rem;color:var(--muted); line-height:1.4;">
+                <strong><i class="fa fa-shield-halved"></i> Privacy Note:</strong>
+                Generation happens in your browser. Data is not sent to our servers.
+              </p>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </section>
+
+    <nav class="nav-links" aria-label="Related Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/flip-image.html" class="nav-btn">Flip Image</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
+
+    <article class="card seo-content" style="line-height: 1.8; color: #374151; font-family: sans-serif; padding: 30px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        
+        <h2 style="font-size: 32px; margin-bottom: 20px; color: #111827; font-weight: 800; text-align: center;">
+            Professional Online QR Code Generator with Frames
+        </h2>
+
+        <div style="margin-bottom: 25px; text-align: justify;">
+            <p style="margin-bottom: 15px;">
+                In the digital age, Quick Response (QR) codes are the bridge between the physical and digital worlds. Whether you are a business owner sharing a menu, a teacher distributing notes, or an influencer growing your following, our <strong>Custom QR Code Generator</strong> is the perfect tool for you. Unlike basic generators, we offer <strong>stylish frames</strong> and customization options to make your codes stand out.
+            </p>
+            <p style="margin-bottom: 15px;">
+                At <strong>topimgtools.com</strong>, we prioritize speed and privacy. Our tool runs entirely in your browser using advanced JavaScript libraries. This means you can create high-resolution QR codes without signing up, installing software, or risking your data privacy.
+            </p>
+        </div>
+
+        <h3 style="font-size: 24px; margin-top: 30px; color: #1f2937; font-weight: 700;">Why Choose Our QR Designer?</h3>
+        <ul style="margin-left: 0; margin-bottom: 25px; list-style-type: none; padding-left: 0;">
+            <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                <span style="position: absolute; left: 0; color: #10b981;">✔</span>
+                <strong>Creative Frames:</strong> Don't settle for boring black squares. Use our "Polaroid" frame for events, "Speech Bubble" for messages, or "Phone" frame for app links.
+            </li>
+            <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                <span style="position: absolute; left: 0; color: #10b981;">✔</span>
+                <strong>High Quality Formats:</strong> Download in <strong>PNG</strong> for transparency, <strong>JPG</strong> for general use, or <strong>PDF</strong> for printing.
+            </li>
+            <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                <span style="position: absolute; left: 0; color: #10b981;">✔</span>
+                <strong>100% Free & Unlimited:</strong> Generate as many codes as you need. No hidden fees or watermarks.
+            </li>
+        </ul>
+
+        <h3 style="font-size: 24px; margin-top: 30px; color: #1f2937; font-weight: 700;">How to Create a Custom QR Code</h3>
+        <ol style="margin-left: 25px; margin-bottom: 30px; line-height: 2;">
+            <li><strong>Enter Content:</strong> Type your Website URL, text, email, or phone number in the top input box.</li>
+            <li><strong>Customize:</strong> Select a frame from the sidebar (e.g., Polaroid, Ribbon) and choose a color that matches your brand.</li>
+            <li><strong>Preview:</strong> Watch the live preview update instantly as you make changes.</li>
+            <li><strong>Download:</strong> Select your preferred format (PNG/JPG/PDF) and click "Download File".</li>
+        </ol>
+
+        <div style="margin-top: 40px; border-top: 2px solid #f3f4f6; padding-top: 25px;">
+            <h3 style="font-size: 24px; margin-bottom: 20px; color: #111827; font-weight: 700;">Frequently Asked Questions</h3>
+            
+            <div style="margin-bottom: 20px;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Do these QR codes expire?</p>
+                <p style="color: #4b5563;">A: No. These are static QR codes. Once generated, they will work forever as long as the link you put inside them is valid.</p>
+            </div>
+            
+            <div style="margin-bottom: 0;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Can I scan these with my phone?</p>
+                <p style="color: #4b5563;">A: Yes! Our generator creates standard QR codes compatible with all iPhone and Android camera apps.</p>
+            </div>
+        </div>
+
+    </article>
+
+    <footer>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <div class="floating-slim-pill">
+    <div class="scroll-box">
+        <div class="message-item">
+            <span>If you found this tool useful, please <span class="yellow-hit">share it</span> with a friend! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: Need to edit photos? Visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+        <div class="message-item">
+            <span>If you found this tool useful, please <span class="yellow-hit">share it</span> with a friend! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: Need to edit photos? Visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    // Elements
+    const qrDiv = document.getElementById("qrcode");
+    const captureArea = document.getElementById("captureArea");
+    const textInput = document.getElementById("qrText");
+    const colorInput = document.getElementById("colorDark");
+    const generateBtn = document.getElementById("generateBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const formatSelect = document.getElementById("downloadFormat");
+    const frameBtns = document.querySelectorAll('.frame-btn');
+
+    // Initialize QR Code
+    let qrcode = new QRCode(qrDiv, {
+      text: "https://topimgtools.com",
+      width: 160,
+      height: 160,
+      colorDark : "#000000",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+
+    // Frame Switching Logic
+    window.setFrame = function(styleName) {
+      captureArea.className = ""; // clear all classes
+      captureArea.classList.add('style-' + styleName);
+      
+      // Update UI active state
+      frameBtns.forEach(btn => btn.classList.remove('active'));
+      // Find the button that called this function or closest match
+      event.currentTarget.classList.add('active');
+    };
+
+    // Update QR Code Logic
+    function updateQR() {
+      qrDiv.innerHTML = ""; // Clear previous
+      const text = textInput.value.trim() || "https://topimgtools.com";
+      
+      qrcode = new QRCode(qrDiv, {
+        text: text,
+        width: 160,
+        height: 160,
+        colorDark : colorInput.value,
+        correctLevel : QRCode.CorrectLevel.H
+      });
+    }
+
+    // Event Listeners
+    generateBtn.addEventListener("click", updateQR);
+    textInput.addEventListener("keyup", (e) => { if(e.key === 'Enter') updateQR(); });
+    colorInput.addEventListener("input", updateQR); // Real-time color change
+
+    // Download Function
+    downloadBtn.addEventListener("click", () => {
+      const btnIcon = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing...';
+      
+      // Temporarily expand height/scale for html2canvas
+      html2canvas(captureArea, {
+        scale: 4, // Higher scale for better quality
+        backgroundColor: null, 
+        useCORS: true 
+      }).then(canvas => {
+        const format = formatSelect.value;
+        const link = document.createElement('a');
+        
+        if (format === 'pdf') {
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF();
+          const imgProps = pdf.getImageProperties(canvas.toDataURL('image/png'));
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+          
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 10, pdfWidth, pdfHeight);
+          pdf.save("custom-qr.pdf");
+        } else if (format === 'jpg') {
+          link.download = 'custom-qr.jpg';
+          link.href = canvas.toDataURL('image/jpeg', 0.9);
+          link.click();
+        } else {
+          link.download = 'custom-qr.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        }
+        
+        downloadBtn.innerHTML = btnIcon;
+      });
+    });
+  </script>
+</body>
+</html>
