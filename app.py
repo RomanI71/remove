@@ -610,6 +610,11 @@ def blur_face():
     file_path = os.path.join(os.path.dirname(__file__), "static", "blur-face.html")
     return FileResponse(file_path, media_type="text/html")
 
+@app.get("/qr-generator.html")
+def qr_generator():
+    file_path = os.path.join(os.path.dirname(__file__), "static", "qr-generator.html")
+    return FileResponse(file_path, media_type="text/html")
+
 @app.get("/mosaic.html")
 async def mosaic_tool():
     return FileResponse("static/mosaic.html")
