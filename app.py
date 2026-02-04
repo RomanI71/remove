@@ -698,6 +698,10 @@ async def api_status():
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.route('/ads.txt')
+def ads_txt():
+    return send_from_directory(app.root_path, 'ads.txt')
+
 # @app.get("/dashboard")
 # def dashboard(request: Request, user: dict = Depends(get_current_user)):
 #     if not user:
