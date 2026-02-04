@@ -698,9 +698,10 @@ async def api_status():
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.route('/ads.txt')
-def ads_txt():
-    return send_from_directory(app.root_path, 'ads.txt')
+@app.get("/ads.txt")
+async def ads_txt():
+    file_path = os.path.join(os.getcwd(), "ads.txt")
+    return FileResponse(file_path)
 
 # @app.get("/dashboard")
 # def dashboard(request: Request, user: dict = Depends(get_current_user)):
