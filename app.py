@@ -32,6 +32,8 @@ from fastapi.responses import RedirectResponse
 from pathlib import Path
 from pdf2docx import Converter
 from fastapi import BackgroundTasks
+import yt_dlp
+from pydantic import BaseModel
 
 
 
@@ -61,6 +63,13 @@ logger.addHandler(handler)
 # ----------------- Folders ----------------- #
 UPLOAD_FOLDER = 'uploads'
 REMOVEBG_FOLDER = 'removebg'
+# ----------------- YouTube Config ----------------- #
+YOUTUBE_FOLDER = 'youtube_downloads'
+os.makedirs(YOUTUBE_FOLDER, exist_ok=True)
+
+# Pydantic Model for Request Body
+class YouTubeRequest(BaseModel):
+    url: str
 VECTOR_FOLDER = 'vectorized'
 STATIC_FOLDER = 'static'
 for folder in [UPLOAD_FOLDER, REMOVEBG_FOLDER, VECTOR_FOLDER]:
@@ -996,7 +1005,82 @@ def cleanup_files():
 
 threading.Thread(target=cleanup_files, daemon=True).start()
 
+# ----------------- YouTube Downloader Routes ----------------- #
 
+@app.post("/api/youtube/info")
+async def get_youtube_info(request: YouTubeRequest):
+    """Get YouTube video metadata"""
+    try:
+        ydl_opts = {
+            'quiet': True,
+            'no_warnings': True,
+            'extract_flat': True  # দ্রুত ইনফো পাওয়ার জন্য
+        }
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(request.url, download=False)
+            
+            # বেস্ট থাম্বনেইল খোঁজা
+            thumbnail = info.get('thumbnail')
+            if 'thumbnails' in info:
+                thumbnail = info['thumbnails'][-1]['url']
+
+            return {
+                'title': info.get('title'),
+                'thumbnail': thumbnail,
+                'duration': info.get('duration_string'),
+                'uploader': info.get('uploader'),
+                'view_count': info.get('view_count')
+            }
+    except Exception as e:
+        logger.error(f"YouTube Info Error: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"Error extracting info: {str(e)}")
+
+
+@app.post("/api/youtube/download")
+async def download_youtube_video(
+    background_tasks: BackgroundTasks,
+    request: YouTubeRequest
+):
+    """Download YouTube video and return file"""
+    try:
+        # ইউনিক ফাইলনেম তৈরি
+        file_id = uuid.uuid4().hex
+        output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
+
+        ydl_opts = {
+            'format': 'best',  # সেরা কোয়ালিটি
+            'outtmpl': output_template,
+            'quiet': True,
+        }
+
+        # ডাউনলোড প্রসেস
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(request.url, download=True)
+            filename = ydl.prepare_filename(info)
+
+        # ফাইলটি চেক করা
+        if not os.path.exists(filename):
+            raise HTTPException(status_code=500, detail="File not found after download")
+
+        # ব্যাকগ্রাউন্ড টাস্কে ফাইল ডিলিট সেট করা (ডাউনলোড শেষ হলে সার্ভার থেকে মুছে যাবে)
+        background_tasks.add_task(remove_file, filename)
+
+        # ফাইলের আসল নাম বের করা (URL encode সমস্যা এড়াতে)
+        original_filename = os.path.basename(filename)
+        
+        # ফাইল পাঠানো
+        return FileResponse(
+            filename, 
+            media_type="video/mp4", 
+            headers={"Content-Disposition": f"attachment; filename={original_filename}"}
+        )
+
+    except Exception as e:
+        logger.error(f"YouTube Download Error: {str(e)}")
+        # কোনো কারণে ফেইল করলে আংশিক ডাউনলোড ফাইল ক্লিন করা
+        if 'filename' in locals() and os.path.exists(filename):
+            os.remove(filename)
+        raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
 
 # ----------------- Run ----------------- #
 if __name__ == "__main__":
