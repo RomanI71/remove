@@ -82,6 +82,7 @@ os.makedirs(YOUTUBE_FOLDER, exist_ok=True)
 # Pydantic Model for Request Body
 class YouTubeRequest(BaseModel):
     url: str
+    format_id: str = "best"
 VECTOR_FOLDER = 'vectorized'
 STATIC_FOLDER = 'static'
 for folder in [UPLOAD_FOLDER, REMOVEBG_FOLDER, VECTOR_FOLDER]:
