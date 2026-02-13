@@ -1083,6 +1083,32 @@ async def download_youtube_video(
         raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
 
 # ----------------- Run ----------------- #
+# if __name__ == "__main__":
+#     print("🚀 Starting AI Image Processing API...")
+#     print("=" * 60)
+#     print("✨ Available Services:")
+#     print("  1. Web Interface (Root: /)")
+#     print("  2. Background Removal (API: /remove-bg)")
+#     print("  3. SVG Vectorization (API: /vectorize)")
+#     print("  4. Memory Management (Auto-clean every 5 minutes)")
+#     print("=" * 60)
+#     print(f"🤖 AI Model Available: {'✅ Yes' if REMBG_AVAILABLE else '❌ No'}")
+#     print("🧠 Memory Management: ✅ Active")
+#     print(f"🌐 Server URL: https://remove-production.up.railway.app")
+#     print("=" * 60)
+    
+# ----------------- Run ----------------- #
+# if __name__ == "__main__":
+#     import os
+#     # Railway-এর দেওয়া PORT ভ্যারিয়েবলটি ব্যবহার করুন। যদি না পাওয়া যায়, তবে 8000 ব্যবহার করুন।
+#     port = int(os.environ.get("PORT", 8000))
+#     print(f"🌐 Server running on port: {port}")
+    
+#     # uvicorn.run ফাংশনে এই পরিবর্তিত 'port' ভ্যারিয়েবলটি ব্যবহার করুন
+#     uvicorn.run("app:app", host="0.0.0.0", port=port)
+
+
+# ----------------- Run ----------------- #
 if __name__ == "__main__":
     print("🚀 Starting AI Image Processing API...")
     print("=" * 60)
@@ -1090,19 +1116,12 @@ if __name__ == "__main__":
     print("  1. Web Interface (Root: /)")
     print("  2. Background Removal (API: /remove-bg)")
     print("  3. SVG Vectorization (API: /vectorize)")
-    print("  4. Memory Management (Auto-clean every 5 minutes)")
-    print("=" * 60)
-    print(f"🤖 AI Model Available: {'✅ Yes' if REMBG_AVAILABLE else '❌ No'}")
-    print("🧠 Memory Management: ✅ Active")
-    print(f"🌐 Server URL: https://remove-production.up.railway.app")
+    print("  4. YouTube Downloader (API: /api/youtube/...)")
     print("=" * 60)
     
-# ----------------- Run ----------------- #
-if __name__ == "__main__":
+    # Railway Environment Port Setup
     import os
-    # Railway-এর দেওয়া PORT ভ্যারিয়েবলটি ব্যবহার করুন। যদি না পাওয়া যায়, তবে 8000 ব্যবহার করুন।
     port = int(os.environ.get("PORT", 8000))
     print(f"🌐 Server running on port: {port}")
     
-    # uvicorn.run ফাংশনে এই পরিবর্তিত 'port' ভ্যারিয়েবলটি ব্যবহার করুন
     uvicorn.run("app:app", host="0.0.0.0", port=port)
