@@ -46,6 +46,16 @@ except ImportError:
     REMBG_AVAILABLE = False
     print("❌ Rembg not available, using fallback methods")
 
+# -------- YouTube Downloader Library -------- #
+try:
+    import yt_dlp
+    YOUTUBE_AVAILABLE = True
+    print("✅ yt-dlp loaded successfully")
+except ImportError:
+    YOUTUBE_AVAILABLE = False
+    print("❌ yt-dlp not available, YouTube features will be disabled")
+    
+
 # ----------------- Logging Setup ----------------- #
 log_folder = 'logs'
 os.makedirs(log_folder, exist_ok=True)
