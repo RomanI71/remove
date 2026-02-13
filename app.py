@@ -1,3 +1,4 @@
+import urllib.parse
 from fastapi.responses import JSONResponse, FileResponse, Response
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -1050,6 +1051,8 @@ async def get_youtube_info(request: YouTubeRequest):
         raise HTTPException(status_code=400, detail=f"Error extracting info: {str(e)}")
 
 
+import urllib.parse  # ফাইলের একদম উপরে এটি ইমপোর্ট নিশ্চিত করুন
+
 @app.post("/api/youtube/download")
 async def download_youtube_video(
     background_tasks: BackgroundTasks,
@@ -1059,12 +1062,15 @@ async def download_youtube_video(
     try:
         # ইউনিক ফাইলনেম তৈরি
         file_id = uuid.uuid4().hex
+        
+        # 'restrictedfilenames': True দিলে ফাইলের নাম নিরাপদ থাকে (স্পেস বা স্পেশাল ক্যারেক্টার সরায়)
         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
 
         ydl_opts = {
-            'format': 'best',  # সেরা কোয়ালিটি
+            'format': 'best',
             'outtmpl': output_template,
             'quiet': True,
+            'restrictedfilenames': True,  # 👈 এটি যোগ করা হয়েছে
         }
 
         # ডাউনলোড প্রসেস
@@ -1072,30 +1078,29 @@ async def download_youtube_video(
             info = ydl.extract_info(request.url, download=True)
             filename = ydl.prepare_filename(info)
 
-        # ফাইলটি চেক করা
         if not os.path.exists(filename):
             raise HTTPException(status_code=500, detail="File not found after download")
 
-        # ব্যাকগ্রাউন্ড টাস্কে ফাইল ডিলিট সেট করা (ডাউনলোড শেষ হলে সার্ভার থেকে মুছে যাবে)
+        # ফাইল ডিলিট শিডিউল
         background_tasks.add_task(remove_file, filename)
 
-        # ফাইলের আসল নাম বের করা (URL encode সমস্যা এড়াতে)
+        # ইউনিকোড ক্যারেক্টার সাপোর্ট করার জন্য নামটিকে Safe করা
         original_filename = os.path.basename(filename)
+        safe_filename = urllib.parse.quote(original_filename) # 👈 এটি যোগ করা হয়েছে
         
         # ফাইল পাঠানো
         return FileResponse(
             filename, 
             media_type="video/mp4", 
-            headers={"Content-Disposition": f"attachment; filename={original_filename}"}
+            # filename* ব্যবহার করলে বাংলা বা ইমোজি টাইটেল থাকলেও এরর আসবে না
+            headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"} # 👈 পরিবর্তন
         )
 
     except Exception as e:
         logger.error(f"YouTube Download Error: {str(e)}")
-        # কোনো কারণে ফেইল করলে আংশিক ডাউনলোড ফাইল ক্লিন করা
         if 'filename' in locals() and os.path.exists(filename):
             os.remove(filename)
         raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
-
 # ----------------- Run ----------------- #
 # if __name__ == "__main__":
 #     print("🚀 Starting AI Image Processing API...")
