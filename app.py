@@ -1,4 +1,5 @@
 import urllib.parse
+# import urllib.parse 
 from fastapi.responses import JSONResponse, FileResponse, Response
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -1022,16 +1023,19 @@ threading.Thread(target=cleanup_files, daemon=True).start()
 
 # ----------------- YouTube Downloader Routes ----------------- #
 
+# import urllib.parse 
+
 @app.post("/api/youtube/info")
 async def get_youtube_info(request: YouTubeRequest):
-    """Get YouTube video metadata"""
+    """ভিডিওর মেটাডেটা এবং এভেলেবল রেজোলিউশন লিস্ট বের করার জন্য"""
     try:
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'extract_flat': True  # দ্রুত ইনফো পাওয়ার জন্য
+            # 'extract_flat': True সরানো হয়েছে কারণ আমাদের ফরম্যাট লিস্ট লাগবে
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            # ভিডিওর সব তথ্য বের করা (ডাউনলোড ছাড়া)
             info = ydl.extract_info(request.url, download=False)
             
             # বেস্ট থাম্বনেইল খোঁজা
@@ -1039,41 +1043,63 @@ async def get_youtube_info(request: YouTubeRequest):
             if 'thumbnails' in info:
                 thumbnail = info['thumbnails'][-1]['url']
 
+            # ফরম্যাট লিস্ট তৈরি (HTML ড্রপডাউনের জন্য)
+            formats_list = []
+            seen_heights = set()
+            
+            for f in info.get('formats', []):
+                # ভিডিও + অডিও আছে এমন ফরম্যাটগুলো ফিল্টার করা
+                if f.get('vcodec') != 'none' and f.get('acodec') != 'none':
+                    height = f.get('height')
+                    if height and height not in seen_heights:
+                        formats_list.append({
+                            'id': f.get('format_id'),
+                            'note': f"{height}p",
+                            'ext': f.get('ext')
+                        })
+                        seen_heights.add(height)
+                
+                # শুধু অডিও ফরম্যাট (mp3/m4a) আলাদা করা
+                elif f.get('vcodec') == 'none' and f.get('acodec') != 'none':
+                    if 'audio' not in seen_heights:
+                        formats_list.append({
+                            'id': 'bestaudio',
+                            'note': 'Audio Only',
+                            'ext': 'm4a'
+                        })
+                        seen_heights.add('audio')
+
             return {
                 'title': info.get('title'),
                 'thumbnail': thumbnail,
                 'duration': info.get('duration_string'),
                 'uploader': info.get('uploader'),
-                'view_count': info.get('view_count')
+                'view_count': info.get('view_count'),
+                'formats': formats_list[:6] # সেরা ৬টি অপশন পাঠানো
             }
     except Exception as e:
         logger.error(f"YouTube Info Error: {str(e)}")
         raise HTTPException(status_code=400, detail=f"Error extracting info: {str(e)}")
 
 
-import urllib.parse  # ফাইলের একদম উপরে এটি ইমপোর্ট নিশ্চিত করুন
-
 @app.post("/api/youtube/download")
-async def download_youtube_video(
-    background_tasks: BackgroundTasks,
-    request: YouTubeRequest
-):
-    """Download YouTube video and return file"""
+async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
+    """ইউজারের সিলেক্ট করা ফরম্যাট অনুযায়ী ভিডিও ডাউনলোড করা"""
     try:
-        # ইউনিক ফাইলনেম তৈরি
         file_id = uuid.uuid4().hex
         
-        # 'restrictedfilenames': True দিলে ফাইলের নাম নিরাপদ থাকে (স্পেস বা স্পেশাল ক্যারেক্টার সরায়)
+        # HTML থেকে আসা format_id ব্যবহার করা
+        selected_format = request.format_id if request.format_id != "best" else "best"
+        
         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
 
         ydl_opts = {
-            'format': 'best',
+            'format': selected_format,
             'outtmpl': output_template,
             'quiet': True,
-            'restrictedfilenames': True,  # 👈 এটি যোগ করা হয়েছে
+            'restrictedfilenames': True, 
         }
 
-        # ডাউনলোড প্রসেস
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(request.url, download=True)
             filename = ydl.prepare_filename(info)
@@ -1081,19 +1107,20 @@ async def download_youtube_video(
         if not os.path.exists(filename):
             raise HTTPException(status_code=500, detail="File not found after download")
 
-        # ফাইল ডিলিট শিডিউল
         background_tasks.add_task(remove_file, filename)
 
-        # ইউনিকোড ক্যারেক্টার সাপোর্ট করার জন্য নামটিকে Safe করা
         original_filename = os.path.basename(filename)
-        safe_filename = urllib.parse.quote(original_filename) # 👈 এটি যোগ করা হয়েছে
+        safe_filename = urllib.parse.quote(original_filename)
         
-        # ফাইল পাঠানো
+        # ফাইলটি ভিডিও না অডিও তা চেক করা
+        media_type = "video/mp4"
+        if ".m4a" in filename or ".mp3" in filename:
+            media_type = "audio/mpeg"
+
         return FileResponse(
             filename, 
-            media_type="video/mp4", 
-            # filename* ব্যবহার করলে বাংলা বা ইমোজি টাইটেল থাকলেও এরর আসবে না
-            headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"} # 👈 পরিবর্তন
+            media_type=media_type, 
+            headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"}
         )
 
     except Exception as e:
