@@ -1031,148 +1031,113 @@ threading.Thread(target=cleanup_files, daemon=True).start()
 # ----------------- YouTube Downloader Routes ----------------- #
 
 # import urllib.parse 
-# ----------------- YouTube Helper ----------------- #
-
-def safe_extract(url, ydl_opts):
-    for _ in range(2):
-        try:
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                return ydl.extract_info(url, download=False)
-        except Exception:
-            time.sleep(2)
-    raise Exception("YouTube extraction failed after retry")
-
 
 @app.post("/api/youtube/info")
 async def get_youtube_info(request: YouTubeRequest):
-
+    """ভিডিওর মেটাডেটা এবং এভেলেবল রেজোলিউশন লিস্ট বের করার জন্য"""
     try:
         ydl_opts = {
-    'quiet': True,
-    'noplaylist': True,
-    'extractor_args': {
-        'youtube': {
-            'player_client': ['android', 'web']
+            'quiet': True,
+            'no_warnings': True,
+            # 'extract_flat': True সরানো হয়েছে কারণ আমাদের ফরম্যাট লিস্ট লাগবে
         }
-    }
-}
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            # ভিডিওর সব তথ্য বের করা (ডাউনলোড ছাড়া)
+            info = ydl.extract_info(request.url, download=False)
+            
+            # বেস্ট থাম্বনেইল খোঁজা
+            thumbnail = info.get('thumbnail')
+            if 'thumbnails' in info:
+                thumbnail = info['thumbnails'][-1]['url']
 
-        info = safe_extract(request.url, ydl_opts)
+            # ফরম্যাট লিস্ট তৈরি (HTML ড্রপডাউনের জন্য)
+            formats_list = []
+            seen_heights = set()
+            
+            for f in info.get('formats', []):
+                # ভিডিও + অডিও আছে এমন ফরম্যাটগুলো ফিল্টার করা
+                if f.get('vcodec') != 'none' and f.get('acodec') != 'none':
+                    height = f.get('height')
+                    if height and height not in seen_heights:
+                        formats_list.append({
+                            'id': f.get('format_id'),
+                            'note': f"{height}p",
+                            'ext': f.get('ext')
+                        })
+                        seen_heights.add(height)
+                
+                # শুধু অডিও ফরম্যাট (mp3/m4a) আলাদা করা
+                elif f.get('vcodec') == 'none' and f.get('acodec') != 'none':
+                    if 'audio' not in seen_heights:
+                        formats_list.append({
+                            'id': 'bestaudio',
+                            'note': 'Audio Only',
+                            'ext': 'm4a'
+                        })
+                        seen_heights.add('audio')
 
-        return {
-            "title": info.get("title"),
-            "thumbnail": info.get("thumbnail"),
-            "duration": info.get("duration_string"),
-        }
-
+            return {
+                'title': info.get('title'),
+                'thumbnail': thumbnail,
+                'duration': info.get('duration_string'),
+                'uploader': info.get('uploader'),
+                'view_count': info.get('view_count'),
+                'formats': formats_list[:6] # সেরা ৬টি অপশন পাঠানো
+            }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-
-
-# @app.post("/api/youtube/download")
-# async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
-#     """ইউজারের সিলেক্ট করা ফরম্যাট অনুযায়ী ভিডিও ডাউনলোড করা"""
-#     try:
-#         file_id = uuid.uuid4().hex
-        
-#         # HTML থেকে আসা format_id ব্যবহার করা
-#         selected_format = request.format_id if request.format_id != "best" else "best"
-        
-#         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
-
-#         # ydl_opts = {
-#         #     'format': selected_format,
-#         #     'outtmpl': output_template,
-#         #     'quiet': True,
-#         #     'restrictedfilenames': True, 
-#         # }
-
-#         ydl_opts = {
-#             # 'best[ext=mp4]' ব্যবহার করলে ইউটিউব থেকে আগে থেকে মার্জ করা ফাইল নামবে।
-#             # এতে আপনার সার্ভারে FFmpeg দিয়ে ভিডিও-অডিও জোড়া লাগানোর সময় বাঁচবে।
-#            'format': 'best[ext=mp4]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best',
-#             'outtmpl': output_template,
-#             'quiet': True,
-#             'restrictedfilenames': True,
-#             'noplaylist': True,
-#             'merge_output_format': 'mp4',
-#         }
-
-#         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-#             info = ydl.extract_info(request.url, download=True)
-#             filename = ydl.prepare_filename(info)
-
-#         if not os.path.exists(filename):
-#             raise HTTPException(status_code=500, detail="File not found after download")
-
-#         background_tasks.add_task(remove_file, filename)
-
-#         original_filename = os.path.basename(filename)
-#         safe_filename = urllib.parse.quote(original_filename)
-        
-#         # ফাইলটি ভিডিও না অডিও তা চেক করা
-#         media_type = "video/mp4"
-#         if ".m4a" in filename or ".mp3" in filename:
-#             media_type = "audio/mpeg"
-
-#         return FileResponse(
-#             filename, 
-#             media_type=media_type, 
-#             headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"}
-#         )
-
-#     except Exception as e:
-#         logger.error(f"YouTube Download Error: {str(e)}")
-#         if 'filename' in locals() and os.path.exists(filename):
-#             os.remove(filename)
-#         raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
-    
-
-
+        logger.error(f"YouTube Info Error: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"Error extracting info: {str(e)}")
 
 
 @app.post("/api/youtube/download")
-async def download_youtube_video(request: YouTubeRequest):
-    """Direct YouTube CDN Streaming (No Server Download)"""
-
+async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
+    """ইউজারের সিলেক্ট করা ফরম্যাট অনুযায়ী ভিডিও ডাউনলোড করা"""
     try:
+        file_id = uuid.uuid4().hex
+        
+        # HTML থেকে আসা format_id ব্যবহার করা
+        selected_format = request.format_id if request.format_id != "best" else "best"
+        
+        output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
+
         ydl_opts = {
-    'quiet': True,
-    'noplaylist': True,
-    'extractor_args': {
-        'youtube': {
-            'player_client': ['android', 'web']
+            'format': selected_format,
+            'outtmpl': output_template,
+            'quiet': True,
+            'restrictedfilenames': True, 
         }
-    }
-}
 
-        # ✅ Correct indentation
-        info = safe_extract(request.url, ydl_opts)
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(request.url, download=True)
+            filename = ydl.prepare_filename(info)
 
-        selected_format = request.format_id
+        if not os.path.exists(filename):
+            raise HTTPException(status_code=500, detail="File not found after download")
 
-        # user selected format
-        if selected_format and selected_format != "best":
-            for f in info.get('formats', []):
-                if f.get('format_id') == selected_format:
-                    return RedirectResponse(f.get('url'))
+        background_tasks.add_task(remove_file, filename)
 
-        # fallback best progressive mp4
-        for f in info.get('formats', []):
-            if (
-                f.get('ext') == 'mp4' and
-                f.get('acodec') != 'none' and
-                f.get('vcodec') != 'none'
-            ):
-                return RedirectResponse(f.get('url'))
+        original_filename = os.path.basename(filename)
+        safe_filename = urllib.parse.quote(original_filename)
+        
+        # ফাইলটি ভিডিও না অডিও তা চেক করা
+        media_type = "video/mp4"
+        if ".m4a" in filename or ".mp3" in filename:
+            media_type = "audio/mpeg"
 
-        raise HTTPException(status_code=400, detail="No suitable format found")
+        return FileResponse(
+            filename, 
+            media_type=media_type, 
+            headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"}
+        )
 
     except Exception as e:
         logger.error(f"YouTube Download Error: {str(e)}")
+        if 'filename' in locals() and os.path.exists(filename):
+            os.remove(filename)
         raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
+    
 
+    # ----------------- TikTok Downloader Routes ----------------- #
 
 @app.post("/api/tiktok/info")
 async def get_tiktok_info(request: YouTubeRequest):
