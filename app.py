@@ -1031,6 +1031,17 @@ threading.Thread(target=cleanup_files, daemon=True).start()
 # ----------------- YouTube Downloader Routes ----------------- #
 
 # import urllib.parse 
+# ----------------- YouTube Helper ----------------- #
+
+def safe_extract(url, ydl_opts):
+    for _ in range(2):
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                return ydl.extract_info(url, download=False)
+        except Exception:
+            time.sleep(2)
+    raise Exception("YouTube extraction failed after retry")
+
 
 @app.post("/api/youtube/info")
 async def get_youtube_info(request: YouTubeRequest):
