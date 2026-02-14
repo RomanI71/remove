@@ -1110,7 +1110,7 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
         ydl_opts = {
             # 'best[ext=mp4]' ব্যবহার করলে ইউটিউব থেকে আগে থেকে মার্জ করা ফাইল নামবে।
             # এতে আপনার সার্ভারে FFmpeg দিয়ে ভিডিও-অডিও জোড়া লাগানোর সময় বাঁচবে।
-            'format': f'{selected_format}[ext=mp4]/best[ext=mp4]/best',
+           'format': 'best[ext=mp4]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best',
             'outtmpl': output_template,
             'quiet': True,
             'restrictedfilenames': True,
