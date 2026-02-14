@@ -1,5 +1,4 @@
 import urllib.parse
-import requests
 # import urllib.parse 
 from fastapi.responses import JSONResponse, FileResponse, Response
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form
@@ -710,11 +709,6 @@ async def terms_and_conditions():
 async def disclaimer():
     return FileResponse("static/disclaimer.html")
 
-
-@app.get("/tiktok-download.html")
-async def tiktok_download():
-    return FileResponse("static/tiktok-download.html")
-
 # API Status
 @app.get("/api-status")
 async def api_status():
@@ -1100,22 +1094,11 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
         
         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
 
-        # ydl_opts = {
-        #     'format': selected_format,
-        #     'outtmpl': output_template,
-        #     'quiet': True,
-        #     'restrictedfilenames': True, 
-        # }
-
         ydl_opts = {
-            # 'best[ext=mp4]' ব্যবহার করলে ইউটিউব থেকে আগে থেকে মার্জ করা ফাইল নামবে।
-            # এতে আপনার সার্ভারে FFmpeg দিয়ে ভিডিও-অডিও জোড়া লাগানোর সময় বাঁচবে।
-            'format': f'{selected_format}[ext=mp4]/best[ext=mp4]/best',
+            'format': selected_format,
             'outtmpl': output_template,
             'quiet': True,
-            'restrictedfilenames': True,
-            'noplaylist': True,
-            'merge_output_format': 'mp4',
+            'restrictedfilenames': True, 
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -1145,77 +1128,6 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
         logger.error(f"YouTube Download Error: {str(e)}")
         if 'filename' in locals() and os.path.exists(filename):
             os.remove(filename)
-        raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
-    
-
-    # ----------------- TikTok Downloader Routes ----------------- #
-
-@app.post("/api/tiktok/info")
-async def get_tiktok_info(request: YouTubeRequest):
-    """টিকটক ভিডিওর তথ্য এবং লোগো ছাড়া লিঙ্ক খোঁজা"""
-    try:
-        # TikWM API ব্যবহার করে লোগো ছাড়া লিঙ্ক সংগ্রহ
-        api_url = f"https://www.tikwm.com/api/?url={request.url}"
-        response = requests.get(api_url).json()
-
-        if response.get('code') != 0:
-            raise Exception("ভিডিওর তথ্য পাওয়া যায়নি। লিঙ্কটি সঠিক কিনা চেক করুন।")
-
-        data = response['data']
-        
-        return {
-            'title': data.get('title') or "TikTok Video",
-            'thumbnail': data.get('cover'),
-            'uploader': data.get('author', {}).get('nickname', 'Unknown'),
-            'duration': f"{data.get('duration')}s",
-            'view_count': data.get('play_count', 0),
-            'formats': [
-                {'id': 'no_watermark', 'note': 'No Watermark (HD)', 'ext': 'mp4'},
-                {'id': 'watermark', 'note': 'With Watermark', 'ext': 'mp4'},
-                {'id': 'music', 'note': 'Audio Only (MP3)', 'ext': 'mp3'}
-            ]
-        }
-    except Exception as e:
-        logger.error(f"TikTok Info Error: {str(e)}")
-        raise HTTPException(status_code=400, detail=str(e))
-
-@app.post("/api/tiktok/download")
-async def download_tiktok_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
-    """লোগো ছাড়া ভিডিও ডাউনলোড এবং সার্ভারে প্রসেসিং"""
-    try:
-        # এপিআই থেকে সরাসরি ভিডিওর URL নেওয়া
-        api_url = f"https://www.tikwm.com/api/?url={request.url}"
-        res = requests.get(api_url).json()
-        
-        if res.get('code') != 0:
-            raise Exception("ডাউনলোড লিঙ্ক তৈরি করতে সমস্যা হয়েছে।")
-
-        # ইউজার যে ফরম্যাট চেয়েছে সেটি সিলেক্ট করা (ডিফল্ট: লোগো ছাড়া)
-        video_url = res['data']['play'] # No Watermark
-        file_ext = "mp4"
-        
-        # ফাইলটি সার্ভারে সেভ করা
-        file_id = uuid.uuid4().hex
-        filename = os.path.join(YOUTUBE_FOLDER, f"tiktok_{file_id}.{file_ext}")
-
-        # ভিডিওটি স্ট্রিম করে সেভ করা
-        with requests.get(video_url, stream=True) as r:
-            r.raise_for_status()
-            with open(filename, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
-
-        # ডাউনলোড শেষে ফাইল ডিলিট করার ব্যাকগ্রাউন্ড টাস্ক
-        background_tasks.add_task(remove_file, filename)
-
-        return FileResponse(
-            filename, 
-            media_type="video/mp4", 
-            filename=f"tiktok_no_watermark_{file_id}.mp4"
-        )
-
-    except Exception as e:
-        logger.error(f"TikTok Download Error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
 # ----------------- Run ----------------- #
 # if __name__ == "__main__":
