@@ -1100,11 +1100,22 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
         
         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
 
+        # ydl_opts = {
+        #     'format': selected_format,
+        #     'outtmpl': output_template,
+        #     'quiet': True,
+        #     'restrictedfilenames': True, 
+        # }
+
         ydl_opts = {
-            'format': selected_format,
+            # 'best[ext=mp4]' ব্যবহার করলে ইউটিউব থেকে আগে থেকে মার্জ করা ফাইল নামবে।
+            # এতে আপনার সার্ভারে FFmpeg দিয়ে ভিডিও-অডিও জোড়া লাগানোর সময় বাঁচবে।
+            'format': f'{selected_format}[ext=mp4]/best[ext=mp4]/best',
             'outtmpl': output_template,
             'quiet': True,
-            'restrictedfilenames': True, 
+            'restrictedfilenames': True,
+            'noplaylist': True,
+            'merge_output_format': 'mp4',
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
