@@ -1048,15 +1048,14 @@ async def get_youtube_info(request: YouTubeRequest):
 
     try:
         ydl_opts = {
-            'quiet': True,
-            'noplaylist': True,
-            'cookiefile': 'cookies.txt',
-            'extractor_args': {
-                'youtube': {
-                    'player_client': ['android', 'web']
-                }
-            }
+    'quiet': True,
+    'noplaylist': True,
+    'extractor_args': {
+        'youtube': {
+            'player_client': ['android', 'web']
         }
+    }
+}
 
         info = safe_extract(request.url, ydl_opts)
 
@@ -1139,15 +1138,14 @@ async def download_youtube_video(request: YouTubeRequest):
 
     try:
         ydl_opts = {
-            'quiet': True,
-            'noplaylist': True,
-            'cookiefile': 'cookies.txt',
-            'extractor_args': {
-                'youtube': {
-                    'player_client': ['android', 'web']
-                }
-            }
+    'quiet': True,
+    'noplaylist': True,
+    'extractor_args': {
+        'youtube': {
+            'player_client': ['android', 'web']
         }
+    }
+}
 
         # ✅ Correct indentation
         info = safe_extract(request.url, ydl_opts)
