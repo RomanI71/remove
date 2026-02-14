@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://topimgtools.com/tiktok-download.html" />
 
   <meta property="og:title" content="TikTok Video Downloader – No Watermark & HD Quality" />
-  <meta property="og:description" content="Download TikTok videos without watermark easily with TopImgTools. High quality MP4 downloads for free. Works on mobile and PC." />
+  <meta property="og:description" content="Download TikTok videos without watermark easily with TopImgTools. High quality MP4 downloads for free." />
   <meta property="og:image" content="https://topimgtools.com/assets/tiktok-downloader-banner.jpg" />
   <meta property="og:url" content="https://topimgtools.com/tiktok-download.html" />
   <meta property="og:type" content="website" />
@@ -63,7 +63,7 @@
 
     .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:20px}
 
-    /* Input Styling */
+    /* Input Styling specific for YT/TikTok Tool */
     .input-group {
         display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
     }
@@ -84,7 +84,9 @@
     /* Result Styling */
     .preview-img {
         width: 100%; border-radius: 8px; display: none; margin-bottom: 16px; 
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1); aspect-ratio: 9/16; object-fit: cover; max-height: 400px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); object-fit: cover; 
+        /* TikTok is usually vertical, keeping 9/16 aspect ratio but limiting height */
+        aspect-ratio: 9/16; max-height: 450px;
     }
     select.quality-select {
         width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid var(--border);
@@ -119,7 +121,7 @@
     .floating-slim-pill {
         position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
         width: auto; min-width: 280px; max-width: 650px; height: 32px;
-        background: linear-gradient(90deg, #001f3f, #8e44ad);
+        background: linear-gradient(90deg, #000000, #ff0050); /* Modified gradient for TikTok vibe */
         border-radius: 20px; display: flex; align-items: center; overflow: hidden;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); z-index: 10001;
         border: 1px solid rgba(255, 255, 255, 0.15);
@@ -147,13 +149,13 @@
         <div class="message-item">
             <span>Download TikTok videos <span class="yellow-hit">without watermark</span> for free! 🚀</span>
             <span class="dot-sep">✦</span>
-            <span>Pro Tip: Visit <span class="yellow-hit">topimgtools.com</span> for best image tools ✨</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
             <span class="dot-sep">✦</span>
         </div>
         <div class="message-item">
             <span>Download TikTok videos <span class="yellow-hit">without watermark</span> for free! 🚀</span>
             <span class="dot-sep">✦</span>
-            <span>Pro Tip: Visit <span class="yellow-hit">topimgtools.com</span> for best image tools ✨</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
             <span class="dot-sep">✦</span>
         </div>
     </div>
@@ -162,26 +164,27 @@
   <main class="wrap">
     <header class="header">
       <a href="index.html" class="logo" aria-label="TopImgTools Home">
-        <i class="fa-brands fa-tiktok" style="font-size:28px;color:#000"></i>
+        <i class="fa-brands fa-tiktok" aria-hidden="true" style="font-size:28px;color:#000"></i>
         <div>
           <h1>TikTok Downloader</h1>
-          <p class="lead">Save TikTok videos without watermark</p>
+          <p class="lead">Save videos without watermark</p>
         </div>
       </a>
-      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
     </header>
 
     <section class="card" aria-labelledby="tool-heading">
       <h2 id="tool-heading" class="sr-only">TikTok Video Downloader Input</h2>
+      
       <div class="input-group">
-        <input type="text" id="videoUrl" class="url-input" placeholder="Paste TikTok video link here..." aria-label="TikTok URL">
-        <button onclick="getVideoInfo()" id="fetchBtn" class="btn btn-primary"><i class="fa fa-search"></i> Get Video</button>
+        <input type="text" id="videoUrl" class="url-input" placeholder="Paste TikTok video link here..." aria-label="TikTok Video URL">
+        <button onclick="getVideoInfo()" id="fetchBtn" class="btn btn-primary"><i class="fa fa-search"></i> Analyze Video</button>
       </div>
 
       <div class="grid" id="status-area" style="display:none; margin-top:24px">
         <div class="card" style="box-shadow: none; border: 1px solid var(--border); margin-bottom: 0;">
-          <img id="thumb" class="preview-img" src="" alt="Thumbnail">
-          <h3 id="videoTitle" style="margin-top:0; font-size: 1.25rem; line-height:1.4;">Video Description</h3>
+          <img id="thumb" class="preview-img" src="" alt="Video Thumbnail">
+          <h3 id="videoTitle" style="margin-top:0; font-size: 1.25rem; line-height:1.4;">Video Title</h3>
           
           <div style="margin-top:20px;">
               <label for="formatSelect" style="display:block; margin-bottom:8px; font-weight:600; color:var(--muted)">Select Download Mode:</label>
@@ -192,7 +195,7 @@
               </select>
 
               <button id="dlBtn" onclick="downloadVideo()" class="btn btn-primary" style="width:100%">
-                <i class="fa fa-download"></i> Download Now
+                <i class="fa fa-download" aria-hidden="true"></i> Download Now
               </button>
           </div>
         </div>
@@ -204,58 +207,12 @@
             <div><strong><i class="fa fa-heart" style="color:var(--accent); width:20px"></i> Views/Likes:</strong> <span id="likes" class="muted">—</span></div>
           </div>
           <div style="margin-top:20px; font-size:0.9rem; color:var(--muted); border-top:1px solid var(--border); padding-top:15px;">
-             <strong><i class="fa fa-shield-halved"></i> Privacy & Safety:</strong>
-            <p style="margin:4px 0 0;">Our tool doesn't store your personal data or video history. Safe for all devices.</p>
+            <strong><i class="fa fa-shield-halved"></i> Privacy & Safety:</strong>
+            <p style="margin:4px 0 0;">Downloads are processed securely. We do not store your data. 100% Safe.</p>
           </div>
         </aside>
       </div>
     </section>
-
-    <article class="card seo-content" style="line-height: 1.8; color: #374151; font-family: sans-serif; padding: 30px; background: #ffffff; border-radius: 12px;">
-        <h2 style="text-align: center; font-size: 2rem; color: #111827; margin-bottom: 25px; font-weight: 800;">
-            Save TikTok Videos Without Watermark
-        </h2>
-        
-        <div style="margin-bottom: 25px; text-align: justify;">
-            <p style="margin-bottom: 15px;">
-                TikTok is home to millions of creative and entertaining short videos. However, the official app adds a watermark when you try to save them. Our <strong>TikTok Video Downloader</strong> at TopImgTools allows you to download your favorite videos in original HD quality <strong>without the TikTok logo or watermark</strong>.
-            </p>
-        </div>
-
-        <h3 style="font-size: 1.5rem; margin-top: 30px; color: #1f2937; font-weight: 700;">Why use our TikTok Downloader?</h3>
-        <ul style="margin-left: 20px; margin-bottom: 25px; list-style-type: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">✨ <strong>No Watermark:</strong> Get a clean video without any distracting logos or IDs.</li>
-            <li style="margin-bottom: 12px;">🚀 <strong>High Speed:</strong> Analyze and download videos in seconds.</li>
-            <li style="margin-bottom: 12px;">📱 <strong>Universal Compatibility:</strong> Works perfectly on iPhone, Android, Windows, and Mac.</li>
-            <li style="margin-bottom: 12px;">💯 <strong>Free & Unlimited:</strong> No subscriptions or limits on how many videos you can save.</li>
-        </ul>
-
-        <h3 style="font-size: 1.5rem; margin-top: 30px; color: #1f2937; font-weight: 700;">How to Download?</h3>
-        <ol style="margin-left: 25px; margin-bottom: 30px; line-height: 2;">
-            <li><strong>Copy Link:</strong> Go to TikTok, find the video, and click 'Copy Link'.</li>
-            <li><strong>Paste:</strong> Paste the URL in the box above.</li>
-            <li><strong>Download:</strong> Click 'Get Video', select 'No Watermark', and save it!</li>
-        </ol>
-
-        <div style="margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 25px;">
-            <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: #111827; font-weight: 700;">Frequently Asked Questions (FAQ)</h3>
-            
-            <div style="margin-bottom: 20px;">
-                <p style="font-weight: 700; color: #1f2937;">Q: Do I need to pay for this service?</p>
-                <p style="color: #4b5563;">A: No, TopImgTools provides this TikTok downloader 100% free of charge.</p>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <p style="font-weight: 700; color: #1f2937;">Q: Can I download TikTok videos on my iPhone?</p>
-                <p style="color: #4b5563;">A: Yes! Simply use Safari or any mobile browser to use our tool and save the video to your 'Files' or 'Photos'.</p>
-            </div>
-            
-            <div style="margin-bottom: 0;">
-                <p style="font-weight: 700; color: #1f2937;">Q: Is it legal to download TikTok videos?</p>
-                <p style="color: #4b5563;">A: It is legal for personal offline viewing. However, please respect the copyright and do not re-upload content without the owner's permission.</p>
-            </div>
-        </div>
-    </article>
 
     <nav class="nav-links" aria-label="Related Tools">
         <span class="nav-arrow" aria-hidden="true">⟵</span>
@@ -263,9 +220,60 @@
         <span class="nav-arrow" aria-hidden="true">›</span>
         <a href="https://topimgtools.com/crop-image.html" class="nav-btn">Crop Image</a>
         <span class="nav-arrow" aria-hidden="true">›</span>
-        <a href="https://topimgtools.com/resize-image.html" class="nav-btn">Resize Image</a>
+        <a href="https://topimgtools.com/resize-image.html" class="nav-btn">Resize Tool</a>
         <span class="nav-arrow" aria-hidden="true">⟶</span>
     </nav>
+
+    <article class="card seo-content" style="line-height: 1.8; color: #374151; font-family: sans-serif; padding: 30px; background: #ffffff; border-radius: 12px;">
+        
+        <h2 style="font-size: 32px; margin-bottom: 20px; color: #111827; font-weight: 800; text-align: center;">
+            Free TikTok Video Downloader – No Watermark
+        </h2>
+
+        <div style="margin-bottom: 25px; text-align: justify;">
+            <p style="margin-bottom: 15px;">
+                TikTok is home to millions of creative and entertaining short videos. However, the official app adds a watermark when you try to save them. Our <strong>TikTok Video Downloader</strong> at TopImgTools allows you to download your favorite videos in original HD quality <strong>without the TikTok logo or watermark</strong>.
+            </p>
+            <p style="margin-bottom: 15px;">
+                Whether you need to save a recipe, a dance tutorial, or a funny clip to share with friends offline, our tool makes it effortless. No installation or signup required.
+            </p>
+        </div>
+
+        <h3 style="font-size: 24px; margin-top: 30px; color: #1f2937; font-weight: 700;">Key Features</h3>
+        <ul style="margin-left: 20px; margin-bottom: 25px; list-style-type: none; padding-left: 0;">
+            <li style="margin-bottom: 12px;">✨ <strong>No Watermark:</strong> Get a clean video without any distracting logos or IDs.</li>
+            <li style="margin-bottom: 12px;">🎵 <strong>Audio Extraction:</strong> Easily extract MP3 audio from any TikTok video.</li>
+            <li style="margin-bottom: 12px;">⚡ <strong>Fast & Unlimited:</strong> No download limits and high-speed processing.</li>
+            <li style="margin-bottom: 12px;">📱 <strong>Cross-Platform:</strong> Works perfectly on Windows, Mac, Android, and iOS browsers.</li>
+        </ul>
+
+        <h3 style="font-size: 24px; margin-top: 30px; color: #1f2937; font-weight: 700;">How to Download a Video</h3>
+        <ol style="margin-left: 25px; margin-bottom: 30px; line-height: 2;">
+            <li><strong>Copy the Link:</strong> Go to TikTok, find the video, tap Share and click "Copy Link".</li>
+            <li><strong>Paste & Analyze:</strong> Paste the link in the input box above and click "Analyze Video".</li>
+            <li><strong>Select Option:</strong> Choose "No Watermark" or "Audio Only".</li>
+            <li><strong>Download:</strong> Click the "Download Now" button and the file will save to your device instantly.</li>
+        </ol>
+
+        <div style="margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 25px;">
+            <h3 style="font-size: 24px; margin-bottom: 20px; color: #111827; font-weight: 700;">Frequently Asked Questions (FAQ)</h3>
+            
+            <div style="margin-bottom: 20px;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Is this downloader free?</p>
+                <p style="color: #4b5563;">A: Yes, it is 100% free to use with no hidden costs.</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Can I download just the music/audio?</p>
+                <p style="color: #4b5563;">A: Absolutely. Select "Audio Only (MP3)" from the dropdown list after analyzing the video.</p>
+            </div>
+
+             <div style="margin-bottom: 0;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Where are the files saved?</p>
+                <p style="color: #4b5563;">A: Files are usually saved in the "Downloads" folder on your computer or phone by default.</p>
+            </div>
+        </div>
+    </article>
 
     <footer>
       <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
@@ -276,9 +284,10 @@
     async function getVideoInfo() {
         const url = document.getElementById('videoUrl').value.trim();
         const btn = document.getElementById('fetchBtn');
-        if(!url) return alert("Please paste a TikTok URL");
+        
+        if(!url) return alert("Please paste a valid TikTok URL");
 
-        btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Loading...';
+        btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Analyzing...';
         btn.disabled = true;
         
         // Reset UI
@@ -286,59 +295,88 @@
         document.getElementById('thumb').style.display = 'none';
 
         try {
+            // Using TikTok API Endpoint
             const res = await fetch('/api/tiktok/info', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({url: url})
             });
-            const data = await res.json();
             
+            const data = await res.json();
             if(data.detail) throw new Error(data.detail);
 
+            // UI Update
             document.getElementById('status-area').style.display = 'grid';
             document.getElementById('videoTitle').innerText = data.title || "TikTok Video";
             
+            // Thumbnail handling
             const thumb = document.getElementById('thumb');
             thumb.src = data.thumbnail;
-            thumb.style.display = 'block';
+            thumb.style.display = 'block'; 
             
             document.getElementById('uploader').innerText = data.uploader || "Unknown";
-            document.getElementById('likes').innerText = data.view_count || "N/A";
+            document.getElementById('likes').innerText = data.view_count ? data.view_count.toLocaleString() : "N/A";
 
         } catch (err) {
             alert("Error: " + err.message);
         } finally {
-            btn.innerHTML = '<i class="fa fa-search"></i> Get Video';
+            btn.innerHTML = '<i class="fa fa-search"></i> Analyze Video';
             btn.disabled = false;
         }
     }
 
     async function downloadVideo() {
         const url = document.getElementById('videoUrl').value.trim();
+        const formatId = document.getElementById('formatSelect').value;
         const dlBtn = document.getElementById('dlBtn');
+        const title = document.getElementById('videoTitle').innerText;
 
-        dlBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
+        dlBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing...';
         dlBtn.disabled = true;
 
         try {
             const response = await fetch('/api/tiktok/download', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ url: url }) 
+                body: JSON.stringify({
+                    url: url,
+                    format: formatId // Passing format (no-watermark/watermark/audio)
+                })
             });
 
-            if (!response.ok) throw new Error("Download failed");
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.detail || "Download failed on server");
+            }
+
+            // Filename extraction from Content-Disposition header (Better logic)
+            const header = response.headers.get('Content-Disposition');
+            let filename = `tiktok_${Date.now()}.mp4`; // Default
+            
+            if (header && header.indexOf('filename*=') !== -1) {
+                const parts = header.split("filename*=UTF-8''");
+                if(parts.length > 1) {
+                    filename = decodeURIComponent(parts[1]);
+                }
+            } else if (header && header.indexOf('filename=') !== -1) {
+                const parts = header.split('filename=');
+                if(parts.length > 1) {
+                    filename = parts[1].replace(/"/g, '');
+                }
+            }
 
             const blob = await response.blob();
-            const dUrl = window.URL.createObjectURL(blob);
+            const downloadUrl = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = dUrl;
-            a.download = `tiktok_video_${Date.now()}.mp4`;
+            a.href = downloadUrl;
+            a.download = filename;
             document.body.appendChild(a);
             a.click();
             a.remove();
+            window.URL.revokeObjectURL(downloadUrl);
+
         } catch (err) {
-            alert("Download failed: " + err.message);
+            alert("Download Failed: " + err.message);
         } finally {
             dlBtn.innerHTML = '<i class="fa fa-download"></i> Download Now';
             dlBtn.disabled = false;
