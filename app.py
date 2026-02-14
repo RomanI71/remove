@@ -1089,64 +1089,103 @@ async def get_youtube_info(request: YouTubeRequest):
         raise HTTPException(status_code=400, detail=f"Error extracting info: {str(e)}")
 
 
+# @app.post("/api/youtube/download")
+# async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
+#     """ইউজারের সিলেক্ট করা ফরম্যাট অনুযায়ী ভিডিও ডাউনলোড করা"""
+#     try:
+#         file_id = uuid.uuid4().hex
+        
+#         # HTML থেকে আসা format_id ব্যবহার করা
+#         selected_format = request.format_id if request.format_id != "best" else "best"
+        
+#         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
+
+#         # ydl_opts = {
+#         #     'format': selected_format,
+#         #     'outtmpl': output_template,
+#         #     'quiet': True,
+#         #     'restrictedfilenames': True, 
+#         # }
+
+#         ydl_opts = {
+#             # 'best[ext=mp4]' ব্যবহার করলে ইউটিউব থেকে আগে থেকে মার্জ করা ফাইল নামবে।
+#             # এতে আপনার সার্ভারে FFmpeg দিয়ে ভিডিও-অডিও জোড়া লাগানোর সময় বাঁচবে।
+#            'format': 'best[ext=mp4]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best',
+#             'outtmpl': output_template,
+#             'quiet': True,
+#             'restrictedfilenames': True,
+#             'noplaylist': True,
+#             'merge_output_format': 'mp4',
+#         }
+
+#         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+#             info = ydl.extract_info(request.url, download=True)
+#             filename = ydl.prepare_filename(info)
+
+#         if not os.path.exists(filename):
+#             raise HTTPException(status_code=500, detail="File not found after download")
+
+#         background_tasks.add_task(remove_file, filename)
+
+#         original_filename = os.path.basename(filename)
+#         safe_filename = urllib.parse.quote(original_filename)
+        
+#         # ফাইলটি ভিডিও না অডিও তা চেক করা
+#         media_type = "video/mp4"
+#         if ".m4a" in filename or ".mp3" in filename:
+#             media_type = "audio/mpeg"
+
+#         return FileResponse(
+#             filename, 
+#             media_type=media_type, 
+#             headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"}
+#         )
+
+#     except Exception as e:
+#         logger.error(f"YouTube Download Error: {str(e)}")
+#         if 'filename' in locals() and os.path.exists(filename):
+#             os.remove(filename)
+#         raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
+    
+
+
+
 @app.post("/api/youtube/download")
-async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
-    """ইউজারের সিলেক্ট করা ফরম্যাট অনুযায়ী ভিডিও ডাউনলোড করা"""
+async def download_youtube_video(request: YouTubeRequest):
+    """Instant processing + direct streaming from YouTube CDN"""
+
     try:
-        file_id = uuid.uuid4().hex
-        
-        # HTML থেকে আসা format_id ব্যবহার করা
-        selected_format = request.format_id if request.format_id != "best" else "best"
-        
-        output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
-
-        # ydl_opts = {
-        #     'format': selected_format,
-        #     'outtmpl': output_template,
-        #     'quiet': True,
-        #     'restrictedfilenames': True, 
-        # }
-
         ydl_opts = {
-            # 'best[ext=mp4]' ব্যবহার করলে ইউটিউব থেকে আগে থেকে মার্জ করা ফাইল নামবে।
-            # এতে আপনার সার্ভারে FFmpeg দিয়ে ভিডিও-অডিও জোড়া লাগানোর সময় বাঁচবে।
-           'format': 'best[ext=mp4]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best',
-            'outtmpl': output_template,
             'quiet': True,
-            'restrictedfilenames': True,
             'noplaylist': True,
-            'merge_output_format': 'mp4',
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(request.url, download=True)
-            filename = ydl.prepare_filename(info)
+            info = ydl.extract_info(request.url, download=False)
 
-        if not os.path.exists(filename):
-            raise HTTPException(status_code=500, detail="File not found after download")
+            selected_format = request.format_id
 
-        background_tasks.add_task(remove_file, filename)
+            # User selected specific format
+            if selected_format and selected_format != "best":
+                for f in info['formats']:
+                    if f['format_id'] == selected_format:
+                        return RedirectResponse(f['url'])
 
-        original_filename = os.path.basename(filename)
-        safe_filename = urllib.parse.quote(original_filename)
-        
-        # ফাইলটি ভিডিও না অডিও তা চেক করা
-        media_type = "video/mp4"
-        if ".m4a" in filename or ".mp3" in filename:
-            media_type = "audio/mpeg"
+            # Fallback → best progressive mp4 (video+audio together)
+            for f in info['formats']:
+                if (
+                    f.get('ext') == 'mp4' and
+                    f.get('acodec') != 'none' and
+                    f.get('vcodec') != 'none'
+                ):
+                    return RedirectResponse(f['url'])
 
-        return FileResponse(
-            filename, 
-            media_type=media_type, 
-            headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"}
-        )
+        raise HTTPException(status_code=400, detail="No suitable format found")
 
     except Exception as e:
-        logger.error(f"YouTube Download Error: {str(e)}")
-        if 'filename' in locals() and os.path.exists(filename):
-            os.remove(filename)
-        raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
-    
+        logger.error(f"YouTube Streaming Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+  
 
     # ----------------- TikTok Downloader Routes ----------------- #
 
