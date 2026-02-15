@@ -1094,50 +1094,18 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
     try:
         file_id = uuid.uuid4().hex
 
+        output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
+
         ydl_opts = {
+            "format": request.format_id if request.format_id != "best" else "bestvideo+bestaudio/best",
+            "outtmpl": output_template,
+            "merge_output_format": "mp4",
             "quiet": True,
-            "no_warnings": True,
-            "format": request.format_id if request.format_id != "best" else "best"
+            "noplaylist": True,
+            "concurrent_fragment_downloads": 5
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(request.url, download=False)
-
-        # ---------------------------
-        # STEP 1 — Try direct link
-        # ---------------------------
-        for f in info.get("formats", []):
-            if (
-                f.get("protocol") in ["https", "http"]
-                and f.get("acodec") != "none"
-                and f.get("vcodec") != "none"
-            ):
-                direct_url = f.get("url")
-
-                # playlist link হলে skip
-                if direct_url and ".m3u8" not in direct_url and "manifest" not in direct_url:
-                    return {
-                        "success": True,
-                        "mode": "direct",
-                        "download_url": direct_url,
-                        "ext": f.get("ext"),
-                        "title": info.get("title")
-                    }
-
-        # ---------------------------
-        # STEP 2 — fallback server download
-        # ---------------------------
-        output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
-
-        ydl_opts_download = {
-            "format": request.format_id if request.format_id != "best" else "bestvideo+bestaudio/best",
-            "outtmpl": output_template,
-            "quiet": True,
-            "merge_output_format": "mp4",
-            "noplaylist": True
-        }
-
-        with yt_dlp.YoutubeDL(ydl_opts_download) as ydl:
             info = ydl.extract_info(request.url, download=True)
             filename = ydl.prepare_filename(info)
 
@@ -1154,7 +1122,6 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
 
     except Exception as e:
         raise HTTPException(500, f"Download failed: {str(e)}")
-
 
 
 @app.post("/api/tiktok/info")
