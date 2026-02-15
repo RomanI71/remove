@@ -13,3 +13,4 @@ starlette
 pdf2docx
 psutil
 yt-dlp
+ffmpeg-python
