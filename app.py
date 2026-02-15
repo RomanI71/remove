@@ -1090,63 +1090,70 @@ async def get_youtube_info(request: YouTubeRequest):
 
 
 @app.post("/api/youtube/download")
-async def download_youtube_video(request: YouTubeRequest):
+async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
     try:
+        file_id = uuid.uuid4().hex
+
         ydl_opts = {
             "quiet": True,
             "no_warnings": True,
-            "format": request.format_id if request.format_id != "best"
-                      else "best[protocol=https][acodec!=none][vcodec!=none]"
+            "format": request.format_id if request.format_id != "best" else "best"
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(request.url, download=False)
 
-        direct_url = None
-        ext = None
-
-        # merged formats থাকলে
-        if "requested_formats" in info:
-            for f in info["requested_formats"]:
-                if f.get("protocol") in ["https", "http"]:
-                    direct_url = f.get("url")
-                    ext = f.get("ext")
-                    break
-
-        # single progressive file হলে
-        if not direct_url:
+        # ---------------------------
+        # STEP 1 — Try direct link
+        # ---------------------------
+        for f in info.get("formats", []):
             if (
-                info.get("protocol") in ["https", "http"]
-                and info.get("acodec") != "none"
-                and info.get("vcodec") != "none"
+                f.get("protocol") in ["https", "http"]
+                and f.get("acodec") != "none"
+                and f.get("vcodec") != "none"
             ):
-                direct_url = info.get("url")
-                ext = info.get("ext")
+                direct_url = f.get("url")
 
-        # fallback → formats list থেকে progressive খোঁজা
-        if not direct_url:
-            for f in info.get("formats", []):
-                if (
-                    f.get("protocol") in ["https", "http"]
-                    and f.get("acodec") != "none"
-                    and f.get("vcodec") != "none"
-                ):
-                    direct_url = f.get("url")
-                    ext = f.get("ext")
-                    break
+                # playlist link হলে skip
+                if direct_url and ".m3u8" not in direct_url and "manifest" not in direct_url:
+                    return {
+                        "success": True,
+                        "mode": "direct",
+                        "download_url": direct_url,
+                        "ext": f.get("ext"),
+                        "title": info.get("title")
+                    }
 
-        if not direct_url:
-            raise HTTPException(400, "No direct downloadable file found")
+        # ---------------------------
+        # STEP 2 — fallback server download
+        # ---------------------------
+        output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
 
-        return {
-            "success": True,
-            "download_url": direct_url,
-            "ext": ext,
-            "title": info.get("title")
+        ydl_opts_download = {
+            "format": request.format_id if request.format_id != "best" else "bestvideo+bestaudio/best",
+            "outtmpl": output_template,
+            "quiet": True,
+            "merge_output_format": "mp4",
+            "noplaylist": True
         }
 
+        with yt_dlp.YoutubeDL(ydl_opts_download) as ydl:
+            info = ydl.extract_info(request.url, download=True)
+            filename = ydl.prepare_filename(info)
+
+        if not os.path.exists(filename):
+            raise HTTPException(500, "Download failed")
+
+        background_tasks.add_task(remove_file, filename)
+
+        return FileResponse(
+            filename,
+            media_type="video/mp4",
+            filename=os.path.basename(filename)
+        )
+
     except Exception as e:
-        raise HTTPException(500, f"Direct download failed: {str(e)}")
+        raise HTTPException(500, f"Download failed: {str(e)}")
 
 
 
