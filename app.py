@@ -1,6 +1,7 @@
 import urllib.parse
 import requests
 # import urllib.parse 
+from fastapi import HTTPException
 from fastapi.responses import JSONResponse, FileResponse, Response
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -1031,80 +1032,112 @@ threading.Thread(target=cleanup_files, daemon=True).start()
 # ----------------- YouTube Downloader Routes ----------------- #
 
 # import urllib.parse 
+# ----------------- YouTube Downloader Config ----------------- #
+MAX_DURATION = 300   # 5 minutes limit
+MAX_HEIGHT = 720     # Max resolution for Railway safety
 
 @app.post("/api/youtube/info")
 async def get_youtube_info(request: YouTubeRequest):
-    """ভিডিওর মেটাডেটা এবং এভেলেবল রেজোলিউশন লিস্ট বের করার জন্য"""
+    """ভিডিওর তথ্য ও ফরম্যাট লিস্ট"""
     try:
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            # 'extract_flat': True সরানো হয়েছে কারণ আমাদের ফরম্যাট লিস্ট লাগবে
+            'noplaylist': True
         }
+
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            # ভিডিওর সব তথ্য বের করা (ডাউনলোড ছাড়া)
             info = ydl.extract_info(request.url, download=False)
-            
-            # বেস্ট থাম্বনেইল খোঁজা
-            thumbnail = info.get('thumbnail')
-            if 'thumbnails' in info:
-                thumbnail = info['thumbnails'][-1]['url']
 
-            # ফরম্যাট লিস্ট তৈরি (HTML ড্রপডাউনের জন্য)
-            formats_list = []
-            seen_heights = set()
-            
-            for f in info.get('formats', []):
-                # ভিডিও + অডিও আছে এমন ফরম্যাটগুলো ফিল্টার করা
-                if f.get('vcodec') != 'none' and f.get('acodec') != 'none':
-                    height = f.get('height')
-                    if height and height not in seen_heights:
-                        formats_list.append({
-                            'id': f.get('format_id'),
-                            'note': f"{height}p",
-                            'ext': f.get('ext')
-                        })
-                        seen_heights.add(height)
-                
-                # শুধু অডিও ফরম্যাট (mp3/m4a) আলাদা করা
-                elif f.get('vcodec') == 'none' and f.get('acodec') != 'none':
-                    if 'audio' not in seen_heights:
-                        formats_list.append({
-                            'id': 'bestaudio',
-                            'note': 'Audio Only',
-                            'ext': 'm4a'
-                        })
-                        seen_heights.add('audio')
+        duration = info.get("duration", 0)
 
-            return {
-                'title': info.get('title'),
-                'thumbnail': thumbnail,
-                'duration': info.get('duration_string'),
-                'uploader': info.get('uploader'),
-                'view_count': info.get('view_count'),
-                'formats': formats_list[:6] # সেরা ৬টি অপশন পাঠানো
-            }
+        # ❌ 5 মিনিটের বেশি হলে ব্লক
+        if duration > MAX_DURATION:
+            raise HTTPException(
+                status_code=400,
+                detail="Video longer than 5 minutes is not allowed."
+            )
+
+        thumbnail = info.get('thumbnail')
+        if 'thumbnails' in info:
+            thumbnail = info['thumbnails'][-1]['url']
+
+        formats_list = []
+        seen_heights = set()
+
+        for f in info.get('formats', []):
+            # video + audio
+            if f.get('vcodec') != 'none' and f.get('acodec') != 'none':
+                height = f.get('height')
+
+                # ❗ 720p এর বেশি দেখাবেন না
+                if height and height <= MAX_HEIGHT and height not in seen_heights:
+                    formats_list.append({
+                        'id': f.get('format_id'),
+                        'note': f"{height}p",
+                        'ext': f.get('ext')
+                    })
+                    seen_heights.add(height)
+
+            # audio only
+            elif f.get('vcodec') == 'none' and f.get('acodec') != 'none':
+                if 'audio' not in seen_heights:
+                    formats_list.append({
+                        'id': 'bestaudio',
+                        'note': 'Audio Only',
+                        'ext': 'm4a'
+                    })
+                    seen_heights.add('audio')
+
+        return {
+            'title': info.get('title'),
+            'thumbnail': thumbnail,
+            'duration': info.get('duration_string'),
+            'uploader': info.get('uploader'),
+            'view_count': info.get('view_count'),
+            'formats': formats_list[:6]
+        }
+
     except Exception as e:
         logger.error(f"YouTube Info Error: {str(e)}")
-        raise HTTPException(status_code=400, detail=f"Error extracting info: {str(e)}")
-
+        raise HTTPException(status_code=400, detail=str(e))
+    
 
 @app.post("/api/youtube/download")
 async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
-    """ইউজারের সিলেক্ট করা ফরম্যাট অনুযায়ী ভিডিও ডাউনলোড করা"""
+    """5 মিনিটের কম ভিডিও ডাউনলোড (Railway safe)"""
     try:
+        # Step 1 — duration check
+        check_opts = {
+            'quiet': True,
+            'no_warnings': True,
+            'noplaylist': True
+        }
+
+        with yt_dlp.YoutubeDL(check_opts) as ydl:
+            meta = ydl.extract_info(request.url, download=False)
+
+        duration = meta.get("duration", 0)
+
+        if duration > MAX_DURATION:
+            raise HTTPException(
+                status_code=400,
+                detail="Video longer than 5 minutes is not allowed."
+            )
+
+        # Step 2 — download settings
         file_id = uuid.uuid4().hex
-        
-        # HTML থেকে আসা format_id ব্যবহার করা
-        selected_format = request.format_id if request.format_id != "best" else "best"
-        
+
+        selected_format = request.format_id if request.format_id != "best" else f"best[height<={MAX_HEIGHT}]"
+
         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
 
         ydl_opts = {
             'format': selected_format,
             'outtmpl': output_template,
             'quiet': True,
-            'restrictedfilenames': True, 
+            'restrictedfilenames': True,
+            'noplaylist': True
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -1118,15 +1151,14 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
 
         original_filename = os.path.basename(filename)
         safe_filename = urllib.parse.quote(original_filename)
-        
-        # ফাইলটি ভিডিও না অডিও তা চেক করা
+
         media_type = "video/mp4"
         if ".m4a" in filename or ".mp3" in filename:
             media_type = "audio/mpeg"
 
         return FileResponse(
-            filename, 
-            media_type=media_type, 
+            filename,
+            media_type=media_type,
             headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"}
         )
 
@@ -1134,8 +1166,7 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
         logger.error(f"YouTube Download Error: {str(e)}")
         if 'filename' in locals() and os.path.exists(filename):
             os.remove(filename)
-        raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
-    
+        raise HTTPException(status_code=500, detail=str(e))
 
     # ----------------- TikTok Downloader Routes ----------------- #
 
