@@ -1094,23 +1094,49 @@ async def download_youtube_video(request: YouTubeRequest):
     try:
         ydl_opts = {
             "quiet": True,
-            "no_warnings": True
+            "no_warnings": True,
+            "format": request.format_id if request.format_id != "best"
+                      else "best[protocol=https][acodec!=none][vcodec!=none]"
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(request.url, download=False)
 
-        # format select
-        selected_format = request.format_id if request.format_id != "best" else info["format_id"]
+        direct_url = None
+        ext = None
 
-        # matching format খুঁজে বের করা
-        for f in info["formats"]:
-            if f["format_id"] == selected_format:
-                direct_url = f["url"]
-                ext = f["ext"]
-                break
-        else:
-            raise HTTPException(400, "Format not found")
+        # merged formats থাকলে
+        if "requested_formats" in info:
+            for f in info["requested_formats"]:
+                if f.get("protocol") in ["https", "http"]:
+                    direct_url = f.get("url")
+                    ext = f.get("ext")
+                    break
+
+        # single progressive file হলে
+        if not direct_url:
+            if (
+                info.get("protocol") in ["https", "http"]
+                and info.get("acodec") != "none"
+                and info.get("vcodec") != "none"
+            ):
+                direct_url = info.get("url")
+                ext = info.get("ext")
+
+        # fallback → formats list থেকে progressive খোঁজা
+        if not direct_url:
+            for f in info.get("formats", []):
+                if (
+                    f.get("protocol") in ["https", "http"]
+                    and f.get("acodec") != "none"
+                    and f.get("vcodec") != "none"
+                ):
+                    direct_url = f.get("url")
+                    ext = f.get("ext")
+                    break
+
+        if not direct_url:
+            raise HTTPException(400, "No direct downloadable file found")
 
         return {
             "success": True,
@@ -1121,6 +1147,7 @@ async def download_youtube_video(request: YouTubeRequest):
 
     except Exception as e:
         raise HTTPException(500, f"Direct download failed: {str(e)}")
+
 
 
 @app.post("/api/tiktok/info")
