@@ -1091,18 +1091,20 @@ async def get_youtube_info(request: YouTubeRequest):
 
 @app.post("/api/youtube/download")
 async def download_youtube_video(background_tasks: BackgroundTasks, request: YouTubeRequest):
+    """ইউজারের সিলেক্ট করা ফরম্যাট অনুযায়ী ভিডিও ডাউনলোড করা"""
     try:
         file_id = uuid.uuid4().hex
-
+        
+        # HTML থেকে আসা format_id ব্যবহার করা
+        selected_format = request.format_id if request.format_id != "best" else "best"
+        
         output_template = os.path.join(YOUTUBE_FOLDER, f"{file_id}_%(title)s.%(ext)s")
 
         ydl_opts = {
-            "format": request.format_id if request.format_id != "best" else "bestvideo+bestaudio/best",
-            "outtmpl": output_template,
-            "merge_output_format": "mp4",
-            "quiet": True,
-            "noplaylist": True,
-            "concurrent_fragment_downloads": 5
+            'format': selected_format,
+            'outtmpl': output_template,
+            'quiet': True,
+            'restrictedfilenames': True, 
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -1110,19 +1112,32 @@ async def download_youtube_video(background_tasks: BackgroundTasks, request: You
             filename = ydl.prepare_filename(info)
 
         if not os.path.exists(filename):
-            raise HTTPException(500, "Download failed")
+            raise HTTPException(status_code=500, detail="File not found after download")
 
         background_tasks.add_task(remove_file, filename)
 
+        original_filename = os.path.basename(filename)
+        safe_filename = urllib.parse.quote(original_filename)
+        
+        # ফাইলটি ভিডিও না অডিও তা চেক করা
+        media_type = "video/mp4"
+        if ".m4a" in filename or ".mp3" in filename:
+            media_type = "audio/mpeg"
+
         return FileResponse(
-            filename,
-            media_type="video/mp4",
-            filename=os.path.basename(filename)
+            filename, 
+            media_type=media_type, 
+            headers={"Content-Disposition": f"attachment; filename*=UTF-8''{safe_filename}"}
         )
 
     except Exception as e:
-        raise HTTPException(500, f"Download failed: {str(e)}")
+        logger.error(f"YouTube Download Error: {str(e)}")
+        if 'filename' in locals() and os.path.exists(filename):
+            os.remove(filename)
+        raise HTTPException(status_code=500, detail=f"Download failed: {str(e)}")
+    
 
+    # ----------------- TikTok Downloader Routes ----------------- #
 
 @app.post("/api/tiktok/info")
 async def get_tiktok_info(request: YouTubeRequest):
