@@ -603,7 +603,8 @@
           showStatus('Upload an image to begin.', 'info');
         }
 
-        function downloadImage() {
+        function downloadImage(e) {
+          e.preventDefault(); // This stops the HTML page from downloading
           const link = document.createElement('a');
           link.download = 'blurred-faces-image.png';
           link.href = originalCanvas.toDataURL('image/png');
