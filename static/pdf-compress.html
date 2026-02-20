@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Compressor – Reduce PDF Size Online | TopImgTools</title>
+<meta name="description" content="Compress PDF files online instantly. Free PDF compressor tool by TopImgTools. Fast, secure, and client-side processing." />
+<meta name="keywords" content="compress pdf, reduce pdf size, shrink pdf, pdf optimizer, online pdf compressor, free pdf tool, TopImgTools" />
+<meta name="author" content="TopImgTools" />
+<meta name="theme-color" content="#3498db">
+<link rel="canonical" href="https://topimgtools.com/compress-pdf.html" />
+
+<meta property="og:title" content="PDF Compressor – Reduce PDF Size Online" />
+<meta property="og:description" content="Shrink your PDF files quickly and securely in your browser. No file uploads to servers." />
+<meta property="og:image" content="https://topimgtools.com/assets/pdf-compressor-banner.jpg" />
+<meta property="og:url" content="https://topimgtools.com/compress-pdf.html" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+:root{
+  --bg:#f8fafc; --card:#fff; --accent:#e74c3c; --accent-dark:#c0392b; --muted:#4b5563; --border:#e5e7eb; --focus-ring: #fca5a5;
+}
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  background:var(--bg); color:#0f172a; line-height:1.6; margin:0; padding:0;
+}
+*{box-sizing:border-box}
+a:focus, button:focus, .upload-box:focus, select:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
+
+.wrap{max-width:900px;margin:36px auto;padding:0 18px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px; flex-wrap:wrap; gap:12px;}
+.logo{display:flex;gap:12px;align-items:center; text-decoration: none; color: inherit;}
+h1{font-size:1.5rem;margin:0; font-weight: 700;}
+p.lead{color:var(--muted);margin-top:4px; font-size: 0.95rem;}
+
+.card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin-bottom: 24px;}
+
+.upload-box{
+  border:2px dashed #cbd5e1;border-radius:10px;padding:32px 20px;
+  display:flex;flex-direction:column;align-items:center;gap:16px;cursor:pointer;transition:all .2s ease;
+  background-color: #f8fafc;
+}
+.upload-box:hover, .upload-box.dragover{background-color: #fff1f0; border-color: var(--accent);}
+.upload-box h3 {margin: 0; font-size: 1.25rem; color: #1e293b;}
+.upload-box p.muted {margin: 0; color: var(--muted); font-size: 0.875rem; text-align: center;}
+
+.controls-wrapper {
+    margin-top: 20px;
+    padding: 16px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.controls-wrapper label { font-weight: 600; color: #334155; }
+.controls-wrapper select {
+    padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1;
+    font-size: 1rem; cursor: pointer;
+}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem; transition: background 0.2s; text-decoration: none;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-dark);}
+.btn-primary:disabled{background:#fca5a5; cursor:not-allowed;}
+.btn-secondary{background:#1f2937;color:#fff;}
+.btn-secondary:hover{background:#111827;}
+
+.preview-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:20px}
+.preview-item{background:#fff;padding:16px;border-radius:8px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.1); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 8px;}
+.preview-item i { font-size: 48px; color: var(--accent);}
+.preview-item div{font-size: 1rem; font-weight: 600;}
+.preview-item small{color: var(--muted); font-size: 0.9rem;}
+
+.status{font-size:1rem;color:var(--accent);margin-top:12px;text-align:center; min-height: 20px; font-weight: 600;}
+
+.sr-only-input {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+}
+
+.seo-content { font-family: inherit; color: #334155; }
+.seo-content h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+.seo-content p, .seo-content li { font-size: 1rem; margin-bottom: 0.75rem; }
+.seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+
+.nav-links {
+    margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+    display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;
+}
+.nav-btn {
+    padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+    color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb; transition: all 0.2s;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-arrow { color: #9ca3af; font-weight: bold; }
+
+@media(max-width:480px){
+    .header{flex-direction: column; align-items: flex-start;}
+    .header a {align-self: flex-start;}
+    .controls-wrapper { flex-direction: column; align-items: stretch; }
+    .action-buttons {flex-direction: column;}
+    .btn {width: 100%; justify-content: center;}
+}
+
+/* Common Floating Pill */
+.floating-slim-pill {
+    position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+    width: auto; min-width: 280px; max-width: 650px; height: 32px;
+    background: linear-gradient(90deg, #001f3f, #8e44ad);
+    border-radius: 20px; display: flex; align-items: center; overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); z-index: 10001;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.scroll-box { display: flex; white-space: nowrap; animation: slim-scroll 20s linear infinite; }
+.message-item { display: flex; align-items: center; font-family: sans-serif; font-size: 13px; font-weight: 600; color: #ffffff; }
+.yellow-hit { color: #ffd700; margin: 0 6px; }
+.dot-sep { margin: 0 35px; color: rgba(255, 255, 255, 0.3); }
+@keyframes slim-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.floating-slim-pill:hover .scroll-box { animation-play-state: paused; }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <header class="header">
+    <a href="index.html" class="logo" aria-label="TopImgTools Home">
+      <i class="fa fa-file-pdf" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
+      <div>
+        <h1>PDF Compressor</h1>
+        <p class="lead">Reduce PDF file size securely in your browser</p>
+      </div>
+    </a>
+    <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+  </header>
+
+  <section class="card" aria-labelledby="tool-heading">
+    <h2 id="tool-heading" class="sr-only-input">PDF Upload Section</h2>
+    
+    <div class="upload-box" id="uploadBox" tabindex="0" role="button" aria-label="Upload PDF area. Drag and drop files here or press enter to select.">
+      <i class="fa fa-file-zipper" aria-hidden="true" style="font-size:40px;color:var(--accent)"></i>
+      <h3>Drag & drop or select PDF</h3>
+      <p class="muted">Supported: PDF — Max 50MB</p>
+      <button id="selectBtn" class="btn btn-primary" tabindex="-1">
+        <i class="fa fa-folder-open" aria-hidden="true"></i> Select File
+      </button>
+      <input id="fileInput" type="file" accept="application/pdf" class="sr-only-input">
+    </div>
+
+    <div id="preview" class="preview-grid" aria-live="polite"></div>
+    
+    <div class="controls-wrapper" id="controlsWrapper" style="display:none;">
+        <label for="qualitySelect">Compression Level:</label>
+        <select id="qualitySelect">
+            <option value="high">High Compression (Smallest Size, Lower Quality)</option>
+            <option value="medium" selected>Medium Compression (Good Balance)</option>
+            <option value="low">Low Compression (Best Quality)</option>
+        </select>
+    </div>
+
+    <div class="status" id="status" aria-live="polite"></div>
+
+    <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;" class="action-buttons">
+      <button id="compressBtn" class="btn btn-primary" style="flex:2;"><i class="fa fa-compress" aria-hidden="true"></i> Compress PDF</button>
+      <button id="clearBtn" class="btn btn-secondary" style="flex:1;"><i class="fa fa-trash" aria-hidden="true"></i> Clear</button>
+    </div>
+  </section>
+
+  <nav class="nav-links" aria-label="Related Tools">
+    <span class="nav-arrow" aria-hidden="true">⟵</span>
+    <a href="image-to-pdf.html" class="nav-btn">Image → PDF</a>
+    <span class="nav-arrow" aria-hidden="true">›</span>
+    <a href="https://topimgtools.com/web-to-jpg.html" class="nav-btn">WEBP → JPG</a>
+    <span class="nav-arrow" aria-hidden="true">›</span>
+    <a href="https://topimgtools.com/heice-to-jpg.html" class="nav-btn">HEIC → JPG</a>
+    <span class="nav-arrow" aria-hidden="true">⟶</span>
+  </nav>
+
+<article class="card seo-content">
+    <h2>Reduce PDF Size Online: Effective & Secure</h2>
+    <p>
+        Are you struggling with large PDF documents that are too big to email? <strong>TopImgTools PDF Compressor</strong> is the solution. Our tool helps you <strong>reduce PDF file size</strong> by optimizing the contents of your document to make it lightweight and shareable.
+    </p>
+
+    <h3>Why Use TopImgTools PDF Compressor?</h3>
+    <ul>
+        <li>
+            <strong>100% Privacy First:</strong> Your files never touch our servers. Compression happens entirely inside your web browser.
+        </li>
+        <li>
+            <strong>Effective Rasterization:</strong> To guarantee a smaller size, we convert complex PDF pages into optimized images. Note: This flattens the document, making text non-selectable, but ensures maximum size reduction.
+        </li>
+        <li>
+            <strong>No Installation Required:</strong> Skip the bulky software. Works on any device with a browser.
+        </li>
+    </ul>
+
+    <h3>How to Compress Your PDF?</h3>
+    <ol>
+        <li><strong>Upload:</strong> Drag your PDF into the box above.</li>
+        <li><strong>Select Quality:</strong> Choose your preferred compression level.</li>
+        <li><strong>Process:</strong> Click "Compress PDF" to start the local optimization.</li>
+        <li><strong>Download:</strong> Save your newly slimmed-down file instantly.</li>
+    </ol>
+</article>
+  
+  <footer style="text-align:center; margin-top:30px; font-size:0.9rem; color:var(--muted); padding-bottom: 20px;">
+      &copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.
+  </footer>
+</main>
+
+<div class="floating-slim-pill">
+    <div class="scroll-box">
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+    </div>
+</div>
+
+<script>
+// Configure PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const fileInput = document.getElementById('fileInput');
+    const uploadBox = document.getElementById('uploadBox');
+    const preview = document.getElementById('preview');
+    const compressBtn = document.getElementById('compressBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const status = document.getElementById('status');
+    const controlsWrapper = document.getElementById('controlsWrapper');
+    const qualitySelect = document.getElementById('qualitySelect');
+
+    let currentFile = null;
+
+    uploadBox.addEventListener('click', (e) => {
+        if(e.target.id !== 'selectBtn') fileInput.click();
+    });
+    
+    document.getElementById('selectBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        fileInput.click();
+    });
+
+    uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.classList.add('dragover'); });
+    uploadBox.addEventListener('dragleave', () => uploadBox.classList.remove('dragover'));
+    uploadBox.addEventListener('drop', e => {
+        e.preventDefault();
+        uploadBox.classList.remove('dragover');
+        if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput.onchange = e => { if(e.target.files[0]) handleFile(e.target.files[0]); };
+
+    function handleFile(file) {
+        if (file.type !== "application/pdf") return alert("Please select a valid PDF file.");
+        currentFile = file;
+        
+        const originalSizeMB = (file.size / 1024 / 1024).toFixed(2);
+        
+        preview.innerHTML = `
+            <div class="preview-item">
+                <i class="fa fa-file-pdf"></i>
+                <div>${file.name}</div>
+                <small>Original Size: ${originalSizeMB} MB</small>
+            </div>`;
+        
+        controlsWrapper.style.display = 'flex';
+        status.textContent = "File ready. Select compression level and click Compress.";
+    }
+
+    compressBtn.onclick = async () => {
+        if (!currentFile) return alert("Please select a PDF first.");
+        
+        status.textContent = "Processing... This may take a moment depending on the PDF size.";
+        compressBtn.disabled = true;
+
+        try {
+            const arrayBuffer = await currentFile.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            
+            // Settings based on selected quality
+            let scale = 1.5; // Resolution scale
+            let imgQuality = 0.7; // JPEG quality (0.0 to 1.0)
+            
+            if (qualitySelect.value === 'high') {
+                scale = 1.0;
+                imgQuality = 0.5;
+            } else if (qualitySelect.value === 'low') {
+                scale = 2.0;
+                imgQuality = 0.9;
+            }
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                status.textContent = `Compressing page ${i} of ${pdf.numPages}...`;
+                
+                const page = await pdf.getPage(i);
+                const viewport = page.getViewport({ scale: scale });
+                
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                
+                await page.render({
+                    canvasContext: ctx,
+                    viewport: viewport
+                }).promise;
+                
+                // Convert canvas to compressed JPEG
+                const imgData = canvas.toDataURL('image/jpeg', imgQuality);
+                
+                // Calculate dimensions for A4 (210x297mm)
+                const pdfWidth = doc.internal.pageSize.getWidth();
+                const pdfHeight = doc.internal.pageSize.getHeight();
+                
+                // Maintain aspect ratio
+                const ratio = viewport.width / viewport.height;
+                let finalWidth = pdfWidth;
+                let finalHeight = finalWidth / ratio;
+                
+                if (finalHeight > pdfHeight) {
+                    finalHeight = pdfHeight;
+                    finalWidth = finalHeight * ratio;
+                }
+                
+                // Center on page
+                const x = (pdfWidth - finalWidth) / 2;
+                const y = (pdfHeight - finalHeight) / 2;
+
+                if (i > 1) doc.addPage();
+                doc.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
+            }
+            
+            // Generate and download final PDF
+            status.textContent = "Finalizing PDF...";
+            doc.save(`compressed_${currentFile.name}`);
+            status.textContent = "Success! Compressed PDF downloaded.";
+            
+        } catch (err) {
+            console.error(err);
+            status.textContent = "Error during compression. File might be too complex.";
+        } finally {
+            compressBtn.disabled = false;
+        }
+    };
+
+    clearBtn.onclick = () => {
+        currentFile = null;
+        preview.innerHTML = '';
+        status.textContent = '';
+        fileInput.value = '';
+        controlsWrapper.style.display = 'none';
+    };
+});
+</script>
+</body>
+</html>

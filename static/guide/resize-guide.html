@@ -395,63 +395,197 @@
     <div class="container">
         <div class="tutorial-wrapper">
             
-            <article>
-                <h1><i class="fa fa-expand" aria-hidden="true"></i> Resize Image Tutorial</h1>
-                <p>The **Resize Image** tool allows you to easily adjust the dimensions of your photos for social media, email, or web use. Our tool works entirely in your browser using HTML5 Canvas, ensuring privacy and speed.</p>
+<article>
+    <h1><i class="fa fa-expand" aria-hidden="true"></i> Resize Image Tutorial</h1>
 
-                <hr>
+    <p>The <strong>Resize Image</strong> tool allows you to quickly and efficiently adjust the dimensions of your images directly in your browser. Whether you need to optimize a photo for social media, reduce file size for email, or prepare an image for a website, resizing is an essential editing task. Our tool uses modern HTML5 Canvas technology, meaning all processing happens on your device — ensuring maximum privacy, security, and speed.</p>
 
-                <h2>1. Upload Your Image <i class="fa fa-upload" aria-hidden="true"></i></h2>
-                <div class="step-content">
-                    <p>Start by uploading the image you want to resize. We support various image formats including JPG, PNG, and WebP.</p>
-                    
-                    <h3>Upload Options:</h3>
-                    <ul>
-                        <li><strong>Select Image:</strong> Click the blue "Select Image" button to open your file browser.</li>
-                        <li><strong>Drag & Drop:</strong> Drag your image file directly into the designated upload area.</li>
-                    </ul>
-                    <p>Once uploaded, the tool will display the original dimensions of your image.</p>
-                </div>
+    <p>This detailed tutorial will guide you step-by-step through the resizing process and help you understand the different resizing methods available.</p>
 
-                <hr>
+    <hr>
 
-                <h2>2. Select Resizing Method <i class="fa fa-ruler-combined" aria-hidden="true"></i></h2>
-                <p>You can resize your image using three primary methods:</p>
+    <h2>1. Upload Your Image <i class="fa fa-upload" aria-hidden="true"></i></h2>
 
-                <h3>Method A: By Pixels (Width & Height)</h3>
-                <ul>
-                    <li>Enter the desired **Width** in pixels (e.g., 800).</li>
-                    <li>Enter the desired **Height** in pixels (e.g., 600).</li>
-                    <li><strong>Maintain Aspect Ratio:</strong> Keep the <i class="fa fa-link" aria-hidden="true"></i> icon locked (default) to automatically calculate the height/width, preventing distortion. Unlock it to enter custom dimensions (may stretch the image).</li>
-                </ul>
+    <div class="step-content">
+        <p>To begin, upload the image you wish to resize. The tool supports popular formats including JPG, PNG, and WebP.</p>
 
-                <h3>Method B: By Percentage</h3>
-                <ul>
-                    <li>Use the **Percentage** field to scale the image up or down relative to its original size.</li>
-                    <li>Enter **50%** to halve both the width and height.</li>
-                    <li>Enter **200%** to double both the width and height.</li>
-                </ul>
+        <h3>Upload Options:</h3>
+        <ul>
+            <li><strong>Select Image:</strong> Click the blue "Select Image" button to browse your device and choose a file.</li>
+            <li><strong>Drag & Drop:</strong> Simply drag your image file into the upload area for quick access.</li>
+        </ul>
 
-                <h3>Method C: Using Presets</h3>
-                <ul>
-                    <li>The tool provides common presets for popular platforms (e.g., Facebook cover, Twitter header).</li>
-                    <li>Selecting a preset instantly applies the standard, recommended pixel dimensions.</li>
-                </ul>
+        <p>After uploading, the editor will display important information about your image, including:</p>
+        <ul>
+            <li>Original Width (in pixels)</li>
+            <li>Original Height (in pixels)</li>
+            <li>File Size</li>
+            <li>Image Format</li>
+        </ul>
 
-                <hr>
+        <p>This information helps you decide how much resizing is necessary. For example, if your original image is 4000×3000 pixels, you may want to reduce it to 1200×900 pixels for web use.</p>
+    </div>
 
-                <h2>3. Process and Download <i class="fa fa-download" aria-hidden="true"></i></h2>
-                <p>After setting your desired dimensions, the resizing process is instant and efficient.</p>
+    <hr>
 
-                <h3>Steps to Finalize:</h3>
-                <ul>
-                    <li>Click the blue **"Resize Image"** button. The tool will process the image on the client side.</li>
-                    <li>A **"Download"** button will appear. Click it to save your newly resized image.</li>
-                    <li>The output format is typically the same as the input, but PNG is often used for quality.</li>
-                </ul>
-                <p>To try different sizes, simply change the values in the input fields and click "Resize Image" again.</p>
+    <h2>2. Understand Why Resizing Matters <i class="fa fa-info-circle" aria-hidden="true"></i></h2>
 
-            </article>
+    <p>Resizing images serves several important purposes:</p>
+
+    <ul>
+        <li><strong>Faster Website Loading:</strong> Smaller images improve page speed and SEO performance.</li>
+        <li><strong>Email Attachments:</strong> Reduced dimensions mean smaller file sizes.</li>
+        <li><strong>Social Media Optimization:</strong> Platforms often require specific dimensions.</li>
+        <li><strong>Storage Saving:</strong> Lower resolution images consume less disk space.</li>
+        <li><strong>Printing Requirements:</strong> Some print layouts require exact pixel sizes.</li>
+    </ul>
+
+    <p>Proper resizing ensures your image looks sharp while avoiding unnecessary large file sizes.</p>
+
+    <hr>
+
+    <h2>3. Select Resizing Method <i class="fa fa-ruler-combined" aria-hidden="true"></i></h2>
+
+    <p>You can resize your image using three primary methods depending on your needs:</p>
+
+    <h3>Method A: Resize by Pixels (Width & Height)</h3>
+
+    <p>This is the most precise resizing method.</p>
+
+    <ul>
+        <li>Enter your desired <strong>Width</strong> in pixels (e.g., 800).</li>
+        <li>Enter your desired <strong>Height</strong> in pixels (e.g., 600).</li>
+        <li>Use the <i class="fa fa-link" aria-hidden="true"></i> <strong>Maintain Aspect Ratio</strong> option.</li>
+    </ul>
+
+    <p><strong>Maintain Aspect Ratio (Recommended):</strong></p>
+    <ul>
+        <li>When the link icon is locked (default), changing width automatically adjusts height proportionally.</li>
+        <li>This prevents stretching or squashing.</li>
+        <li>It keeps the image natural and undistorted.</li>
+    </ul>
+
+    <p><strong>Unlock Aspect Ratio:</strong></p>
+    <ul>
+        <li>You can manually set both width and height.</li>
+        <li>This may stretch the image horizontally or vertically.</li>
+        <li>Use this only when exact dimensions are required.</li>
+    </ul>
+
+    <p><em>Example:</em> If your original image is 2000×1000 pixels and you set width to 1000 with aspect ratio locked, height will automatically adjust to 500.</p>
+
+    <hr>
+
+    <h3>Method B: Resize by Percentage</h3>
+
+    <p>This method scales the image proportionally based on its original size.</p>
+
+    <ul>
+        <li>Enter a percentage value (e.g., 50%, 75%, 120%).</li>
+        <li>50% reduces both width and height by half.</li>
+        <li>200% doubles both width and height.</li>
+    </ul>
+
+    <p>This method automatically maintains aspect ratio and is ideal when you want quick proportional resizing without calculating exact pixels.</p>
+
+    <p><strong>Best Use Cases:</strong></p>
+    <ul>
+        <li>Reducing large DSLR photos</li>
+        <li>Quick scaling for web previews</li>
+        <li>Uniform resizing of multiple images</li>
+    </ul>
+
+    <hr>
+
+    <h3>Method C: Using Presets</h3>
+
+    <p>Presets provide ready-made dimension settings optimized for popular platforms and purposes.</p>
+
+    <ul>
+        <li>Facebook Cover Photo</li>
+        <li>Instagram Post (Square 1080×1080)</li>
+        <li>Twitter Header</li>
+        <li>YouTube Thumbnail</li>
+        <li>LinkedIn Banner</li>
+    </ul>
+
+    <p>Simply select a preset, and the tool will automatically fill in the recommended pixel dimensions.</p>
+
+    <p>This method saves time and ensures compliance with platform standards.</p>
+
+    <hr>
+
+    <h2>4. Output Format & Quality Considerations <i class="fa fa-cogs" aria-hidden="true"></i></h2>
+
+    <p>After resizing, you may have options to choose the output format:</p>
+
+    <ul>
+        <li><strong>JPG:</strong> Smaller file size, ideal for photos.</li>
+        <li><strong>PNG:</strong> Better for graphics and transparency.</li>
+        <li><strong>WebP:</strong> Modern format with excellent compression.</li>
+    </ul>
+
+    <p>If your image contains transparency, choose PNG. For general web use, JPG or WebP is recommended.</p>
+
+    <p>Some versions of the tool may also allow you to adjust output quality settings for JPG images.</p>
+
+    <hr>
+
+    <h2>5. Process and Download <i class="fa fa-download" aria-hidden="true"></i></h2>
+
+    <p>Once your dimensions are set, the resizing process is fast and secure.</p>
+
+    <h3>Steps to Finalize:</h3>
+    <ul>
+        <li>Click the blue <strong>"Resize Image"</strong> button.</li>
+        <li>The tool processes the image instantly using HTML5 Canvas.</li>
+        <li>A preview of the resized image appears.</li>
+        <li>Click the <strong>"Download"</strong> button to save the file.</li>
+    </ul>
+
+    <p>The resized image will download directly to your device’s default download location.</p>
+
+    <p>If you're not satisfied with the result, simply adjust the dimensions and resize again.</p>
+
+    <hr>
+
+    <h2>6. Best Practices for Resizing</h2>
+
+    <ul>
+        <li>Always keep a copy of your original image.</li>
+        <li>Avoid enlarging small images too much — this reduces quality.</li>
+        <li>Use aspect ratio lock whenever possible.</li>
+        <li>Choose the correct output format for your purpose.</li>
+        <li>Test different sizes for optimal web performance.</li>
+    </ul>
+
+    <p>Remember: Enlarging an image does not increase its quality — it may introduce blur or pixelation.</p>
+
+    <hr>
+
+    <h2>7. Common Resizing Scenarios</h2>
+
+    <p><strong>For Social Media:</strong><br>
+    Resize to platform-specific presets to avoid cropping.</p>
+
+    <p><strong>For Email:</strong><br>
+    Reduce width to 800–1200 pixels to decrease file size.</p>
+
+    <p><strong>For Websites:</strong><br>
+    Optimize width between 1200–1920 pixels depending on layout.</p>
+
+    <p><strong>For Printing:</strong><br>
+    Ensure proper DPI (usually 300 DPI) and correct pixel dimensions.</p>
+
+    <hr>
+
+    <h2>Conclusion</h2>
+
+    <p>The <strong>Resize Image</strong> tool provides a fast, reliable, and secure way to modify your image dimensions directly in your browser. With multiple resizing methods — pixel-based, percentage-based, and preset options — you have full control over how your image is scaled.</p>
+
+    <p>By understanding aspect ratio, output formats, and best practices, you can confidently resize images for any purpose. Simply upload, adjust dimensions, resize, and download — all within seconds.</p>
+
+</article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>

@@ -388,55 +388,204 @@
     <div class="container">
         <div class="tutorial-wrapper">
             
-            <article>
-                <h1><i class="fa fa-redo"></i> Rotate Image Tutorial</h1>
-                <p>The **Rotate Image** tool allows you to quickly correct the orientation of your photos. Whether you need a simple 90-degree turn or a precise angle adjustment, this tool handles it all client-side using the HTML5 Canvas API, ensuring your privacy.</p>
+<article>
+    <h1><i class="fa fa-redo"></i> Rotate Image Tutorial</h1>
 
-                <hr>
+    <p>The <strong>Rotate Image</strong> tool allows you to quickly and accurately correct the orientation of your photos directly in your browser. Whether your image was captured sideways on a mobile device, scanned at a slight angle, or simply needs creative rotation, this tool provides both quick 90-degree adjustments and precise free-angle rotation.</p>
 
-                <h2>1. Upload Your Image <i class="fa fa-upload"></i></h2>
-                <div class="step-content">
-                    <p>Begin by loading the image you wish to rotate. The tool supports standard formats like JPG, PNG, and WebP.</p>
-                    
-                    <h3>Upload Options:</h3>
-                    <ul>
-                        <li><strong>Select Image:</strong> Click the blue "Select Image" button to browse your device.</li>
-                        <li><strong>Drag & Drop:</strong> Drag your file directly into the dashed upload area. The box will highlight to indicate it's ready.</li>
-                    </ul>
-                    <p>Once uploaded, the "Preview" area will instantly display your image on the canvas.</p>
-                </div>
+    <p>All processing is performed client-side using the HTML5 Canvas API. This means your image never leaves your device, ensuring maximum privacy, security, and fast performance.</p>
 
-                <hr>
+    <hr>
 
-                <h2>2. Choose Your Rotation Angle <i class="fa fa-sync-alt"></i></h2>
-                <p>This tool offers two distinct ways to rotate your image, giving you full control over the final result.</p>
+    <h2>1. Upload Your Image <i class="fa fa-upload"></i></h2>
 
-                <h3>Method A: Quick 90° Turns</h3>
-                                <ul>
-                    <li>Use the **"Rotate Left"** button (<i class="fa fa-undo"></i>) to turn the image -90 degrees counter-clockwise.</li>
-                    <li>Use the **"Rotate Right"** button (<i class="fa fa-redo"></i>) to turn the image +90 degrees clockwise.</li>
-                </ul>
+    <div class="step-content">
+        <p>To begin, upload the image you wish to rotate. The tool supports common formats including JPG, PNG, and WebP.</p>
 
-                <h3>Method B: Free Rotation (Slider)</h3>
-                <ul>
-                    <li>For precise adjustments (e.g., straightening a scanned document), use the **Rotate Angle Slider**.</li>
-                    <li>Drag the slider from **0° to 360°**. The current angle is displayed numerically next to the slider.</li>
-                </ul>
-                <p><em>Technical Note:</em> The tool automatically recalculates the canvas dimensions (bounding box) so that no part of your image is cut off, even when rotated at diagonal angles.</p>
+        <h3>Upload Options:</h3>
+        <ul>
+            <li><strong>Select Image:</strong> Click the blue "Select Image" button to browse files from your computer, tablet, or smartphone.</li>
+            <li><strong>Drag & Drop:</strong> Drag your image directly into the dashed upload area. The drop zone will highlight when ready.</li>
+        </ul>
 
-                <hr>
+        <p>After uploading:</p>
+        <ul>
+            <li>Your image will instantly appear in the preview canvas.</li>
+            <li>The tool prepares the image for real-time rotation.</li>
+            <li>You can immediately begin adjusting orientation.</li>
+        </ul>
 
-                <h2>3. Download the Result <i class="fa fa-download"></i></h2>
-                <p>Once you are happy with the orientation, you can save the file.</p>
+        <p>If you upload the wrong image, simply refresh the page or use the Reset button to start again.</p>
+    </div>
 
-                <h3>Saving Your File:</h3>
-                <ul>
-                    <li>Click the **"Download PNG"** button that appears after you upload an image.</li>
-                    <li>The image is saved as a **PNG** file. This is crucial because if you rotate an image by 45 degrees, the empty corners will be transparent rather than filled with black or white.</li>
-                    <li>To start over, simply click the **"Reset"** button.</li>
-                </ul>
+    <hr>
 
-            </article>
+    <h2>2. Understanding Image Orientation</h2>
+
+    <p>Many images appear incorrectly rotated due to metadata (EXIF orientation data) embedded in photos taken by smartphones or cameras. Sometimes devices store orientation information instead of physically rotating the pixels.</p>
+
+    <p>This tool ensures that:</p>
+    <ul>
+        <li>The visible rotation matches the actual pixel orientation.</li>
+        <li>The final downloaded image retains the corrected angle permanently.</li>
+        <li>No metadata confusion remains after download.</li>
+    </ul>
+
+    <hr>
+
+    <h2>3. Choose Your Rotation Angle <i class="fa fa-sync-alt"></i></h2>
+
+    <p>You have two primary methods for rotating your image, depending on how precise your adjustment needs to be.</p>
+
+    <h3>Method A: Quick 90° Turns</h3>
+
+    <p>This method is ideal for correcting sideways or upside-down photos.</p>
+
+    <ul>
+        <li>Click the <strong>"Rotate Left"</strong> button (<i class="fa fa-undo"></i>) to rotate -90 degrees counter-clockwise.</li>
+        <li>Click the <strong>"Rotate Right"</strong> button (<i class="fa fa-redo"></i>) to rotate +90 degrees clockwise.</li>
+        <li>Each click rotates the image another 90 degrees.</li>
+    </ul>
+
+    <p><strong>Example:</strong></p>
+    <ul>
+        <li>If your image is upside down, click Rotate Right twice.</li>
+        <li>If it’s sideways, a single click may fix it.</li>
+    </ul>
+
+    <p>This method is fast and perfect for common rotation fixes.</p>
+
+    <hr>
+
+    <h3>Method B: Free Rotation (Angle Slider)</h3>
+
+    <p>For more precise adjustments, especially when straightening scanned documents or slightly tilted horizons, use the free rotation slider.</p>
+
+    <ul>
+        <li>Locate the <strong>Rotate Angle Slider</strong>.</li>
+        <li>Drag it from <strong>0° to 360°</strong>.</li>
+        <li>The exact rotation angle is displayed numerically beside the slider.</li>
+    </ul>
+
+    <p>This method allows adjustments such as:</p>
+    <ul>
+        <li>5° clockwise tilt correction</li>
+        <li>12° counter-clockwise alignment</li>
+        <li>45° artistic rotation</li>
+        <li>180° full flip</li>
+    </ul>
+
+    <p><strong>Precision Tip:</strong> Move the slider slowly for small angle adjustments. Even a 1° correction can significantly improve alignment.</p>
+
+    <p><em>Technical Note:</em> The tool automatically recalculates the bounding box dimensions of the canvas so that no part of your image is cropped or cut off when rotated diagonally.</p>
+
+    <hr>
+
+    <h2>4. Canvas Auto-Adjustment & Transparency</h2>
+
+    <p>When rotating images at non-90-degree angles (such as 45°), empty triangular spaces may appear at the corners.</p>
+
+    <p>This tool handles that by:</p>
+    <ul>
+        <li>Expanding the canvas size dynamically.</li>
+        <li>Maintaining full image visibility.</li>
+        <li>Using transparent background fill instead of black or white.</li>
+    </ul>
+
+    <p>This is why the tool saves the rotated result as a PNG file — PNG supports transparency.</p>
+
+    <hr>
+
+    <h2>5. Download the Result <i class="fa fa-download"></i></h2>
+
+    <p>Once you are satisfied with the rotation, saving your image is simple.</p>
+
+    <h3>Saving Your File:</h3>
+    <ul>
+        <li>Click the <strong>"Download PNG"</strong> button.</li>
+        <li>The rotated image will be exported as a PNG file.</li>
+        <li>The download will start automatically.</li>
+    </ul>
+
+    <p><strong>Why PNG?</strong></p>
+    <ul>
+        <li>Supports transparency (important for angled rotations).</li>
+        <li>Prevents background color distortion.</li>
+        <li>Maintains visual clarity after transformation.</li>
+    </ul>
+
+    <p>If needed, you can convert the PNG back to JPG using a separate conversion tool.</p>
+
+    <hr>
+
+    <h2>6. Resetting the Image</h2>
+
+    <p>If you want to undo all changes:</p>
+    <ul>
+        <li>Click the <strong>"Reset"</strong> button.</li>
+        <li>The image will return to its original orientation.</li>
+        <li>All rotation values will return to 0°.</li>
+    </ul>
+
+    <p>This allows you to experiment freely without worrying about permanent mistakes.</p>
+
+    <hr>
+
+    <h2>7. Common Use Cases for Rotation</h2>
+
+    <p><strong>Correcting Smartphone Photos:</strong><br>
+    Phones sometimes store orientation incorrectly. A quick 90° turn fixes this.</p>
+
+    <p><strong>Straightening Scanned Documents:</strong><br>
+    Slight tilt during scanning can be corrected using the angle slider.</p>
+
+    <p><strong>Fixing Crooked Horizon Lines:</strong><br>
+    Landscape photos often benefit from minor 2–5° corrections.</p>
+
+    <p><strong>Creative Design Effects:</strong><br>
+    Rotate images at unique angles for artistic layouts or presentations.</p>
+
+    <hr>
+
+    <h2>8. Best Practices for Image Rotation</h2>
+
+    <ul>
+        <li>Use 90° buttons for simple corrections.</li>
+        <li>Use slider for fine-tuned adjustments.</li>
+        <li>Download in PNG if transparency is visible.</li>
+        <li>Avoid repeated rotation downloads — rotate once and save.</li>
+        <li>Keep a copy of the original image.</li>
+    </ul>
+
+    <hr>
+
+    <h2>9. Performance & Privacy</h2>
+
+    <p>This tool runs entirely in your browser using JavaScript and HTML5 Canvas.</p>
+
+    <ul>
+        <li>No server uploads.</li>
+        <li>No cloud processing.</li>
+        <li>No image storage.</li>
+        <li>Instant local rendering.</li>
+    </ul>
+
+    <p>This ensures:</p>
+    <ul>
+        <li>Maximum privacy for personal images.</li>
+        <li>Fast rotation performance.</li>
+        <li>Secure handling of sensitive documents.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Conclusion</h2>
+
+    <p>The <strong>Rotate Image</strong> tool provides a fast, accurate, and privacy-focused solution for correcting and adjusting image orientation. With both quick 90-degree rotation buttons and a precise free-angle slider, you can handle everything from simple sideways photos to detailed alignment corrections.</p>
+
+    <p>Upload your image, choose your angle, preview the result, and download instantly — all without leaving your browser.</p>
+
+</article>
 
             <aside class="sidebar-list">
                 <h3>More Tools & Tutorials</h3>
