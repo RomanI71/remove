@@ -367,8 +367,9 @@
         </div>
     </div>
     </div>
-  <script>
-    // Elements
+
+    <script>
+// Elements
     const uploadBox = document.getElementById('uploadBox');
     const fileInput = document.getElementById('fileInput');
     const selectBtn = document.getElementById('selectBtn');
@@ -505,6 +506,11 @@
     uploadBox.addEventListener('dragleave', e => { e.preventDefault(); uploadBox.classList.remove('dragover'); });
     uploadBox.addEventListener('drop', e => { e.preventDefault(); uploadBox.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
     
+    // --> Click event added here <--
+    uploadBox.addEventListener('click', () => {
+        fileInput.click();
+    });
+
     // Accessibility: Keyboard Navigation for Upload
     uploadBox.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -536,6 +542,6 @@
 
     // Initialize
     resetUI();
-  </script>
+    </script>
 </body>
 </html>
