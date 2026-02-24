@@ -205,16 +205,56 @@
         .tool-card { background: white; padding: 25px; border-radius: 12px; border: 1px solid #f0f0f0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s ease; display: flex; flex-direction: column; color: inherit; position: relative; }
         .tool-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); border-color: #4caf50; z-index: 2; }
         
-        .icon-container { width: 55px; height: 55px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 24px; }
+        .icon-container img {
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 10px;
+                    object-fit: contain;
+                    font-size: 24px;
+                    margin: -28px -22px;
+                    position: relative;
+                    z-index: 2;
+
+
+                }
+
+        .icon-container {
+                  /* Container er size */
+            background-color: #e8f5e9; /* Sei halka sobuj color-ti */
+            border-radius: 12px;
+            margin: 5px auto 15px;
+        
+        }
+        .icon-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+            
+            
         .tool-card:hover .icon-container i { transform: scale(1.1); }
-        .tool-card h3 { margin-bottom: 8px; font-size: 18px; font-weight: 700; }
+        .tool-card h3 { margin-bottom: 8px; font-size: 18px; font-weight: 700; margin-top: 40px; }
         .tool-card p { font-size: 14px; color: #666; }
 
-        .tool-card[data-category="optimize"] .icon-container { background: #e8f5e9; color: #2e7d32; }
-        .tool-card[data-category="edit"] .icon-container { background: #e0f7fa; color: #00838f; }
-        .tool-card[data-category="create"] .icon-container { background: #fbecec; color: #c62828; }
-        .tool-card[data-category="convert"] .icon-container { background: #fffde7; color: #ef6c00; }
-        .tool-card[data-category="security"] .icon-container { background: #e3f2fd; color: #1565c0; }
+        .tool-card[data-category="utility"] .icon-container { background: #f3e5f5; color: #8e24aa; width: 20px; height: 20px; margin: 8px 16px 0px; }
+        .tool-card[data-category="optimize"] .icon-container { background: #e8f5e9; color: #2e7d32; width: 20px; height: 20px; margin: 8px 16px 0px;}
+        .tool-card[data-category="edit"] .icon-container { background: #e0f7fa; color: #00838f; width: 20px; height: 20px; margin: 8px 16px 0px;}
+        .tool-card[data-category="create"] .icon-container { background: #fbecec; color: #c62828; width: 20px; height: 20px; margin: 8px 16px 0px;}
+        .tool-card[data-category="convert"] .icon-container { background: #fffde7; color: #ef6c00; width: 20px; height: 20px; margin: 8px 16px 0px;}
+        .tool-card[data-category="security"] .icon-container { background: #e3f2fd; color: #1565c0; width: 20px; height: 20px; margin: 8px 16px 0px;}
+
+        .tool-card:hover .icon-container img {
+            transform: scale(1.2) rotate(5deg); /* Image-ti ektu boro hobe ar baka hobe */
+            transition: transform 0.3s ease; /* Effect-ti moshri-vabe hobe */
+        }
+
 
         /* --- CHOOSE US & TESTIMONIALS --- */
         .choose-us-section { background-color: #f0f3f6; padding: 80px 0; }
@@ -551,161 +591,162 @@
             <div class="tools-grid" id="toolsGrid">
                 
                 <a href="compress_tool.html" class="tool-card" data-category="optimize" aria-label="Compress Image Tool">
-                    <div class="icon-container"><i class="fas fa-compress" aria-hidden="true"></i></div>
+                    <div class="icon-container img">
+                        <img src="img/compress-img.png" alt="Compress Image Icon" class="tool-icon-img">
+                    </div>
                     <h3>Compress Image</h3>
                     <p>Compress JPG, PNG, GIF, SVG efficiently.</p>
                 </a>
                 <a href="bg_remove.html" class="tool-card" data-category="optimize" aria-label="Remove Background Tool">
-                    <div class="icon-container"><i class="fas fa-eraser" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/remove-bg.png" alt="Remove Background"></div>
                     <h3>Remove Background</h3>
                     <p>Transparent background in 1 click using AI.</p>
                 </a>
                 <a href="color-picker.html" class="tool-card" data-category="optimize" aria-label="Image Color Picker Tool">
-                    <div class="icon-container"><i class="fas fa-palette" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/color-picker.png" alt="Color Picker"></div>
                     <h3>Image Color Picker</h3>
                     <p>Instantly pick color codes from any point in the image.</p>
                 </a>
 
                 <a href="meme-generator.html" class="tool-card" data-category="create" aria-label="Meme Generator Tool">
-                    <div class="icon-container"><i class="fas fa-face-grin-squint" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/meme-generate.png" alt="Meme Generator"></div>
                     <h3>Meme Generator</h3>
                     <p>Create custom memes from your photos instantly.</p>
                 </a>
                 <a href="photoEdit.html" class="tool-card" data-category="create" aria-label="Photo Editor Tool">
-                    <div class="icon-container"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/image-edit.png" alt="Photo Editor"></div>
                     <h3>Photo Editor</h3>
                     <p>Advanced editor to enhance and retouch photos.</p>
                 </a>
                 <a href="join-image.html" class="tool-card" data-category="create" aria-label="Join Image Tool">
-                    <div class="icon-container"><i class="fas fa-object-group" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/join-img.png" alt="Join Image"></div>
                     <h3>Join Image</h3>
                     <p>Combine multiple images into one single image file.</p>
                 </a>
                 <a href="collage-maker.html" class="tool-card" data-category="create" aria-label="Collage Maker Tool">
-                    <div class="icon-container"><i class="fas fa-images" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/collage-maker.png" alt="Collage Maker"></div>
                     <h3>Collage Maker</h3>
                     <p>Create photo collages and layouts easily.</p>
                 </a>
-                <a href="png-to-jpg.html" class="tool-card" data-category="convert" aria-label="PNG to JPG Converter Tool">
-                    <div class="icon-container"><i class="fas fa-file-image" aria-hidden="true"></i></div>
-                    <h3>PNG to JPG</h3>
-                    <p>Convert PNG images to JPG format easily.</p>
-                </a>
                 <a href="image-to-pdf.html" class="tool-card" data-category="create" aria-label="Image to PDF Tool">
-                    <div class="icon-container"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/img-pdf.png" alt="Image to PDF"></div>
                     <h3>Image to PDF</h3>
                     <p>Convert images to a PDF document easily.</p>
                 </a>
-                <a href="split-pdf.html" class="tool-card" data-category="edit" aria-label="Split PDF Tool">
-                    <div class="icon-container"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
-                    <h3>Split PDF</h3>
-                    <p>Separate one PDF into multiple files or extract specific pages easily.</p>
-                </a>
-                <a href="pdf-to-image.html" class="tool-card" data-category="convert" aria-label="PDF to Image Tool">
-                    <div class="icon-container"><i class="fas fa-file-image" aria-hidden="true"></i></div>
-                    <h3>PDF to Image</h3>
-                    <p>Convert PDF pages into high-quality JPG or PNG images instantly.</p>
-                </a>
-
-                <a href="pdf-to-word.html" class="tool-card" data-category="convert" aria-label="PDF to Word Tool">
-                    <div class="icon-container"><i class="fas fa-file-word" aria-hidden="true"></i></div>
-                    <h3>PDF to Word</h3>
-                    <p>Transform your PDF documents into editable Word files (.docx).</p>
-                </a>
-                
                 <a href="image-to-text.html" class="tool-card" data-category="create" aria-label="Image to Text Tool">
-                    <div class="icon-container"><i class="fas fa-font" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/img-text.png" alt="OCR"></div>
                     <h3>Image to Text (OCR)</h3>
                     <p>Extract editable text from images and scanned documents.</p>
                 </a>
-                
+
+                <a href="split-pdf.html" class="tool-card" data-category="edit" aria-label="Split PDF Tool">
+                    <div class="icon-container"><img src="img/spili-pdf.png" alt="Split PDF"></div>
+                    <h3>Split PDF</h3>
+                    <p>Separate one PDF into multiple files or extract specific pages.</p>
+                </a>
                 <a href="resize.html" class="tool-card" data-category="edit" aria-label="Resize Image Tool">
-                    <div class="icon-container"><i class="fas fa-ruler-combined" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/resize-img.png" alt="Resize Image"></div>
                     <h3>Resize Image</h3>
                     <p>Resize using custom dimensions by pixel or percent.</p>
                 </a>
                 <a href="crop.html" class="tool-card" data-category="edit" aria-label="Crop Image Tool">
-                    <div class="icon-container"><i class="fas fa-crop-alt" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/crop-img.png" alt="Crop Image"></div>
                     <h3>Crop Image</h3>
                     <p>Crop JPG, PNG, or GIFs with a visual editor.</p>
                 </a>
                 <a href="rotate-image.html" class="tool-card" data-category="edit" aria-label="Rotate Image Tool">
-                    <div class="icon-container"><i class="fas fa-redo-alt" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/rotate-img.png" alt="Rotate Image"></div>
                     <h3>Rotate Image</h3>
                     <p>Rotate your images by 90, 180, or 270 degrees.</p>
                 </a>
                 <a href="flip-image.html" class="tool-card" data-category="edit" aria-label="Flip Image Tool">
-                    <div class="icon-container"><i class="fas fa-sync-alt" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/flip-img.png" alt="Flip Image"></div>
                     <h3>Flip Image</h3>
                     <p>Flip images vertically or horizontally easily.</p>
                 </a>
                 <a href="mosaic.html" class="tool-card" data-category="edit" aria-label="Mosaic Tool">
-                    <div class="icon-container"><i class="fas fa-braille" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/mosaic.png" alt="Mosaic"></div>
                     <h3>Mosaic</h3>
                     <p>Apply a mosaic/pixel effect to parts of your image.</p>
                 </a>
 
+                <a href="png-to-jpg.html" class="tool-card" data-category="convert" aria-label="PNG to JPG Converter Tool">
+                    <div class="icon-container"><img src="img/png-jpg.png" alt="PNG to JPG"></div>
+                    <h3>PNG to JPG</h3>
+                    <p>Convert PNG images to JPG format easily.</p>
+                </a>
+                <a href="pdf-to-image.html" class="tool-card" data-category="convert" aria-label="PDF to Image Tool">
+                    <div class="icon-container"><img src="img/gif-img.png" alt="PDF to Image"></div>
+                    <h3>PDF to Image</h3>
+                    <p>Convert PDF pages into high-quality JPG or PNG images.</p>
+                </a>
+                <a href="pdf-to-word.html" class="tool-card" data-category="convert" aria-label="PDF to Word Tool">
+                    <div class="icon-container"><img src="img/pdf-word.png" alt="PDF to Word"></div>
+                    <h3>PDF to Word</h3>
+                    <p>Transform your PDF documents into editable Word files.</p>
+                </a>
                 <a href="gif-to-jpg.html" class="tool-card" data-category="convert" aria-label="GIF to JPG Tool">
-                    <div class="icon-container"><i class="fas fa-file-image" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/gif-jpg.png" alt="GIF to JPG"></div>
                     <h3>GIF to JPG</h3>
                     <p>Convert PNG, SVG, WEBP to JPG in bulk.</p>
                 </a>
                 <a href="web-to-jpg.html" class="tool-card" data-category="convert" aria-label="WebP to JPG Tool">
-                    <div class="icon-container"><i class="fas fa-sync-alt" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/webp-jpg.png" alt="WebP to JPG"></div>
                     <h3>WebP to JPG</h3>
-                    <p>Convert modern WebP images to widely supported JPG format instantly.</p>
+                    <p>Convert modern WebP images to JPG format instantly.</p>
                 </a>
                 <a href="heice-to-jpg.html" class="tool-card" data-category="convert" aria-label="HEIC to JPG Tool">
-                    <div class="icon-container"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/heice to jpg.png" alt="HEIC to JPG"></div>
                     <h3>HEIC to JPG</h3>
                     <p>Convert Apple HEIC/HEIF images to standard JPG format.</p>
                 </a>
                 <a href="jpg-to-png.html" class="tool-card" data-category="convert" aria-label="JPG to PNG Tool">
-                    <div class="icon-container"><i class="fas fa-file-export" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/jpg-png.png" alt="JPG to PNG"></div>
                     <h3>JPG to PNG</h3>
                     <p>Convert JPG/WEBP/GIF to high-quality PNG format.</p>
                 </a>
                 <a href="image-to-gif.html" class="tool-card" data-category="convert" aria-label="Image to GIF Tool">
-                    <div class="icon-container"><i class="fas fa-file-video" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/img-gif.png" alt="Image to GIF"></div>
                     <h3>Image to GIF</h3>
                     <p>Convert JPG/PNG to animated or static GIF format.</p>
                 </a>
                 <a href="all-convert.html" class="tool-card" data-category="convert" aria-label="All Convert Tool">
-                    <div class="icon-container"><i class="fas fa-globe" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/all-convert.png" alt="All Convert"></div>
                     <h3>All Convert</h3>
                     <p>Convert HEIC, WEBP, PNG, GIF to JPG, PNG, WEBP.</p>
                 </a>
                 <a href="image-to-vector.html" class="tool-card" data-category="convert" aria-label="Image to Vector Tool">
-                    <div class="icon-container"><i class="fas fa-bezier-curve" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/img-vector.png" alt="Vector"></div>
                     <h3>Image to Vector</h3>
                     <p>Convert JPG/PNG to scalable vector graphics (SVG).</p>
                 </a>
 
                 <a href="watermark.html" class="tool-card" data-category="security" aria-label="Watermark Tool">
-                    <div class="icon-container"><i class="fas fa-tint" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/Watermark.png" alt="Watermark"></div>
                     <h3>Watermark Image</h3>
                     <p>Add text or image watermarks to protect photos.</p>
                 </a>
                 <a href="blur-face.html" class="tool-card" data-category="security" aria-label="Blur Face Tool">
-                    <div class="icon-container"><i class="fas fa-mask" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/blur-face.png" alt="Blur Face"></div>
                     <h3>Blur face</h3>
                     <p>Automatically detect and blur faces for privacy.</p>
                 </a>
                 <a href="qr-generator.html" class="tool-card" data-category="utility" aria-label="QR Code Generator Tool">
-                    <div class="icon-container"><i class="fas fa-qrcode" aria-hidden="true"></i></div>
+                    <div class="icon-container"><img src="img/qr-code.png" alt="QR Generator"></div>
                     <h3>QR Generator</h3>
-                    <p>Create custom QR codes with frames, colors, and styles.</p>
+                    <p>Create custom QR codes with frames and styles.</p>
                 </a>
                 <a href="yt-download.html" class="tool-card" data-category="utility" aria-label="YouTube Video Downloader Tool">
                     <div class="icon-container" style="background: rgba(255, 0, 0, 0.1);">
-                        <i class="fab fa-youtube" style="color: #ff0000;" aria-hidden="true"></i>
+                        <img src="img/youtube-download.png" alt="YouTube Downloader" style="width:90px;">
                     </div>
                     <h3>YouTube Downloader</h3>
                     <p>Download YouTube videos in high quality fast and for free.</p>
                 </a>
+
                 <a href="tiktok-download.html" class="tool-card" data-category="utility" aria-label="TikTok Video Downloader Tool">
                     <div class="icon-container" style="background: rgba(0, 0, 0, 0.05);">
-                        <i class="fab fa-tiktok" style="color: #000000;" aria-hidden="true"></i>
+                        <img src="img/tiktok-download.png" alt="TikTok Downloader" style="width:90px;">
                     </div>
                     <h3>TikTok Downloader</h3>
                     <p>Download TikTok videos without watermark in HD quality for free.</p>
