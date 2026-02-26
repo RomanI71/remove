@@ -4,180 +4,380 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Age Calculator – Free Online Age Finder | TopImgTools</title>
-  <meta name="description" content="Calculate your exact age in years, months, and days instantly. Free, fast, and 100% browser-based Age Calculator tool by TopImgTools.">
+  <meta name="description" content="Calculate your exact age in years, months, and days instantly. Free, fast, and 100% browser-based Age Calculator tool by TopImgTools." />
+  <meta name="keywords" content="age calculator, calculate age online, exact age finder, birthday calculator, chronological age calculator, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  <meta name="theme-color" content="#3498db">
   <link rel="canonical" href="https://topimgtools.com/age-calculator.html" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta property="og:title" content="Age Calculator – Free Online Age Finder" />
+  <meta property="og:description" content="Calculate your exact age down to the seconds. Free, fast, and completely private Age Calculator tool." />
+  <meta property="og:image" content="https://topimgtools.com/assets/age-calculator-banner.jpg" />
+  <meta property="og:url" content="https://topimgtools.com/age-calculator.html" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Age Calculator – Free Online Age Finder" />
+  <meta name="twitter:description" content="Find out your exact age in years, months, days, and seconds instantly." />
+  <meta name="twitter:image" content="https://topimgtools.com/assets/age-calculator-banner.jpg" />
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XBT7MCBM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XBT7MCBM');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Exact Age Calculator",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free online tool to calculate your exact age in years, months, days, hours, and seconds.",
+    "author": {
+        "@type": "Organization",
+        "name": "TopImgTools",
+        "url": "https://topimgtools.com"
+    }
+  }
+  </script>
 
   <style>
     :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
     *{box-sizing:border-box}
     body{
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
       background:var(--bg); margin:0; color:#0f172a; line-height:1.6;
     }
-    .wrap{max-width:800px;margin:36px auto;padding:0 20px}
+    a:focus, button:focus, input:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
+
+    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
     
-    /* Header Style from Crop.html */
+    /* Header Style */
     .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
     .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
     h1{font-size:1.5rem;margin:0;font-weight:700}
     p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
 
-    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:20px}
-    
+    .card{background:var(--card);border-radius:12px;padding:30px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom:24px}
+
+    /* Form Styles */
     .form-group{margin-bottom:20px;}
-    label{display:block; font-weight:600; font-size:14px; margin-bottom:8px; color:#374151;}
+    label{display:block; font-weight:600; font-size:15px; margin-bottom:8px; color:#1e293b;}
     input[type="date"]{
-      width:100%; padding:12px; border-radius:8px; border:1px solid #d1d5db; 
-      font-size:16px; font-family:inherit; transition: border-color 0.2s;
+      width:100%; padding:14px; border-radius:8px; border:2px solid #cbd5e1; 
+      font-size:16px; font-family:inherit; transition: all 0.2s; background-color:#f8fafc; color:#0f172a;
     }
-    input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--focus-ring);}
+    input[type="date"]:hover { border-color: #94a3b8; }
+    input[type="date"]:focus { outline:none; border-color:var(--accent); background-color:#fff; }
 
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:all 0.2s;text-decoration:none; width:100%;}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-primary:hover{background:var(--accent-dark)}
-    .btn-secondary{background:#1f2937;color:#fff; width: auto;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:1rem;transition:all 0.2s;text-decoration:none;}
+    .btn-primary{background:var(--accent);color:#fff; width:100%;}
+    .btn-primary:hover{background:var(--accent-dark); transform: translateY(-1px);}
+    .btn-secondary{background:#1f2937;color:#fff; width:auto; padding:10px 18px;}
+    .btn-secondary:hover{background:#111827;}
 
-    /* Result Box Style */
+    /* Result Layout */
+    .result-wrap { display:grid; grid-template-columns: 1fr; gap:24px; margin-top:30px; }
     .result-box{
-      background:#eff6ff; border: 1px solid #dbeafe; padding:24px; border-radius:12px; margin-top:24px; display:none;
+      background:#eff6ff; border: 2px solid #bfdbfe; padding:24px; border-radius:12px; display:none; animation: fadeIn 0.4s ease;
     }
-    .result-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:15px; margin-top:15px;}
-    .res-item{background:#fff; padding:12px; border-radius:8px; text-align:center; border:1px solid #e5e7eb;}
-    .res-val{display:block; font-size:1.2rem; font-weight:700; color:var(--accent);}
-    .res-lab{font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Floating Pill from Crop.html */
+    .result-header { margin-top:0; color:#1e293b; border-bottom:1px solid #dbeafe; padding-bottom:12px; font-size:1.25rem; }
+    .main-age-text { font-size:1.8rem; font-weight:800; color:#1e293b; margin:20px 0; text-align:center;}
+    .main-age-text span { font-size:1.1rem; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-right:10px;}
+    
+    .result-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:16px; margin-top:20px;}
+    .res-item{background:#fff; padding:16px; border-radius:10px; text-align:center; border:1px solid #e5e7eb; box-shadow:0 2px 4px rgba(0,0,0,0.02);}
+    .res-val{display:block; font-size:1.4rem; font-weight:800; color:var(--accent); margin-bottom:4px;}
+    .res-lab{font-size:0.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; font-weight:600;}
+
+    /* Layout for larger screens */
+    @media(min-width: 768px){
+      .calculator-grid { display:grid; grid-template-columns: 1fr 1.2fr; gap:30px; align-items: start; }
+      .result-wrap { margin-top:0; }
+    }
+
+    /* SEO Content Styling */
+    .seo-content { color: #334155; line-height: 1.8; }
+    .seo-content h2 { font-size: 1.8rem; color: #111827; margin-top: 1.5rem; margin-bottom: 1rem; font-weight:800; text-align:center;}
+    .seo-content h3 { font-size: 1.3rem; color: #1e293b; margin-top: 2rem; margin-bottom: 0.75rem; font-weight:700;}
+    .seo-content ul, .seo-content ol { padding-left: 1.5rem; }
+    .seo-content li { margin-bottom: 10px; }
+
+    /* Navigation Links */
+    .nav-links {
+        margin-top:30px; padding:20px; background:#f3f4f6; border-radius:12px;
+        display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:24px;
+    }
+    .nav-btn {
+        padding:10px 20px; background:#fff; border-radius:30px; text-decoration:none;
+        color:#1f2937; font-weight:600; font-size:0.9rem; box-shadow:0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb; transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-arrow { color: #9ca3af; font-weight: bold; }
+
+    /* Floating Pill */
     .floating-slim-pill {
-        position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
-        width: auto; min-width: 280px; height: 32px; background: linear-gradient(90deg, #001f3f, #8e44ad);
-        border-radius: 20px; display: flex; align-items: center; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); z-index: 10001;
+        position: fixed; top: 12px; left: 50%; transform: translateX(-50%); width: auto;
+        min-width: 280px; max-width: 650px; height: 32px; background: linear-gradient(90deg, #001f3f, #8e44ad);
+        border-radius: 20px; display: flex; align-items: center; overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); z-index: 10001; border: 1px solid rgba(255, 255, 255, 0.15);
     }
-    .scroll-box { display: flex; white-space: nowrap; animation: slim-scroll 20s linear infinite; }
-    .message-item { display: flex; align-items: center; font-size: 13px; font-weight: 600; color: #fff; padding: 0 20px; }
+    .scroll-box { display: flex; white-space: nowrap; animation: slim-scroll 25s linear infinite; }
+    .message-item { display: flex; align-items: center; font-size: 13px; font-weight: 600; color: #ffffff; }
+    .yellow-hit { color: #ffd700; margin: 0 6px; }
+    .dot-sep { margin: 0 35px; color: rgba(255, 255, 255, 0.3); }
     @keyframes slim-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .floating-slim-pill:hover .scroll-box { animation-play-state: paused; }
 
-    footer{margin-top:40px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
+    @media (max-width: 600px) {
+        .floating-slim-pill { width: 92%; top: 8px; height: 30px; }
+        .message-item { font-size: 12px; }
+        .main-age-text { font-size: 1.4rem; }
+    }
+
+    footer{text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px; padding-top:20px;}
   </style>
 </head>
 <body>
 
   <div class="floating-slim-pill">
     <div class="scroll-box">
-        <div class="message-item">Pro Tip: For professional online image editing, visit <span style="color:#ffd700; margin:0 5px;">topimgtools.com</span> ✨</div>
-        <div class="message-item">Pro Tip: For professional online image editing, visit <span style="color:#ffd700; margin:0 5px;">topimgtools.com</span> ✨</div>
+        <div class="message-item">
+            <span>Calculate your exact age instantly! 🎂</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+        <div class="message-item">
+            <span>Calculate your exact age instantly! 🎂</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
     </div>
   </div>
 
   <main class="wrap">
     <header class="header">
-      <a href="index.html" class="logo">
-        <i class="fa fa-calendar-check" style="font-size:28px;color:var(--accent)"></i>
+      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+        <i class="fa fa-calendar-check" aria-hidden="true" style="font-size:32px;color:var(--accent)"></i>
         <div>
           <h1>Age Calculator</h1>
-          <p class="lead">Precise age tracking in years, months & days</p>
+          <p class="lead">Precise chronological age tracking</p>
         </div>
       </a>
-      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
+      <a class="btn btn-secondary" href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
     </header>
 
-    <div class="card">
-      <div class="form-group">
-        <label><i class="fa fa-cake-candles"></i> Date of Birth</label>
-        <input type="date" id="dob">
+    <section class="card calculator-grid" aria-labelledby="calculator-heading">
+      <h2 id="calculator-heading" style="display:none;">Calculate Your Age</h2>
+      
+      <div>
+        <div class="form-group">
+          <label for="dob"><i class="fa fa-cake-candles" style="color:#f59e0b; margin-right:6px;"></i> Date of Birth</label>
+          <input type="date" id="dob" required>
+        </div>
+
+        <div class="form-group">
+          <label for="today"><i class="fa fa-calendar-day" style="color:var(--accent); margin-right:6px;"></i> Calculate Age At (Optional)</label>
+          <input type="date" id="today">
+          <p style="font-size:0.8rem; color:var(--muted); margin-top:6px;">Defaults to today's date if left blank.</p>
+        </div>
+
+        <button class="btn btn-primary" onclick="calculateAge()">
+          <i class="fa fa-calculator"></i> Calculate My Age
+        </button>
+        
+        <div style="margin-top:20px; font-size:0.85rem; color:var(--muted); text-align:center;">
+          <strong><i class="fa fa-shield-halved"></i> Privacy Note:</strong>
+          <p style="margin:4px 0 0;">All calculations happen securely in your browser.</p>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label><i class="fa fa-clock"></i> Calculate Age At (Optional)</label>
-        <input type="date" id="today">
+      <div class="result-wrap">
+        <div id="result" class="result-box" aria-live="polite">
+            <h3 class="result-header">
+                <i class="fa fa-chart-pie" style="color:var(--accent); margin-right:8px;"></i> Your Age Summary
+            </h3>
+            
+            <div id="main-result" class="main-age-text">
+                </div>
+            
+            <h4 style="margin:20px 0 10px; font-size:1rem; color:#475569; border-top:1px dashed #bfdbfe; padding-top:15px;">Detailed Breakdown</h4>
+            <div class="result-grid" id="detail-grid">
+                </div>
+        </div>
+        
+        <div id="result-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:250px; background:#f8fafc; border:2px dashed #cbd5e1; border-radius:12px; color:var(--muted); text-align:center; padding:20px;">
+            <i class="fa fa-clock-rotate-left" style="font-size:40px; color:#cbd5e1; margin-bottom:15px;"></i>
+            <p style="font-size:1.1rem; font-weight:500;">Enter your date of birth<br>to see your exact age.</p>
+        </div>
       </div>
+    </section>
 
-      <button class="btn btn-primary" onclick="calculateAge()">
-        <i class="fa fa-calculator"></i> Calculate My Age
-      </button>
+    <nav class="nav-links" aria-label="Related Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="https://topimgtools.com/crop-image.html" class="nav-btn">Crop Image Tool</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="https://topimgtools.com/png-to-jpg.html" class="nav-btn">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
 
-      <div id="result" class="result-box">
-        <h3 style="margin-top:0; color:#1e293b; border-bottom:1px solid #dbeafe; padding-bottom:10px;">
-          <i class="fa fa-chart-pie"></i> Your Age Summary
-        </h3>
-        
-        <div id="main-result" style="font-size:1.4rem; font-weight:700; color:#1e293b; margin:15px 0;"></div>
-        
-        <div class="result-grid" id="detail-grid">
+    <article class="card seo-content">
+        <h2>Free Online Age Calculator – Calculate Your Exact Age Instantly</h2>
+
+        <div style="text-align: justify; margin-bottom: 25px;">
+            <p style="margin-bottom: 15px;">
+                Have you ever wondered exactly how old you are in days, hours, or even seconds? Our <strong>Online Age Calculator</strong> makes it incredibly easy to find out. Whether you need to calculate your precise chronological age for an application, track a baby's age in weeks, or simply want to know the exact time span between two dates, this tool provides highly accurate results instantly.
+            </p>
+            <p>
+                At <strong>TopImgTools</strong>, we believe in providing fast, user-friendly utilities. While we are known for being the best platform for online image editing, our handy calculators are built with the same commitment to privacy, speed, and precision. The calculation is done entirely within your web browser.
+            </p>
+        </div>
+
+        <h3>Why Use Our Age Calculator Tool?</h3>
+        <p style="margin-bottom: 15px;">
+            Finding your age seems simple, but calculating the exact leap years, months with different days, and specific time gaps can be tricky manually. Here is why our tool stands out:
+        </p>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li>🚀 <strong>Instant Results:</strong> No waiting, no page reloads. The moment you click calculate, your full age breakdown appears.</li>
+            <li>🔒 <strong>100% Private & Secure:</strong> We value your data. Your date of birth is never sent to our servers; everything is calculated locally on your device via client-side processing.</li>
+            <li>📊 <strong>Detailed Breakdown:</strong> Get your age not just in standard format (Years, Months, Days), but also converted entirely into Total Months, Weeks, Days, Hours, Minutes, and Seconds.</li>
+            <li>📅 <strong>Custom Date Comparison:</strong> By default, it calculates your age as of today. However, you can input a past or future "Calculate Age At" date to see how old you were or will be on a specific day!</li>
+        </ul>
+
+        <h3>Common Uses for an Age Finder</h3>
+        <ul style="list-style-type: disc;">
+            <li><strong>Form Filling:</strong> Many government, medical, and academic forms require your exact age in years and months as of a specific cut-off date.</li>
+            <li><strong>Baby Milestones:</strong> Parents frequently need to know exactly how many weeks or months old their infant is for medical checkups and developmental tracking.</li>
+            <li><strong>Event Planning:</strong> Calculate exactly how many days are left until a significant milestone birthday or anniversary.</li>
+            <li><strong>Fun Facts:</strong> Discover if you've hit your 10,000th day on earth or how many millions of seconds you have been alive!</li>
+        </ul>
+
+        <div style="margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 25px;">
+            <h3 style="margin-top: 0;">Frequently Asked Questions (FAQ)</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Does this calculator account for leap years?</p>
+                <p style="color: #4b5563; margin-top:0;">A: Yes! Our algorithm automatically factors in leap years, ensuring that the total days and specific date gaps are mathematically perfect.</p>
             </div>
-      </div>
-    </div>
 
-    <article class="card" style="font-size:0.95rem; color:#4b5563;">
-        <h2 style="font-size:1.25rem; color:#1e293b;">Why use TopImgTools Age Calculator?</h2>
-        <p>Amader Age Calculator tool-ti diye apni khub sojae apnar boyos bochor, mash, ebong dine hisab korte parben. Eti sompurno private ebong browser-e kaaj kore.</p>
-        <p><strong>TopImgTools</strong> hocche online image editing ebong utility tools-er jonno ekiti bishwashjogyo platform. Amader onno tool gulo try korte paren jemon: 
-        <a href="crop-image.html" style="color:var(--accent); font-weight:600;">Crop Image Online</a>.</p>
+            <div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Can I use this to find the difference between any two dates?</p>
+                <p style="color: #4b5563; margin-top:0;">A: Absolutely. While it's labeled as an Age Calculator, it functions perfectly as a general "Date Difference" calculator. Just put the older date in the first box and the newer date in the second.</p>
+            </div>
+
+            <div style="margin-bottom: 0;">
+                <p style="font-weight: 700; color: #1f2937; margin-bottom: 5px;">Q: Is my birth date saved anywhere?</p>
+                <p style="color: #4b5563; margin-top:0;">A: No. We do not use cookies or databases to store your personal dates. Once you close the tab, the data is gone.</p>
+            </div>
+        </div>
     </article>
 
     <footer>
-      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved. <br>
+      <span style="font-size:0.8rem;">TopImgTools.com is best for online image editing and helpful utilities.</span></p>
     </footer>
   </main>
 
 <script>
-function calculateAge(){
-  const dobInput = document.getElementById("dob").value;
-  const todayInput = document.getElementById("today").value;
+  // Set default "today" value to actual today on load
+  document.addEventListener('DOMContentLoaded', () => {
+      const todayInput = document.getElementById("today");
+      const todayDate = new Date();
+      // Format to YYYY-MM-DD for the input type="date"
+      const yyyy = todayDate.getFullYear();
+      const mm = String(todayDate.getMonth() + 1).padStart(2, '0');
+      const dd = String(todayDate.getDate()).padStart(2, '0');
+      todayInput.value = `${yyyy}-${mm}-${dd}`;
+  });
 
-  if(!dobInput){
-    alert("Please select your date of birth");
-    return;
+  function calculateAge(){
+    const dobInput = document.getElementById("dob").value;
+    let todayInput = document.getElementById("today").value;
+
+    if(!dobInput){
+      alert("Please select your date of birth");
+      document.getElementById("dob").focus();
+      return;
+    }
+
+    const dob = new Date(dobInput);
+    const today = todayInput ? new Date(todayInput) : new Date();
+
+    if(dob > today){
+      alert("Birth date cannot be in the future relative to the target date.");
+      return;
+    }
+
+    let years = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth() - dob.getMonth();
+    let days = today.getDate() - dob.getDate();
+
+    if(days < 0){
+      months--;
+      const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+
+    if(months < 0){
+      years--;
+      months += 12;
+    }
+
+    const diffMs = today - dob;
+    const totalSeconds = Math.floor(diffMs / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours / 24);
+    const totalWeeks = Math.floor(totalDays / 7);
+    const totalMonths = (years * 12) + months;
+
+    // UI Updates
+    const resultBox = document.getElementById("result");
+    const placeholder = document.getElementById("result-placeholder");
+    const mainRes = document.getElementById("main-result");
+    const detailGrid = document.getElementById("detail-grid");
+
+    placeholder.style.display = "none";
+    resultBox.style.display = "block";
+    
+    // Main age text
+    mainRes.innerHTML = `${years} <span>Years</span> ${months} <span>Months</span> ${days} <span>Days</span>`;
+
+    // Detailed grid
+    detailGrid.innerHTML = `
+      <div class="res-item"><span class="res-val">${totalMonths.toLocaleString()}</span><span class="res-lab">Months</span></div>
+      <div class="res-item"><span class="res-val">${totalWeeks.toLocaleString()}</span><span class="res-lab">Weeks</span></div>
+      <div class="res-item"><span class="res-val">${totalDays.toLocaleString()}</span><span class="res-lab">Days</span></div>
+      <div class="res-item"><span class="res-val">${totalHours.toLocaleString()}</span><span class="res-lab">Hours</span></div>
+      <div class="res-item"><span class="res-val">${totalMinutes.toLocaleString()}</span><span class="res-lab">Minutes</span></div>
+      <div class="res-item"><span class="res-val">${totalSeconds.toLocaleString()}</span><span class="res-lab">Seconds</span></div>
+    `;
+    
+    // Smooth scroll to results on mobile
+    if(window.innerWidth < 768) {
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
-
-  const dob = new Date(dobInput);
-  const today = todayInput ? new Date(todayInput) : new Date();
-
-  if(dob > today){
-    alert("Birth date cannot be in the future");
-    return;
-  }
-
-  let years = today.getFullYear() - dob.getFullYear();
-  let months = today.getMonth() - dob.getMonth();
-  let days = today.getDate() - dob.getDate();
-
-  if(days < 0){
-    months--;
-    const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-    days += prevMonth.getDate();
-  }
-
-  if(months < 0){
-    years--;
-    months += 12;
-  }
-
-  const diffMs = today - dob;
-  const totalSeconds = Math.floor(diffMs / 1000);
-  const totalMinutes = Math.floor(totalSeconds / 60);
-  const totalHours = Math.floor(totalMinutes / 60);
-  const totalDays = Math.floor(totalHours / 24);
-  const totalWeeks = Math.floor(totalDays / 7);
-  const totalMonths = (years * 12) + months;
-
-  const resultBox = document.getElementById("result");
-  const mainRes = document.getElementById("main-result");
-  const detailGrid = document.getElementById("detail-grid");
-
-  resultBox.style.display = "block";
-  mainRes.innerHTML = `${years} <span style="font-size:1rem; font-weight:400;">Years</span> ${months} <span style="font-size:1rem; font-weight:400;">Months</span> ${days} <span style="font-size:1rem; font-weight:400;">Days</span>`;
-
-  detailGrid.innerHTML = `
-    <div class="res-item"><span class="res-val">${totalMonths.toLocaleString()}</span><span class="res-lab">Total Months</span></div>
-    <div class="res-item"><span class="res-val">${totalWeeks.toLocaleString()}</span><span class="res-lab">Total Weeks</span></div>
-    <div class="res-item"><span class="res-val">${totalDays.toLocaleString()}</span><span class="res-lab">Total Days</span></div>
-    <div class="res-item"><span class="res-val">${totalHours.toLocaleString()}</span><span class="res-lab">Total Hours</span></div>
-    <div class="res-item"><span class="res-val">${totalMinutes.toLocaleString()}</span><span class="res-lab">Minutes</span></div>
-    <div class="res-item"><span class="res-val">${totalSeconds.toLocaleString()}</span><span class="res-lab">Seconds</span></div>
-  `;
-}
 </script>
 
 </body>

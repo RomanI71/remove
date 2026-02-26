@@ -580,6 +580,10 @@ async def flip_tool():
 async def gif_to_jpg():
     return FileResponse("static/gif-to-jpg.html")
 
+@app.get("/age-calculator.html")
+async def age_calculator():
+    return FileResponse("static/age-calculator.html")
+
 @app.get("/heice-to-jpg.html")
 async def heice_to_jpg():
     return FileResponse("static/heice-to-jpg.html")
