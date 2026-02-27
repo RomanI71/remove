@@ -12,14 +12,14 @@
 
   <meta property="og:title" content="TikTok Video Downloader – No Watermark & HD Quality" />
   <meta property="og:description" content="Download TikTok videos without watermark easily with TopImgTools. High quality MP4 downloads for free." />
-  <meta property="og:image" content="https://topimgtools.com/img/tiktok-download.png" />
+  <meta property="og:image" content="https://topimgtools.com/static/img/tiktok-download.png" />
   <meta property="og:url" content="https://topimgtools.com/tiktok-download.html" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="TikTok Video Downloader – Free & Fast" />
   <meta name="twitter:description" content="Save TikTok videos without watermark in one click. 100% safe and online." />
-  <meta name="twitter:image" content="https://topimgtools.com/img/tiktok-download.png" />
+  <meta name="twitter:image" content="https://topimgtools.com/static/img/tiktok-download.png"/>
   
 
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -83,11 +83,23 @@
     .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:24px}
     
     /* Result Styling */
-    .preview-img {
+   /* .preview-img {
         width: 100%; border-radius: 8px; display: none; margin-bottom: 16px; 
         box-shadow: 0 2px 4px rgba(0,0,0,0.1); object-fit: cover; 
         /* TikTok is usually vertical, keeping 9/16 aspect ratio but limiting height */
-        aspect-ratio: 9/16; max-height: 450px;
+            /* aspect-ratio: 9/16; max-height: 450px;
+        } */
+
+    .preview-img {
+        width: 220px; /* ইমেজটি ছোট করার জন্য নির্দিষ্ট চওড়া দেওয়া হলো */
+        margin: 0 auto 16px; /* থাম্বনেইলটি কার্ডের মাঝখানে রাখার জন্য */
+        display: none; /* শুরুতে লুকানো থাকবে */
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        object-fit: cover;
+        aspect-ratio: 9/16; /* টিকটক ভিডিওর ভার্টিক্যাল ফরম্যাট বজায় রাখা */
+        max-height: 380px; /* উচ্চতা কিছুটা কমিয়ে আনা হলো */
+        border: 3px solid #fff; /* একটি বর্ডার দিলে প্রিভিউটি আরও ফুটে উঠবে */
     }
     select.quality-select {
         width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid var(--border);
