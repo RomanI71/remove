@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image Upscaler Tool – Free Online Photo Enlarger | TopImgTools</title>
+  <meta name="description" content="Upscale and enlarge your images online without losing quality. Resize pictures to 2x, 4x, or 8x instantly. Free, fast, and accessible online tool." />
+  <meta name="keywords" content="image upscaler, photo enlarger, upscale image online, increase image resolution, TopImgTools" />
+  <meta name="author" content="TopImgTools" />
+  
+  <meta property="og:title" content="Image Upscaler Tool – Free Online Photo Enlarger" />
+  <meta property="og:description" content="Upscale images to 2x, 4x, or 8x instantly in your browser. Free and fast tool." />
+  <meta property="og:type" content="website" />
+  
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --neum-bg: #f3f4f6;
+      --neum-shadow-light: #ffffff;
+      --neum-shadow-dark: #cbd5e1;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+    .wrap { max-width: 980px; margin: 36px auto; padding: 0 20px; }
+    
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-top: 20px; }
+    .logo { display: flex; gap: 12px; align-items: center; }
+    .logo img { height: 36px; width: auto; }
+    h1 { font-size: 22px; margin: 0; font-weight: 700; }
+    p.lead { color: var(--text-muted); margin: 4px 0 0; font-size: 15px; }
+    
+    /* Common UI */
+    .card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 16px; border-radius: 8px; border: 1px solid transparent;
+      cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.2s;
+      font-family: inherit;
+    }
+    .btn:focus-visible, .input:focus-visible, .upload-box:focus-visible, .nav-link-neumorphism:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary { background: #1e293b; color: #fff; }
+    .btn-secondary:hover { background: #0f172a; }
+    .btn-outline { background: #fff; border-color: var(--border); color: var(--text-main); }
+    .btn-outline:hover { background: #f1f5f9; }
+    .btn-outline:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    /* Icons */
+    .icon { width: 16px; height: 16px; fill: currentColor; }
+
+    /* Upload Box */
+    .upload-box {
+      border: 2px dashed var(--border); border-radius: 10px; padding: 24px;
+      display: flex; gap: 20px; align-items: center; justify-content: space-between;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .upload-box:hover, .upload-box.highlight { border-color: var(--accent); background: #eff6ff; }
+    .upload-box .center { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+    .upload-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    
+    /* Grid & Layout */
+    .grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; margin-top: 24px; }
+    
+    /* Preview Area */
+    .preview-wrap {
+      position: relative; display: flex; justify-content: center; align-items: center;
+      background: #f1f5f9; border-radius: 8px; padding: 10px;
+      overflow: hidden; min-height: 300px; border: 1px solid var(--border);
+    }
+    .preview-img { max-width: 100%; max-height: 600px; border-radius: 6px; object-fit: contain; display: none; user-select: none; }
+    
+    /* Controls */
+    .control-group { display: flex; flex-direction: column; gap: 12px; }
+    .row { display: flex; gap: 10px; align-items: center; }
+    .input { padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); font-size: 14px; background: #fff; }
+    .label { font-size: 13px; font-weight: 500; color: var(--text-muted); min-width: 70px; }
+    
+    /* Right Sidebar */
+    .info-box { display: flex; flex-direction: column; gap: 12px; }
+    .code-block {
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 12px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .code-val { font-family: monospace; font-size: 15px; font-weight: 700; color: var(--accent); }
+    
+    /* Neumorphism Link Block */
+    .nav-links-container {
+        margin-top: 35px; padding: 14px; background: var(--neum-bg); border-radius: 14px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.05); display: flex; justify-content: center;
+        align-items: center; gap: 14px; flex-wrap: wrap; font-size: 15px;
+    }
+    .nav-link-neumorphism {
+        padding: 10px 22px; background: linear-gradient(145deg, #e7e9eb, var(--neum-shadow-light));
+        border-radius: 30px; text-decoration: none; color: #1f2937;
+        font-weight: 700; font-size: 14px;
+        box-shadow: 3px 3px 8px var(--neum-shadow-dark), -3px -3px 8px var(--neum-shadow-light);
+        transition: 0.25s ease; display: inline-block;
+    }
+    .nav-link-neumorphism:hover {
+        transform: translateY(-3px);
+        box-shadow: 4px 4px 12px #c4ccd8, -4px -4px 12px var(--neum-shadow-light);
+    }
+    .nav-arrow { color: #9ca3af; font-weight: bold; font-size: 20px; }
+
+    /* SEO Content Section */
+    .seo-content-section {
+      margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px;
+      padding-bottom: 20px;
+    }
+    .seo-content-section article { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+    .seo-content-section h2 { font-size: 24px; margin-bottom: 16px; }
+    .seo-content-section h3 { font-size: 20px; margin-top: 32px; margin-bottom: 12px; }
+    .seo-content-section h4 { font-size: 16px; margin-bottom: 4px; }
+    .seo-content-section ul { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* Floating Pill */
+    .floating-slim-pill {
+        position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+        width: auto; min-width: 280px; max-width: 650px; height: 32px; 
+        background: linear-gradient(90deg, #001f3f, #8e44ad); 
+        border-radius: 20px; display: flex; align-items: center; overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); z-index: 10001;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .scroll-box { display: flex; white-space: nowrap; animation: slim-scroll 20s linear infinite; }
+    .message-item { display: flex; align-items: center; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #ffffff; }
+    .yellow-hit { color: #ffd700; margin: 0 6px; }
+    .dot-sep { margin: 0 35px; color: rgba(255, 255, 255, 0.3); }
+    @keyframes slim-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .floating-slim-pill:hover .scroll-box { animation-play-state: paused; }
+
+    footer { margin-top: 40px; text-align: center; color: var(--text-muted); font-size: 14px; padding-bottom: 20px; }
+    
+    @media(max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .upload-box { flex-direction: column; text-align: center; }
+      .upload-actions { justify-content: center; }
+      .seo-content-section ul { grid-template-columns: 1fr; }
+    }
+    .hidden { display: none !important; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <header class="header">
+      <div class="logo">
+        <svg class="icon" viewBox="0 0 512 512" style="width:36px;height:36px;color:var(--accent)">
+          <path d="M200 32H56C42.7 32 32 42.7 32 56V200c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2l40-40 79 79-79 79L73 295c-6.9-6.9-17.2-8.9-26.2-5.2S32 302.3 32 312V456c0 13.3 10.7 24 24 24H200c9.7 0 18.5-5.8 22.2-14.8s1.7-19.3-5.2-26.2l-40-40 79-79 79 79-40 40c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H456c13.3 0 24-10.7 24-24V312c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2l-40 40-79-79 79-79 40 40c6.9 6.9 17.2 8.9 26.2 5.2s14.8-12.5 14.8-22.2V56c0-13.3-10.7-24-24-24H312c-9.7 0-18.5 5.8-22.2 14.8s-1.7 19.3 5.2 26.2l40 40-79 79-79-79 40-40c6.9-6.9 8.9-17.2 5.2-26.2S209.7 32 200 32z"/>
+        </svg>
+        <div>
+          <h1>Image Upscaler</h1>
+          <p class="lead">Enlarge & enhance images instantly</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-secondary" href="index.html" aria-label="Go Back">
+          Back
+        </a>
+      </div>
+    </header>
+
+    <main class="card">
+      <div class="upload-box" id="uploadBox" role="button" tabindex="0" aria-label="Upload image area. Drag and drop or click to select.">
+        <div class="center">
+          <svg class="icon" style="width:32px;height:32px;color:var(--accent)" viewBox="0 0 640 512"><path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"/></svg>
+          <div style="font-weight:700; color:var(--text-main)">Drag & drop or select an image</div>
+          <div class="label">JPG, PNG, WebP — max 25MB</div>
+        </div>
+        <div class="upload-actions">
+          <div class="control-group">
+            <button id="selectBtn" class="btn btn-primary">Select Image</button>
+            <input id="fileInput" type="file" accept="image/*" class="hidden" aria-hidden="true">
+          </div>
+          
+          <div class="control-group" style="min-width:240px; padding-left:12px; border-left:1px solid var(--border)">
+             <div class="row">
+              <label for="scaleFactor" class="label">Scale</label>
+              <select id="scaleFactor" class="input" style="flex:1">
+                <option value="2" selected>2x (Double Size)</option>
+                <option value="3">3x (Triple Size)</option>
+                <option value="4">4x (Quadruple)</option>
+                <option value="8">8x (Massive)</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="smoothing" class="label">Quality</label>
+              <select id="smoothing" class="input" style="flex:1">
+                <option value="smooth" selected>Smooth (Bilinear/Photo)</option>
+                <option value="pixelated">Pixelated (Nearest/Art)</option>
+              </select>
+            </div>
+            <div class="row" style="justify-content: flex-end;">
+               <button id="processBtn" class="btn btn-primary" style="font-size:13px; padding:6px 12px; width:100%" disabled>
+                 Apply Upscale
+               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card" style="padding:0; box-shadow:none; background:transparent">
+          <div class="preview-wrap" id="previewWrap" aria-label="Image preview area">
+            <img id="previewImg" class="preview-img" alt="Uploaded preview">
+            <div id="placeholder" style="text-align:center; color:var(--text-muted);">
+              <p>Image preview will appear here</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:16px; justify-content:center; flex-wrap:wrap">
+            <button id="clearBtn" class="btn btn-outline">Clear Image</button>
+          </div>
+        </section>
+
+        <aside class="card info-box">
+          <div role="status"><strong>Status:</strong> <span id="status" style="color:var(--text-muted)">No file uploaded</span></div>
+          
+          <div style="margin-top:8px">
+            <div class="code-block" style="margin-top:12px">
+              <div style="display:flex; justify-content:space-between; align-items:center">
+                <span class="label">Original Size</span>
+                <span id="origSize" class="code-val">—</span>
+              </div>
+            </div>
+
+            <div class="code-block" style="margin-top:8px; background: #eff6ff; border-color: #bfdbfe;">
+               <div style="display:flex; justify-content:space-between; align-items:center">
+                <span class="label">Upscaled Size</span>
+                <span id="newSize" class="code-val" style="color:var(--accent)">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px; padding-top:16px; border-top: 1px solid var(--border)">
+            <label for="exportFormat" class="label">Export Format</label>
+            <select id="exportFormat" class="input" style="width:100%; margin-top:4px; margin-bottom:12px">
+              <option value="jpg">JPG (Best for Photos)</option>
+              <option value="png" selected>PNG (Lossless)</option>
+              <option value="webp">WEBP (Modern Web)</option>
+            </select>
+            
+            <button id="downloadBtn" class="btn btn-outline" style="width:100%; justify-content:center" disabled>
+              Download Upscaled Image
+            </button>
+          </div>
+        </aside>        
+      </div>
+    </main>
+
+    <nav class="nav-links-container" aria-label="Other Image Tools">
+        <span class="nav-arrow" aria-hidden="true">⟵</span>
+        <a href="#" class="nav-link-neumorphism">Color Picker</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="#" class="nav-link-neumorphism">Image Compressor</a>
+        <span class="nav-arrow" aria-hidden="true">›</span>
+        <a href="#" class="nav-link-neumorphism">PNG → JPG</a>
+        <span class="nav-arrow" aria-hidden="true">⟶</span>
+    </nav>
+    
+    <div class="card">
+        <section class="seo-content-section">
+            <article>
+                <h2 style="font-size: 28px; margin-bottom: 16px; color: #111827; font-weight: 800;">
+                    Free Online Image Upscaler – Enlarge Photos Without Losing Quality
+                </h2>
+                <div style="color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; text-align: justify;">
+                    <p style="margin-bottom: 15px;">
+                        Need to make a small image bigger but worried about it becoming blurry or pixelated? Our <strong>Online Image Upscaler</strong> uses smart browser-based rendering to resize and enlarge your pictures instantly. Whether it's a small logo, a low-resolution photo, or digital art, you can boost its size up to 8x directly from your browser.
+                    </p>
+                </div>
+
+                <h3 style="font-size: 22px; margin-top: 32px; margin-bottom: 12px; font-weight: 700;">How to Upscale an Image?</h3>
+                <ol style="color: var(--text-muted); padding-left: 20px; margin-bottom: 24px; line-height: 1.8;">
+                    <li style="margin-bottom: 12px;"><strong>Upload:</strong> Drag and drop your small image into the workspace.</li>
+                    <li style="margin-bottom: 12px;"><strong>Choose Scale:</strong> Select how much larger you want the image (2x, 4x, etc.).</li>
+                    <li style="margin-bottom: 12px;"><strong>Select Quality:</strong> Choose "Smooth" for photos or "Pixelated" for Pixel Art/Logos.</li>
+                    <li style="margin-bottom: 12px;"><strong>Download:</strong> Click process and download your high-resolution image instantly.</li>        
+                </ol>
+            </article>
+        </section>
+    </div>
+    
+    <footer>
+      <p>&copy; 2025 TopImgTools. All rights reserved.</p>
+    </footer>
+  </div>
+  
+  <div class="floating-slim-pill">
+    <div class="scroll-box">
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+        <div class="message-item">
+            <span>If you found this site helpful, please <span class="yellow-hit">share it</span>! 🚀</span>
+            <span class="dot-sep">✦</span>
+            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
+            <span class="dot-sep">✦</span>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    const uploadBox = document.getElementById('uploadBox');
+    const fileInput = document.getElementById('fileInput');
+    const selectBtn = document.getElementById('selectBtn');
+    const previewImg = document.getElementById('previewImg');
+    const placeholder = document.getElementById('placeholder');
+    const status = document.getElementById('status');
+    const origSize = document.getElementById('origSize');
+    const newSize = document.getElementById('newSize');
+    const processBtn = document.getElementById('processBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    
+    const scaleFactor = document.getElementById('scaleFactor');
+    const smoothing = document.getElementById('smoothing');
+    const exportFormat = document.getElementById('exportFormat');
+
+    let currentImgObj = null;
+    let originalFileName = "image";
+    let finalDataUrl = null;
+
+    // Handlers
+    const triggerFile = () => fileInput.click();
+    selectBtn.addEventListener('click', triggerFile);
+    
+    uploadBox.addEventListener('click', (e) => {
+        if(e.target.closest('button') || e.target.closest('select') || e.target.closest('input')) return;
+        triggerFile();
+    });
+
+    fileInput.addEventListener('change', e => handleFiles(e.target.files));
+    
+    // Drag & Drop
+    ['dragenter','dragover'].forEach(evt => uploadBox.addEventListener(evt, e => { 
+        e.preventDefault(); uploadBox.classList.add('highlight'); 
+    }));
+    ['dragleave','drop'].forEach(evt => uploadBox.addEventListener(evt, e => { 
+        e.preventDefault(); uploadBox.classList.remove('highlight'); 
+    }));
+    uploadBox.addEventListener('drop', e => { 
+        e.preventDefault(); handleFiles(e.dataTransfer.files); 
+    });
+
+    function handleFiles(files){
+      if(!files || !files.length) return;
+      const file = files[0];
+      if(!file.type.startsWith('image/')) return alert('Please upload an image file');
+      
+      originalFileName = file.name.split('.')[0] || "image";
+      status.textContent = 'Loading image...';
+      
+      const reader = new FileReader();
+      reader.onload = e => {
+          const img = new Image();
+          img.onload = () => {
+              currentImgObj = img;
+              origSize.textContent = `${img.width} × ${img.height}`;
+              newSize.textContent = `Ready to upscale`;
+              status.textContent = 'Image loaded. Click Apply.';
+              previewImg.src = e.target.result;
+              previewImg.style.display = 'block';
+              placeholder.style.display = 'none';
+              processBtn.disabled = false;
+              downloadBtn.disabled = true;
+          };
+          img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Process Upscale using Canvas
+    processBtn.addEventListener('click', () => {
+        if(!currentImgObj) return;
+        
+        status.textContent = 'Processing...';
+        processBtn.disabled = true;
+
+        setTimeout(() => {
+            const scale = parseInt(scaleFactor.value);
+            const isSmooth = smoothing.value === 'smooth';
+            
+            const canvas = document.createElement('canvas');
+            const targetW = currentImgObj.width * scale;
+            const targetH = currentImgObj.height * scale;
+            
+            canvas.width = targetW;
+            canvas.height = targetH;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.imageSmoothingEnabled = isSmooth;
+            if(isSmooth) {
+                ctx.imageSmoothingQuality = 'high';
+            }
+            
+            ctx.drawImage(currentImgObj, 0, 0, targetW, targetH);
+            
+            // Generate Data URL
+            let mimeType = 'image/png';
+            if(exportFormat.value === 'jpg') mimeType = 'image/jpeg';
+            if(exportFormat.value === 'webp') mimeType = 'image/webp';
+            
+            finalDataUrl = canvas.toDataURL(mimeType, 0.95);
+            
+            // Update UI
+            previewImg.src = finalDataUrl;
+            newSize.textContent = `${targetW} × ${targetH}`;
+            status.textContent = 'Upscale Complete!';
+            
+            processBtn.disabled = false;
+            downloadBtn.disabled = false;
+            downloadBtn.classList.remove('btn-outline');
+            downloadBtn.classList.add('btn-primary');
+        }, 50); // Small timeout to allow UI update for "Processing..."
+    });
+
+    // Download Logic
+    downloadBtn.addEventListener('click', () => {
+        if(!finalDataUrl) return;
+        const a = document.createElement('a');
+        a.href = finalDataUrl;
+        a.download = `${originalFileName}-upscaled-${scaleFactor.value}x.${exportFormat.value}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
+
+    // Clear Logic
+    clearBtn.addEventListener('click', () => {
+        currentImgObj = null;
+        finalDataUrl = null;
+        previewImg.style.display = 'none';
+        placeholder.style.display = 'block';
+        previewImg.src = '';
+        status.textContent = 'No file uploaded';
+        origSize.textContent = '—';
+        newSize.textContent = '—';
+        processBtn.disabled = true;
+        downloadBtn.disabled = true;
+        downloadBtn.classList.add('btn-outline');
+        downloadBtn.classList.remove('btn-primary');
+        fileInput.value = '';
+    });
+  </script>
+</body>
+</html>
