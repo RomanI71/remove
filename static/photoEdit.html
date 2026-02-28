@@ -32,14 +32,13 @@
 </script>
 
 <style>
-:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#4b5563; /* Darkened for Contrast */ --border:#e2e8f0;}
+:root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--muted:#4b5563; --border:#e2e8f0;}
 *{box-sizing:border-box}
 body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;background:var(--bg);margin:0;color:#0f172a; line-height: 1.5;}
 
 .wrap{max-width:980px;margin:36px auto;padding:20px}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .logo{display:flex;gap:12px;align-items:center}
-/* Fix CLS by ensuring image has space */
 .logo img{height:36px; width:auto;} 
 
 h1{font-size:22px;margin:0}
@@ -63,8 +62,8 @@ p.lead{color:var(--muted);margin:6px 0 0; font-size: 15px;}
 
 .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
 
-.preview{display:flex;flex-direction:column;gap:8px;align-items:center; min-height: 360px; justify-content: center;}
-.preview canvas{max-width:100%;max-height:360px;border-radius:8px;background:#f3f4f6; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+.preview{display:flex;flex-direction:column;gap:8px;align-items:center; min-height: 360px; justify-content: center; position: relative; overflow: hidden;}
+.preview canvas{max-width:100%;max-height:500px;border-radius:8px;background:#f3f4f6; box-shadow: 0 4px 10px rgba(0,0,0,0.05); object-fit: contain;}
 
 .small{font-size:13px;color:var(--muted); font-weight: 500;}
 .control-group { margin-top: 12px; }
@@ -76,81 +75,27 @@ footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
 /* Accessibility Utility */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
- .floating-slim-pill {
-        position: fixed;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
-        min-width: 280px;
-        max-width: 650px;
-        height: 32px; /* চিকন এবং আধুনিক উচ্চতা */
-        background: linear-gradient(90deg, #001f3f, #8e44ad); /* আপনার সাইটের থিমের সাথে মিল রেখে */
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-        z-index: 10001;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .scroll-box {
-        display: flex;
-        white-space: nowrap;
-        animation: slim-scroll 20s linear infinite;
-    }
-
-    .message-item {
-        display: flex;
-        align-items: center;
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        color: #ffffff;
-    }
-
-    .yellow-hit {
-        color: #ffd700; /* গোল্ডেন হাইলাইট */
-        margin: 0 6px;
-    }
-
-    .dot-sep {
-        margin: 0 35px;
-        color: rgba(255, 255, 255, 0.3);
-    }
-
-    @keyframes slim-scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-
-    /* মাউস রাখলে থামবে যাতে ইউজার পড়তে পারে */
-    .floating-slim-pill:hover .scroll-box {
-        animation-play-state: paused;
-    }
-
-    /* মোবাইলের জন্য অ্যাডজাস্টমেন্ট */
-    @media (max-width: 600px) {
-        .floating-slim-pill {
-            width: 92%;
-            top: 8px;
-            height: 30px;
-        }
-        .message-item { font-size: 12px; }
-    }
-@media(max-width:900px){.grid{grid-template-columns:1fr}.preview canvas{max-height:300px}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.preview canvas{max-height:400px}}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+  <defs>
+    <filter id="sharpenFilter">
+      <feConvolveMatrix id="sharpenMatrix" order="3 3" preserveAlpha="true" kernelMatrix="0 0 0 0 1 0 0 0 0"/>
+    </filter>
+  </defs>
+</svg>
+
 <div class="wrap">
   <header class="header">
     <div class="logo">
       <img src="/static/img/edit-image.png" alt="TopImgTools Logo" width="36" height="36">
       <div>
         <h1>Photo Edit</h1>
-        <p class="lead">Background Blur + Rotate/Flip — iLoveIMG style.</p>
+        <p class="lead">Pro Tools: Blur, Sharpen, Smooth & Blemish Heal.</p>
       </div>
     </div>
     <div class="actions">
@@ -164,7 +109,7 @@ footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
         <div style="text-align:center">
           <i class="fa fa-cloud-upload" style="font-size:36px;color:var(--accent)" aria-hidden="true"></i>
           <h3 style="margin:8px 0 6px">Drag & drop or select an image</h3>
-          <p class="small muted">JPG, PNG, WebP — max 25MB (demo)</p>
+          <p class="small muted">JPG, PNG, WebP — max 25MB</p>
         </div>
         <div class="upload-actions">
           <button id="selectBtn" class="btn btn-primary" tabindex="-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Select Image</button>
@@ -185,11 +130,6 @@ footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
           <strong>Filters & Adjustments</strong>
           
           <div class="control-group">
-            <label class="small" for="bgBlur">Background Blur Radius</label>
-            <input type="range" id="bgBlur" min="0" max="20" value="5" aria-valuemin="0" aria-valuemax="20">
-          </div>
-          
-          <div class="control-group">
             <label class="small" for="brightness">Brightness</label>
             <input type="range" id="brightness" min="0" max="200" value="100" aria-valuemin="0" aria-valuemax="200">
           </div>
@@ -203,8 +143,29 @@ footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
             <label class="small" for="saturate">Saturation</label>
             <input type="range" id="saturate" min="0" max="200" value="100" aria-valuemin="0" aria-valuemax="200">
           </div>
+          
+          <div class="control-group" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 10px;">
+            <label class="small" for="bgBlur">Background Blur Radius</label>
+            <input type="range" id="bgBlur" min="0" max="20" value="5" aria-valuemin="0" aria-valuemax="20">
+          </div>
+
+          <div class="control-group">
+            <label class="small" for="imageBlur">Blurring (Global)</label>
+            <input type="range" id="imageBlur" min="0" max="20" value="0" aria-valuemin="0" aria-valuemax="20">
+          </div>
+
+          <div class="control-group">
+            <label class="small" for="sharpen">Sharpening</label>
+            <input type="range" id="sharpen" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100">
+          </div>
+
+          <div class="control-group">
+            <label class="small" for="smoothing">Skin Smoothing</label>
+            <input type="range" id="smoothing" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100">
+          </div>
 
           <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+            <button id="healBtn" class="btn btn-secondary" aria-pressed="false" title="Spot Heal (Blemish Removal)"><i class="fa fa-band-aid" aria-hidden="true"></i> Heal Tool</button>
             <button id="bwBtn" class="btn btn-secondary" aria-pressed="false" title="Toggle Black and White"><i class="fa fa-adjust" aria-hidden="true"></i> B/W</button>
             <button id="sepiaBtn" class="btn btn-secondary" aria-pressed="false" title="Toggle Sepia"><i class="fa fa-fire" aria-hidden="true"></i> Sepia</button>
             <button id="rotateBtn" class="btn btn-secondary" title="Rotate 90 degrees"><i class="fa fa-rotate" aria-hidden="true"></i> Rotate</button>
@@ -213,152 +174,18 @@ footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
           </div>
           
           <div style="margin-top:20px; border-top: 1px solid var(--border); padding-top: 15px;">
-             <button id="applyBtn" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fa fa-check" aria-hidden="true"></i> Apply & Preview</button>
-          </div>
-          
-          <div style="margin-top:10px">
-            <button id="downloadBtn" class="btn btn-secondary" style="width:100%; justify-content:center; background:#10b981;"><i class="fa fa-download" aria-hidden="true"></i> Download Image</button>
+            <button id="downloadBtn" class="btn btn-secondary" style="width:100%; justify-content:center; background:#10b981;"><i class="fa fa-download" aria-hidden="true"></i> Save Maximum Quality</button>
           </div>
         </aside>
       </div>
     </div>
-
-    <nav style="margin-top:35px; padding:14px; background:#f3f4f6; border-radius:14px;
-                box-shadow:0 4px 14px rgba(0,0,0,0.05); display:flex; justify-content:center;
-                align-items:center; gap:14px; flex-wrap:wrap; font-size:15px;" aria-label="Other Tools">
-
-        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟵</span>
-
-        <a href="https://topimgtools.com/web-to-jpg.html"
-           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-                  border-radius:30px; text-decoration:none; color:#1f2937;
-                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-           WEBP → JPG
-        </a>
-
-        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
-
-        <a href="https://topimgtools.com/heice-to-jpg.html"
-           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-                  border-radius:30px; text-decoration:none; color:#1f2937;
-                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-           HEIC → JPG
-        </a>
-
-        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">›</span>
-
-        <a href="https://topimgtools.com/png-to-jpg.html"
-           style="padding:10px 22px; background:linear-gradient(145deg,#e7e9eb,#ffffff);
-                  border-radius:30px; text-decoration:none; color:#1f2937;
-                  font-weight:700; font-size:14px; box-shadow:3px 3px 8px #cbd5e1,
-                  -3px -3px 8px #ffffff; transition:0.25s ease; display:inline-block;"
-           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='4px 4px 12px #c4ccd8, -4px -4px 12px #ffffff';"
-           onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='3px 3px 8px #cbd5e1, -3px -3px 8px #ffffff';">
-           PNG → JPG
-        </a>
-
-        <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
-    </nav>
-
-    <div class="card" style="margin-top:20px;">
-<section style="padding:40px 25px; background:#ffffff; border-radius:14px; box-shadow:0 4px 16px rgba(0,0,0,0.06); line-height:1.7; font-family:Arial, sans-serif; max-width: 900px; margin: 0 auto;">
-  
-  <h2 style="font-size:32px; margin-bottom:20px; color:#111827; font-weight:700; text-align: center;">
-    Online Photo Editor – Free & Professional Image Editing in Your Browser
-  </h2>
-
-  <p style="color:#374151; margin-bottom:20px; font-size:17px; text-align: center;">
-    Make quick changes to your images with our <strong> online photo editor</strong>. Whether you need to fix a quick snapshot or design a social media masterpiece, our tool provides professional-grade features without the steep learning curve. <strong>No watermarks, no sign-ups, and 100% free.</strong>
-  </p>
-
-  <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
-
-  <h3 style="font-size:22px; margin-top:18px; margin-bottom:12px; color:#111827;">The Ultimate Browser-Based Image Editing Suite</h3>
-  <p style="color:#374151; margin-bottom:16px; font-size:15px;">
-    Why pay for expensive subscriptions when you can edit like a pro for free? Our <strong>web-based image editor</strong> is built for speed and efficiency. Since it runs entirely in your browser, you don't have to worry about system compatibility or heavy software slowing down your computer. 
-  </p>
-  <p style="color:#374151; margin-bottom:16px; font-size:15px;">
-    From <strong>basic photo adjustments</strong> like brightness and contrast to advanced <strong>color balance (HSL)</strong> and filtering, TopImgTools offers everything you need to make your images pop. It is the perfect solution for content creators, students, and businesses looking for a quick, reliable photo enhancement tool.
-  </p>
-
-  <h3 style="font-size:22px; margin-top:25px; margin-bottom:12px; color:#111827;">Powerful Tools for Every Creative Task</h3>
-  <p style="color:#374151; margin-bottom:15px; font-size:15px;">Our editing suite is packed with features designed to handle any project:</p>
-  <ul style="padding-left:20px; color:#374151; font-size:15px; display: grid; grid-template-columns: 1px 1fr; column-gap: 20px;">
-    <li style="margin-bottom:8px; list-style: none;">✔️</li><li style="margin-bottom:8px;"><strong>Precision Crop & Resize:</strong> Trim edges for perfect composition or resize to meet social media requirements.</li>
-    <li style="margin-bottom:8px; list-style: none;">✔️</li><li style="margin-bottom:8px;"><strong>Advanced Color Correction:</strong> Fine-tune <strong>exposure, saturation, and temperature</strong> to fix lighting issues.</li>
-    <li style="margin-bottom:8px; list-style: none;">✔️</li><li style="margin-bottom:8px;"><strong>Artistic Filters:</strong> Apply vintage, grayscale, or modern cinematic effects with a single click.</li>
-    <li style="margin-bottom:8px; list-style: none;">✔️</li><li style="margin-bottom:8px;"><strong>Text & Graphics:</strong> Add custom text overlays, stickers, and shapes to create professional banners or memes.</li>
-    <li style="margin-bottom:8px; list-style: none;">✔️</li><li style="margin-bottom:8px;"><strong>Focus & Blur:</strong>To make your subject stand out, apply a shallow depth-of-field effect with the background blur tool. </li>
-    <li style="margin-bottom:8px; list-style: none;">✔️</li><li style="margin-bottom:8px;"><strong>Object Removal:</strong> Clean up your photos by removing unwanted spots or distractions easily.</li>
-  </ul>
-
-  <h3 style="font-size:22px; margin-top:25px; margin-bottom:12px; color:#111827;">How to Edit Photos Online (Fast Guide)</h3>
-  <ol style="padding-left:20px; color:#374151; font-size:15px;">
-    <li style="margin-bottom:10px;"><strong>Pick Your Picture:</strong> Your JPG, PNG, or WEBP file can be dropped into the editor.</li>
-    <li style="margin-bottom:10px;"><strong>Enhance:</strong> Use the sidebar tools to adjust <strong>lighting</strong>, apply <strong>effects</strong>, or add <strong>text</strong>. All changes happen in real-time.</li>
-    <li style="margin-bottom:10px;"><strong>Refine:</strong> Use the "Undo" and "Redo" buttons to experiment until your photo looks perfect.</li>
-    <li style="margin-bottom:10px;"><strong>Export:</strong> Click the "Download" button to save your high-resolution image to your device instantly.</li>
-  </ol>
-
-  <h3 style="font-size:22px; margin-top:25px; margin-bottom:12px; color:#111827;">Pro-Tips for Better Photo Editing</h3>
-  <p style="color:#374151; margin-bottom:16px; font-size:15px;">
-    To get the most out of our <strong>online image enhancer</strong>, try these professional techniques:
-  </p>
-  <ul style="padding-left:20px; color:#374151; font-size:15px;">
-    <li style="margin-bottom:8px;"><strong>Follow the Rule of Thirds:</strong> Use the crop tool grid to align your subject along the intersection lines for a more balanced look.</li>
-    <li style="margin-bottom:8px;"><strong>Don't Over-Filter:</strong> If an effect looks too strong, check the intensity slider. Often, 20-30% opacity is enough to make a photo look professional without looking "over-edited."</li>
-    <li style="margin-bottom:8px;"><strong>Check the Contrast:</strong> A slight boost in contrast can make a "flat" or dull photo look much more vibrant and dynamic.</li>
-  </ul>
-
-  <h3 style="font-size:22px; margin-top:25px; margin-bottom:12px; color:#111827;">Frequently Asked Questions</h3>
-  <div style="color:#374151; font-size:15px;">
-    <p><strong>Is this photo editor really free?</strong><br>Yes! There are no hidden fees, no subscriptions, and we will never put a watermark on your images.</p>
-    <p><strong>Do I need to create an account?</strong><br>No account is needed. You can start editing immediately upon visiting the site.</p>
-    <p><strong>Is my data safe?</strong><br>Since our editor works <strong>client-side</strong>, your images are processed in your browser memory and are not uploaded to our storage servers. Your privacy is guaranteed.</p>
-  </div>
-
-  <h3 style="font-size:20px; margin-top:30px; margin-bottom:15px; color:#111827;">Explore More Free Image Tools</h3>
-  <div style="display:flex; flex-wrap:wrap; gap:12px;">
-    <a href="https://topimgtools.com/background-remover.html" style="padding:10px 18px; background:#f3f4f6; border-radius:8px; text-decoration:none; color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05); transition: 0.3s;">Background Remover</a>
-    <a href="https://topimgtools.com/web-to-jpg.html" style="padding:10px 18px; background:#f3f4f6; border-radius:8px; text-decoration:none; color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">WEBP to JPG</a>
-    <a href="https://topimgtools.com/png-to-jpg.html" style="padding:10px 18px; background:#f3f4f6; border-radius:8px; text-decoration:none; color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">PNG to JPG</a>
-    <a href="https://topimgtools.com/all-convert.html" style="padding:10px 18px; background:#f3f4f6; border-radius:8px; text-decoration:none; color:#1f2937; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.05);">Universal Converter</a>
-  </div>
-  
-  <p style="text-align: center; margin-top: 40px; font-weight: bold; color: #111827;">
-    Start editing your photos now and see why TopImgTools is the preferred choice for online image editing!
-  </p>
-</section>
-    </div>
   </main>
 
   <footer>
-  <footer>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</footer>
-
+    &copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.
   </footer>
 </div>
-   <div class="floating-slim-pill">
-    <div class="scroll-box">
-        <div class="message-item">
-            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
-            <span class="dot-sep">✦</span>
-            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
-            <span class="dot-sep">✦</span>
-        </div>
-        <div class="message-item">
-            <span>If you found this site helpful, please <span class="yellow-hit">share it with one person</span> who might benefit! 🚀</span>
-            <span class="dot-sep">✦</span>
-            <span>Pro Tip: For professional online image editing, visit <span class="yellow-hit">topimgtools.com</span> ✨</span>
-            <span class="dot-sep">✦</span>
-        </div>
-    </div>
-    </div>
+
 <script>
 const fileInput=document.getElementById('fileInput');
 const selectBtn=document.getElementById('selectBtn');
@@ -368,19 +195,28 @@ const ctx=canvas.getContext('2d');
 const placeholder=document.getElementById('placeholder');
 const bwBtn=document.getElementById('bwBtn');
 const sepiaBtn=document.getElementById('sepiaBtn');
+const healBtn=document.getElementById('healBtn');
 
 let img=new Image();
 let filters={bw:false,sepia:false};
-let adjustments={brightness:100,contrast:100,saturate:100,bgBlur:5};
+let adjustments={brightness:100,contrast:100,saturate:100,bgBlur:5, imageBlur:0, sharpen:0, smoothing:0};
 let rotation=0;
 let flipped=false;
 
-// Handle File Select (Button + UploadBox Click)
+// Heal Tool Variables
+let isHealMode = false;
+let blemishes = [];
+let patchedCanvas = document.createElement('canvas');
+let pCtx = patchedCanvas.getContext('2d', { willReadFrequently: true });
+
+// Rendering Optimizer Variables
+let isDrawing = false;
+let needsRedraw = false;
+
 const handleFileSelect = () => fileInput.click();
 selectBtn.onclick = (e) => { e.stopPropagation(); handleFileSelect(); };
 uploadBox.onclick = handleFileSelect;
 
-// Keyboard Access for UploadBox
 uploadBox.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -398,74 +234,202 @@ function loadFile(file){
  const reader=new FileReader();
  reader.onload=()=>{img.src=reader.result};
  reader.readAsDataURL(file);
- img.onload=()=>{canvas.width=img.width;canvas.height=img.height;draw();placeholder.style.display='none';};
+ img.onload=()=>{
+    // Use natural dimensions for MAX QUALITY
+    canvas.width = img.naturalWidth; 
+    canvas.height = img.naturalHeight;
+    patchedCanvas.width = img.naturalWidth; 
+    patchedCanvas.height = img.naturalHeight;
+    
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    pCtx.imageSmoothingEnabled = true;
+    pCtx.imageSmoothingQuality = 'high';
+
+    blemishes = [];
+    updatePatchedCanvas();
+    requestDraw();
+    placeholder.style.display='none';
+ };
+}
+
+// Optimized Render Queue
+function requestDraw() {
+    if (!isDrawing) {
+        isDrawing = true;
+        requestAnimationFrame(() => {
+            draw();
+            isDrawing = false;
+            if (needsRedraw) {
+                needsRedraw = false;
+                requestDraw();
+            }
+        });
+    } else {
+        needsRedraw = true;
+    }
+}
+
+function updatePatchedCanvas() {
+    if (!img.src) return;
+    pCtx.clearRect(0,0,patchedCanvas.width, patchedCanvas.height);
+    pCtx.drawImage(img, 0, 0);
+    
+    // Scale blemish size based on image resolution so it works on large images
+    const blemishRadius = Math.max(16, img.naturalWidth * 0.015); 
+    
+    blemishes.forEach(b => {
+        let offsetX = b.x > (blemishRadius * 2) ? -(blemishRadius * 1.5) : (blemishRadius * 1.5);
+        pCtx.save();
+        pCtx.beginPath();
+        pCtx.arc(b.x, b.y, blemishRadius, 0, Math.PI * 2);
+        pCtx.clip();
+        pCtx.filter = 'blur(2px)'; 
+        pCtx.drawImage(
+            patchedCanvas, 
+            b.x + offsetX - blemishRadius, b.y - blemishRadius, blemishRadius * 2, blemishRadius * 2, 
+            b.x - blemishRadius, b.y - blemishRadius, blemishRadius * 2, blemishRadius * 2
+        );
+        pCtx.restore();
+    });
+}
+
+function updateSharpenMatrix() {
+    const s = adjustments.sharpen / 50; 
+    const matrix = document.getElementById('sharpenMatrix');
+    if (s === 0) {
+        matrix.setAttribute('kernelMatrix', `0 0 0 0 1 0 0 0 0`);
+    } else {
+        const center = 1 + 4 * s;
+        const edge = -s;
+        matrix.setAttribute('kernelMatrix', `0 ${edge} 0 ${edge} ${center} ${edge} 0 ${edge} 0`);
+    }
 }
 
 function buildFilter(){
  let f='';
  if(filters.bw) f+='grayscale(100%) ';
  if(filters.sepia) f+='sepia(100%) ';
- return `brightness(${adjustments.brightness}%) contrast(${adjustments.contrast}%) saturate(${adjustments.saturate}%) ${f}`;
+ if(adjustments.imageBlur > 0) f+=`blur(${adjustments.imageBlur}px) `;
+ if(adjustments.sharpen > 0) f+=`url(#sharpenFilter) `;
+ return `brightness(${adjustments.brightness}%) contrast(${adjustments.contrast}%) saturate(${adjustments.saturate}%) ${f}`.trim();
 }
 
 function draw(){
  if(!img.src) return;
  ctx.clearRect(0,0,canvas.width,canvas.height);
- // draw background blur
- ctx.save();
- ctx.filter=`blur(${adjustments.bgBlur}px)`;
- ctx.drawImage(img,0,0);
- ctx.restore();
- // draw foreground
+ 
+ // Draw background ONLY if rotated/scaled to save performance
+ if (rotation !== 0 || flipped) {
+     ctx.save();
+     ctx.filter=`blur(${adjustments.bgBlur}px)`;
+     ctx.drawImage(img,0,0, canvas.width, canvas.height);
+     ctx.restore();
+ }
+ 
+ updateSharpenMatrix();
+ 
  ctx.save();
  ctx.filter=buildFilter();
  ctx.translate(canvas.width/2,canvas.height/2);
  ctx.rotate(rotation*Math.PI/180);
  ctx.scale(flipped?-1:1,1);
- ctx.drawImage(img,-img.width/2,-img.height/2);
+ 
+ // Main Draw
+ ctx.drawImage(patchedCanvas,-canvas.width/2,-canvas.height/2);
  ctx.restore();
+
+ // Skin Smoothing - Optimized Layer
+ if (adjustments.smoothing > 0) {
+     ctx.save();
+     ctx.globalAlpha = adjustments.smoothing / 160; 
+     ctx.filter = buildFilter() + ' blur(12px)';
+     ctx.translate(canvas.width/2,canvas.height/2);
+     ctx.rotate(rotation*Math.PI/180);
+     ctx.scale(flipped?-1:1,1);
+     ctx.drawImage(patchedCanvas,-canvas.width/2,-canvas.height/2);
+     ctx.restore();
+ }
 }
 
-// sliders
-['brightness','contrast','saturate','bgBlur'].forEach(id=>{
- document.getElementById(id).oninput=e=>{
-   adjustments[id]=e.target.value;
-   requestAnimationFrame(draw); // Performance optimization
- };
+// Blemish Heal Interaction
+canvas.addEventListener('click', (e) => {
+    if (!isHealMode || !img.src) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    let x = (e.clientX - rect.left) * scaleX;
+    let y = (e.clientY - rect.top) * scaleY;
+
+    x -= canvas.width / 2;
+    y -= canvas.height / 2;
+
+    const rad = -rotation * Math.PI / 180;
+    const rx = x * Math.cos(rad) - y * Math.sin(rad);
+    const ry = x * Math.sin(rad) + y * Math.cos(rad);
+
+    const fx = flipped ? -rx : rx;
+    const fy = ry;
+
+    blemishes.push({ x: fx + canvas.width / 2, y: fy + canvas.height / 2 });
+    
+    updatePatchedCanvas();
+    requestDraw();
 });
 
-// buttons
+// Use Optimized Render Queue for UI sliders
+['brightness','contrast','saturate','bgBlur','imageBlur','sharpen','smoothing'].forEach(id=>{
+ document.getElementById(id).addEventListener('input', e => {
+   adjustments[id]=e.target.value;
+   requestDraw(); 
+ });
+});
+
 bwBtn.onclick=()=>{
     filters.bw=!filters.bw; 
     bwBtn.setAttribute("aria-pressed", filters.bw);
-    draw();
+    requestDraw();
 };
+
 sepiaBtn.onclick=()=>{
     filters.sepia=!filters.sepia; 
     sepiaBtn.setAttribute("aria-pressed", filters.sepia);
-    draw();
+    requestDraw();
 };
 
-document.getElementById('rotateBtn').onclick=()=>{rotation=(rotation+90)%360;draw();};
-document.getElementById('flipBtn').onclick=()=>{flipped=!flipped;draw();};
+healBtn.onclick=()=>{
+    isHealMode = !isHealMode;
+    healBtn.classList.toggle('btn-primary', isHealMode);
+    healBtn.classList.toggle('btn-secondary', !isHealMode);
+    canvas.style.cursor = isHealMode ? 'crosshair' : 'default';
+};
+
+document.getElementById('rotateBtn').onclick=()=>{rotation=(rotation+90)%360; requestDraw();};
+document.getElementById('flipBtn').onclick=()=>{flipped=!flipped; requestDraw();};
 
 document.getElementById('resetBtn').onclick=()=>{
  filters={bw:false,sepia:false};
- adjustments={brightness:100,contrast:100,saturate:100,bgBlur:5};
+ adjustments={brightness:100,contrast:100,saturate:100,bgBlur:5, imageBlur:0, sharpen:0, smoothing:0};
  rotation=0; flipped=false;
+ blemishes = [];
+ updatePatchedCanvas();
  
- ['brightness','contrast','saturate','bgBlur'].forEach(id=>document.getElementById(id).value=adjustments[id]);
+ ['brightness','contrast','saturate','bgBlur','imageBlur','sharpen','smoothing'].forEach(id=>document.getElementById(id).value=adjustments[id]);
  bwBtn.setAttribute("aria-pressed", "false");
  sepiaBtn.setAttribute("aria-pressed", "false");
- draw();
+ 
+ if(isHealMode) healBtn.click();
+ requestDraw();
 };
 
-document.getElementById('applyBtn').onclick=()=>draw();
 document.getElementById('downloadBtn').onclick=()=>{
  if(!img.src) return alert("Please upload an image first.");
  const a=document.createElement('a');
- a.download='edited.jpg';
- a.href=canvas.toDataURL('image/jpeg',0.9);
+ a.download='edited-max-quality.jpg';
+ // 1.0 ensures ZERO compression loss on download!
+ a.href=canvas.toDataURL('image/jpeg', 1.0);
  a.click();
 };
 </script>

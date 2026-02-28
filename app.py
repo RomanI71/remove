@@ -571,6 +571,11 @@ async def collage_maker():
 async def crop_tool():
     return FileResponse("static/crop.html")
 
+@app.get("/img-upscale.html")
+async def upscale_tool():
+    return FileResponse("static/img-upscale.html")
+
+
 # @app.get("/flip-image")
 @app.get("/flip-image.html")
 async def flip_tool():
