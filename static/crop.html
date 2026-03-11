@@ -57,17 +57,117 @@
   </script>
 
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--accent:#3498db;--accent-dark:#2980b9;--muted:#6b7280;--border:#e5e7eb;--focus-ring:#93c5fd}
+    /* --- GLOBAL & HEADER/FOOTER VARIABLES --- */
+    :root{
+        --bg:#f8fafc;
+        --card:#fff;
+        --accent:#3498db;
+        --accent-dark:#2980b9;
+        --muted:#6b7280;
+        --border:#e5e7eb;
+        --focus-ring:#93c5fd;
+        --primary-color: #4a90e2;
+        --primary-hover: #3b78c8;
+        --text-dark: #343a40;
+        --bg-light: #f8f9fa;
+        --accent-red: #eb4040;
+    }
     *{box-sizing:border-box}
     body{
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
       background:var(--bg); margin:0; color:#0f172a; line-height:1.6;
     }
+    
+    a { text-decoration: none; color: #3498db; transition: 0.3s ease; }
+    a:hover { color: #2980b9; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    button { font-family: inherit; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- HEADER STYLES --- */
+    #mainHeader { background: #fff; position: fixed; top: 0; left: 0; width: 100%; z-index: 99999; transition: 0.3s; padding: 12px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    #mainHeader.scrolled { padding: 5px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.12); }
+    
+    .header-flex { display: flex; align-items: center; justify-content: space-between; }
+    .nav { display: flex; align-items: center; gap: 25px; }
+    .auth-actions { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
+    
+    .logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: var(--text-dark); white-space: nowrap; }
+    .logo img { display: block; }
+
+    .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
+    .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
+    .main-nav li a:hover { color: #3498db; }
+
+    /* DROPDOWN */
+    .dropdown { position: relative; }
+    .dropbtn { display: flex; align-items: center; background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; color: #555; text-transform: uppercase; padding: 4px 0; }
+    .dropbtn:hover, .dropdown:focus-within .dropbtn { color: #3498db; }
+    .dropbtn i { margin-left: 5px; font-size: 10px; transition: transform 0.3s ease; }
+    .dropdown:hover .dropbtn i, .dropdown:focus-within .dropbtn i { transform: rotate(180deg); }
+
+    .dropdown-content { position: absolute; top: 100%; right: 0; left: auto; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 5px; min-width: 800px; padding: 20px; z-index: 9999; border-top: 2px solid var(--primary-color); margin: 15px -160px 0; display: none; opacity: 0; visibility: hidden; grid-template-columns: repeat(5, 1fr); gap: 20px; transition: 0.2s ease; }
+    .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content { display: grid; opacity: 1; visibility: visible; }
+    
+    .dropdown-column { display: flex; flex-direction: column; gap: 0px; }
+    .dropdown-category-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; padding: 0 10px 5px 10px; text-transform: uppercase; border-bottom: 1px solid #eee; white-space: nowrap; }
+    .dropdown-content a { padding: 8px 10px; font-size: 14px; display: flex; align-items: center; color: var(--text-dark); font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; border-radius: 4px; text-transform: none;}
+    .dropdown-content a:hover, .dropdown-content a:focus { background: #f1f1f1; color: var(--primary-color); }
+    .dropdown-content a i { font-size: 16px; margin-right: 12px; width: 20px; text-align: center; }
+
+    .dropdown-column:nth-child(1) a i { color: #2e7d32; }
+    .dropdown-column:nth-child(2) a i { color: #c2185b; }
+    .dropdown-column:nth-child(3) a i { color: #0097a7; }
+    .dropdown-column:nth-child(4) a i { color: #e65100; }
+    .dropdown-column:nth-child(5) a i { color: #283593; }
+
+    /* MOBILE SIDEBAR */
+    .mobile-menu-toggle { display: none; cursor: pointer; font-size: 24px; padding: 8px 12px; color: var(--text-dark); z-index: 100001; background: transparent; border: none; border-radius: 6px; }
+    .mobile-menu-toggle:hover { color: var(--primary-color); background: #f1f1f1; }
+
+    #mobileSidebar { position: fixed; top: 0; right: 0; width: 80%; max-width: 300px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 100000; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; padding: 20px; visibility: hidden; }
+    #mobileSidebar.open { transform: translateX(0); visibility: visible; }
+    
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; }
+    .sidebar-close { font-size: 24px; cursor: pointer; color: var(--text-dark); background: none; border: none; }
+    .sidebar-nav ul { display: flex; flex-direction: column; gap: 15px; }
+    .sidebar-nav a, .dropbtn-mobile { font-size: 16px; font-weight: 600; color: var(--text-dark); padding: 10px 0; display: block; border-bottom: 1px dashed #eee; cursor: pointer; width: 100%; text-align: left; background: none; border: none; }
+    .sidebar-auth-actions { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 10px; }
+
+    /* BUTTONS */
+    .btn-free-forever {
+        background: linear-gradient(135deg, #ff6a00, #ff9f00);
+        color: #ffffff;
+        padding: 8px 18px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 12px;
+        border: none;
+        cursor: default;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        animation: pulse-green 2s infinite;
+    }
+
+    @keyframes pulse-green {
+        0% { box-shadow: 0 0 0 0 rgba(255, 159, 0, 0.6); transform: scale(1); }
+        70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); transform: scale(1); }
+        100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); transform: scale(1); }
+    }
+
+    .btn-free-forever:hover { transform: scale(1.05); animation: none; }
+    .sidebar-auth-actions .btn-free-forever { width: auto; display: inline-flex; margin: 0 auto; justify-content: center; }
+
+    /* --- TOOL SPECIFIC STYLES --- */
     a:focus, button:focus, .upload-box:focus {outline: 3px solid var(--focus-ring); outline-offset: 2px;}
 
-    .wrap{max-width:980px;margin:36px auto;padding:0 20px}
-    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
-    .logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    .wrap{max-width:980px;margin:100px auto 36px;padding:0 20px} /* Margin adjusted for fixed header */
+    .tool-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .tool-logo{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
     h1{font-size:1.5rem;margin:0;font-weight:700}
     p.lead{color:var(--muted);margin:4px 0 0;font-size:0.95rem}
 
@@ -92,17 +192,15 @@
     
     .preview-wrap{
         position:relative;display:flex;justify-content:center;align-items:center;
-        background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVQ4jWNgYGAQIYAJglEDxo0YQIgCxhG1AAAAAElFTkSuQmCC') repeat; /* Checkered background for transparency */
+        background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVQ4jWNgYGAQIYAJglEDxo0YQIgCxhG1AAAAAElFTkSuQmCC') repeat; 
         border-radius:8px;padding:10px;overflow:hidden;min-height:300px;
     }
     .preview-img{max-width:100%;max-height:600px;border-radius:6px;object-fit:contain;display:block;user-select:none;pointer-events:none}
     
-    /* Selection box relative to preview-wrap */
     #selection{
         position:absolute;border:2px dashed var(--accent);background:rgba(52,152,219,0.14);
         display:none;touch-action:none;box-sizing:border-box;cursor:move;
     }
-    /* small handle for resize (not full resizers; keeps interface simple) */
     .handle{position:absolute;width:16px;height:16px;background:#fff;border:3px solid var(--accent);border-radius:50%;box-sizing:border-box;z-index:10}
     .handle.ne{right:-8px;top:-8px;cursor:ne-resize}
     .handle.nw{left:-8px;top:-8px;cursor:nw-resize}
@@ -130,20 +228,19 @@
     .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
     .nav-arrow { color: #9ca3af; font-weight: bold; }
 
-    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:20px}
     .sr-only {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);white-space: nowrap;border-width: 0;}
 
-
-     .floating-slim-pill {
+    /* FLOATING PILL */
+    .floating-slim-pill {
         position: fixed;
-        top: 12px;
+        top: 80px; /* Adjusted to clear header */
         left: 50%;
         transform: translateX(-50%);
         width: auto;
         min-width: 280px;
         max-width: 650px;
-        height: 32px; /* চিকন এবং আধুনিক উচ্চতা */
-        background: linear-gradient(90deg, #001f3f, #8e44ad); /* আপনার সাইটের থিমের সাথে মিল রেখে */
+        height: 32px; 
+        background: linear-gradient(90deg, #001f3f, #8e44ad); 
         border-radius: 20px;
         display: flex;
         align-items: center;
@@ -153,57 +250,178 @@
         border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .scroll-box {
-        display: flex;
-        white-space: nowrap;
-        animation: slim-scroll 20s linear infinite;
-    }
+    .scroll-box { display: flex; white-space: nowrap; animation: slim-scroll 20s linear infinite; }
+    .message-item { display: flex; align-items: center; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; color: #ffffff; }
+    .yellow-hit { color: #ffd700; margin: 0 6px; }
+    .dot-sep { margin: 0 35px; color: rgba(255, 255, 255, 0.3); }
 
-    .message-item {
-        display: flex;
-        align-items: center;
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        color: #ffffff;
-    }
+    @keyframes slim-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .floating-slim-pill:hover .scroll-box { animation-play-state: paused; }
 
-    .yellow-hit {
-        color: #ffd700; /* গোল্ডেন হাইলাইট */
-        margin: 0 6px;
-    }
+    /* --- FOOTER STYLES --- */
+    footer[role="contentinfo"] { background-color: #2c3e50; color: #ecf0f1; padding: 60px 0 20px 0; font-size: 14px; margin-top: 40px;}
+    .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid #455a64; gap: 30px; }
+    .footer-logo-col { flex-basis: 300px; max-width: 100%; }
+    .footer-logo { font-size: 24px; font-weight: 700; display: flex; align-items: center; color: #ecf0f1; margin-bottom: 15px; }
+    .footer-logo img { display: block; }
+    .footer-logo-col p { color: #e0e0e0; line-height: 1.8; margin: 0; }
+    .footer-links-col { flex-grow: 1; display: flex; gap: 50px; justify-content: space-around; }
+    .footer-links-col h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
+    .footer-links-col ul li a { color: #d0d3d4; transition: color 0.2s; }
+    .footer-links-col ul li a:hover { color: var(--primary-color); }
+    .footer-bottom { margin-top: 20px; text-align: center; color: #bdc3c7; }
+    .social-links { margin-top: 15px; }
+    .social-links a { color: #ecf0f1; margin: 0 10px 0 0; font-size: 18px; transition: color 0.2s; }
+    .social-links a:hover { color: var(--primary-color); }
 
-    .dot-sep {
-        margin: 0 35px;
-        color: rgba(255, 255, 255, 0.3);
-    }
-
-    @keyframes slim-scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-
-    /* মাউস রাখলে থামবে যাতে ইউজার পড়তে পারে */
-    .floating-slim-pill:hover .scroll-box {
-        animation-play-state: paused;
-    }
-
-    /* মোবাইলের জন্য অ্যাডজাস্টমেন্ট */
-    @media (max-width: 600px) {
-        .floating-slim-pill {
-            width: 92%;
-            top: 8px;
-            height: 30px;
-        }
-        .message-item { font-size: 12px; }
+    /* --- RESPONSIVENESS --- */
+    @media (max-width: 991px) {
+        .main-nav, .auth-actions { display: none; }
+        .mobile-menu-toggle { display: block; }
+        .header-flex { justify-content: space-between; }
+        .dropdown-content { display: none !important; }
     }
     @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    @media (max-width: 767px) {
+        .footer-content, .footer-links-col { flex-direction: column; text-align: center; gap: 20px; }
+    }
+    @media (max-width: 600px) {
+        .floating-slim-pill { width: 92%; top: 70px; height: 30px; }
+        .message-item { font-size: 12px; }
+        .wrap { margin: 80px auto 36px; padding: 0 15px; }
+        .tool-header { flex-direction: column; text-align: center; gap: 15px; }
+        .tool-header .btn { width: 100%; }
+        .tool-logo { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
+
+<header id="mainHeader" role="banner">
+    <div class="container header-flex">
+        <a href="index.html" class="logo" aria-label="TopImgTools Home">
+            <img src="/static/img/Header.png" alt="TopImgTools Logo" width="150" height="50" style="width:120px; height:auto;">
+        </a>
+
+        <nav class="nav" aria-label="Main Navigation">
+            <ul class="main-nav">
+                <li><a href="compress_tool.html" title="Compress Images Online">Compress Image</a></li>
+                <li><a href="resize.html" title="Resize Images Online">Resize Image</a></li>
+                <li><a href="crop.html" title="Crop Images Online">Crop Image</a></li>
+                <li><a href="gif-to-jpg.html" title="Convert GIF to JPG">GIF to JPG</a></li>
+                <li><a href="photoEdit.html" title="Online Photo Editor">Photo Editor</a></li>
+
+                <li class="dropdown">
+                    <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="desktopDropdown">
+                        More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div id="desktopDropdown" class="dropdown-content">
+                        <div class="dropdown-column">
+                            <div class="dropdown-category-title">Optimize</div>
+                            <a href="compress_tool.html"><i class="fas fa-compress" aria-hidden="true"></i> Compress Image</a>
+                            <a href="bg_remove.html"><i class="fas fa-eraser" aria-hidden="true"></i> Remove background</a>
+                            <a href="color-picker.html"><i class="fas fa-palette" aria-hidden="true"></i> Image Color Picker</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-category-title">Create</div>
+                            <a href="meme-generator.html"><i class="fas fa-face-grin-squint" aria-hidden="true"></i> Meme generator</a>
+                            <a href="photoEdit.html"><i class="fas fa-paint-brush" aria-hidden="true"></i> Photo editor</a>
+                            <a href="join-image.html"><i class="fas fa-object-group" aria-hidden="true"></i> Join Image</a>
+                            <a href="collage-maker.html"><i class="fas fa-images" aria-hidden="true"></i> Collage Maker</a>
+                            <a href="image-to-pdf.html"><i class="fas fa-file-pdf" aria-hidden="true"></i> Image to PDF</a>
+                            <a href="image-to-text.html"><i class="fas fa-font" aria-hidden="true"></i> Image to Text (OCR)</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-category-title">Modify</div>
+                            <a href="resize.html"><i class="fas fa-ruler-combined" aria-hidden="true"></i> Resize Image</a>
+                            <a href="crop.html"><i class="fas fa-crop-alt" aria-hidden="true"></i> Crop Image</a>
+                            <a href="rotate-image.html"><i class="fas fa-redo-alt" aria-hidden="true"></i> Rotate Image</a>
+                            <a href="flip-image.html"><i class="fas fa-sync-alt" aria-hidden="true"></i> Flip Image</a>
+                            <a href="mosaic.html"><i class="fas fa-braille" aria-hidden="true"></i> Mosaic</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-category-title">Convert</div>
+                            <a href="gif-to-jpg.html"><i class="fas fa-file-image" aria-hidden="true"></i> GIF to JPG</a>
+                            <a href="heice-to-jpg.html"><i class="fas fa-mobile-alt" aria-hidden="true"></i> HEIC to JPG</a>
+                            <a href="jpg-to-png.html"><i class="fas fa-file-export" aria-hidden="true"></i> JPG to PNG</a>
+                            <a href="image-to-gif.html"><i class="fas fa-file-video" aria-hidden="true"></i> Image to GIF</a>
+                            <a href="all-convert.html"><i class="fas fa-globe" aria-hidden="true"></i> All Convert</a>
+                            <a href="image-to-vector.html"><i class="fas fa-bezier-curve" aria-hidden="true"></i> Image to Vector</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-category-title">Security</div>
+                            <a href="watermark.html"><i class="fas fa-tint" aria-hidden="true"></i> Watermark Image</a>
+                            <a href="blur-face.html"><i class="fas fa-mask" aria-hidden="true"></i> Blur face</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="auth-actions">
+                <button class="btn-free-forever">
+                    <i class="fas fa-check" aria-hidden="true"></i> 100% Free Forever
+                </button>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobileSidebar">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<div id="mobileSidebar" aria-hidden="true">
+    <div class="sidebar-header">
+        <a href="index.html" class="logo">
+            <img src="/static/img/Header.png" alt="TopImgTools Logo" width="150" height="50" style="width:120px; height:auto;">
+        </a>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close Mobile Menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+    
+    <nav class="sidebar-nav" aria-label="Mobile Navigation">
+        <ul>
+            <li><a href="compress_tool.html">Compress Image</a></li>
+            <li><a href="resize.html">Resize Image</a></li>
+            <li><a href="crop.html">Crop Image</a></li>
+            <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
+            <li><a href="photoEdit.html">Photo Editor</a></li>
+            
+            <li class="dropdown-mobile">
+                <button class="dropbtn-mobile" id="mobileDropdownToggle" aria-expanded="false" aria-controls="mobileDropdownContent">
+                    More Tools <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <ul class="mobile-dropdown-content" id="mobileDropdownContent" style="display: none; padding-left: 15px; margin-top: 5px; background: #f9f9f9; border-radius: 5px;">
+                    <li><div class="dropdown-category-title">Optimize</div></li>
+                    <li><a href="compress_tool.html">Compress Image</a></li>
+                    <li><a href="bg_remove.html">Remove background</a></li>
+                    <li><div class="dropdown-category-title">Create</div></li>
+                    <li><a href="meme-generator.html">Meme generator</a></li>
+                    <li><a href="photoEdit.html">Photo editor</a></li>
+                    <li><a href="image-to-pdf.html">Image to PDF</a></li>
+                    <li><div class="dropdown-category-title">Convert</div></li>
+                    <li><a href="gif-to-jpg.html">GIF to JPG</a></li>
+                    <li><a href="heice-to-jpg.html">HEIC to JPG</a></li>
+                    <li><a href="jpg-to-png.html">JPG to PNG</a></li>
+                    <li><div class="dropdown-category-title">Security</div></li>
+                    <li><a href="watermark.html">Watermark Image</a></li>
+                    <li><a href="blur-face.html">Blur face</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="sidebar-auth-actions">
+        <button class="btn-free-forever">
+            <i class="fas fa-check" aria-hidden="true"></i> 100% Free Forever
+        </button>
+    </div>
+</div>
+
   <main class="wrap">
-    <header class="header">
-      <a href="index.html" class="logo" aria-label="TopImgTools Home">
+    <header class="tool-header">
+      <a href="index.html" class="tool-logo" aria-label="TopImgTools Home">
         <i class="fa fa-crop-simple" aria-hidden="true" style="font-size:28px;color:var(--accent)"></i>
         <div>
           <h1>Crop Image</h1>
@@ -352,11 +570,8 @@
 
 </article>
 
-
-    <footer>
-      <p>&copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.</p>
-    </footer>
   </main>
+
    <div class="floating-slim-pill">
     <div class="scroll-box">
         <div class="message-item">
@@ -373,8 +588,126 @@
         </div>
     </div>
     </div>
+
+<footer role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo-col">
+                <div class="footer-logo">
+                    <span>
+                        <img src="/static/img/footer-whitee.png" alt="TopImgTools Footer Logo" width="150" height="50" style="width:120px; height:auto;">
+                    </span>
+                </div>
+                <p>
+                    The easiest and fastest way to edit images online. Our platform offers a free suite of tools for compression, resizing, and conversion, all while maintaining high quality.
+                </p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61584758792978" aria-label="Follow us on Facebook" rel="nofollow noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://x.com/TTools65743" aria-label="Follow us on Twitter" rel="nofollow noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/topimgtools/" aria-label="Follow us on Instagram" rel="nofollow noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/topimg-tools-1ab5553a0/" aria-label="Connect on LinkedIn" rel="nofollow noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-col">
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul role="list">
+                        <li><a href="about_us.html">About Us</a></li>
+                        <li><a href="contact_us.html">Contact</a></li>
+                        <li><a href="privacy_policy.html">Privacy Policy</a></li>
+                        <li><a href="terms_and_conditions.html">Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Popular Tools</h4>
+                    <ul role="list">
+                        <li><a href="compress_tool.html">Compress Image</a></li>
+                        <li><a href="resize.html">Resize Image</a></li>
+                        <li><a href="web-to-jpg.html">WebP to JPG</a></li>
+                        <li><a href="bg_remove.html">Remove Background</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Support</h4>
+                    <ul role="list">
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="tutorial.html">Tutorials</a></li>
+                        <li><a href="report_bug.html">Report Bug</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; <script>document.write(new Date().getFullYear())</script> TopImgTools. All rights reserved.
+        </div>
+    </div>
+</footer>
+
   <script>
-    // Elements
+    // --- Header & Mobile Menu Logic from Index ---
+    document.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("scroll", function () {
+            const header = document.getElementById("mainHeader");
+            if (window.scrollY > 30) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        }, { passive: true });
+
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('mobileSidebar');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const body = document.body;
+        
+        function openSidebar() {
+            if (sidebar) {
+                sidebar.classList.add('open');
+                sidebar.setAttribute('aria-hidden', 'false');
+                mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                body.classList.add('menu-open');
+                sidebarClose.focus(); 
+            }
+        }
+
+        function closeSidebar() {
+            if (sidebar) {
+                sidebar.classList.remove('open');
+                sidebar.setAttribute('aria-hidden', 'true');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.focus(); 
+            }
+        }
+
+        if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openSidebar);
+        if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+        
+        document.addEventListener('click', (e) => {
+            if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                closeSidebar();
+            }
+        });
+
+        const mobileDropdownToggle = document.getElementById('mobileDropdownToggle');
+        const mobileDropdownContent = document.getElementById('mobileDropdownContent');
+        
+        if (mobileDropdownToggle && mobileDropdownContent) {
+            mobileDropdownToggle.addEventListener('click', (e) => {
+                const isExpanded = mobileDropdownContent.style.display === 'block';
+                mobileDropdownContent.style.display = isExpanded ? 'none' : 'block';
+                mobileDropdownToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileDropdownToggle.querySelector('i').style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        }
+    });
+
+    // --- Crop Tool Logic ---
     const uploadBox = document.getElementById('uploadBox');
     const fileInput = document.getElementById('fileInput');
     const selectBtn = document.getElementById('selectBtn');
@@ -393,17 +726,15 @@
     const origMeta = document.getElementById('origMeta');
     const selMeta = document.getElementById('selMeta');
 
-    // State
     let currentFile = null;
     let imgNatural = {w:0,h:0};
     let isPointerDown = false;
-    let mode = null; // 'draw' | 'move' | 'resize'
+    let mode = null; 
     let pointerStart = {x:0,y:0};
-    let sel = {x:0,y:0,w:0,h:0}; // selection in displayed-image pixels (relative to image top-left within previewWrap)
+    let sel = {x:0,y:0,w:0,h:0}; 
     let lastMouse = {x:0,y:0};
     let activeHandle = null;
 
-    // Helpers
     function humanSize(bytes){
       if(bytes === 0) return '0 B';
       const k = 1024; const sizes = ['B','KB','MB','GB'];
@@ -424,11 +755,9 @@
       sel = {x:0,y:0,w:0,h:0};
     }
 
-    // Upload handling
     selectBtn.addEventListener('click', (e)=> { e.stopPropagation(); fileInput.click(); });
-    uploadBox.addEventListener('click', ()=> fileInput.click()); // Make uploadBox clickable
+    uploadBox.addEventListener('click', ()=> fileInput.click()); 
     
-    // Accessibility: Keyboard Navigation for Upload
     uploadBox.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -438,7 +767,6 @@
 
     fileInput.addEventListener('change', e => handleFiles(e.target.files));
     
-    // Sample Button
     sampleBtn.addEventListener('click', (e)=> {
       e.preventDefault();
       status.textContent = 'Loading sample...';
@@ -466,12 +794,10 @@
         previewImg.style.display = 'block';
         placeholder.style.display = 'none';
         
-        // ensure image natural size is read
         const tmp = new Image();
         tmp.onload = () => {
           imgNatural.w = tmp.width; imgNatural.h = tmp.height;
           origMeta.textContent = `${humanSize(file.size)} • ${imgNatural.w}×${imgNatural.h} • ${file.type.split('/')[1].toUpperCase()}`;
-          // Auto select full image on load for better UX
           fitBtn.click();
         };
         tmp.src = e.target.result;
@@ -481,57 +807,36 @@
       sel = {x:0,y:0,w:0,h:0}; updateSelectionUI();
     }
 
-    // Compute displayed image rectangle inside previewWrap (where object-fit:contain centers it)
     function getDisplayedImageRect(){
       const wrapRect = previewWrap.getBoundingClientRect();
       if(!previewImg.naturalWidth) return null;
       
-      // Use computed client width/height of img element's displayed size
       const imgRect = previewImg.getBoundingClientRect();
       
-      // Because previewImg has object-fit:contain, the actual displayed image (non-transparent) is centered inside previewWrap
-      // We compute its position relative to previewWrap's content area (which starts after its padding)
-      // The CSS padding is 10px on preview-wrap
       const padding = 10;
       const left = imgRect.left - wrapRect.left - padding;
       const top = imgRect.top - wrapRect.top - padding;
       
-      // The image area within the padded preview-wrap
-      const imgArea = {
-          left: left, 
-          top: top, 
-          width: imgRect.width, 
-          height: imgRect.height
-      };
+      const imgArea = { left: left, top: top, width: imgRect.width, height: imgRect.height };
       
-      // The image-relative coordinates need to be clamped from 0 to imgRect.width/height
-      // The selection UI is drawn relative to previewWrap's top-left, adjusted by padding
       const selXOffset = imgRect.left - wrapRect.left;
       const selYOffset = imgRect.top - wrapRect.top;
 
-      return {
-        left: selXOffset, top: selYOffset, 
-        width: imgRect.width, height: imgRect.height, 
-        wrapRect
-      };
+      return { left: selXOffset, top: selYOffset, width: imgRect.width, height: imgRect.height, wrapRect };
     }
 
-    // Convert a point on pointer event to coordinates relative to the displayed image (clamped)
     function pointToImageCoords(clientX, clientY){
       const d = getDisplayedImageRect();
       if(!d) return null;
       
-      // Calculate coordinates relative to the displayed image's top-left corner
       const x = clientX - (d.wrapRect.left + d.left);
       const y = clientY - (d.wrapRect.top + d.top);
       
-      // Clamp coordinates to stay within the displayed image boundaries
       const cx = Math.max(0, Math.min(d.width, x));
       const cy = Math.max(0, Math.min(d.height, y));
       return {x: cx, y: cy, d};
     }
 
-    // Update selection UI rectangle (in px relative to previewWrap's content area)
     function updateSelectionUI(){
       if(sel.w <= 0 || sel.h <= 0){ 
         selection.style.display = 'none'; 
@@ -542,7 +847,6 @@
       const d = getDisplayedImageRect();
       if (!d) return;
 
-      // Selection box position is relative to previewWrap's top-left
       selection.style.display = 'block';
       selection.style.left = (sel.x + d.left) + 'px';
       selection.style.top = (sel.y + d.top) + 'px';
@@ -552,12 +856,10 @@
       selMeta.textContent = `${Math.round(sel.w)}×${Math.round(sel.h)} (displayed)`;
     }
 
-    // Pointer handling (works for mouse and touch)
     previewWrap.addEventListener('pointerdown', (e) => {
       if(!currentFile) return;
-      if (e.target.classList.contains('handle') && e.button !== 0) return; // Ignore right/middle click on handles
+      if (e.target.classList.contains('handle') && e.button !== 0) return; 
 
-      // Detect if click was on a handle
       activeHandle = e.target.classList.contains('handle') ? e.target.classList[1] : null;
 
       try { previewWrap.setPointerCapture(e.pointerId); } catch(err) {}
@@ -574,14 +876,12 @@
       
       if(activeHandle) {
         mode = 'resize';
-        // Prevent drawing/moving if we are actively resizing
       } else if (inside) {
         mode = 'move';
         selection.style.cursor = 'grabbing';
       } else {
         mode = 'draw';
         selection.style.cursor = 'crosshair';
-        // start a new selection
         sel = {x: pointerStart.x, y: pointerStart.y, w: 0, h: 0};
         updateSelectionUI();
       }
@@ -596,7 +896,6 @@
       if(!d) return;
 
       if(mode === 'draw'){
-        // draw new selection from pointerStart to current
         const x = Math.min(pointerStart.x, p.x);
         const y = Math.min(pointerStart.y, p.y);
         const w = Math.abs(p.x - pointerStart.x);
@@ -604,25 +903,21 @@
         sel = {x, y, w, h};
         updateSelectionUI();
       } else if (mode === 'move'){
-        // move selection by delta from lastMouse
         const mx = p.x - lastMouse.x;
         const my = p.y - lastMouse.y;
         
         let newX = sel.x + mx;
         let newY = sel.y + my;
         
-        // clamp inside displayed image
         newX = Math.max(0, Math.min(d.width - sel.w, newX));
         newY = Math.max(0, Math.min(d.height - sel.h, newY));
         
         sel.x = newX; sel.y = newY;
         updateSelectionUI();
-        lastMouse = {x: p.x, y: p.y}; // Update lastMouse to current clamped position
+        lastMouse = {x: p.x, y: p.y}; 
       } else if (mode === 'resize' && activeHandle){
-        // resize from corner
         let nx = sel.x, ny = sel.y, nw = sel.w, nh = sel.h;
         
-        // Calculate potential new dimensions/position
         if(activeHandle === 'nw'){
           nx = Math.min(p.x, sel.x + sel.w - 1);
           ny = Math.min(p.y, sel.y + sel.h - 1);
@@ -641,7 +936,6 @@
           nh = Math.max(1, p.y - sel.y);
         }
         
-        // Clamp to image boundaries (essential for preventing selection overflow)
         nx = Math.max(0, nx);
         ny = Math.max(0, ny);
         nw = Math.max(1, Math.min(d.width - nx, nw));
@@ -652,7 +946,6 @@
       }
     });
 
-    // end pointer
     previewWrap.addEventListener('pointerup', (e) => {
       if(!isPointerDown) return;
       try { previewWrap.releasePointerCapture(e.pointerId); } catch(err) {}
@@ -662,10 +955,8 @@
       selection.style.cursor = 'move';
     });
 
-    // handle leaving pointer (safety)
     previewWrap.addEventListener('pointercancel', ()=>{ isPointerDown=false; mode=null; activeHandle=null; selection.style.cursor = 'move'; });
 
-    // Select full image
     fitBtn.addEventListener('click', ()=>{
       if(!currentFile || !previewImg.naturalWidth) return;
       const d = getDisplayedImageRect();
@@ -674,7 +965,6 @@
       updateSelectionUI();
     });
 
-    // Crop button
     cropBtn.addEventListener('click', async ()=>{
       if(!currentFile) { alert('No image loaded'); return; }
       if(sel.w < 5 || sel.h < 5) { alert('Draw a valid selection (min 5x5 pixels)'); return; }
@@ -682,7 +972,6 @@
       cropBtn.disabled = true;
       status.textContent = 'Cropping...';
 
-      // 1. Map selection from displayed-image pixels to original image pixels
       const d = getDisplayedImageRect();
       if(!d) { alert('Image not ready'); cropBtn.disabled = false; return; }
       
@@ -694,22 +983,18 @@
       const sw = Math.round(sel.w * scaleX);
       const sh = Math.round(sel.h * scaleY);
       
-      // 2. Safety clamp (ensure dimensions are at least 1 and within original image bounds)
       const sx2 = Math.max(0, Math.min(previewImg.naturalWidth-1, sx));
       const sy2 = Math.max(0, Math.min(previewImg.naturalHeight-1, sy));
       const sw2 = Math.max(1, Math.min(previewImg.naturalWidth - sx2, sw));
       const sh2 = Math.max(1, Math.min(previewImg.naturalHeight - sy2, sh));
 
-      // 3. Draw on canvas
       const canvas = document.createElement('canvas');
       canvas.width = sw2; canvas.height = sh2;
       const ctx = canvas.getContext('2d');
       
-      // Load a fresh Image object to avoid any issues
       const tmp = await loadImage(previewImg.src);
       ctx.drawImage(tmp, sx2, sy2, sw2, sh2, 0, 0, sw2, sh2);
 
-      // 4. Smart output format detection
       let mimeType = 'image/jpeg';
       let quality = 0.92;
       let ext = 'jpg';
@@ -724,28 +1009,23 @@
       const blob = await new Promise(res => canvas.toBlob(res, mimeType, quality));
       const url = URL.createObjectURL(blob);
       
-      // 5. Update UI
       downloadLink.href = url;
       downloadLink.download = 'cropped.' + ext;
       outInfo.textContent = `${sw2} × ${sh2} • ${humanSize(blob.size)} • ${ext.toUpperCase()}`;
       downloadWrap.style.display = 'block';
       
-      // Show result in preview (optional but good for UX)
       previewImg.src = url;
       
-      // Clear selection
       selection.style.display = 'none';
       selMeta.textContent = `${sw2}×${sh2} (result)`;
       status.textContent = 'Cropping Complete!';
       cropBtn.disabled = false;
       
-      // Cleanup memory after a minute
       setTimeout(()=>URL.revokeObjectURL(url),60000);
     });
 
     resetBtn.addEventListener('click', resetUI);
 
-    // Utility: loadImage returning Promise
     function loadImage(src){
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -755,16 +1035,12 @@
       });
     }
 
-    // When window resizes, selection position must be re-rendered
     window.addEventListener('resize', () => { 
         if(currentFile && previewImg.naturalWidth) {
             updateSelectionUI(); 
-            // Also re-calculate selection to fit the *new* displayed dimensions if it was full-screen
-            // fitBtn.click(); // Too aggressive, just reposition
         }
     });
 
-    // Initialize
     resetUI();
   </script>
 </body>
