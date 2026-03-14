@@ -719,11 +719,6 @@ async def terms_and_conditions():
 async def disclaimer():
     return FileResponse("static/disclaimer.html")
 
-
-@app.get("/tiktok-download.html")
-async def tiktok_download():
-    return FileResponse("static/tiktok-download.html")
-
 # API Status
 @app.get("/api-status")
 async def api_status():
