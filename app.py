@@ -651,10 +651,6 @@ def qr_generator():
 async def mosaic_tool():
     return FileResponse("static/mosaic.html")
 
-@app.get("/yt-download.html")
-async def yt_download_page():
-    return FileResponse("static/yt-download.html")
-
 @app.get("/photoEdit.html")
 # @app.get("/photo-edit.html") 
 # @app.get("/photo-edit")
