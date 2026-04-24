@@ -911,8 +911,14 @@
       bar.style.width = '10%';
       document.querySelector('.progress').setAttribute('aria-valuenow', 10);
 
-      let outMime = format.value === 'auto' ? currentFile.type : format.value;
-      if(outMime === 'auto') outMime = currentFile.type || 'image/jpeg';
+      // --- NEW FIX: Auto-convert PNG to WebP during compression to prevent size increase ---
+      let finalMime = format.value;
+      if(finalMime === 'auto') {
+          finalMime = currentFile.type || 'image/jpeg';
+          if (mode.value === 'compress' && finalMime === 'image/png') {
+              finalMime = 'image/webp'; // PNGs increase size in canvas, WebP is better
+          }
+      }
 
       const dataURL = await fileToDataURL(currentFile);
       const img = await loadImage(dataURL);
@@ -924,26 +930,36 @@
       const canvas = document.createElement('canvas');
       canvas.width = targetW; canvas.height = targetH;
       const ctx = canvas.getContext('2d');
+      
+      // --- NEW FIX: Background fill for JPEG to prevent transparent pixels turning black ---
+      if (finalMime === 'image/jpeg') {
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, targetW, targetH);
+      }
+      
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(img, 0, 0, targetW, targetH);
 
       const isResizeOnly = mode.value === 'resize';
-      let finalMime = outMime;
+      let qualityVal = isResizeOnly ? 0.92 : parseInt(quality.value) / 100;
 
-      const qualityVal = parseInt(quality.value) / 100;
-
-      if(isResizeOnly && format.value === 'auto') finalMime = currentFile.type || 'image/jpeg';
-
-      const blob = await new Promise(resolve => {
-        if(canvas.toBlob){
-          if((finalMime === 'image/jpeg' || finalMime === 'image/webp')){
-            canvas.toBlob(resolve, finalMime, qualityVal);
-          } else {
-            canvas.toBlob(resolve, finalMime);
+      let blob;
+      
+      if (finalMime === 'image/jpeg' || finalMime === 'image/webp') {
+          blob = await new Promise(res => canvas.toBlob(res, finalMime, qualityVal));
+          
+          // --- NEW FIX: Smart compression loop! If output > input, force decrease quality ---
+          if (mode.value === 'compress' && blob.size >= currentFile.size && targetW === img.width) {
+             let tempQ = qualityVal;
+             while (blob.size >= currentFile.size && tempQ > 0.1) {
+                 tempQ -= 0.1;
+                 blob = await new Promise(res => canvas.toBlob(res, finalMime, tempQ));
+             }
           }
-        } else {
-          resolve(new Blob([new Uint8Array(0)],{type:finalMime})); 
-        }
-      });
+      } else {
+          blob = await new Promise(res => canvas.toBlob(res, finalMime));
+      }
 
       bar.style.width = '70%';
       document.querySelector('.progress').setAttribute('aria-valuenow', 70);
@@ -953,13 +969,23 @@
       compBytes.textContent = humanSize(outSize);
       const orig = currentFile.size || 0;
       const saved = orig - outSize;
-      savings.textContent = saved > 0 ? humanSize(saved) + ` (${Math.round(100 * saved / orig)}%)` : '0 B (0%)';
+      
+      if (saved > 0) {
+          savings.textContent = humanSize(saved) + ` (${Math.round(100 * saved / orig)}%)`;
+          savings.style.color = 'inherit';
+      } else {
+          savings.textContent = '0 B (0%) - Already Optimized';
+          savings.style.color = '#e74c3c';
+      }
 
       const outType = blob.type || finalMime || 'image/jpeg';
       const url = URL.createObjectURL(blob);
       downloadLink.href = url;
-      const ext = outType.split('/')[1].split(';')[0];
-      downloadLink.download = `output.${ext}`;
+      
+      let ext = outType.split('/')[1];
+      if(ext === 'jpeg') ext = 'jpg';
+      
+      downloadLink.download = `optimized_${Date.now()}.${ext}`;
       outName.textContent = downloadLink.download;
       outInfo.textContent = `${outType.split('/')[1].toUpperCase()} • ${targetW} × ${targetH}`;
       downloadWrap.style.display = 'block';
