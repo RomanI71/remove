@@ -221,6 +221,83 @@
 
         .tool-card:hover .icon-container img { transform: scale(1.2) rotate(5deg); transition: transform 0.3s ease; }
 
+
+        .tool-info-section {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.info-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.info-text {
+    flex: 1;
+}
+
+.info-text h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.info-text .subtitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.info-text .description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.info-image {
+    flex: 1;
+    text-align: center;
+}
+
+.info-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.section-divider {
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 40px 0;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .info-row, .info-row.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .info-text h2 {
+        font-size: 1.8rem;
+    }
+}
+
+
+
+
         /* --- CHOOSE US & TESTIMONIALS --- */
         .choose-us-section { background-color: #f0f3f6; padding: 80px 0; }
         .choose-us-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
@@ -625,6 +702,195 @@
             </div>
         </div>
     </section>
+
+<section class="tool-info-section">
+    <!-- First Row: Text Left, Image Right -->
+    <div class="info-row">
+        <div class="info-text">
+            <h2>Blur an image</h2>
+            <p class="subtitle">Hide confidential areas on your pictures for free.</p>
+            <p class="description">
+                You can blur the areas you want to mask. <br>
+                Protect your privacy with our online tool.
+            </p>
+        </div>
+        <div class="info-image">
+            <img src="img/blur-face.jpg" alt="Blur an image">
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Second Row: Image Left, Text Right -->
+    <div class="info-row reverse">
+        <div class="info-text">
+            <h2>Crop images</h2>
+            <p class="subtitle">Use our online tool to crop your images in batch.</p>
+            <p class="description">
+                You can crop multiple images in a row and then download them all in a ZIP archive.
+                Selection of the area is done through a simple and intuitive interface.
+            </p>
+        </div>
+        <div class="info-image">
+            <img src="img/crop-img.jpg" alt="Crop images">
+        </div>
+    </div>
+<hr class="section-divider">
+
+    <!-- Convert images format -->
+<div class="info-row">
+    <div class="info-text">
+        <h2>Convert images format</h2>
+        <p class="subtitle">Change your image format to WebP, AVIF, PNG, or JPG instantly.</p>
+        <p class="description">
+            Our online converter supports modern formats like WebP and AVIF to improve your website's loading speed. 
+            Simply upload your file, choose the target format, and get a high-quality result in seconds.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/convert-img.jpg" alt="Convert images format">
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Resize images -->
+<div class="info-row reverse">
+    <div class="info-text">
+        <h2>Resize images</h2>
+        <p class="subtitle">Adjust dimensions for social media or web use without losing quality.</p>
+        <p class="description">
+            Easily resize your photos to specific pixel dimensions or percentages. 
+            Whether it's for Instagram, Facebook, or your own blog, our tool ensures your images look sharp and professional.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/resize-img.jpg" alt="Resize images">
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Compress images -->
+<div class="info-row">
+    <div class="info-text">
+        <h2>Compress images</h2>
+        <p class="subtitle">Reduce file size for faster loading while maintaining clarity.</p>
+        <p class="description">
+            Optimizing images is crucial for SEO and user experience. 
+            Our compression tool reduces the weight of your images significantly without noticeable loss in visual quality.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/compress.jpg" alt="Compress images">
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Rotate images -->
+<div class="info-row reverse">
+    <div class="info-text">
+        <h2>Rotate images</h2>
+        <p class="subtitle">Flip or turn your photos to the perfect angle easily.</p>
+        <p class="description">
+            Upload your images and rotate them clockwise, counter-clockwise, or flip them horizontally/vertically. 
+            It’s a simple yet powerful tool to correct the orientation of your captured photos.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/rotate-image.jpg" alt="Rotate images">
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Images to GIF -->
+<div class="info-row">
+    <div class="info-text">
+        <h2>Images to GIF</h2>
+        <p class="subtitle">Turn a sequence of photos into an animated GIF.</p>
+        <p class="description">
+            Create engaging animations by combining multiple images into a single GIF file. 
+            Control the frame rate and loop settings to make the perfect animation for your social media or website.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/image-gif.webp" alt="Images to GIF">
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Image to PDF -->
+<div class="info-row reverse">
+    <div class="info-text">
+        <h2>Image to PDF</h2>
+        <p class="subtitle">Convert one or multiple images into a professional PDF document.</p>
+        <p class="description">
+            Need to send photos as a single document? 
+            Our Image to PDF converter allows you to merge multiple JPG or PNG files into one neatly formatted PDF file.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/image-pdf.jpg" alt="Image to PDF">
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Split PDF -->
+<div class="info-row">
+    <div class="info-text">
+        <h2>Split PDF</h2>
+        <p class="subtitle">Separate PDF pages into individual files.</p>
+        <p class="description">
+            Easily extract specific pages from a large PDF document. 
+            Our tool allows you to select ranges or individual pages to save them as new, separate PDF files.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/split-pdf.webp" alt="Split PDF">
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Image to Text (OCR) -->
+<div class="info-row reverse">
+    <div class="info-text">
+        <h2>Image to Text (OCR)</h2>
+        <p class="subtitle">Extract text from images using advanced OCR technology.</p>
+        <p class="description">
+            Stop typing manually! Use our Tesseract-powered OCR tool to extract text from scanned documents or photos. 
+            Copy and edit the text directly from any image format.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/image-text.jpg" alt="Image to Text">
+    </div>
+</div>
+<hr class="section-divider">
+
+<!-- Watermark on image -->
+<div class="info-row">
+    <div class="info-text">
+        <h2>Watermark on image</h2>
+        <p class="subtitle">Protect your creative work and brand your photos easily.</p>
+        <p class="description">
+            Add custom text or image watermarks to your pictures in seconds. 
+            With our tool, you can adjust transparency, size, and position to ensure your copyright 
+            is visible without distracting from the main content. Whether you are a photographer 
+            or a business owner, branding your images has never been this simple.
+        </p>
+    </div>
+    <div class="info-image">
+        <img src="img/watermark.jpg" alt="Add watermark to image">
+    </div>
+</div>
+</section>
+
+
     
     <section class="choose-us-section">
         <div class="container">
