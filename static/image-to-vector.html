@@ -807,9 +807,19 @@
       updatePaletteValue();
     });
 
-    function setupEventListeners() {
-      selectBtn.addEventListener('click', () => fileInput.click());
-      fileInput.addEventListener('change', handleFileSelect);
+   function setupEventListeners() {
+  selectBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', handleFileSelect);
+
+  uploadBox.addEventListener('click', (e) => {
+    if (e.target.closest('#selectBtn')) return;
+
+    fileInput.click();
+  });
       
       uploadBox.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -818,7 +828,6 @@
         }
       });
       
-      uploadBox.addEventListener('click', () => { fileInput.click(); });
 
       ['dragenter', 'dragover'].forEach(evt => {
         uploadBox.addEventListener(evt, e => {
