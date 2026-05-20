@@ -543,6 +543,10 @@ async def compress_tool():
 async def image_to_vector():
     return FileResponse("static/image-to-vector.html")
 
+@app.get("/merge-pdf.html")
+async def merge_pdf():
+    return FileResponse("static/merge-pdf.html")
+
 @app.get("/jpg-to-png.html")
 async def jpg_to_png():
     return FileResponse("static/jpg-to-png.html")
