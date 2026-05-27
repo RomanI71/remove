@@ -10,7 +10,8 @@
 
 <meta name="author" content="TopImgTools" />
 
-<link rel="canonical" href="https://topimgtools.com/compress.html" />
+<link rel="canonical" href="https://topimgtools.com/compress_tool.html" />
+
 
 <meta property="og:title" content="Free Online Image Compressor – Reduce Image Size Without Losing Quality" />
 <meta property="og:description" content="Compress JPG, PNG, and WebP images online without losing quality. Free, fast, and secure image compression tool by TopImgTools." />
@@ -78,6 +79,62 @@
     .main-nav { display: flex; gap: 20px; margin-left: 76px; margin-right: auto; }
     .main-nav li a { color: #555; font-size: 14px; font-weight: 500; padding: 10px 0; white-space: nowrap; text-transform: uppercase; }
     .main-nav li a:hover { color: #3498db; }
+
+
+
+.compare-section{
+    margin-top:60px;
+    text-align:center;
+    padding:40px 20px;
+    background:#fff;
+    border-radius:16px;
+}
+
+.compare-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.compare-box{
+    width:320px;
+    background:#f8f9fb;
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.compare-box img{
+    width:100%;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.compare-box h3{
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.compare-arrow{
+    font-size:42px;
+    font-weight:bold;
+    color:#2b7cff;
+}
+
+.img-info p{
+    margin:5px 0;
+    font-size:15px;
+}
+
+.saving-info{
+    margin-top:25px;
+    font-size:24px;
+    color:green;
+}
+
+
 
     /* DROPDOWN */
     .dropdown { position: relative; }
@@ -286,6 +343,20 @@
         .download-btn .btn { width: 100%; margin-top: 8px; }
     }
   </style>
+    <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"TopImgTools Image Compressor",
+    "url":"https://topimgtools.com/compress_tool.html",
+    "applicationCategory":"MultimediaApplication",
+    "operatingSystem":"All",
+    "offers":{
+      "@type":"Offer",
+      "price":"0"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -576,7 +647,48 @@
         <span style="color:#9ca3af; font-weight:bold; font-size:20px;" aria-hidden="true">⟶</span>
       </nav>
 
-<section class="content-area" style="line-height: 1.8; color: #374151; font-family: sans-serif;">
+<!-- Before After Comparison -->
+<section class="compare-section">
+    <h2>Before & After Compression</h2>
+
+    <div class="compare-container">
+
+        <!-- Before -->
+        <div class="compare-box">
+            <h3>Before</h3>
+            <img src="/static/img/before.jpg" alt="Before Compression">
+            <div class="img-info">
+                <p>Size: 4.8 MB</p>
+                <p>Resolution: 4000 × 3000</p>
+            </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="compare-arrow">
+            ➜
+        </div>
+
+        <!-- After -->
+        <div class="compare-box">
+            <h3>After</h3>
+            <img src="/static/img/after.jpg" alt="After Compression">
+            <div class="img-info">
+                <p>Size: 620 KB</p>
+                <p>Resolution: 4000 × 3000</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="saving-info">
+        <strong>87% Smaller File Size</strong>
+    </div>
+</section>
+
+
+
+
+      <section class="content-area" style="line-height: 1.8; color: #374151; font-family: sans-serif;">
     <h2 style="font-size:32px; margin-bottom:20px; text-align:center; color: #111827; font-weight: 800;">
         Best Free Image Compressor Online – Reduce File Size Without Losing Quality
     </h2>
