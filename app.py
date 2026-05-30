@@ -531,6 +531,9 @@ async def index_page():
 async def guide_index():
     return FileResponse("static/guide/index.html")
 
+@app.get("/pdf-compress")
+async def pdf_compress():
+    return FileResponse("static/pdf-compress.html")
 
 
 # All HTML page routes
